@@ -685,6 +685,17 @@ export const curatedExamples = {
       "zh": "请来这里。",
       "en": "Please come here.",
       "source": "original"
+    },
+    {
+      "zh": "他今天不来。",
+      "en": "He isn't coming today.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "今天",
+        "不",
+        "来"
+      ]
     }
   ],
   "29": [
@@ -861,6 +872,17 @@ export const curatedExamples = {
       "zh": "我有二十元。",
       "en": "I have twenty yuan.",
       "source": "original"
+    },
+    {
+      "zh": "这个苹果三元。",
+      "en": "This apple costs three yuan.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "苹果",
+        "三",
+        "元"
+      ]
     }
   ],
   "38": [
@@ -923,6 +945,17 @@ export const curatedExamples = {
       "zh": "她在学校。",
       "en": "She is at school.",
       "source": "original"
+    },
+    {
+      "zh": "她喜欢喝茶。",
+      "en": "She likes drinking tea.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "喜欢",
+        "喝",
+        "茶"
+      ]
     }
   ],
   "41": [
@@ -1888,6 +1921,18 @@ export const curatedExamples = {
         "车",
         "来",
         "了"
+      ]
+    },
+    {
+      "zh": "我的车在那边。",
+      "en": "My car is over there.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "车",
+        "在",
+        "那边"
       ]
     }
   ],
@@ -2925,6 +2970,19 @@ export const curatedExamples = {
         "两",
         "国"
       ]
+    },
+    {
+      "zh": "你是哪国的学生？",
+      "en": "Which country are you a student from?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "是",
+        "哪",
+        "国",
+        "的",
+        "学生"
+      ]
     }
   ],
   "122": [
@@ -3865,6 +3923,19 @@ export const curatedExamples = {
         "好",
         "了"
       ]
+    },
+    {
+      "zh": "他的病还没有好。",
+      "en": "He hasn't recovered yet.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "病",
+        "还",
+        "没有",
+        "好"
+      ]
     }
   ],
   "155": [
@@ -4445,6 +4516,17 @@ export const curatedExamples = {
         "很",
         "好"
       ]
+    },
+    {
+      "zh": "今天天气很热。",
+      "en": "The weather is hot today.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "天气",
+        "很",
+        "热"
+      ]
     }
   ],
   "178": [
@@ -4457,6 +4539,17 @@ export const curatedExamples = {
         "喜欢",
         "读",
         "书"
+      ]
+    },
+    {
+      "zh": "请读这个字。",
+      "en": "Please read this character.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "读",
+        "这个",
+        "字"
       ]
     }
   ],
@@ -4540,6 +4633,17 @@ export const curatedExamples = {
       "verifiedTokens": [
         "他",
         "是",
+        "医生"
+      ]
+    },
+    {
+      "zh": "我想见医生。",
+      "en": "I want to see a doctor.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "见",
         "医生"
       ]
     }
@@ -5505,6 +5609,18 @@ export const curatedExamples = {
         "很",
         "好吃"
       ]
+    },
+    {
+      "zh": "这里的饺子很好吃。",
+      "en": "The dumplings here are delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "的",
+        "饺子",
+        "很",
+        "好吃"
+      ]
     }
   ],
   "218": [
@@ -5933,6 +6049,17 @@ export const curatedExamples = {
         "爸爸",
         "下班",
         "了"
+      ]
+    },
+    {
+      "zh": "你几点下班？",
+      "en": "What time do you finish work?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "几",
+        "点",
+        "下班"
       ]
     }
   ],
@@ -6546,6 +6673,17 @@ export const curatedExamples = {
       "verifiedTokens": [
         "我",
         "学",
+        "汉语"
+      ]
+    },
+    {
+      "zh": "他会说汉语。",
+      "en": "He can speak Mandarin.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "会",
+        "说",
         "汉语"
       ]
     }
