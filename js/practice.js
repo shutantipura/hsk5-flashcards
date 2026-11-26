@@ -5,6 +5,7 @@ import { grammarPrompt } from './grammar.js';
 import { grammarPatternsFor, isGrammarOnly, vocabularyMeanings } from './learning-mode.js';
 import { State, schedule, recallProb, fmtInterval } from './fsrs.js';
 
+export const READING_TYPES={detail:'Detail',inference:'Inference',main:'Main idea',vocabulary:'Vocabulary in context'};
 export const MODES={reading:'Reading',collocation:'Collocations',synonym:'Near-synonyms',order:'Sentence order',mistakes:'Mistake review'};
 const day=86400000;
 const clean=s=>String(s||'').replace(/[\p{P}\p{Z}\s]/gu,'');
@@ -85,9 +86,41 @@ export function mistakeQuestions(S,level=5,now=Date.now()){
   for(const q of PRACTICE){const c=S.settings.practiceProgress?.[q.id];if(q.level<=level&&c?.lastRating===1)out.push({...q,weight:2+Math.min(c.wrongCount||0,5)*.2,source:'Applied practice mistake'});}
   return out.sort((a,b)=>b.weight-a.weight);
 }
-export function practiceQueue(S,mode,level=5,limit=10,now=Date.now(),adaptive=true){
+export function readingQuestions(level=5,{exact=false,type='all'}={}){
+  return PRACTICE.filter(q=>q.kind==='reading'&&(exact?(q.passageLevel||q.level)===level:(q.passageLevel||q.level)<=level)&&(type==='all'||q.questionType===type));
+}
+export function readingStats(S,level=5,exact=false){
+  const progress=S.settings.practiceProgress||{};
+  return Object.entries(READING_TYPES).map(([type,label])=>{
+    const qs=readingQuestions(level,{exact,type});
+    let correct=0,wrong=0;
+    for(const q of qs){correct+=progress[q.id]?.correctCount||0;wrong+=progress[q.id]?.wrongCount||0;}
+    return {type,label,total:qs.length,correct,wrong,accuracy:correct+wrong?correct/(correct+wrong):null};
+  });
+}
+export function groupReadingRows(rows,limit,adaptive){
+  const groups=new Map();
+  for(const row of rows){const id=row.q.passageId||row.q.passage;const group=groups.get(id)||[];group.push(row);groups.set(id,group);}
+  const groupsSorted=[...groups.values()].map(all=>{
+    // Preserve each question's own schedule. Practise due and new questions together;
+    // if a passage has none, allow early review only when the learner has no ready passages.
+    const ready=all.filter(r=>r.due||!r.c.reps);
+    const active=ready.length?ready:all;
+    return {rows:active,ready:ready.length>0,due:active.some(r=>r.due),coverage:active[0].coverage?.ratio||0,level:active[0].q.passageLevel||active[0].q.level,oldest:Math.min(...active.map(r=>Date.parse(r.c.due)))};
+  });
+  const fitness=x=>x.coverage>=.85?1-Math.abs(x.coverage-.93):x.coverage;
+  groupsSorted.sort((a,b)=>Number(b.due)-Number(a.due)||Number(b.ready)-Number(a.ready)||(a.due&&b.due?a.oldest-b.oldest:0)||(adaptive?fitness(b)-fitness(a):0)||a.level-b.level||a.oldest-b.oldest);
+  const available=groupsSorted.some(x=>x.ready)?groupsSorted.filter(x=>x.ready):groupsSorted;
+  const selected=[];
+  for(const group of available){
+    if(selected.length+group.rows.length>limit)continue;
+    selected.push(...group.rows.sort((a,b)=>a.q.id.localeCompare(b.q.id,undefined,{numeric:true})));
+  }
+  return selected.length?selected:(available[0]?.rows.slice(0,limit)||[]);
+}
+export function practiceQueue(S,mode,level=5,limit=10,now=Date.now(),adaptive=true,readingOptions={}){
   const progress=S.settings.practiceProgress||{},known=buildKnowledge(S,now);
-  const qs=mode==='mistakes'?mistakeQuestions(S,level,now):PRACTICE.filter(q=>q.kind===mode&&q.level<=level);
+  const qs=mode==='mistakes'?mistakeQuestions(S,level,now):mode==='reading'?readingQuestions(level,readingOptions):PRACTICE.filter(q=>q.kind===mode&&q.level<=level);
   const rows=qs.map(q=>{const c=practiceCard(progress,q.id,now);const due=!!c.reps&&Date.parse(c.due)<=now;const coverage=q.passage?readingCoverage(q,known):null;return {q,c,due,coverage};});
   const sort=(a,b)=>{
     if(mode==='mistakes')return Number(b.due)-Number(a.due)||(b.q.weight||0)-(a.q.weight||0)||Date.parse(a.c.due)-Date.parse(b.c.due);
@@ -98,7 +131,7 @@ export function practiceQueue(S,mode,level=5,limit=10,now=Date.now(),adaptive=tr
     return a.q.level-b.q.level||a.q.id.localeCompare(b.q.id);
   };
   rows.sort(sort);
-  return {rows,selected:rows.slice(0,limit),due:rows.filter(x=>x.due).length,fresh:rows.filter(x=>!x.c.reps).length};
+  return {rows,selected:mode==='reading'?groupReadingRows(rows,limit,adaptive):rows.slice(0,limit),due:rows.filter(x=>x.due).length,fresh:rows.filter(x=>!x.c.reps).length};
 }
 export function practiceStats(S,now=Date.now()){
   const p=S.settings.practiceProgress||{},cards=Object.values(p);
@@ -106,21 +139,22 @@ export function practiceStats(S,now=Date.now()){
 }
 export function orderCorrect(q,parts){return clean(parts.join(''))===clean(q.answer);}
 export function createPracticeScreen({S,shell,saveSettings,esc}){
-  let level=5,mode='reading',adaptive=true,limit=10,queue=[],idx=0,correct=0,busy=false,answerState=null,chosen=[],tiles=[];
+  let level=5,mode='reading',adaptive=true,exact=true,readingType='all',limit=10,queue=[],idx=0,correct=0,busy=false,answerState=null,chosen=[],tiles=[],readingAnswers=[];
   const $=s=>document.querySelector(s),progress=()=>S.settings.practiceProgress||{};
   function dashboard(){
-    queue=[];idx=0;busy=false;
+    queue=[];idx=0;busy=false;readingAnswers=[];
     const stats=practiceStats(S),known=buildKnowledge(S);
-    const counts=Object.fromEntries(Object.keys(MODES).map(k=>[k,k==='mistakes'?mistakeQuestions(S,level).length:PRACTICE.filter(q=>q.kind===k&&q.level<=level).length]));
+    const counts=Object.fromEntries(Object.keys(MODES).map(k=>[k,k==='mistakes'?mistakeQuestions(S,level).length:k==='reading'?readingQuestions(level,{exact,type:readingType}).length:PRACTICE.filter(q=>q.kind===k&&q.level<=level).length]));
     shell('practice','<header class="hdr"><div><h1>Applied Practice</h1><p class="muted">Use what you know in context.</p></div></header>'+
       '<section class="card"><div class="grammar-stats"><div><b>'+stats.due+'</b><span>Due</span></div><div><b>'+stats.seen+'</b><span>Practised</span></div><div><b>'+(stats.correct+stats.wrong?Math.round(100*stats.correct/(stats.correct+stats.wrong))+'%':'—')+'</b><span>Accuracy</span></div></div>'+
       '<label>Maximum HSK level<select id="pr-level">'+[1,2,3,4,5].map(l=>'<option value="'+l+'" '+(l===level?'selected':'')+'>HSK '+l+' and below</option>').join('')+'</select></label>'+
       '<label>Questions per session<select id="pr-limit">'+[5,10,20].map(n=>'<option '+(n===limit?'selected':'')+' value="'+n+'">'+n+'</option>').join('')+'</select></label>'+
-      '<label class="pr-check"><input id="pr-adaptive" type="checkbox" '+(adaptive?'checked':'')+'> Match reading to my studied vocabulary</label><p class="muted small">'+known.size+' words estimated familiar. Reading uses checked passages ranked by familiar vocabulary; unfamiliar words can be revealed after answering.</p></section>'+
+      '<label class="pr-check"><input id="pr-exact" type="checkbox" '+(exact?'checked':'')+'> Reading: selected HSK level only</label><label>Reading question type<select id="pr-reading-type">'+[['all','All types'],...Object.entries(READING_TYPES)].map(([k,n])=>'<option value="'+k+'" '+(k===readingType?'selected':'')+'>'+n+'</option>').join('')+'</select></label>'+
+      '<label class="pr-check"><input id="pr-adaptive" type="checkbox" '+(adaptive?'checked':'')+'> Match reading to my studied vocabulary</label><p class="muted small">'+known.size+' words estimated familiar. Reading uses checked passages ranked for a manageable challenge. Answers, translations and unfamiliar words appear after the passage questions.</p></section>'+
       Object.entries(MODES).map(([k,name])=>'<button class="btn grammar-pattern" data-mode="'+k+'" '+(!counts[k]?'disabled':'')+'><span><b>'+name+'</b><small>'+({reading:'Short passages and Chinese questions',collocation:'Natural word combinations',synonym:'Choose the best fit in context',order:'Arrange the sentence chunks',mistakes:'From your vocabulary, grammar and practice history'}[k])+'</small></span><span class="muted">'+counts[k]+' ›</span></button>').join('')+
-      '<p class="muted small">These reviews have their own schedule and do not change your vocabulary or grammar mastery.</p>');
-    $('#pr-level').onchange=e=>{level=+e.target.value;dashboard();};$('#pr-limit').onchange=e=>{limit=+e.target.value;};$('#pr-adaptive').onchange=e=>{adaptive=e.target.checked;};
-    document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;queue=practiceQueue(S,mode,level,limit,Date.now(),adaptive).selected;idx=0;correct=0;next();});
+      '<section class="card"><h3>Reading accuracy by skill</h3>'+readingStats(S,level,exact).map(x=>'<div class="kv"><span>'+esc(x.label)+' <small class="muted">('+x.total+' questions)</small></span><b>'+(x.accuracy===null?'—':Math.round(x.accuracy*100)+'%')+'</b></div>').join('')+'</section><p class="muted small">These reviews have their own schedule and do not change your vocabulary or grammar mastery.</p>');
+    $('#pr-level').onchange=e=>{level=+e.target.value;dashboard();};$('#pr-limit').onchange=e=>{limit=+e.target.value;};$('#pr-adaptive').onchange=e=>{adaptive=e.target.checked;};$('#pr-exact').onchange=e=>{exact=e.target.checked;dashboard();};$('#pr-reading-type').onchange=e=>{readingType=e.target.value;dashboard();};
+    document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;queue=practiceQueue(S,mode,level,limit,Date.now(),adaptive,{exact,type:readingType}).selected;idx=0;correct=0;readingAnswers=[];next();});
   }
   function next(){
     if(idx>=queue.length){shell('practice','<section class="card center"><h1>Practice complete</h1><p class="pr-score">'+correct+' / '+queue.length+'</p><p class="muted">Your next practice review dates have been saved.</p><button class="btn primary" id="pr-home">Back to Practice</button></section>');$('#pr-home').onclick=dashboard;return;}
@@ -130,8 +164,10 @@ export function createPracticeScreen({S,shell,saveSettings,esc}){
   }
   function render(){
     const {q,coverage}=queue[idx];const order=q.kind==='order';const opts=order?[]:shuffle(q.choices);
-    const passage=q.passage?'<section class="card"><div class="kv"><b>'+esc(q.title||'阅读')+'</b><button class="link" data-say="'+esc(q.passage)+'" aria-label="Listen">🔊</button></div><p class="pr-passage" lang="zh-CN">'+esc(q.passage)+'</p>'+(coverage?'<p class="small muted">Estimated familiar vocabulary: '+Math.round(coverage.ratio*100)+'% of distinct words</p>':'')+'</section>':'';
-    shell('practice','<button class="link" id="pr-home">‹ Practice</button><div class="ptop"><span class="tag">HSK '+q.level+' · '+esc(MODES[q.kind]||'Mistake review')+'</span><span class="muted small">'+(idx+1)+' / '+queue.length+'</span></div>'+passage+
+    const passageRows=q.passage?queue.filter(x=>x.q.passage===q.passage):[];
+    const passageNumber=q.passage?passageRows.findIndex(x=>x.q.id===q.id)+1:0;
+    const passage=q.passage?'<section class="card"><div class="kv"><b>'+esc(q.title||'阅读')+'</b><span class="muted small">'+passageNumber+' / '+passageRows.length+'</span><button class="link" data-say="'+esc(q.passage)+'" aria-label="Listen">🔊</button></div><p class="pr-passage" lang="zh-CN">'+esc(q.passage)+'</p>'+(coverage?'<p class="small muted">Estimated familiar vocabulary: '+Math.round(coverage.ratio*100)+'% of distinct words</p>':'')+'</section>':'';
+    shell('practice','<button class="link" id="pr-home">‹ Practice</button><div class="ptop"><span class="tag">HSK '+q.level+' · '+esc(MODES[q.kind]||'Mistake review')+(q.questionType?' · '+esc(READING_TYPES[q.questionType]||q.questionType):'')+'</span><span class="muted small">'+(idx+1)+' / '+queue.length+'</span></div>'+passage+
       '<section class="card"><h2 class="grammar-question">'+esc(q.prompt)+'</h2>'+(q.hint?'<p class="muted">'+esc(q.hint)+'</p>':'')+(q.source?'<p class="muted small">'+esc(q.source)+'</p>':'')+
       (order?'<p class="muted small">Tap chunks to assemble the model sentence. Tap an assembled chunk to remove it.</p><div id="pr-built" class="pr-built"></div><div id="pr-tiles" class="pr-tiles"></div><button class="btn primary" id="pr-check">Check sentence</button>':opts.map((o,i)=>'<button class="btn grammar-option" data-pr-choice="'+i+'">'+esc(o)+'</button>').join(''))+
       '<button class="btn ghost" id="pr-unknown">I don’t know</button><div id="pr-feedback" aria-live="polite"></div></section>');
@@ -146,8 +182,39 @@ export function createPracticeScreen({S,shell,saveSettings,esc}){
     document.querySelectorAll('[data-tile]').forEach(b=>b.onclick=()=>{chosen.push(+b.dataset.tile);drawTiles();});
     document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{chosen=chosen.filter(i=>i!==+b.dataset.remove);drawTiles();});
   }
+  async function commitReading(q,ok,advance){
+    if(busy)return;
+    busy=true;const token=queue[idx],button=$('#pr-next');if(button)button.disabled=true;
+    try{
+      await saveSettings({practiceProgress:gradePractice(progress(),q.id,ok,Date.now(),S.settings.retention)});
+      if(location.hash.split('?')[0]!=='#/practice'||queue[idx]!==token)return;
+      correct+=Number(ok);advance();
+    }catch(e){busy=false;if(button&&button.isConnected)button.disabled=false;$('#pr-feedback')?.insertAdjacentHTML('beforeend','<p class="muted small">Could not save. Try again.</p>');}
+  }
+  function readingFeedback(ok,q,opts,picked){
+    document.querySelectorAll('[data-pr-choice]').forEach((b,i)=>{b.disabled=true;if(i===picked)b.classList.add('pr-selected');});$('#pr-unknown').disabled=true;
+    const last=queue[idx+1]?.q.passage!==q.passage;
+    const entry={q,ok,chosen:picked<0?'I don’t know':opts[picked]};
+    if(!last){
+      $('#pr-feedback').innerHTML='<p class="muted small">Answer recorded. Results will appear after the passage.</p><button class="btn primary" id="pr-next">Next question</button>';
+      $('#pr-next').onclick=()=>commitReading(q,ok,()=>{readingAnswers.push(entry);idx++;next();});
+      return;
+    }
+    $('#pr-feedback').innerHTML='<button class="btn primary" id="pr-next">Finish passage &amp; see results</button>';
+    $('#pr-next').onclick=()=>commitReading(q,ok,()=>{readingAnswers.push(entry);showReadingResults(q);});
+  }
+  function showReadingResults(q){
+    const coverage=queue[idx]?.coverage;
+    const n=readingAnswers.filter(a=>a.ok).length;
+    const gloss=(coverage?.unfamiliar||[]).map(t=>{const w=S.byHanzi.get(t);return w?'<div class="pr-gloss"><b>'+esc(t)+'</b> · '+esc(w.p)+'<br>'+esc(vocabularyMeanings(w).slice(0,2).join('; '))+'</div>':'';}).join('');
+    shell('practice','<button class="link" id="pr-home">‹ Practice</button><header class="hdr"><div><h1>Passage review</h1><p class="muted">'+n+' / '+readingAnswers.length+' correct</p></div></header><section class="card"><div class="kv"><b>'+esc(q.title||'阅读')+'</b><button class="link" data-say="'+esc(q.passage)+'" aria-label="Listen">🔊</button></div><p class="pr-passage" lang="zh-CN">'+esc(q.passage)+'</p>'+(q.translation?'<details><summary>English translation</summary><p>'+esc(q.translation)+'</p></details>':'')+(gloss?'<details><summary>Unfamiliar vocabulary ('+coverage.unfamiliar.length+')</summary><div class="small">'+gloss+'</div></details>':'')+'</section>'+
+      readingAnswers.map(a=>'<section class="card"><span class="tag">'+esc(READING_TYPES[a.q.questionType]||'Reading')+'</span><h3>'+esc(a.q.prompt)+'</h3><p class="'+(a.ok?'good':'bad')+'">'+(a.ok?'✓ Correct':'✗ Review')+'</p>'+(!a.ok?'<p class="muted small">Your answer: '+esc(a.chosen)+'</p>':'')+'<p><b>'+esc(a.q.answer)+'</b></p><p>'+esc(a.q.explain)+'</p></section>').join('')+
+      '<button class="btn primary" id="pr-next">'+(idx+1<queue.length?'Continue to next passage':'Finish session')+'</button>');
+    $('#pr-home').onclick=dashboard;$('#pr-next').onclick=()=>{readingAnswers=[];idx++;next();};
+  }
   function feedback(ok,q,opts,picked=-1){
     if(answerState!==null)return;answerState=ok;
+    if(q.passage&&mode==='reading'){readingFeedback(ok,q,opts,picked);return;}
     document.querySelectorAll('[data-pr-choice]').forEach((b,i)=>{b.disabled=true;if(opts[i]===q.answer)b.classList.add('good');else if(i===picked)b.classList.add('bad');});
     document.querySelectorAll('[data-tile],[data-remove],#pr-check,#pr-unknown').forEach(b=>b.disabled=true);
     const coverage=queue[idx]?.coverage;
