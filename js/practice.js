@@ -62,16 +62,17 @@ function wordMistake(S,w,weight,now){
   if(!es.length)return null;
   const id='mw-'+w.i, c=practiceCard(S.settings.practiceProgress||{},id,now),e=es[c.reps%es.length],span=targetSpan(w,e);
   const rejected=new Set([w.h]);const options=[w.h],targetWords=new Set(vocabularyMeanings(w).join(' ').toLowerCase().match(/[a-z]{4,}/g)||[]);
-  const add=o=>{if(!o||options.length>=3||rejected.has(o.h)||o.l>w.l||isGrammarOnly(o))return;rejected.add(o.h);if(vocabularyMeanings(o).join(' ').toLowerCase().match(/[a-z]{4,}/g)?.some(t=>targetWords.has(t)))return;options.push(o.h);};
-  for(const l of [...S.logs].reverse())if(!l.correct&&l.word_id===w.i&&l.chosen_word_id)add(S.byId.get(l.chosen_word_id));
+  const add=(o,confused=false)=>{if(!o||options.length>=3||rejected.has(o.h)||o.l>w.l||isGrammarOnly(o))return;rejected.add(o.h);if(!confused&&vocabularyMeanings(o).join(' ').toLowerCase().match(/[a-z]{4,}/g)?.some(t=>targetWords.has(t)))return;options.push(o.h);};
+  for(const l of [...S.logs].reverse())if(!l.correct&&l.word_id===w.i&&l.chosen_word_id)add(S.byId.get(l.chosen_word_id),true);
   for(const o of shuffle(S.vocab.filter(o=>o.l<=w.l&&o.s.some(x=>w.s.includes(x))&&o.h.length===w.h.length)))add(o);
   for(const o of shuffle(S.vocab.filter(o=>o.l<=w.l)))add(o);
   if(options.length!==3)return null;
-  return {id,kind:'mistakes',level:w.l,prompt:e.zh.slice(0,span[0])+'＿＿'+e.zh.slice(span[1]),hint:e.en,answer:w.h,choices:options,explain:'Original sentence: '+e.zh+' — '+e.en,words:[w.h],tokens:e.tokens,weight,source:'Vocabulary mistake'};
+  return {id,kind:'mistakes',level:w.l,prompt:e.zh.slice(0,span[0])+'＿＿'+e.zh.slice(span[1]),hint:e.en,answer:w.h,choices:options,explain:'Original sentence: '+e.zh+' — '+e.en,words:[w.h],tokens:e.tokens,weight,source:'Vocabulary mistake · Reconstruct the original sentence'};
 }
 export function mistakeQuestions(S,level=5,now=Date.now()){
   const weights=mistakeWeights(S,now),out=[];
-  for(const [id,weight] of [...weights.words].sort((a,b)=>b[1]-a[1]).slice(0,60)){
+  for(const [id,c] of Object.entries(S.settings.practiceProgress||{})){if(!c.reps)continue;if(id.startsWith('mw-')){const wid=+id.slice(3);weights.words.set(wid,Math.max(.1,weights.words.get(wid)||0));}else if(id.startsWith('mg-')){const pid=id.slice(3);weights.grammar.set(pid,Math.max(.1,weights.grammar.get(pid)||0));}}
+  for(const [id,weight] of [...weights.words].sort((a,b)=>b[1]-a[1]).slice(0,150)){
     if(weight<=0)continue;const w=S.byId.get(id);if(!w||w.l>level)continue;
     if(isGrammarOnly(w)){for(const p of grammarPatternsFor(w))weights.grammar.set(p.id,Math.max(weights.grammar.get(p.id)||0,weight));continue;}
     const q=wordMistake(S,w,weight,now);if(q)out.push(q);
