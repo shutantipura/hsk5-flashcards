@@ -81,7 +81,7 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
     const chosen = [], seen = new Set();
     const add = e=>{
       if(chosen.length>=3 || !valid(e) || seen.has(e.zh)) return;
-      if (['也同学在这个学校学习。','那多的书看。','请不要与我的事情有关。','由于大，这个不好。','我通过了汉语课。','他送我一个宝。','他用手墙住了我。','围经理今天下午有空吗？','安小姐昨天去医院看病了。','红经理已经出差回来了。','工人在录木头上的花。','我深刻地爱我的家。','他把握着那个杯子。','他们达成了这次任务。','他说的这是吗？','我的女在学校。','他家在东西。','元同学正在学习汉语。','国医生在不在家？','我想读《大学》。','他不来，第我也去。','她好吃，爱吃菜。','他是我的大饭。','下班车几点来？'].includes(e.zh)) return;
+      if (['也同学在这个学校学习。','那多的书看。','请不要与我的事情有关。','由于大，这个不好。','我通过了汉语课。','他送我一个宝。','他用手墙住了我。','围经理今天下午有空吗？','安小姐昨天去医院看病了。','红经理已经出差回来了。','工人在录木头上的花。','我深刻地爱我的家。','他把握着那个杯子。','他们达成了这次任务。','他说的这是吗？','我的女在学校。','他家在东西。','元同学正在学习汉语。','国医生在不在家？','我想读《大学》。','他不来，第我也去。','她好吃，爱吃菜。','他是我的大饭。','下班车几点来？',"我在这儿路。","他告诉我也去。","楼是谁？","错，你来了。","左先生今天来了。","他说话我不想鸟他。","我在这里买酒店。","下周一你有时间吗？","他在桌子下面猫着。","这个机场很快。","这是我在帮忙你。","这个书有意思。","老师在看那本子。"].includes(e.zh)) return;
       // Explicit boundaries are supplied only for authored examples; every token
       // must be in the same syllabus and reproduce the complete Chinese text.
       const explicit = e.source === 'original' && Array.isArray(e.verifiedTokens) ? e.verifiedTokens : null;
@@ -7957,6 +7957,37 @@ export const curatedExamples = {
       ]
     }
   ],
+  "301": [
+    {
+      "zh": "我吃完饭就去学校。",
+      "en": "I go to school as soon as I finish eating.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "吃",
+        "完",
+        "饭",
+        "就",
+        "去",
+        "学校"
+      ]
+    }
+  ],
+  "302": [
+    {
+      "zh": "他拿着一本书。",
+      "en": "He is holding a book.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "拿",
+        "着",
+        "一",
+        "本",
+        "书"
+      ]
+    }
+  ],
   "303": [
     {
       "zh": "我在等你。",
@@ -7989,6 +8020,33 @@ export const curatedExamples = {
         "学校",
         "等",
         "我"
+      ]
+    }
+  ],
+  "304": [
+    {
+      "zh": "他高兴地笑了。",
+      "en": "He smiled happily.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "高兴",
+        "地",
+        "笑",
+        "了"
+      ]
+    },
+    {
+      "zh": "她快地跑了过来。",
+      "en": "She quickly ran over.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "快",
+        "地",
+        "跑",
+        "了",
+        "过来"
       ]
     }
   ],
@@ -8102,6 +8160,18 @@ export const curatedExamples = {
       ]
     }
   ],
+  "309": [
+    {
+      "zh": "真好啊！",
+      "en": "How wonderful!",
+      "source": "original",
+      "verifiedTokens": [
+        "真",
+        "好",
+        "啊"
+      ]
+    }
+  ],
   "310": [
     {
       "zh": "他出了门。",
@@ -8136,6 +8206,46 @@ export const curatedExamples = {
         "学校",
         "出",
         "来"
+      ]
+    }
+  ],
+  "311": [
+    {
+      "zh": "他汉语说得很好。",
+      "en": "He speaks Chinese very well.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "汉语",
+        "说",
+        "得",
+        "很",
+        "好"
+      ]
+    }
+  ],
+  "312": [
+    {
+      "zh": "老师让我写字。",
+      "en": "The teacher asked me to write characters.",
+      "source": "original",
+      "verifiedTokens": [
+        "老师",
+        "让",
+        "我",
+        "写",
+        "字"
+      ]
+    },
+    {
+      "zh": "请让我进去。",
+      "en": "Please let me go in.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "让",
+        "我",
+        "进去"
       ]
     }
   ],
@@ -8215,6 +8325,19 @@ export const curatedExamples = {
       ]
     }
   ],
+  "315": [
+    {
+      "zh": "他已经下班了。",
+      "en": "He has already finished work.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "已经",
+        "下班",
+        "了"
+      ]
+    }
+  ],
   "316": [
     {
       "zh": "我去了两次。",
@@ -8250,6 +8373,29 @@ export const curatedExamples = {
         "我",
         "不",
         "去"
+      ]
+    }
+  ],
+  "317": [
+    {
+      "zh": "你不要这样做。",
+      "en": "Don't do it like this.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "不要",
+        "这样",
+        "做"
+      ]
+    },
+    {
+      "zh": "这样很好。",
+      "en": "This way is good.",
+      "source": "original",
+      "verifiedTokens": [
+        "这样",
+        "很",
+        "好"
       ]
     }
   ],
@@ -8291,6 +8437,57 @@ export const curatedExamples = {
       ]
     }
   ],
+  "319": [
+    {
+      "zh": "因为下雨，我不出门。",
+      "en": "Because it's raining, I won't go out.",
+      "source": "original",
+      "verifiedTokens": [
+        "因为",
+        "下雨",
+        "我",
+        "不",
+        "出门"
+      ]
+    },
+    {
+      "zh": "我因为生病没有上课。",
+      "en": "I missed class because I was sick.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "因为",
+        "生病",
+        "没有",
+        "上课"
+      ]
+    }
+  ],
+  "320": [
+    {
+      "zh": "你喝茶还是咖啡？",
+      "en": "Would you like tea or coffee?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "喝",
+        "茶",
+        "还是",
+        "咖啡"
+      ]
+    },
+    {
+      "zh": "他还是不知道。",
+      "en": "He still doesn't know.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "还是",
+        "不",
+        "知道"
+      ]
+    }
+  ],
   "321": [
     {
       "zh": "这位老师是谁？",
@@ -8328,6 +8525,60 @@ export const curatedExamples = {
       ]
     }
   ],
+  "322": [
+    {
+      "zh": "我比他高。",
+      "en": "I am taller than him.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "比",
+        "他",
+        "高"
+      ]
+    }
+  ],
+  "323": [
+    {
+      "zh": "这个楼很高。",
+      "en": "This building is tall.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "楼",
+        "很",
+        "高"
+      ]
+    }
+  ],
+  "326": [
+    {
+      "zh": "我想去，但是没有时间。",
+      "en": "I want to go, but have no time.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "去",
+        "但是",
+        "没有",
+        "时间"
+      ]
+    }
+  ],
+  "328": [
+    {
+      "zh": "他可能不来。",
+      "en": "He may not come.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "可能",
+        "不",
+        "来"
+      ]
+    }
+  ],
   "329": [
     {
       "zh": "我想打电话。",
@@ -8359,6 +8610,135 @@ export const curatedExamples = {
         "不要",
         "打",
         "人"
+      ]
+    }
+  ],
+  "330": [
+    {
+      "zh": "我没有钱，所以不买。",
+      "en": "I have no money, so I won't buy it.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "没有",
+        "钱",
+        "所以",
+        "不",
+        "买"
+      ]
+    },
+    {
+      "zh": "今天下雨，所以我在家。",
+      "en": "It is raining, so I am at home.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "下雨",
+        "所以",
+        "我",
+        "在",
+        "家"
+      ]
+    }
+  ],
+  "331": [
+    {
+      "zh": "这件衣服太长。",
+      "en": "This garment is too long.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "衣服",
+        "太",
+        "长"
+      ]
+    },
+    {
+      "zh": "这条路不长。",
+      "en": "This road is not long.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "路",
+        "不",
+        "长"
+      ]
+    }
+  ],
+  "332": [
+    {
+      "zh": "我跟妈妈去商店。",
+      "en": "I go to the shop with Mum.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "跟",
+        "妈妈",
+        "去",
+        "商店"
+      ]
+    },
+    {
+      "zh": "你跟我来。",
+      "en": "Come with me.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "跟",
+        "我",
+        "来"
+      ]
+    }
+  ],
+  "333": [
+    {
+      "zh": "我希望你来。",
+      "en": "I hope you come.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "希望",
+        "你",
+        "来"
+      ]
+    },
+    {
+      "zh": "我希望明天不下雨。",
+      "en": "I hope it doesn't rain tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "希望",
+        "明天",
+        "不",
+        "下雨"
+      ]
+    }
+  ],
+  "335": [
+    {
+      "zh": "你怎么那么忙？",
+      "en": "Why are you so busy?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "怎么",
+        "那么",
+        "忙"
+      ]
+    },
+    {
+      "zh": "这个东西没有那么贵。",
+      "en": "This isn't that expensive.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "东西",
+        "没有",
+        "那么",
+        "贵"
       ]
     }
   ],
@@ -8461,6 +8841,89 @@ export const curatedExamples = {
         "怎么",
         "这么",
         "贵"
+      ]
+    }
+  ],
+  "339": [
+    {
+      "zh": "虽然今天下雨，我还是去学校。",
+      "en": "Although it is raining today, I still go to school.",
+      "source": "original",
+      "verifiedTokens": [
+        "虽然",
+        "今天",
+        "下雨",
+        "我",
+        "还是",
+        "去",
+        "学校"
+      ]
+    },
+    {
+      "zh": "虽然他很忙，但他来了。",
+      "en": "Although he was busy, he came.",
+      "source": "original",
+      "verifiedTokens": [
+        "虽然",
+        "他",
+        "很",
+        "忙",
+        "但",
+        "他",
+        "来",
+        "了"
+      ]
+    }
+  ],
+  "340": [
+    {
+      "zh": "她笑了。",
+      "en": "She laughed.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "笑",
+        "了"
+      ]
+    },
+    {
+      "zh": "孩子一见我就笑。",
+      "en": "The child smiles as soon as he sees me.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "一",
+        "见",
+        "我",
+        "就",
+        "笑"
+      ]
+    }
+  ],
+  "341": [
+    {
+      "zh": "我买了一条鱼。",
+      "en": "I bought a fish.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "一",
+        "条",
+        "鱼"
+      ]
+    },
+    {
+      "zh": "这条裤子很好看。",
+      "en": "These trousers look nice.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "裤子",
+        "很",
+        "好看"
       ]
     }
   ],
@@ -8570,6 +9033,93 @@ export const curatedExamples = {
         "周",
         "去",
         "学校"
+      ]
+    }
+  ],
+  "345": [
+    {
+      "zh": "这条路很长。",
+      "en": "This road is long.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "路",
+        "很",
+        "长"
+      ]
+    },
+    {
+      "zh": "我不认识这条路。",
+      "en": "I don't know this road.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "认识",
+        "这",
+        "条",
+        "路"
+      ]
+    },
+    {
+      "zh": "请问，去学校的路怎么走？",
+      "en": "Excuse me, how do I get to the school?",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "问",
+        "去",
+        "学校",
+        "的",
+        "路",
+        "怎么",
+        "走"
+      ]
+    }
+  ],
+  "346": [
+    {
+      "zh": "我的头很疼。",
+      "en": "My head hurts.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "头",
+        "很",
+        "疼"
+      ]
+    },
+    {
+      "zh": "请洗头。",
+      "en": "Please wash your hair.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "洗",
+        "头"
+      ]
+    }
+  ],
+  "347": [
+    {
+      "zh": "别说话。",
+      "en": "Don't talk.",
+      "source": "original",
+      "verifiedTokens": [
+        "别",
+        "说话"
+      ]
+    },
+    {
+      "zh": "你别走。",
+      "en": "Don't leave.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "别",
+        "走"
       ]
     }
   ],
@@ -8687,6 +9237,95 @@ export const curatedExamples = {
       ]
     }
   ],
+  "351": [
+    {
+      "zh": "我介绍一下我自己。",
+      "en": "I'll introduce myself.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "介绍",
+        "一下",
+        "我",
+        "自己"
+      ]
+    },
+    {
+      "zh": "请介绍你的朋友。",
+      "en": "Please introduce your friend.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "介绍",
+        "你",
+        "的",
+        "朋友"
+      ]
+    }
+  ],
+  "352": [
+    {
+      "zh": "请告诉我。",
+      "en": "Please tell me.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "告诉",
+        "我"
+      ]
+    },
+    {
+      "zh": "他告诉我他明天来。",
+      "en": "He told me he is coming tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "告诉",
+        "我",
+        "他",
+        "明天",
+        "来"
+      ]
+    },
+    {
+      "zh": "请告诉我你的名字。",
+      "en": "Please tell me your name.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "告诉",
+        "我",
+        "你",
+        "的",
+        "名字"
+      ]
+    }
+  ],
+  "353": [
+    {
+      "zh": "他走过去了。",
+      "en": "He walked over there.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "走",
+        "过去",
+        "了"
+      ]
+    },
+    {
+      "zh": "过去我在中国工作。",
+      "en": "I used to work in China.",
+      "source": "original",
+      "verifiedTokens": [
+        "过去",
+        "我",
+        "在",
+        "中国",
+        "工作"
+      ]
+    }
+  ],
   "354": [
     {
       "zh": "请拿这本书。",
@@ -8721,6 +9360,19 @@ export const curatedExamples = {
         "你",
         "拿",
         "什么"
+      ]
+    }
+  ],
+  "355": [
+    {
+      "zh": "请站在这里。",
+      "en": "Please stand here.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "站",
+        "在",
+        "这里"
       ]
     }
   ],
@@ -8792,6 +9444,111 @@ export const curatedExamples = {
       ]
     }
   ],
+  "358": [
+    {
+      "zh": "我送你回家。",
+      "en": "I'll take you home.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "送",
+        "你",
+        "回",
+        "家"
+      ]
+    },
+    {
+      "zh": "她送我一件衣服。",
+      "en": "She gave me a garment.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "送",
+        "我",
+        "一",
+        "件",
+        "衣服"
+      ]
+    }
+  ],
+  "359": [
+    {
+      "zh": "我吃完饭了。",
+      "en": "I finished eating.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "吃",
+        "完",
+        "饭",
+        "了"
+      ]
+    },
+    {
+      "zh": "他看完这本书了。",
+      "en": "He finished reading this book.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "看",
+        "完",
+        "这",
+        "本",
+        "书",
+        "了"
+      ]
+    }
+  ],
+  "360": [
+    {
+      "zh": "我在准备考试。",
+      "en": "I am preparing for an exam.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "准备",
+        "考试"
+      ]
+    },
+    {
+      "zh": "请准备两本书。",
+      "en": "Please prepare two books.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "准备",
+        "两",
+        "本",
+        "书"
+      ]
+    }
+  ],
+  "361": [
+    {
+      "zh": "我买了花。",
+      "en": "I bought flowers.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "花"
+      ]
+    },
+    {
+      "zh": "这里有很多花。",
+      "en": "There are many flowers here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "很",
+        "多",
+        "花"
+      ]
+    }
+  ],
   "362": [
     {
       "zh": "这间房间很大。",
@@ -8831,6 +9588,65 @@ export const curatedExamples = {
       ]
     }
   ],
+  "363": [
+    {
+      "zh": "你为什么不来？",
+      "en": "Why aren't you coming?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "为什么",
+        "不",
+        "来"
+      ]
+    },
+    {
+      "zh": "他为什么笑？",
+      "en": "Why is he laughing?",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "为什么",
+        "笑"
+      ]
+    }
+  ],
+  "364": [
+    {
+      "zh": "商店很近。",
+      "en": "The shop is nearby.",
+      "source": "original",
+      "verifiedTokens": [
+        "商店",
+        "很",
+        "近"
+      ]
+    }
+  ],
+  "365": [
+    {
+      "zh": "这里不错。",
+      "en": "This place is quite nice.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "不错"
+      ]
+    },
+    {
+      "zh": "你的工作做得不错。",
+      "en": "You did a good job.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "的",
+        "工作",
+        "做",
+        "得",
+        "不错"
+      ]
+    }
+  ],
   "367": [
     {
       "zh": "请帮我。",
@@ -8863,6 +9679,42 @@ export const curatedExamples = {
         "妈妈",
         "做",
         "饭"
+      ]
+    }
+  ],
+  "368": [
+    {
+      "zh": "我住在二楼。",
+      "en": "I live on the second floor.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "住",
+        "在",
+        "二",
+        "楼"
+      ]
+    },
+    {
+      "zh": "这个楼很高。",
+      "en": "This building is tall.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "楼",
+        "很",
+        "高"
+      ]
+    },
+    {
+      "zh": "他在楼上。",
+      "en": "He is upstairs.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "楼",
+        "上"
       ]
     }
   ],
@@ -8904,6 +9756,52 @@ export const curatedExamples = {
       ]
     }
   ],
+  "370": [
+    {
+      "zh": "生日快乐！",
+      "en": "Happy birthday!",
+      "source": "original",
+      "verifiedTokens": [
+        "生日",
+        "快乐"
+      ]
+    },
+    {
+      "zh": "我希望你快乐。",
+      "en": "I hope you are happy.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "希望",
+        "你",
+        "快乐"
+      ]
+    }
+  ],
+  "371": [
+    {
+      "zh": "请吃药。",
+      "en": "Please take your medicine.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "吃",
+        "药"
+      ]
+    },
+    {
+      "zh": "他去买药了。",
+      "en": "He went to buy medicine.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "去",
+        "买",
+        "药",
+        "了"
+      ]
+    }
+  ],
   "372": [
     {
       "zh": "飞机飞得很快。",
@@ -8939,6 +9837,31 @@ export const curatedExamples = {
         "飞",
         "去",
         "中国"
+      ]
+    }
+  ],
+  "373": [
+    {
+      "zh": "我家很远。",
+      "en": "My home is far away.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "家",
+        "很",
+        "远"
+      ]
+    },
+    {
+      "zh": "学校离这里很远。",
+      "en": "The school is far from here.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "离",
+        "这里",
+        "很",
+        "远"
       ]
     }
   ],
@@ -9047,6 +9970,172 @@ export const curatedExamples = {
       ]
     }
   ],
+  "377": [
+    {
+      "zh": "他跑得很快。",
+      "en": "He runs very fast.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "跑",
+        "得",
+        "很",
+        "快"
+      ]
+    },
+    {
+      "zh": "请别跑。",
+      "en": "Please don't run.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "别",
+        "跑"
+      ]
+    }
+  ],
+  "379": [
+    {
+      "zh": "我想去中国旅游。",
+      "en": "I want to travel to China.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "去",
+        "中国",
+        "旅游"
+      ]
+    },
+    {
+      "zh": "他喜欢旅游。",
+      "en": "He likes traveling.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "旅游"
+      ]
+    },
+    {
+      "zh": "我们一起去旅游吧。",
+      "en": "Let's go traveling together.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "一起",
+        "去",
+        "旅游",
+        "吧"
+      ]
+    }
+  ],
+  "380": [
+    {
+      "zh": "你懂吗？",
+      "en": "Do you understand?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "懂",
+        "吗"
+      ]
+    },
+    {
+      "zh": "我不懂这个字。",
+      "en": "I don't understand this character.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "懂",
+        "这个",
+        "字"
+      ]
+    }
+  ],
+  "381": [
+    {
+      "zh": "我写错了。",
+      "en": "I wrote it incorrectly.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "写",
+        "错",
+        "了"
+      ]
+    },
+    {
+      "zh": "你说错了。",
+      "en": "You said it wrong.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "说",
+        "错",
+        "了"
+      ]
+    },
+    {
+      "zh": "这个字错了。",
+      "en": "This character is wrong.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "字",
+        "错",
+        "了"
+      ]
+    }
+  ],
+  "382": [
+    {
+      "zh": "我在里面。",
+      "en": "I am inside.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "里面"
+      ]
+    },
+    {
+      "zh": "里面有人吗？",
+      "en": "Is anyone inside?",
+      "source": "original",
+      "verifiedTokens": [
+        "里面",
+        "有",
+        "人",
+        "吗"
+      ]
+    }
+  ],
+  "383": [
+    {
+      "zh": "我经常看电影。",
+      "en": "I often watch movies.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "经常",
+        "看",
+        "电影"
+      ]
+    },
+    {
+      "zh": "他经常打篮球。",
+      "en": "He often plays basketball.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "经常",
+        "打",
+        "篮球"
+      ]
+    }
+  ],
   "384": [
     {
       "zh": "请往左走。",
@@ -9116,6 +10205,31 @@ export const curatedExamples = {
       ]
     }
   ],
+  "386": [
+    {
+      "zh": "他的眼睛很大。",
+      "en": "His eyes are large.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "眼睛",
+        "很",
+        "大"
+      ]
+    },
+    {
+      "zh": "我的眼睛疼。",
+      "en": "My eyes hurt.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "眼睛",
+        "疼"
+      ]
+    }
+  ],
   "387": [
     {
       "zh": "请给我票。",
@@ -9149,6 +10263,42 @@ export const curatedExamples = {
         "去",
         "买",
         "票"
+      ]
+    }
+  ],
+  "388": [
+    {
+      "zh": "我明天有考试。",
+      "en": "I have an exam tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "明天",
+        "有",
+        "考试"
+      ]
+    }
+  ],
+  "389": [
+    {
+      "zh": "我记得他。",
+      "en": "I remember him.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "记得",
+        "他"
+      ]
+    },
+    {
+      "zh": "请记得买书。",
+      "en": "Please remember to buy books.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "记得",
+        "买",
+        "书"
       ]
     }
   ],
@@ -9224,6 +10374,30 @@ export const curatedExamples = {
       ]
     }
   ],
+  "393": [
+    {
+      "zh": "请往左看。",
+      "en": "Please look left.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "往",
+        "左",
+        "看"
+      ]
+    },
+    {
+      "zh": "门在左边。",
+      "en": "The door is on the left.",
+      "source": "original",
+      "verifiedTokens": [
+        "门",
+        "在",
+        "左",
+        "边"
+      ]
+    }
+  ],
   "394": [
     {
       "zh": "我喜欢吃鱼。",
@@ -9255,6 +10429,30 @@ export const curatedExamples = {
         "买",
         "了",
         "鱼"
+      ]
+    }
+  ],
+  "395": [
+    {
+      "zh": "他从楼上下去了。",
+      "en": "He went downstairs.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "从",
+        "楼",
+        "上",
+        "下去",
+        "了"
+      ]
+    },
+    {
+      "zh": "请下去。",
+      "en": "Please go down.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "下去"
       ]
     }
   ],
@@ -9294,6 +10492,90 @@ export const curatedExamples = {
       ]
     }
   ],
+  "397": [
+    {
+      "zh": "我想吃肉。",
+      "en": "I want to eat meat.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "吃",
+        "肉"
+      ]
+    },
+    {
+      "zh": "妈妈去买肉。",
+      "en": "Mum went to buy meat.",
+      "source": "original",
+      "verifiedTokens": [
+        "妈妈",
+        "去",
+        "买",
+        "肉"
+      ]
+    }
+  ],
+  "398": [
+    {
+      "zh": "我想出去。",
+      "en": "I want to go out.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "出去"
+      ]
+    },
+    {
+      "zh": "他出去了。",
+      "en": "He went out.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "出去",
+        "了"
+      ]
+    }
+  ],
+  "399": [
+    {
+      "zh": "我家离学校很远。",
+      "en": "My home is far from school.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "家",
+        "离",
+        "学校",
+        "很",
+        "远"
+      ]
+    }
+  ],
+  "400": [
+    {
+      "zh": "别那样做。",
+      "en": "Don't do that.",
+      "source": "original",
+      "verifiedTokens": [
+        "别",
+        "那样",
+        "做"
+      ]
+    },
+    {
+      "zh": "你为什么那样说？",
+      "en": "Why do you say that?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "为什么",
+        "那样",
+        "说"
+      ]
+    }
+  ],
   "402": [
     {
       "zh": "请往右走。",
@@ -9327,6 +10609,20 @@ export const curatedExamples = {
         "在",
         "右",
         "边"
+      ]
+    }
+  ],
+  "403": [
+    {
+      "zh": "孩子在床上睡觉。",
+      "en": "The child sleeps on the bed.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "在",
+        "床",
+        "上",
+        "睡觉"
       ]
     }
   ],
@@ -9402,6 +10698,56 @@ export const curatedExamples = {
       ]
     }
   ],
+  "406": [
+    {
+      "zh": "我忘了他的名字。",
+      "en": "I forgot his name.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "忘",
+        "了",
+        "他",
+        "的",
+        "名字"
+      ]
+    },
+    {
+      "zh": "你别忘了。",
+      "en": "Don't forget.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "别",
+        "忘",
+        "了"
+      ]
+    }
+  ],
+  "407": [
+    {
+      "zh": "我喜欢踢足球。",
+      "en": "I like playing football.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "踢",
+        "足球"
+      ]
+    },
+    {
+      "zh": "他在踢足球。",
+      "en": "He is playing football.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "踢",
+        "足球"
+      ]
+    }
+  ],
   "408": [
     {
       "zh": "请洗手。",
@@ -9471,6 +10817,32 @@ export const curatedExamples = {
       ]
     }
   ],
+  "410": [
+    {
+      "zh": "这个字是什么意思？",
+      "en": "What does this character mean?",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "字",
+        "是",
+        "什么",
+        "意思"
+      ]
+    },
+    {
+      "zh": "我懂你的意思。",
+      "en": "I understand what you mean.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "懂",
+        "你",
+        "的",
+        "意思"
+      ]
+    }
+  ],
   "411": [
     {
       "zh": "请做第一题。",
@@ -9510,6 +10882,115 @@ export const curatedExamples = {
       ]
     }
   ],
+  "412": [
+    {
+      "zh": "她是我的妻子。",
+      "en": "She is my wife.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "是",
+        "我",
+        "的",
+        "妻子"
+      ]
+    },
+    {
+      "zh": "他和妻子一起吃饭。",
+      "en": "He eats with his wife.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "和",
+        "妻子",
+        "一起",
+        "吃",
+        "饭"
+      ]
+    }
+  ],
+  "413": [
+    {
+      "zh": "我喜欢鸟。",
+      "en": "I like birds.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "鸟"
+      ]
+    }
+  ],
+  "414": [
+    {
+      "zh": "书在桌子上面。",
+      "en": "The book is on the table.",
+      "source": "original",
+      "verifiedTokens": [
+        "书",
+        "在",
+        "桌子",
+        "上面"
+      ]
+    },
+    {
+      "zh": "请看上面。",
+      "en": "Please look above.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "看",
+        "上面"
+      ]
+    }
+  ],
+  "415": [
+    {
+      "zh": "我明天回去。",
+      "en": "I will go back tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "明天",
+        "回去"
+      ]
+    },
+    {
+      "zh": "你什么时候回去？",
+      "en": "When will you go back?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "什么",
+        "时候",
+        "回去"
+      ]
+    }
+  ],
+  "416": [
+    {
+      "zh": "他在我后面。",
+      "en": "He is behind me.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "我",
+        "后面"
+      ]
+    },
+    {
+      "zh": "学校后面有商店。",
+      "en": "There is a shop behind the school.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "后面",
+        "有",
+        "商店"
+      ]
+    }
+  ],
   "417": [
     {
       "zh": "他在水里游。",
@@ -9543,6 +11024,76 @@ export const curatedExamples = {
         "我",
         "喜欢",
         "游"
+      ]
+    }
+  ],
+  "418": [
+    {
+      "zh": "我住在酒店。",
+      "en": "I am staying at a hotel.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "住",
+        "在",
+        "酒店"
+      ]
+    },
+    {
+      "zh": "这个酒店很贵。",
+      "en": "This hotel is expensive.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "酒店",
+        "很",
+        "贵"
+      ]
+    },
+    {
+      "zh": "酒店在哪里？",
+      "en": "Where is the hotel?",
+      "source": "original",
+      "verifiedTokens": [
+        "酒店",
+        "在",
+        "哪里"
+      ]
+    }
+  ],
+  "419": [
+    {
+      "zh": "我有时喝咖啡。",
+      "en": "I sometimes drink coffee.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有时",
+        "喝",
+        "咖啡"
+      ]
+    },
+    {
+      "zh": "他有时在家工作。",
+      "en": "He sometimes works at home.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "有时",
+        "在",
+        "家",
+        "工作"
+      ]
+    },
+    {
+      "zh": "她有时坐地铁。",
+      "en": "She sometimes takes the subway.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "有时",
+        "坐",
+        "地铁"
       ]
     }
   ],
@@ -9580,6 +11131,29 @@ export const curatedExamples = {
         "是",
         "坏",
         "人"
+      ]
+    }
+  ],
+  "421": [
+    {
+      "zh": "书在桌子下面。",
+      "en": "The book is under the table.",
+      "source": "original",
+      "verifiedTokens": [
+        "书",
+        "在",
+        "桌子",
+        "下面"
+      ]
+    },
+    {
+      "zh": "请看下面。",
+      "en": "Please look below.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "看",
+        "下面"
       ]
     }
   ],
@@ -9648,6 +11222,80 @@ export const curatedExamples = {
         "在",
         "外面",
         "玩"
+      ]
+    }
+  ],
+  "424": [
+    {
+      "zh": "我喜欢绿色。",
+      "en": "I like green.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "绿色"
+      ]
+    },
+    {
+      "zh": "这件衣服是绿色的。",
+      "en": "This garment is green.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "衣服",
+        "是",
+        "绿色",
+        "的"
+      ]
+    }
+  ],
+  "425": [
+    {
+      "zh": "我在路上。",
+      "en": "I am on the way.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "路上"
+      ]
+    },
+    {
+      "zh": "他在路上看见我了。",
+      "en": "He saw me on the way.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "路上",
+        "看见",
+        "我",
+        "了"
+      ]
+    }
+  ],
+  "426": [
+    {
+      "zh": "你喜欢什么颜色？",
+      "en": "What color do you like?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "喜欢",
+        "什么",
+        "颜色"
+      ]
+    },
+    {
+      "zh": "这个颜色很好看。",
+      "en": "This color looks nice.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "颜色",
+        "很",
+        "好看"
       ]
     }
   ],
@@ -9727,6 +11375,192 @@ export const curatedExamples = {
       ]
     }
   ],
+  "429": [
+    {
+      "zh": "这个词怎么读？",
+      "en": "How do you read this word?",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "词",
+        "怎么",
+        "读"
+      ]
+    },
+    {
+      "zh": "请写这个词。",
+      "en": "Please write this word.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "写",
+        "这个",
+        "词"
+      ]
+    }
+  ],
+  "430": [
+    {
+      "zh": "他在我前面。",
+      "en": "He is in front of me.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "我",
+        "前面"
+      ]
+    },
+    {
+      "zh": "学校前面有商店。",
+      "en": "There is a shop in front of the school.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "前面",
+        "有",
+        "商店"
+      ]
+    }
+  ],
+  "431": [
+    {
+      "zh": "他坐在我旁边。",
+      "en": "He sits beside me.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "坐",
+        "在",
+        "我",
+        "旁边"
+      ]
+    },
+    {
+      "zh": "手机在书旁边。",
+      "en": "The phone is next to the book.",
+      "source": "original",
+      "verifiedTokens": [
+        "手机",
+        "在",
+        "书",
+        "旁边"
+      ]
+    }
+  ],
+  "432": [
+    {
+      "zh": "这个是黑色的。",
+      "en": "This one is black.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "是",
+        "黑色",
+        "的"
+      ]
+    },
+    {
+      "zh": "他喜欢黑色的裤子。",
+      "en": "He likes black trousers.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "黑色",
+        "的",
+        "裤子"
+      ]
+    }
+  ],
+  "433": [
+    {
+      "zh": "请上来。",
+      "en": "Please come up.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "上来"
+      ]
+    },
+    {
+      "zh": "他从楼下上来了。",
+      "en": "He came upstairs.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "从",
+        "楼",
+        "下",
+        "上来",
+        "了"
+      ]
+    }
+  ],
+  "434": [
+    {
+      "zh": "他走得很慢。",
+      "en": "He walks slowly.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "走",
+        "得",
+        "很",
+        "慢"
+      ]
+    }
+  ],
+  "435": [
+    {
+      "zh": "我买了红色的衣服。",
+      "en": "I bought red clothes.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "红色",
+        "的",
+        "衣服"
+      ]
+    },
+    {
+      "zh": "这个包是红色的。",
+      "en": "This bag is red.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "包",
+        "是",
+        "红色",
+        "的"
+      ]
+    }
+  ],
+  "436": [
+    {
+      "zh": "我回家过年。",
+      "en": "I go home to celebrate the New Year.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "回",
+        "家",
+        "过年"
+      ]
+    },
+    {
+      "zh": "我们一起过年。",
+      "en": "We celebrate the New Year together.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "一起",
+        "过年"
+      ]
+    }
+  ],
   "437": [
     {
       "zh": "他是外国人。",
@@ -9760,6 +11594,30 @@ export const curatedExamples = {
         "在",
         "外国",
         "工作"
+      ]
+    }
+  ],
+  "438": [
+    {
+      "zh": "她穿白色的衣服。",
+      "en": "She wears white clothes.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "穿",
+        "白色",
+        "的",
+        "衣服"
+      ]
+    },
+    {
+      "zh": "我喜欢白色。",
+      "en": "I like white.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "白色"
       ]
     }
   ],
@@ -9867,6 +11725,75 @@ export const curatedExamples = {
       ]
     }
   ],
+  "442": [
+    {
+      "zh": "我早上出门。",
+      "en": "I go out in the morning.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "早上",
+        "出门"
+      ]
+    },
+    {
+      "zh": "今天下雨，别出门。",
+      "en": "It is raining today; don't go out.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "下雨",
+        "别",
+        "出门"
+      ]
+    }
+  ],
+  "443": [
+    {
+      "zh": "我在高中学习。",
+      "en": "I study at high school.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "高中",
+        "学习"
+      ]
+    },
+    {
+      "zh": "他是高中老师。",
+      "en": "He is a high school teacher.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "高中",
+        "老师"
+      ]
+    }
+  ],
+  "444": [
+    {
+      "zh": "请进去。",
+      "en": "Please go inside.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "进去"
+      ]
+    },
+    {
+      "zh": "你可以进去吗？",
+      "en": "Can you go inside?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "可以",
+        "进去",
+        "吗"
+      ]
+    }
+  ],
   "445": [
     {
       "zh": "请上去。",
@@ -9933,6 +11860,111 @@ export const curatedExamples = {
       ]
     }
   ],
+  "447": [
+    {
+      "zh": "我在机场等你。",
+      "en": "I am waiting for you at the airport.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "机场",
+        "等",
+        "你"
+      ]
+    },
+    {
+      "zh": "他坐车去机场。",
+      "en": "He takes a vehicle to the airport.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "坐",
+        "车",
+        "去",
+        "机场"
+      ]
+    },
+    {
+      "zh": "机场在哪里？",
+      "en": "Where is the airport?",
+      "source": "original",
+      "verifiedTokens": [
+        "机场",
+        "在",
+        "哪里"
+      ]
+    }
+  ],
+  "448": [
+    {
+      "zh": "他在我右边。",
+      "en": "He is on my right.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "我",
+        "右边"
+      ]
+    }
+  ],
+  "449": [
+    {
+      "zh": "请你帮忙。",
+      "en": "Please help.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "你",
+        "帮忙"
+      ]
+    },
+    {
+      "zh": "谢谢你来帮忙。",
+      "en": "Thank you for coming to help.",
+      "source": "original",
+      "verifiedTokens": [
+        "谢谢",
+        "你",
+        "来",
+        "帮忙"
+      ]
+    },
+    {
+      "zh": "我可以帮忙吗？",
+      "en": "Can I help?",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "可以",
+        "帮忙",
+        "吗"
+      ]
+    }
+  ],
+  "450": [
+    {
+      "zh": "请进来。",
+      "en": "Please come in.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "进来"
+      ]
+    },
+    {
+      "zh": "他走进来了。",
+      "en": "He walked in.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "走",
+        "进来",
+        "了"
+      ]
+    }
+  ],
   "451": [
     {
       "zh": "他喜欢踢球。",
@@ -9965,6 +11997,53 @@ export const curatedExamples = {
         "不要",
         "踢",
         "我"
+      ]
+    }
+  ],
+  "452": [
+    {
+      "zh": "请等一会儿。",
+      "en": "Please wait a moment.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "等",
+        "一会儿"
+      ]
+    },
+    {
+      "zh": "我想睡一会儿。",
+      "en": "I want to sleep for a while.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "睡",
+        "一会儿"
+      ]
+    }
+  ],
+  "453": [
+    {
+      "zh": "我觉得很舒服。",
+      "en": "I feel comfortable.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "觉得",
+        "很",
+        "舒服"
+      ]
+    },
+    {
+      "zh": "这个房间很舒服。",
+      "en": "This room is comfortable.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "房间",
+        "很",
+        "舒服"
       ]
     }
   ],
@@ -10148,6 +12227,30 @@ export const curatedExamples = {
       ]
     }
   ],
+  "459": [
+    {
+      "zh": "我奶奶在家。",
+      "en": "My grandmother is at home.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "奶奶",
+        "在",
+        "家"
+      ]
+    },
+    {
+      "zh": "奶奶喜欢喝茶。",
+      "en": "Grandmother likes drinking tea.",
+      "source": "original",
+      "verifiedTokens": [
+        "奶奶",
+        "喜欢",
+        "喝",
+        "茶"
+      ]
+    }
+  ],
   "460": [
     {
       "zh": "请写你的姓名。",
@@ -10221,6 +12324,102 @@ export const curatedExamples = {
       ]
     }
   ],
+  "462": [
+    {
+      "zh": "你姓什么？",
+      "en": "What is your surname?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "姓",
+        "什么"
+      ]
+    },
+    {
+      "zh": "他姓什么？",
+      "en": "What is his surname?",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "姓",
+        "什么"
+      ]
+    }
+  ],
+  "463": [
+    {
+      "zh": "我喜欢游泳。",
+      "en": "I like swimming.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "游泳"
+      ]
+    },
+    {
+      "zh": "我们去游泳吧。",
+      "en": "Let's go swimming.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "游泳",
+        "吧"
+      ]
+    }
+  ],
+  "464": [
+    {
+      "zh": "不好意思，我来晚了。",
+      "en": "Sorry, I'm late.",
+      "source": "original",
+      "verifiedTokens": [
+        "不好意思",
+        "我",
+        "来",
+        "晚",
+        "了"
+      ]
+    },
+    {
+      "zh": "不好意思，请问洗手间在哪里？",
+      "en": "Excuse me, where is the bathroom?",
+      "source": "original",
+      "verifiedTokens": [
+        "不好意思",
+        "请问",
+        "洗手间",
+        "在",
+        "哪里"
+      ]
+    }
+  ],
+  "465": [
+    {
+      "zh": "这本书很有意思。",
+      "en": "This book is interesting.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "本",
+        "书",
+        "很",
+        "有意思"
+      ]
+    },
+    {
+      "zh": "这个电影很有意思。",
+      "en": "This movie is interesting.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "电影",
+        "很",
+        "有意思"
+      ]
+    }
+  ],
   "466": [
     {
       "zh": "我买了门票。",
@@ -10286,6 +12485,29 @@ export const curatedExamples = {
         "去",
         "车站",
         "了"
+      ]
+    }
+  ],
+  "468": [
+    {
+      "zh": "我在教室学习。",
+      "en": "I study in the classroom.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "教室",
+        "学习"
+      ]
+    },
+    {
+      "zh": "教室很大。",
+      "en": "The classroom is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "教室",
+        "很",
+        "大"
       ]
     }
   ],
@@ -10362,6 +12584,102 @@ export const curatedExamples = {
       ]
     }
   ],
+  "471": [
+    {
+      "zh": "我买了新裤子。",
+      "en": "I bought new trousers.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "新",
+        "裤子"
+      ]
+    },
+    {
+      "zh": "这条裤子太长。",
+      "en": "These trousers are too long.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "裤子",
+        "太",
+        "长"
+      ]
+    }
+  ],
+  "472": [
+    {
+      "zh": "我每天走路上学。",
+      "en": "I walk to school every day.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "每",
+        "天",
+        "走路",
+        "上学"
+      ]
+    },
+    {
+      "zh": "他喜欢走路。",
+      "en": "He likes walking.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "走路"
+      ]
+    }
+  ],
+  "473": [
+    {
+      "zh": "我买了机票。",
+      "en": "I bought a plane ticket.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "机票"
+      ]
+    },
+    {
+      "zh": "机票多少钱？",
+      "en": "How much is the plane ticket?",
+      "source": "original",
+      "verifiedTokens": [
+        "机票",
+        "多少",
+        "钱"
+      ]
+    }
+  ],
+  "474": [
+    {
+      "zh": "他在我左边。",
+      "en": "He is on my left.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "我",
+        "左边"
+      ]
+    },
+    {
+      "zh": "学校在左边。",
+      "en": "The school is on the left.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "在",
+        "左边"
+      ]
+    }
+  ],
   "475": [
     {
       "zh": "她喜欢跳舞。",
@@ -10430,6 +12748,77 @@ export const curatedExamples = {
       ]
     }
   ],
+  "477": [
+    {
+      "zh": "我有一个手表。",
+      "en": "I have a watch.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有",
+        "一",
+        "个",
+        "手表"
+      ]
+    },
+    {
+      "zh": "这个手表很贵。",
+      "en": "This watch is expensive.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "手表",
+        "很",
+        "贵"
+      ]
+    }
+  ],
+  "478": [
+    {
+      "zh": "学校明天开学。",
+      "en": "School starts tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "明天",
+        "开学"
+      ]
+    },
+    {
+      "zh": "你什么时候开学？",
+      "en": "When does your school start?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "什么",
+        "时候",
+        "开学"
+      ]
+    }
+  ],
+  "479": [
+    {
+      "zh": "药店在哪里？",
+      "en": "Where is the pharmacy?",
+      "source": "original",
+      "verifiedTokens": [
+        "药店",
+        "在",
+        "哪里"
+      ]
+    },
+    {
+      "zh": "这里有药店吗？",
+      "en": "Is there a pharmacy here?",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "药店",
+        "吗"
+      ]
+    }
+  ],
   "480": [
     {
       "zh": "我想喝奶茶。",
@@ -10462,6 +12851,29 @@ export const curatedExamples = {
         "喜欢",
         "奶茶",
         "吗"
+      ]
+    }
+  ],
+  "481": [
+    {
+      "zh": "我每天跑步。",
+      "en": "I run every day.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "每",
+        "天",
+        "跑步"
+      ]
+    },
+    {
+      "zh": "他喜欢跑步。",
+      "en": "He likes running.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "跑步"
       ]
     }
   ],
@@ -10500,6 +12912,153 @@ export const curatedExamples = {
       ]
     }
   ],
+  "483": [
+    {
+      "zh": "书在书包里。",
+      "en": "The book is in the schoolbag.",
+      "source": "original",
+      "verifiedTokens": [
+        "书",
+        "在",
+        "书包",
+        "里"
+      ]
+    },
+    {
+      "zh": "我买了新书包。",
+      "en": "I bought a new schoolbag.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "新",
+        "书包"
+      ]
+    }
+  ],
+  "484": [
+    {
+      "zh": "他个子很高。",
+      "en": "He is tall.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "个子",
+        "很",
+        "高"
+      ]
+    },
+    {
+      "zh": "我个子不高。",
+      "en": "I am not tall.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "个子",
+        "不",
+        "高"
+      ]
+    }
+  ],
+  "485": [
+    {
+      "zh": "这个电影没意思。",
+      "en": "This film is boring.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "电影",
+        "没意思"
+      ]
+    },
+    {
+      "zh": "这里真没意思。",
+      "en": "This place is really boring.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "真",
+        "没意思"
+      ]
+    }
+  ],
+  "486": [
+    {
+      "zh": "请给我一个本子。",
+      "en": "Please give me a notebook.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "一",
+        "个",
+        "本子"
+      ]
+    }
+  ],
+  "487": [
+    {
+      "zh": "我去洗手间。",
+      "en": "I am going to the bathroom.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "洗手间"
+      ]
+    }
+  ],
+  "488": [
+    {
+      "zh": "我喜欢喝红茶。",
+      "en": "I like drinking black tea.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "喝",
+        "红茶"
+      ]
+    },
+    {
+      "zh": "这里卖红茶。",
+      "en": "Black tea is sold here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "卖",
+        "红茶"
+      ]
+    }
+  ],
+  "489": [
+    {
+      "zh": "我们去饭馆吃饭。",
+      "en": "We go to a restaurant to eat.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "饭馆",
+        "吃",
+        "饭"
+      ]
+    },
+    {
+      "zh": "这家饭馆很不错。",
+      "en": "This restaurant is quite good.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "家",
+        "饭馆",
+        "很",
+        "不错"
+      ]
+    }
+  ],
   "490": [
     {
       "zh": "那个女孩儿是我妹妹。",
@@ -10535,6 +13094,31 @@ export const curatedExamples = {
         "女孩儿",
         "很",
         "高兴"
+      ]
+    }
+  ],
+  "491": [
+    {
+      "zh": "这个小孩儿在玩。",
+      "en": "This child is playing.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "小孩儿",
+        "在",
+        "玩"
+      ]
+    },
+    {
+      "zh": "那个小孩儿是我弟弟。",
+      "en": "That child is my younger brother.",
+      "source": "original",
+      "verifiedTokens": [
+        "那个",
+        "小孩儿",
+        "是",
+        "我",
+        "弟弟"
       ]
     }
   ],
@@ -10678,6 +13262,58 @@ export const curatedExamples = {
         "喜欢",
         "打",
         "篮球"
+      ]
+    }
+  ],
+  "496": [
+    {
+      "zh": "我有一万元。",
+      "en": "I have ten thousand yuan.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有",
+        "一",
+        "万",
+        "元"
+      ]
+    },
+    {
+      "zh": "这里有两万人。",
+      "en": "There are twenty thousand people here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "两",
+        "万",
+        "人"
+      ]
+    }
+  ],
+  "497": [
+    {
+      "zh": "我在网上学汉语。",
+      "en": "I study Chinese online.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "网上",
+        "学",
+        "汉语"
+      ]
+    },
+    {
+      "zh": "他在网上买东西。",
+      "en": "He buys things online.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "网上",
+        "买",
+        "东西"
       ]
     }
   ],
