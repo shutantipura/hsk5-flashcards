@@ -65,6 +65,17 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
       }
     }
   }
+  // Explicitly authored examples may also teach other standalone words in
+  // the same sentence. Do not reuse across different readings of a headword.
+  for (const [id, es] of Object.entries(curated)) for (const e of es) {
+    const ts=e.verifiedTokens;
+    if(!valid(e)||e.source!=='original'||!Array.isArray(ts)||!ts.length||!ts.every(t=>levels.has(t))||ts.join('')!==e.zh.replace(/[\p{P}\s]/gu,'')) continue;
+    const a={tokens:ts,level:Math.max(...ts.map(t=>levels.get(t)))};
+    for(const token of new Set(ts)) {
+      if(!pool.has(token)) pool.set(token,new Map());
+      const entries=pool.get(token); if(!entries.has(e.zh)) entries.set(e.zh,{e,a,id:Number(id)});
+    }
+  }
   const result = new Map();
   for(const w of vocab) {
     const chosen = [], seen = new Set();
