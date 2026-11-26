@@ -42,8 +42,8 @@ export async function loadLocal() {
   S.cards = new Map(cards);
   S.logs = logs.map(([, v]) => v).sort((a, b) => a.reviewed_at.localeCompare(b.reviewed_at));
   S.settings = { ...DEFAULT_SETTINGS, ...(settings || {}), kinds: { ...DEFAULT_SETTINGS.kinds, ...(settings?.kinds || {}) } };
-  if (outbox) S.outbox = { cards: new Set(outbox.cards), logs: new Set(outbox.logs), settings: !!outbox.settings };
-  if (sync) S.sync.last = sync.last;
+  S.outbox = { cards: new Set(outbox?.cards||[]), logs: new Set(outbox?.logs||[]), settings: !!outbox?.settings };
+  S.sync = { status:'idle',last:sync?.last||null,error:null };
 }
 
 const saveOutbox = () => idb.put('kv', 'outbox', { cards: [...S.outbox.cards], logs: [...S.outbox.logs], settings: S.outbox.settings });
