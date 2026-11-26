@@ -2,7 +2,7 @@
 // Vocabulary IDs remain immutable; existing cards/logs are not deleted.
 import { GRAMMAR } from './grammar-data.js';
 const FUNCTION_POS=new Set(['particle','preposition','conjunction','prefix','suffix']);
-const PURE_IDS=new Set([1,2,6,10,19,29,57,63,68,76,108,301,302,304,307,311,319,320,326,330,339,499,502,503,512,536,541,543,594,603,609,622,743,815,996,998,1001,1010,1012,1028,1043,1047,1100,1128,1140,1148,1206,1207,1219,1227,1245,1249,1270,1301,1302,1397,1447,1474,1532,1982,1990,1995,2066,2237,2378,2601]);
+const PURE_IDS=new Set([1,2,6,10,19,29,57,63,68,76,108,301,302,304,307,311,319,320,326,330,339,499,502,503,512,536,541,543,594,603,609,622,743,815,996,998,1001,1010,1012,1028,1043,1047,1100,1128,1140,1148,1206,1207,1219,1227,1245,1249,1270,1301,1302,1397,1447,1474,1532,1982,1990,1995,2066,2237,2378,2601,152,185,306,309,581,596,1398,2057]);
 // Keep independent lexical senses of mixed entries; grammar meanings are taught in context.
 const LEXICAL={
   3:['to be located; to be present'],17:['right; correct','pair (classifier)','to check against; to match'],35:['to give; to hand over'],
@@ -11,12 +11,17 @@ const LEXICAL={
   586:['to exceed; to surpass'],995:['to touch; to catch fire','to feel (cold, heat, etc.)'],
   1004:['to combine; to merge'],1017:['to pass through','to pass (an exam or proposal)'],1076:['to join; to connect'],
   1400:['to be inferior to; not as good as'],1994:['place; location','classifier for institutions or buildings'],
-  697:['one side; one hand']
+  697:['one side; one hand'],332:['heel','to follow closely'],384:['to go; to head towards'],509:['to face; to turn toward'],994:['to act as; to serve as']
 };
 const normalize=s=>String(s||'').normalize('NFC').trim().replace(/\s+/g,' ');
+const PATTERNS=new Map();
+for(const p of GRAMMAR) {
+  const k=p.word+':'+normalize(p.meaning.split(' · ')[0].split(' … ')[0]);
+  if(!PATTERNS.has(k))PATTERNS.set(k,[]);
+  PATTERNS.get(k).push(p);
+}
 export function grammarPatternsFor(w) {
-  if(!w)return [];
-  return GRAMMAR.filter(p=>p.word===w.h && normalize(p.meaning.split(' · ')[0].split(' … ')[0])===normalize(w.p));
+  return w ? PATTERNS.get(w.h+':'+normalize(w.p))||[] : [];
 }
 export function learningType(w) {
   if(!w)return 'vocabulary';
