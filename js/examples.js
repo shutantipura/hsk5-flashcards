@@ -77,7 +77,10 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
       const a = explicit && explicit.length && explicit.every(t => levels.has(t)) && explicit.join('') === e.zh.replace(/[\p{P}\s]/gu, '')
         ? {tokens:explicit,level:Math.max(...explicit.map(t=>levels.get(t)))}
         : analyze(e.zh);
-      if(!a || a.level>w.l || !a.tokens.includes(w.h)) return;
+      // Some syllabus entries are bound forms. Only explicitly curated,
+      // same-reading compounds may illustrate these specific components.
+      const component = e.source === 'original' && explicit && ({589:['桌子','杯子','椅子'],778:['季节','四季'],994:['成为','认为','以为','作为','分为']}[w.i] || []).includes(e.targetComponent) && e.targetComponent.includes(w.h) && a?.tokens.includes(e.targetComponent);
+      if(!a || a.level>w.l || (!a.tokens.includes(w.h) && !component)) return;
       chosen.push({...e, tokens:a.tokens, maxLevel:a.level});seen.add(e.zh);
     };
     for(const e of curated[w.i] || []) add(e);
@@ -7614,6 +7617,43 @@ export const curatedExamples = {
       ]
     }
   ],
+  "589": [
+    {
+      "zh": "桌子上有书。",
+      "en": "There are books on the table.",
+      "source": "original",
+      "verifiedTokens": [
+        "桌子",
+        "上",
+        "有",
+        "书"
+      ],
+      "targetComponent": "桌子"
+    },
+    {
+      "zh": "杯子里有水。",
+      "en": "There is water in the cup.",
+      "source": "original",
+      "verifiedTokens": [
+        "杯子",
+        "里",
+        "有",
+        "水"
+      ],
+      "targetComponent": "杯子"
+    },
+    {
+      "zh": "椅子在那边。",
+      "en": "The chair is over there.",
+      "source": "original",
+      "verifiedTokens": [
+        "椅子",
+        "在",
+        "那边"
+      ],
+      "targetComponent": "椅子"
+    }
+  ],
   "594": [
     {
       "zh": "你喝茶或者水？",
@@ -8912,6 +8952,42 @@ export const curatedExamples = {
       ]
     }
   ],
+  "707": [
+    {
+      "zh": "太阳照在水上。",
+      "en": "The sun shines on the water.",
+      "source": "original",
+      "verifiedTokens": [
+        "太阳",
+        "照",
+        "在",
+        "水",
+        "上"
+      ]
+    },
+    {
+      "zh": "太阳照着我。",
+      "en": "The sun is shining on me.",
+      "source": "original",
+      "verifiedTokens": [
+        "太阳",
+        "照",
+        "着",
+        "我"
+      ]
+    },
+    {
+      "zh": "太阳照进房间。",
+      "en": "The sun shines into the room.",
+      "source": "original",
+      "verifiedTokens": [
+        "太阳",
+        "照",
+        "进",
+        "房间"
+      ]
+    }
+  ],
   "712": [
     {
       "zh": "天很蓝。",
@@ -9558,6 +9634,44 @@ export const curatedExamples = {
         "一些",
         "冰"
       ]
+    }
+  ],
+  "778": [
+    {
+      "zh": "我喜欢这个季节。",
+      "en": "I like this season.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "这个",
+        "季节"
+      ],
+      "targetComponent": "季节"
+    },
+    {
+      "zh": "中国有四季。",
+      "en": "China has four seasons.",
+      "source": "original",
+      "verifiedTokens": [
+        "中国",
+        "有",
+        "四季"
+      ],
+      "targetComponent": "四季"
+    },
+    {
+      "zh": "你最喜欢哪个季节？",
+      "en": "Which season do you like best?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "最",
+        "喜欢",
+        "哪个",
+        "季节"
+      ],
+      "targetComponent": "季节"
     }
   ],
   "779": [
@@ -11430,6 +11544,48 @@ export const curatedExamples = {
         "做",
         "什么"
       ]
+    }
+  ],
+  "994": [
+    {
+      "zh": "他想成为老师。",
+      "en": "He wants to become a teacher.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "想",
+        "成为",
+        "老师"
+      ],
+      "targetComponent": "成为"
+    },
+    {
+      "zh": "我认为你是对的。",
+      "en": "I think you are right.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "认为",
+        "你",
+        "是",
+        "对",
+        "的"
+      ],
+      "targetComponent": "认为"
+    },
+    {
+      "zh": "我们把学生分为两组。",
+      "en": "We divide the students into two groups.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "把",
+        "学生",
+        "分为",
+        "两",
+        "组"
+      ],
+      "targetComponent": "分为"
     }
   ],
   "995": [
