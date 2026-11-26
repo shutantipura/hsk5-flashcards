@@ -8017,5 +8017,980 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "w335-usage",
+    "word": "那么",
+    "level": 2,
+    "pattern": "那么，B",
+    "meaning": "nà me · then / in that case",
+    "explain": "那么 introduces a conclusion or next step based on what was said before.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which word or component expresses then / in that case?",
+    "examples": [
+      {
+        "zh": "那么我们明天去。",
+        "en": "In that case, we will go tomorrow.",
+        "tokens": [
+          "那么",
+          "我们",
+          "明天",
+          "去"
+        ]
+      },
+      {
+        "zh": "那么你想怎么做？",
+        "en": "Then what do you want to do?",
+        "tokens": [
+          "那么",
+          "你",
+          "想",
+          "怎么",
+          "做"
+        ]
+      },
+      {
+        "zh": "那么我不去了。",
+        "en": "In that case, I will not go.",
+        "tokens": [
+          "那么",
+          "我",
+          "不",
+          "去",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w540-usage",
+    "word": "有关",
+    "level": 3,
+    "pattern": "有关 + topic + 的 + noun",
+    "meaning": "yǒu guān · concerning / about",
+    "explain": "有关 introduces a topic in a noun phrase; 与 A 有关 means related to A.",
+    "distractors": [
+      "把",
+      "被"
+    ],
+    "contrast": "Which word or component expresses concerning / about?",
+    "examples": [
+      {
+        "zh": "我想看有关中国的书。",
+        "en": "I want to read books about China.",
+        "tokens": [
+          "我",
+          "想",
+          "看",
+          "有关",
+          "中国",
+          "的",
+          "书"
+        ]
+      },
+      {
+        "zh": "这是有关学习的问题。",
+        "en": "This is a question about studying.",
+        "tokens": [
+          "这",
+          "是",
+          "有关",
+          "学习",
+          "的",
+          "问题"
+        ]
+      },
+      {
+        "zh": "我看了有关这件事的书。",
+        "en": "I read a book concerning this matter.",
+        "tokens": [
+          "我",
+          "看",
+          "了",
+          "有关",
+          "这",
+          "件",
+          "事",
+          "的",
+          "书"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2591-usage",
+    "word": "要不",
+    "level": 5,
+    "pattern": "A，要不 B",
+    "meaning": "yào bù · otherwise",
+    "explain": "要不 introduces a consequence if the preceding action is not taken, or offers an alternative.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word or component expresses otherwise?",
+    "examples": [
+      {
+        "zh": "快一点，要不就晚了。",
+        "en": "Hurry up or it will be too late.",
+        "tokens": [
+          "快",
+          "一",
+          "点",
+          "要不",
+          "就",
+          "晚",
+          "了"
+        ]
+      },
+      {
+        "zh": "你要学习，要不考试会有问题。",
+        "en": "Study, or you may have problems in the exam.",
+        "tokens": [
+          "你",
+          "要",
+          "学习",
+          "要不",
+          "考试",
+          "会",
+          "有",
+          "问题"
+        ]
+      },
+      {
+        "zh": "我们走吧，要不就没有时间了。",
+        "en": "Let's go, otherwise there will be no time.",
+        "tokens": [
+          "我们",
+          "走",
+          "吧",
+          "要不",
+          "就",
+          "没有",
+          "时间",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w146-usage",
+    "word": "边",
+    "level": 1,
+    "pattern": "place + 边",
+    "meaning": "biān · side / direction suffix",
+    "explain": "边 combines with a location word to indicate a side or area.",
+    "distractors": [
+      "上",
+      "下"
+    ],
+    "contrast": "Which word or component expresses side / direction suffix?",
+    "examples": [
+      {
+        "zh": "我在这边。",
+        "en": "I am over here.",
+        "tokens": [
+          "我",
+          "在",
+          "这边"
+        ],
+        "component": "这边"
+      },
+      {
+        "zh": "他在那边。",
+        "en": "He is over there.",
+        "tokens": [
+          "他",
+          "在",
+          "那边"
+        ],
+        "component": "那边"
+      },
+      {
+        "zh": "妈妈在外边。",
+        "en": "Mum is outside.",
+        "tokens": [
+          "妈妈",
+          "在",
+          "外边"
+        ],
+        "component": "外边"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w350-usage",
+    "word": "面",
+    "level": 2,
+    "pattern": "position + 面",
+    "meaning": "miàn · position suffix",
+    "explain": "面 combines with a direction to express a location, such as 上面 or 里面.",
+    "distractors": [
+      "边",
+      "里"
+    ],
+    "contrast": "Which word or component expresses position suffix?",
+    "examples": [
+      {
+        "zh": "书在桌子上面。",
+        "en": "The book is on the table.",
+        "tokens": [
+          "书",
+          "在",
+          "桌子",
+          "上面"
+        ],
+        "component": "上面"
+      },
+      {
+        "zh": "他在里面。",
+        "en": "He is inside.",
+        "tokens": [
+          "他",
+          "在",
+          "里面"
+        ],
+        "component": "里面"
+      },
+      {
+        "zh": "学校在前面。",
+        "en": "The school is ahead.",
+        "tokens": [
+          "学校",
+          "在",
+          "前面"
+        ],
+        "component": "前面"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w529-usage",
+    "word": "长",
+    "level": 3,
+    "pattern": "institution + 长",
+    "meaning": "zhǎng · head / leader suffix",
+    "explain": "长 pronounced zhǎng can be a component in a title meaning the head of an organization.",
+    "distractors": [
+      "人",
+      "家"
+    ],
+    "contrast": "Which word or component expresses head / leader suffix?",
+    "examples": [
+      {
+        "zh": "他是校长。",
+        "en": "He is the school principal.",
+        "tokens": [
+          "他",
+          "是",
+          "校长"
+        ],
+        "component": "校长"
+      },
+      {
+        "zh": "校长在学校。",
+        "en": "The principal is at school.",
+        "tokens": [
+          "校长",
+          "在",
+          "学校"
+        ],
+        "component": "校长"
+      },
+      {
+        "zh": "我想问校长一个问题。",
+        "en": "I want to ask the principal a question.",
+        "tokens": [
+          "我",
+          "想",
+          "问",
+          "校长",
+          "一",
+          "个",
+          "问题"
+        ],
+        "component": "校长"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w551-usage",
+    "word": "老",
+    "level": 3,
+    "pattern": "老 + person",
+    "meaning": "lǎo · older / familiar (word-building)",
+    "explain": "老 can refer to age or familiarity; some compounds have fixed meanings, such as 老师. The familiar surname prefix is a different use.",
+    "distractors": [
+      "小",
+      "大"
+    ],
+    "contrast": "Which word or component expresses older / familiar (word-building)?",
+    "examples": [
+      {
+        "zh": "老师在学校。",
+        "en": "The teacher is at school.",
+        "tokens": [
+          "老师",
+          "在",
+          "学校"
+        ],
+        "component": "老师"
+      },
+      {
+        "zh": "老人喜欢在家看书。",
+        "en": "The older person likes reading at home.",
+        "tokens": [
+          "老人",
+          "喜欢",
+          "在",
+          "家",
+          "看",
+          "书"
+        ],
+        "component": "老人"
+      },
+      {
+        "zh": "我想帮助老人。",
+        "en": "I want to help elderly people.",
+        "tokens": [
+          "我",
+          "想",
+          "帮助",
+          "老人"
+        ],
+        "component": "老人"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w589-usage",
+    "word": "子",
+    "level": 3,
+    "pattern": "noun + 子",
+    "meaning": "zi · noun-forming suffix",
+    "explain": "子 pronounced zi is an unstressed noun suffix in many common words; it is not the independent word zǐ meaning child.",
+    "distractors": [
+      "们",
+      "家"
+    ],
+    "contrast": "Which word or component expresses noun-forming suffix?",
+    "examples": [
+      {
+        "zh": "书在桌子上。",
+        "en": "The book is on the table.",
+        "tokens": [
+          "书",
+          "在",
+          "桌子",
+          "上"
+        ],
+        "component": "桌子"
+      },
+      {
+        "zh": "请坐在椅子上。",
+        "en": "Please sit on the chair.",
+        "tokens": [
+          "请",
+          "坐",
+          "在",
+          "椅子",
+          "上"
+        ],
+        "component": "椅子"
+      },
+      {
+        "zh": "我买了一个杯子。",
+        "en": "I bought a cup.",
+        "tokens": [
+          "我",
+          "买",
+          "了",
+          "一",
+          "个",
+          "杯子"
+        ],
+        "component": "杯子"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w1151-usage",
+    "word": "者",
+    "level": 4,
+    "pattern": "activity + 者",
+    "meaning": "zhě · person who does something",
+    "explain": "者 forms nouns for people associated with an activity or role.",
+    "distractors": [
+      "员",
+      "人"
+    ],
+    "contrast": "Which word or component expresses person who does something?",
+    "examples": [
+      {
+        "zh": "她是记者。",
+        "en": "She is a journalist.",
+        "tokens": [
+          "她",
+          "是",
+          "记者"
+        ],
+        "component": "记者"
+      },
+      {
+        "zh": "这本书的作者是谁？",
+        "en": "Who is the author of this book?",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "的",
+          "作者",
+          "是",
+          "谁"
+        ],
+        "component": "作者"
+      },
+      {
+        "zh": "这本书有很多读者。",
+        "en": "This book has many readers.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "有",
+          "很",
+          "多",
+          "读者"
+        ],
+        "component": "读者"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w1199-usage",
+    "word": "性",
+    "level": 4,
+    "pattern": "category + 性",
+    "meaning": "xìng · sex / nature (word-building)",
+    "explain": "性 can indicate a category or nature; 女性 and 男性 refer to sex. The productive suffix for abstract qualities is a related but separate use.",
+    "distractors": [
+      "者",
+      "员"
+    ],
+    "contrast": "Which word or component expresses sex / nature (word-building)?",
+    "examples": [
+      {
+        "zh": "这是一位女性。",
+        "en": "This is a woman.",
+        "tokens": [
+          "这",
+          "是",
+          "一",
+          "位",
+          "女性"
+        ],
+        "component": "女性"
+      },
+      {
+        "zh": "他是男性。",
+        "en": "He is male.",
+        "tokens": [
+          "他",
+          "是",
+          "男性"
+        ],
+        "component": "男性"
+      },
+      {
+        "zh": "请写下性别。",
+        "en": "Please write down your sex.",
+        "tokens": [
+          "请",
+          "写",
+          "下",
+          "性别"
+        ],
+        "component": "性别"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w1213-usage",
+    "word": "感",
+    "level": 4,
+    "pattern": "感 + word",
+    "meaning": "gǎn · feeling / perception (word-building)",
+    "explain": "感 contributes a sense of feeling or perception in common compounds. The productive suffix meaning a sense of something is not illustrated at this level.",
+    "distractors": [
+      "者",
+      "员"
+    ],
+    "contrast": "Which word or component expresses feeling / perception (word-building)?",
+    "examples": [
+      {
+        "zh": "我感觉很好。",
+        "en": "I feel well.",
+        "tokens": [
+          "我",
+          "感觉",
+          "很",
+          "好"
+        ],
+        "component": "感觉"
+      },
+      {
+        "zh": "他对我的帮助表示感谢。",
+        "en": "He expressed gratitude for my help.",
+        "tokens": [
+          "他",
+          "对",
+          "我",
+          "的",
+          "帮助",
+          "表示",
+          "感谢"
+        ],
+        "component": "感谢"
+      },
+      {
+        "zh": "我感到很高兴。",
+        "en": "I feel very happy.",
+        "tokens": [
+          "我",
+          "感到",
+          "很",
+          "高兴"
+        ],
+        "component": "感到"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2012-usage",
+    "word": "头",
+    "level": 5,
+    "pattern": "noun + 头",
+    "meaning": "tou · neutral-tone noun suffix",
+    "explain": "头 pronounced tou forms nouns in certain compounds. It is distinct from tóu meaning head.",
+    "distractors": [
+      "子",
+      "员"
+    ],
+    "contrast": "Which word or component expresses neutral-tone noun suffix?",
+    "examples": [
+      {
+        "zh": "桌子是木头做的。",
+        "en": "The table is made of wood.",
+        "tokens": [
+          "桌子",
+          "是",
+          "木头",
+          "做",
+          "的"
+        ],
+        "component": "木头"
+      },
+      {
+        "zh": "他拿起一块石头。",
+        "en": "He picked up a stone.",
+        "tokens": [
+          "他",
+          "拿",
+          "起",
+          "一",
+          "块",
+          "石头"
+        ],
+        "component": "石头"
+      },
+      {
+        "zh": "我买了两个馒头。",
+        "en": "I bought two steamed buns.",
+        "tokens": [
+          "我",
+          "买",
+          "了",
+          "两",
+          "个",
+          "馒头"
+        ],
+        "component": "馒头"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2036-usage",
+    "word": "力",
+    "level": 5,
+    "pattern": "ability + 力",
+    "meaning": "lì · power / capacity (word-building)",
+    "explain": "力 contributes the meaning of power or ability in compounds.",
+    "distractors": [
+      "度",
+      "性"
+    ],
+    "contrast": "Which word or component expresses power / capacity (word-building)?",
+    "examples": [
+      {
+        "zh": "他的听力很好。",
+        "en": "His listening ability is very good.",
+        "tokens": [
+          "他",
+          "的",
+          "听力",
+          "很",
+          "好"
+        ],
+        "component": "听力"
+      },
+      {
+        "zh": "我们要提高工作能力。",
+        "en": "We need to improve our working ability.",
+        "tokens": [
+          "我们",
+          "要",
+          "提高",
+          "工作",
+          "能力"
+        ],
+        "component": "能力"
+      },
+      {
+        "zh": "她的体力很好。",
+        "en": "She has good physical stamina.",
+        "tokens": [
+          "她",
+          "的",
+          "体力",
+          "很",
+          "好"
+        ],
+        "component": "体力"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2041-usage",
+    "word": "度",
+    "level": 5,
+    "pattern": "property + 度",
+    "meaning": "dù · degree / measurement suffix",
+    "explain": "度 can form nouns expressing a measurable property or degree.",
+    "distractors": [
+      "力",
+      "性"
+    ],
+    "contrast": "Which word or component expresses degree / measurement suffix?",
+    "examples": [
+      {
+        "zh": "今天的温度很高。",
+        "en": "Today's temperature is high.",
+        "tokens": [
+          "今天",
+          "的",
+          "温度",
+          "很",
+          "高"
+        ],
+        "component": "温度"
+      },
+      {
+        "zh": "这本书的难度很大。",
+        "en": "This book is very difficult.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "的",
+          "难度",
+          "很",
+          "大"
+        ],
+        "component": "难度"
+      },
+      {
+        "zh": "请注意速度。",
+        "en": "Please pay attention to speed.",
+        "tokens": [
+          "请",
+          "注意",
+          "速度"
+        ],
+        "component": "速度"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2202-usage",
+    "word": "初",
+    "level": 5,
+    "pattern": "初 + stage",
+    "meaning": "chū · initial / early (word-building)",
+    "explain": "初 refers to the beginning or an early stage in compound words.",
+    "distractors": [
+      "老",
+      "小"
+    ],
+    "contrast": "Which word or component expresses initial / early (word-building)?",
+    "examples": [
+      {
+        "zh": "我在初中学过汉语。",
+        "en": "I studied Chinese in junior high school.",
+        "tokens": [
+          "我",
+          "在",
+          "初中",
+          "学",
+          "过",
+          "汉语"
+        ],
+        "component": "初中"
+      },
+      {
+        "zh": "这是学习的初期。",
+        "en": "This is the initial stage of learning.",
+        "tokens": [
+          "这",
+          "是",
+          "学习",
+          "的",
+          "初期"
+        ],
+        "component": "初期"
+      },
+      {
+        "zh": "他在学初级汉语。",
+        "en": "He is studying beginner-level Chinese.",
+        "tokens": [
+          "他",
+          "在",
+          "学",
+          "初级",
+          "汉语"
+        ],
+        "component": "初级"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2291-usage",
+    "word": "式",
+    "level": 5,
+    "pattern": "concept + 式",
+    "meaning": "shì · form / mode (word-building)",
+    "explain": "式 forms nouns expressing a method, mode, form or ceremony.",
+    "distractors": [
+      "度",
+      "力"
+    ],
+    "contrast": "Which word or component expresses form / mode (word-building)?",
+    "examples": [
+      {
+        "zh": "请改变工作方式。",
+        "en": "Please change the way you work.",
+        "tokens": [
+          "请",
+          "改变",
+          "工作",
+          "方式"
+        ],
+        "component": "方式"
+      },
+      {
+        "zh": "这种模式很好。",
+        "en": "This model is good.",
+        "tokens": [
+          "这",
+          "种",
+          "模式",
+          "很",
+          "好"
+        ],
+        "component": "模式"
+      },
+      {
+        "zh": "我们参加了开幕式。",
+        "en": "We attended the opening ceremony.",
+        "tokens": [
+          "我们",
+          "参加",
+          "了",
+          "开幕式"
+        ],
+        "component": "开幕式"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2339-usage",
+    "word": "品",
+    "level": 5,
+    "pattern": "category + 品",
+    "meaning": "pǐn · product / item (word-building)",
+    "explain": "品 contributes the meaning of a product or item in nouns.",
+    "distractors": [
+      "式",
+      "力"
+    ],
+    "contrast": "Which word or component expresses product / item (word-building)?",
+    "examples": [
+      {
+        "zh": "请买一些食品。",
+        "en": "Please buy some food.",
+        "tokens": [
+          "请",
+          "买",
+          "一些",
+          "食品"
+        ],
+        "component": "食品"
+      },
+      {
+        "zh": "这家店卖药品。",
+        "en": "This shop sells medicines.",
+        "tokens": [
+          "这",
+          "家",
+          "店",
+          "卖",
+          "药品"
+        ],
+        "component": "药品"
+      },
+      {
+        "zh": "这些商品很便宜。",
+        "en": "These goods are inexpensive.",
+        "tokens": [
+          "这些",
+          "商品",
+          "很",
+          "便宜"
+        ],
+        "component": "商品"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2405-usage",
+    "word": "化",
+    "level": 5,
+    "pattern": "word + 化",
+    "meaning": "huà · change / transformation (word-building)",
+    "explain": "化 can indicate a process of change, including in the suffix -ization. Learn each whole compound and its meaning.",
+    "distractors": [
+      "度",
+      "性"
+    ],
+    "contrast": "Which word or component expresses change / transformation (word-building)?",
+    "examples": [
+      {
+        "zh": "城市需要现代化。",
+        "en": "Cities need modernization.",
+        "tokens": [
+          "城市",
+          "需要",
+          "现代化"
+        ],
+        "component": "现代化"
+      },
+      {
+        "zh": "这是城市现代化的结果。",
+        "en": "This is the result of urban modernization.",
+        "tokens": [
+          "这",
+          "是",
+          "城市",
+          "现代化",
+          "的",
+          "结果"
+        ],
+        "component": "现代化"
+      },
+      {
+        "zh": "我们要注意这些变化。",
+        "en": "We need to pay attention to these changes.",
+        "tokens": [
+          "我们",
+          "要",
+          "注意",
+          "这些",
+          "变化"
+        ],
+        "component": "变化"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w2602-usage",
+    "word": "族",
+    "level": 5,
+    "pattern": "group + 族",
+    "meaning": "zú · ethnic group / people (word-building)",
+    "explain": "族 contributes the meaning of a group or people in compounds such as 民族.",
+    "distractors": [
+      "者",
+      "员"
+    ],
+    "contrast": "Which word or component expresses ethnic group / people (word-building)?",
+    "examples": [
+      {
+        "zh": "中国有很多民族。",
+        "en": "China has many ethnic groups.",
+        "tokens": [
+          "中国",
+          "有",
+          "很",
+          "多",
+          "民族"
+        ],
+        "component": "民族"
+      },
+      {
+        "zh": "我们应该了解不同民族的文化。",
+        "en": "We should understand the cultures of different ethnic groups.",
+        "tokens": [
+          "我们",
+          "应该",
+          "了解",
+          "不同",
+          "民族",
+          "的",
+          "文化"
+        ],
+        "component": "民族"
+      },
+      {
+        "zh": "这个民族有自己的文化。",
+        "en": "This ethnic group has its own culture.",
+        "tokens": [
+          "这个",
+          "民族",
+          "有",
+          "自己",
+          "的",
+          "文化"
+        ],
+        "component": "民族"
+      }
+    ],
+    "morphology": true
   }
 ];
