@@ -70,6 +70,11 @@ const categories=[
   ['People & wellbeing',/family|friend|birthday|health|exercise|home|park|environment|waste|room|phone/i]
 ];
 const category=p=>categories.find(([,r])=>r.test(p.title))?.[0]||'More stories';
+// Speak the visible option order; never disclose the correct answer.
+export function quizAudioText(prompt,options){
+  const sentence=s=>/[。！？!?；;]$/.test(s.trim())?s.trim():s.trim()+'。';
+  return [sentence(prompt),...options.map((o,i)=>'选项 '+['A','B','C'][i]+'，'+sentence(o))].join(' ');
+}
 // Device speech synthesis: no API key, no remote audio service.
 export function createStoryAudio(synth,Utterance,notify=()=>{}){
   let state='idle',current=null,generation=0,error='';
@@ -106,21 +111,59 @@ export function createReader({S,shell,saveSettings,esc}){
   const $=s=>document.querySelector(s), library=()=>checkedLibrary(S.vocab), prefs=()=>S.settings.readerWords||{};
   const stamp=()=>new Date().toISOString();
   const rank=()=>rankPassages(library(),S,level,goal,Date.now(),true);
+  let audioSource=null;
+  const playingState=s=>['playing','paused'].includes(s);
   const audio=createStoryAudio(window.speechSynthesis,window.SpeechSynthesisUtterance,({state,error})=>{
-    const b=$('#story-play'),s=$('#story-audio-status');if(!b||!s)return;
-    b.textContent=state==='playing'?'❚❚ Pause':state==='paused'?'▶ Resume':state==='ended'?'▶ Play again':'▶ Play story';
-    s.textContent=error||({idle:'Ready to listen',playing:'Playing Mandarin audio…',paused:'Paused',ended:'Finished — replay whenever you like.'}[state]||'');
-    $('#story-stop').disabled=!['playing','paused'].includes(state);
+    const storyState=audioSource==='story'?state:'idle',b=$('#story-play'),s=$('#story-audio-status');
+    if(b&&s){
+      b.textContent=storyState==='playing'?'❚❚ Pause':storyState==='paused'?'▶ Resume':storyState==='ended'?'▶ Play again':'▶ Play story';
+      s.textContent=(audioSource==='story'&&error)||({idle:'Ready to listen',playing:'Playing Mandarin audio…',paused:'Paused',ended:'Finished — replay whenever you like.'}[storyState]||'');
+      $('#story-stop').disabled=!playingState(storyState);
+    }
+    const quizSource=String(audioSource||'').startsWith('quiz:'),qs=$('#quiz-audio-status'),stop=$('#quiz-stop');
+    document.querySelectorAll('[data-quiz-audio]').forEach(btn=>{
+      const active=audioSource==='quiz:'+btn.dataset.quizAudio&&playingState(state);
+      const all=btn.dataset.quizAudio==='all';
+      btn.textContent=active&&state==='playing'?(all?'❚❚ Pause':'❚❚'):active&&state==='paused'?(all?'▶ Resume':'▶'):btn.dataset.idleLabel;
+      btn.setAttribute('aria-label',active?(state==='playing'?'Pause ':'Resume ')+btn.dataset.audioLabel:btn.dataset.audioLabel);
+      btn.classList.toggle('audio-active',active);
+    });
+    if(qs)qs.textContent=quizSource?(error||({idle:'Ready to listen',playing:'Playing Mandarin audio…',paused:'Paused',ended:'Finished — tap to replay.'}[state]||'')):'Ready to listen';
+    if(stop)stop.disabled=!(quizSource&&playingState(state));
   });
+  function playSource(source,text,restart=false){
+    const same=audioSource===source;
+    audioSource=source;
+    if(same&&!restart)audio.toggle(text,audioRate);else audio.play(text,audioRate);
+  }
   function playerMarkup(){
     return '<div class="story-player"><div class="story-player-controls"><button class="btn primary" id="story-play">▶ Play story</button><button class="btn" id="story-replay" aria-label="Restart story">↻ Replay</button><button class="btn" id="story-stop" disabled>■ Stop</button></div><label>Playback speed<select id="story-rate">'+[[.65,'0.65× · Slow'],[.85,'0.85× · Comfortable'],[1,'1× · Normal'],[1.15,'1.15× · Faster']].map(([v,n])=>'<option value="'+v+'" '+(v===audioRate?'selected':'')+'>'+n+'</option>').join('')+'</select></label><p class="muted small" id="story-audio-status" role="status">Ready to listen</p></div>';
   }
   function bindPlayer(p){
     const play=$('#story-play');if(!play)return;
-    play.onclick=()=>audio.toggle(p.body,audioRate);
-    $('#story-replay').onclick=()=>audio.play(p.body,audioRate);
+    play.onclick=()=>playSource('story',p.body);
+    $('#story-replay').onclick=()=>playSource('story',p.body,true);
     $('#story-stop').onclick=()=>audio.stop();
-    $('#story-rate').onchange=e=>{const playing=['playing','paused'].includes(audio.getState());audioRate=+e.target.value;if(playing)audio.stop();saveSettings({readerAudioRate:audioRate}).catch(()=>{});};
+    $('#story-rate').onchange=changeAudioRate;
+  }
+  function changeAudioRate(e){
+    audioRate=+e.target.value;
+    document.querySelectorAll('#story-rate,#quiz-rate').forEach(el=>el.value=String(audioRate));
+    if(playingState(audio.getState()))audio.stop();
+    saveSettings({readerAudioRate:audioRate}).catch(()=>{});
+  }
+  function quizAudioButton(key,label,idle='🔊'){
+    return '<button type="button" class="quiz-audio-btn" data-quiz-audio="'+esc(key)+'" data-audio-label="'+esc(label)+'" data-idle-label="'+esc(idle)+'" aria-label="'+esc(label)+'" title="'+esc(label)+'">'+esc(idle)+'</button>';
+  }
+  function quizAudioMarkup(){
+    return '<div class="quiz-audio-toolbar">'+quizAudioButton('all','Play question and all options','▶ Play all')+'<button type="button" class="btn" id="quiz-stop" disabled>■ Stop</button><label class="quiz-speed">Speed<select id="quiz-rate" aria-label="Question playback speed">'+[[.65,'0.65×'],[.85,'0.85×'],[1,'1×'],[1.15,'1.15×']].map(([v,n])=>'<option value="'+v+'" '+(v===audioRate?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div><p class="muted small" id="quiz-audio-status" role="status">Ready to listen</p>';
+  }
+  function bindQuizAudio(q,opts){
+    const spoken={all:quizAudioText(q.prompt,opts),question:q.prompt};
+    opts.forEach((o,i)=>spoken['option-'+i]=o);
+    document.querySelectorAll('[data-quiz-audio]').forEach(b=>b.onclick=()=>playSource('quiz:'+b.dataset.quizAudio,spoken[b.dataset.quizAudio]));
+    $('#quiz-stop').onclick=()=>audio.stop();
+    $('#quiz-rate').onchange=changeAudioRate;
   }
   window.addEventListener('hashchange',()=>audio.stop());
   document.addEventListener('click',e=>{if(e.target.closest('[data-say]')&&['playing','paused'].includes(audio.getState()))audio.stop();},true);
@@ -230,10 +273,11 @@ export function createReader({S,shell,saveSettings,esc}){
   function startQuiz(listen){audio.stop();activeWord=null;activeIndex=null;mode=listen?'listen':'quiz';quiz=current.questions;answers=[];index=0;busy=false;renderQuiz();}
   function renderQuiz(){
     const p=current,q=quiz[index],opts=shuffle(q.choices);
-    shell(route,'<button class="link" id="read-return">‹ Back to story</button><p class="read-eyebrow">'+(mode==='listen'?'Listening':'Reading')+' · '+(index+1)+' / '+quiz.length+'</p><h1>'+esc(p.title)+'</h1><section class="card">'+(mode==='listen'?playerMarkup():'<p class="read-text" lang="zh-CN">'+highlightedText(p)+'</p>')+'</section><section class="card"><p class="muted small">'+esc(READING_TYPES[q.questionType]||'Comprehension')+'</p><h2 lang="zh-CN">'+esc(q.prompt)+'</h2>'+opts.map((o,i)=>'<button class="btn" data-choice="'+i+'">'+esc(o)+'</button>').join('')+'<button class="btn ghost" data-choice="-1">I don’t know</button><div id="read-feedback" aria-live="polite"></div></section>');
-    if(mode==='listen')bindPlayer(p);$('#read-return').onclick=()=>{audio.stop();if(mode==='listen')renderListening();else render();};
+    audio.stop();audioSource=null;
+    shell(route,'<button class="link" id="read-return">‹ Back to story</button><p class="read-eyebrow">'+(mode==='listen'?'Listening':'Reading')+' · '+(index+1)+' / '+quiz.length+'</p><h1>'+esc(p.title)+'</h1><section class="card">'+(mode==='listen'?playerMarkup():'<p class="read-text" lang="zh-CN">'+highlightedText(p)+'</p>')+'</section><section class="card"><p class="muted small">'+esc(READING_TYPES[q.questionType]||'Comprehension')+'</p>'+quizAudioMarkup()+'<div class="quiz-question-row"><h2 lang="zh-CN">'+esc(q.prompt)+'</h2>'+quizAudioButton('question','Play question')+'</div>'+opts.map((o,i)=>'<div class="quiz-choice-row"><button class="btn quiz-choice" data-choice="'+i+'"><span class="quiz-letter">'+['A','B','C'][i]+'</span><span lang="zh-CN">'+esc(o)+'</span></button>'+quizAudioButton('option-'+i,'Play option '+['A','B','C'][i])+'</div>').join('')+'<button class="btn ghost" data-choice="-1">I don’t know</button><div id="read-feedback" aria-live="polite"></div></section>');
+    if(mode==='listen')bindPlayer(p);bindQuizAudio(q,opts);$('#read-return').onclick=()=>{audio.stop();if(mode==='listen')renderListening();else render();};
     document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=async()=>{
-      if(busy)return;busy=true;const chosen=opts[+b.dataset.choice],ok=chosen===q.answer;
+      if(busy)return;audio.stop();busy=true;const chosen=opts[+b.dataset.choice],ok=chosen===q.answer;
       document.querySelectorAll('[data-choice]').forEach(x=>x.disabled=true);
       try{await saveSettings({practiceProgress:gradePractice(S.settings.practiceProgress||{},mode==='listen'?'listen:'+q.id:q.id,ok,Date.now(),S.settings.retention)});
         if(!$('#read-feedback')||current!==p){busy=false;return;}
