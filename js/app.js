@@ -419,6 +419,7 @@ function wordSheet(id) {
     <div class="${!mc && !grammarOnly ? 'row2' : ''}">${!mc && !grammarOnly ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
   document.body.append(sheet);
   const close = async () => { const n = $('#wnote')?.value?.trim(); if (mc && n !== (mc.note || '')) { await saveCards([{ ...mc, note: n, updated_at: new Date().toISOString() }]); scheduleSync(); } sheet.remove(); };
+  sheet.querySelector('a[href="#/grammar"]')?.addEventListener('click',e=>{e.preventDefault();close().then(()=>go('grammar'));});
   $('#close', sheet).onclick = close; sheet.onclick = (e) => { if (e.target === sheet) close(); };
   if ($('#known', sheet)) $('#known', sheet).onclick = async () => { await markKnown([id]); scheduleSync(); sheet.remove(); renderList(); toast('Marked as known – it will come up for a check later.'); };
 }
