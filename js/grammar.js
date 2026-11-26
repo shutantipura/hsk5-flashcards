@@ -45,7 +45,7 @@ export function grammarPrompt(p,skill,reps=0) {
 }
 function shuffle(a) { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a; }
 export function createGrammarScreen({S,shell,saveSettings,esc}) {
-  let level=0, current=null, pending=[], count=0, correct=0, busy=false, query='';
+  let level=0, current=null, pending=[], count=0, correct=0, busy=false, query='', sort='level';
   const $=s=>document.querySelector(s);
   const progress=()=>S.settings.grammarProgress||{};
   const examples=p=>p.examples.map(e=>'<div class="grammar-example"><div class="grammar-zh">'+esc(e.zh)+' <button class="link" data-say="'+esc(e.zh)+'" aria-label="Listen">🔊</button></div><div class="muted small">'+esc(e.en)+'</div></div>').join('');
@@ -53,14 +53,19 @@ export function createGrammarScreen({S,shell,saveSettings,esc}) {
     current=null;pending=[];busy=false;
     const {items,due,fresh}=grammarQueue(progress(),level);
     const learned=items.filter(x=>x.c.reps).length;
-    const ps=GRAMMAR.filter(p=>(!level||p.level===level)&&(!query||[p.word,p.pattern,p.meaning,p.explain].some(x=>x.toLowerCase().includes(query.toLowerCase())))).sort((a,b)=>a.level-b.level);
+    const weakness=p=>SKILLS.reduce((s,k)=>{const c=grammarCard(progress(),p,k);return s+(c.reps?(c.lapses||0)*3+(c.state===State.Learning||c.state===State.Relearning?2:0):0);},0);
+    const ps=GRAMMAR.filter(p=>(!level||p.level===level)).sort((a,b)=>sort==='weak'?(weakness(b)-weakness(a)||a.level-b.level):a.level-b.level);
+    const matches=p=>!query||[p.word,p.pattern,p.meaning,p.explain].some(x=>x.toLowerCase().includes(query.toLowerCase()));
+    const patternRow=p=>{const n=SKILLS.filter(k=>grammarCard(progress(),p,k).reps).length;const dueN=due.filter(x=>x.p.id===p.id).length;return '<button class="btn grammar-pattern" data-pattern="'+esc(p.id)+'" '+(!matches(p)?'hidden':'')+'><span><b>'+esc(p.pattern)+'</b><small>'+esc(p.meaning)+' · HSK '+p.level+(p.morphology?' · Word building':'')+'</small></span><span class="muted">'+(dueN?dueN+' due · ':'')+n+'/'+SKILLS.length+' ›</span></button>';};
     shell('grammar','<header class="hdr"><div><h1>Grammar Practice</h1><p class="muted">Learn patterns, then use them.</p></div></header>'+
       '<section class="card"><label>Level<select id="grammar-level">'+[0,1,2,3,4,5].map(l=>'<option value="'+l+'" '+(l===level?'selected':'')+'>'+(l?'HSK '+l:'All levels')+'</option>').join('')+'</select></label>'+
       '<div class="grammar-stats"><div><b>'+due.length+'</b><span>Due</span></div><div><b>'+fresh.length+'</b><span>New skills</span></div><div><b>'+learned+'/'+items.length+'</b><span>Practised</span></div></div>'+
       '<button class="btn primary" id="grammar-start" '+(!due.length&&!fresh.length?'disabled':'')+'>'+(due.length?'Review due skills':fresh.length?'Learn a new pattern':'All caught up')+'</button>'+
       '<p class="small muted">Each pattern has four independently scheduled skills: fill the blank, distinguish, identify function, and produce. Grammar-only meanings are practised here; listening and tones remain available in vocabulary study.</p></section>'+
-      '<h3>Pattern library · '+ps.length+'</h3><input id="grammar-search" type="search" placeholder="Search word, pinyin or pattern" value="'+esc(query)+'">'+ps.map(p=>{const n=SKILLS.filter(k=>grammarCard(progress(),p,k).reps).length;return '<button class="btn grammar-pattern" data-pattern="'+esc(p.id)+'"><span><b>'+esc(p.pattern)+'</b><small>'+esc(p.meaning)+' · HSK '+p.level+(p.morphology?' · Word building':'')+'</small></span><span class="muted">'+n+'/'+SKILLS.length+' ›</span></button>';}).join(''));
-    $('#grammar-search').onchange=e=>{query=e.target.value.trim();dashboard();};
+      '<h3>Pattern library · <span id="grammar-count">'+ps.filter(matches).length+'</span></h3><input id="grammar-search" type="search" placeholder="Search word, pinyin or pattern" value="'+esc(query)+'"><label class="small">Sort<select id="grammar-sort"><option value="level" '+(sort==='level'?'selected':'')+'>HSK level</option><option value="weak" '+(sort==='weak'?'selected':'')+'>Weakest first</option></select></label><div id="grammar-list">'+ps.map(patternRow).join('')+'</div>');
+    $('#grammar-sort').onchange=e=>{sort=e.target.value;dashboard();};
+    $('#grammar-search').oninput=e=>{query=e.target.value.trim();document.querySelectorAll('[data-pattern]').forEach(b=>{b.hidden=!matches(GRAMMAR.find(p=>p.id===b.dataset.pattern));b.style.display=b.hidden?'none':'';});$('#grammar-count').textContent=ps.filter(matches).length;};
+    document.querySelectorAll('[data-pattern][hidden]').forEach(b=>b.style.display='none');
     $('#grammar-level').onchange=e=>{level=+e.target.value;dashboard();};
     $('#grammar-start').onclick=()=>{if(due.length){count=0;correct=0;pending=due.slice(0,20);next();}else if(fresh.length)lesson(fresh[0].p,true);};
     document.querySelectorAll('[data-pattern]').forEach(b=>b.onclick=()=>lesson(GRAMMAR.find(p=>p.id===b.dataset.pattern),false));
@@ -90,5 +95,5 @@ export function createGrammarScreen({S,shell,saveSettings,esc}) {
       (ok===null?'<p class="small muted">Your sentence: '+esc(writing)+'</p><p class="small muted">Other natural answers are possible. Check the intended meaning, word order and target structure yourself. '+(!writing.includes(p.word)?'Your answer does not contain the target word.':'')+'</p><div class="row2"><button class="btn bad" data-grade="1">Again</button><button class="btn good" data-grade="3">Got it</button></div>':'<button class="btn primary" data-grade="'+(ok?3:1)+'">Continue</button>');
     document.querySelectorAll('[data-grade]').forEach(b=>b.onclick=async()=>{if(busy)return;busy=true;document.querySelectorAll('[data-grade]').forEach(x=>x.disabled=true);const rating=+b.dataset.grade;const updated=gradeGrammar(progress(),p,skill,rating,Date.now(),S.settings.retention);try{await saveSettings({grammarProgress:updated});count++;if(rating>=3)correct++;busy=false;if(location.hash.split('?')[0]==='#/grammar'&&$('#grammar-feedback'))next();}catch(e){busy=false;document.querySelectorAll('[data-grade]').forEach(x=>x.disabled=false);$('#grammar-feedback')?.insertAdjacentHTML('beforeend','<p class="small muted">Could not save. Try again.</p>');}});
   }
-  return function openGrammar() { const params=new URLSearchParams(location.hash.split('?')[1]||'');if(params.has('q')){query=params.get('q');level=0;}dashboard(); };
+  return function openGrammar() { const params=new URLSearchParams(location.hash.split('?')[1]||'');if(params.has('q')){query=params.get('q');level=0;}else query='';dashboard(); };
 }
