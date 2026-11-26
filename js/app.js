@@ -9,6 +9,7 @@ import { buildReport, wordStatus } from './report.js';
 import { APP_VERSION } from './config.js';
 import { createGrammarScreen, grammarQueue } from './grammar.js';
 import { GRAMMAR } from './grammar-data.js';
+import { isGrammarOnly, learningType, learningLabel, vocabularyMeanings, grammarPatternsFor, pronunciationExample } from './learning-mode.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const app = $('#app');
@@ -17,7 +18,7 @@ const pct = (x, d = 0) => (x == null ? '–' : `${(x * 100).toFixed(d)}%`);
 const num = (n) => Number(n).toLocaleString('en-US');
 const secs = (ms) => (ms == null ? '–' : `${(ms / 1000).toFixed(1)}s`);
 const fmtDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-const meaningText = (w, n = 2) => w.m.slice(0, n).join('; ');
+const meaningText = (w, n = 2) => vocabularyMeanings(w).slice(0, n).join('; ');
 const shortMeaning = (w) => { const t = meaningText(w, 2); return t.length > 64 ? t.slice(0, 62) + '…' : t; };
 
 // ---------- speech
@@ -99,7 +100,7 @@ function placement() {
 }
 function renderPlacement() {
   const el = $('#pl'); if (!el) return;
-  const lvWords = (l) => S.vocab.filter((w) => w.l === l && !S.cards.has(key(w.i, 'meaning')));
+  const lvWords = (l) => S.vocab.filter((w) => w.l === l && !isGrammarOnly(w) && !S.cards.has(key(w.i, 'meaning')));
   if (P.phase === 'intro') {
     el.innerHTML = `<h1>Let's find what you already know</h1>
       <p>We'll show you 15 random words from each HSK level. Tap <b>Know it</b> only if you can recall the meaning right away.</p>
@@ -138,7 +139,7 @@ function renderPlacement() {
   }
 }
 function startLevel(l) {
-  const ws = S.vocab.filter((w) => w.l === l && !S.cards.has(key(w.i, 'meaning')));
+  const ws = S.vocab.filter((w) => w.l === l && !isGrammarOnly(w) && !S.cards.has(key(w.i, 'meaning')));
   if (!ws.length) { if (l < 5) return startLevel(l + 1); return finishPlacement(); }
   P = { ...P, phase: 'test', level: l, items: sample(ws, 15), idx: 0, known: [], unknown: [] };
   renderPlacement();
@@ -157,7 +158,7 @@ function home() {
   const p = pacing(); const r = buildReport(); const dueN = dueCards().length;
   const newLeft = Math.max(0, p.target - p.today);
   const doneToday = !dueN && !newLeft;
-  const grammarDue = grammarQueue(S.settings.grammarProgress || {}).due.length;
+  const grammarStats = grammarQueue(S.settings.grammarProgress || {}); const grammarDue=grammarStats.due.length;
   shell('home', `
     <header class="hdr"><div class="seal sm">词</div><div><h1>Today</h1><p class="muted">${new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}</p></div></header>
     <section class="card exam"><div class="big">${p.dte}</div><div><b>days to HSK 5</b><div class="muted">${fmtDate(S.settings.examDate + 'T09:00:00')}</div></div></section>
@@ -209,8 +210,8 @@ function wordBlock(w, { big = true } = {}) {
   return `<div class="word ${big ? 'big' : ''}"><div class="hz">${esc(w.h)}</div>
     <div class="py">${esc(w.p)}${w.a ? ` <span class="muted small">also ${esc(w.a.join(', '))}</span>` : ''}
       <button class="spk" data-say="${esc(w.h)}" aria-label="Play">🔊</button><button class="spk slow" data-say="${esc(w.h)}" data-slow="1" aria-label="Play slowly">🐢</button></div>
-    <ul class="mn">${w.m.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
-    <div class="meta"><span class="tag">HSK ${w.l}</span>${[...new Set(w.s.map((s) => pos[s] || s))].slice(0, 3).map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div></div>`;
+    <ul class="mn">${(isGrammarOnly(w) ? w.m : vocabularyMeanings(w)).map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+    <div class="meta"><span class="tag">HSK ${w.l}</span><span class="tag">${esc(learningLabel(w))}</span>${[...new Set(w.s.map((s) => pos[s] || s))].slice(0, 3).map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div></div>`;
 }
 function examplesBlock(w) {
   const examples = S.examples.get(w.i) || [];
@@ -230,7 +231,7 @@ function examplesBlock(w) {
     const v = matches.sort((a,b) => a.l-b.l)[0];
     return v ? `<span><b lang="zh-CN">${esc(t)}</b> ${esc(v.p)} · ${esc(shortMeaning(v))}</span>` : '';
   }).filter(Boolean).join('');
-  const hasGrammar = GRAMMAR.some(p => p.word === w.h && p.level === w.l);
+  const hasGrammar = grammarPatternsFor(w).length > 0;
   return `<section class="examples" aria-label="Example sentences"><h3>Example sentences <span class="muted small">· HSK ${w.l} or below</span></h3>
     ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e)}</div>
       <details class="example-help"><summary>Translation &amp; vocabulary</summary><div class="example-en">${esc(e.en)}</div><div class="example-glossary muted small">${glossary(e)}</div></details></div>
@@ -258,17 +259,18 @@ function renderQuiz() {
   CUR.opts = opts; CUR.t0 = performance.now(); CUR.answered = false;
   let prompt = '';
   const twin = S.vocab.some((o) => o.h === w.h && o.i !== w.i);
+  const context = isGrammarOnly(w) ? pronunciationExample(w) : null; const audioText = context?.zh || w.h;
   if (kind === 'meaning') prompt = `<div class="prompt hz">${esc(w.h)}</div>${twin ? `<p class="muted center">${esc(w.p)}</p>` : ''}`;
-  if (kind === 'tone') prompt = `<div class="prompt hz">${esc(w.h)}</div><p class="muted center small">${esc(shortMeaning(w))}</p>`;
+  if (kind === 'tone') prompt = `<div class="prompt hz">${esc(w.h)}</div><p class="muted center small">${esc(context?.zh || shortMeaning(w))}</p>`;
   if (kind === 'recall') prompt = `<div class="prompt en">${esc(meaningText(w, 3))}</div><p class="muted center small">${[...w.h].length} character${[...w.h].length > 1 ? 's' : ''}</p>`;
-  if (kind === 'listen') prompt = `<button class="prompt listen" data-say="${esc(w.h)}">🔊<span>Tap to replay</span></button><button class="link center" data-say="${esc(w.h)}" data-slow="1">Play slowly</button>`;
+  if (kind === 'listen') prompt = `<button class="prompt listen" data-say="${esc(audioText)}">🔊<span>Tap to replay</span></button><button class="link center" data-say="${esc(audioText)}" data-slow="1">Play slowly</button>${context ? '<p class="center">'+esc(context.zh.replace(w.h,'＿＿'))+'</p>' : ''}`;
   const label = (o) => kind === 'meaning' ? esc(shortMeaning(o.word)) : kind === 'tone' ? esc(o.pinyin) : esc(o.word.h);
   const isNewCard = card.state === State.New;
   $('#stage').innerHTML = `<div class="kindtag ${kind}">${KINDS[kind].label}${isNewCard ? ' · first time' : ''}${card.lapses >= 4 ? ' · <span data-tip="You keep forgetting this one. Check the character breakdown and add your own note.">hard word</span>' : ''}</div>
     ${prompt}<p class="q muted center">${KINDS[kind].hint}</p>
     <div class="opts ${kind === 'meaning' ? 'en' : 'zh'}${kind !== 'meaning' && opts.some((o) => (o.pinyin || o.word.h).length > 6) ? ' long' : ''}">${opts.map((o, i) => `<button class="opt" data-i="${i}">${label(o)}</button>`).join('')}</div>
     <button class="link center" id="idk">I don't know</button>`;
-  if (kind === 'listen') setTimeout(() => speak(w.h), 50);
+  if (kind === 'listen') setTimeout(() => speak(audioText), 50);
   app.querySelectorAll('.opt').forEach((b) => (b.onclick = () => choose(+b.dataset.i)));
   $('#idk').onclick = () => choose(-1);
 }
@@ -280,7 +282,7 @@ function choose(i) {
   const rating = i < 0 ? 1 : autoGrade(kind, correct, ms);
   CUR.result = { correct, ms, chosen: picked && picked.id > 0 ? picked.id : null, auto: rating };
   app.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (opts[j].id === w.i) b.classList.add('right'); else if (j === i) b.classList.add('wrong'); });
-  if (kind !== 'listen') speak(w.h);
+  if (kind !== 'listen') speak((isGrammarOnly(w) && pronunciationExample(w)?.zh) || w.h);
   const prev = previewFor(card);
   const wrongWord = !correct && picked?.word && picked.word.i !== w.i ? picked.word : null;
   const showAid = !correct || (card.lapses || 0) >= 3;
@@ -338,13 +340,13 @@ function report() {
     : 'Start learning new words to get a projection.';
   shell('report', `
     <header class="hdr"><h1>Report</h1></header>
-    <section class="card hero"><div class="muted small">Words you'd recall if tested today</div>
+    <section class="card hero"><div class="muted small">Vocabulary words you'd recall if tested today</div>
       <div class="heronum">${num(Math.round(r.expected))}<span> / ${num(r.total)}</span></div>
       <div class="bar"><i style="width:${(r.seen / r.total) * 100}%"></i><i class="exp" style="width:${(r.expected / r.total) * 100}%"></i></div>
       <div class="legend"><span><i class="sw exp"></i>Expected recall (${pct(r.expected / r.total)})</span><span><i class="sw seen"></i>Started (${num(r.seen)})</span></div>
       <p>${proj}</p></section>
 
-    <section class="card"><h3>By HSK level</h3>
+    <section class="card"><h3>Grammar progress</h3><div class="kv"><span>Skills practised</span><b>${grammarQueue(S.settings.grammarProgress||{}).items.filter(x=>x.c.reps).length} / ${grammarQueue(S.settings.grammarProgress||{}).items.length}</b></div><div class="kv"><span>Grammar-only entries</span><b>${S.vocab.filter(isGrammarOnly).length}</b></div><a class="link" href="#/grammar">Grammar practice →</a></section><section class="card"><h3>By HSK level · vocabulary</h3>
       <div class="legend"><span><i class="sw s-new"></i>New</span><span><i class="sw s-learning"></i>Learning</span><span><i class="sw s-young"></i>Young</span><span><i class="sw s-mature"></i>Mature (3+ weeks)</span></div>
       ${lvl.map(([l, L]) => `<div class="lvl"><span class="lv">HSK ${l}</span><div class="stk">${['new', 'learning', 'young', 'mature'].map((k) => L[k] ? `<i class="s-${k}" style="width:${seg(L, k)}%" data-tip="HSK ${l} · ${k}: ${L[k]} of ${L.total} words"></i>` : '').join('')}</div><span class="muted small">${pct(L.expected / L.total)}</span></div>`).join('')}
       <p class="muted small">Right-hand number: share of that level you'd recall today.</p></section>
@@ -382,12 +384,13 @@ function report() {
 }
 
 // ================= WORDS
-let WQ = { q: '', l: 0 };
+let WQ = { q: '', l: 0, type: 'all' };
 function words() {
   shell('words', `<header class="hdr"><h1>Words</h1></header>
     <input id="q" class="search" placeholder="Search hanzi, pinyin or English" value="${esc(WQ.q)}">
     <div class="chips">${[0, 1, 2, 3, 4, 5].map((l) => `<button class="chip ${WQ.l === l ? 'on' : ''}" data-l="${l}">${l ? `HSK ${l}` : 'All'}</button>`).join('')}</div>
-    <div id="wl"></div>`);
+    <label class="small">Learning type<select id="learning-type">${[["all","All words"],["vocabulary","Vocabulary"],["grammar","Grammar only"],["mixed","Vocabulary + grammar"],["pending","Grammar lesson pending"]].map(([k,n])=>`<option value="${k}" ${WQ.type===k?"selected":""}>${n}</option>`).join("")}</select></label><div id="wl"></div>`);
+  $('#learning-type').onchange=e=>{WQ.type=e.target.value;renderList();};
   $('#q').oninput = (e) => { WQ.q = e.target.value; renderList(); };
   app.querySelectorAll('.chip').forEach((b) => (b.onclick = () => { WQ.l = +b.dataset.l; words(); }));
   renderList();
@@ -395,7 +398,7 @@ function words() {
 const stripTones = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s/g, '').toLowerCase();
 function renderList() {
   const q = WQ.q.trim().toLowerCase(); const qs = stripTones(q);
-  let list = S.vocab.filter((w) => !WQ.l || w.l === WQ.l);
+  let list = S.vocab.filter((w) => (!WQ.l || w.l === WQ.l) && (WQ.type==='all'||learningType(w)===WQ.type));
   if (q) {
     const re = new RegExp(`\\b${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i');
     const score = (w) => (w.h.includes(q) ? 0 : stripTones(w.p).startsWith(qs) ? 1 : stripTones(w.p).includes(qs) ? 2 : w.m.some((m) => re.test(m)) ? 3 : 9);
@@ -403,17 +406,17 @@ function renderList() {
   }
   const shown = list.slice(0, 200);
   $('#wl').innerHTML = `<p class="muted small">${num(list.length)} words${list.length > 200 ? ' · showing first 200' : ''}</p>` +
-    shown.map((w) => `<button class="li wbtn" data-w="${w.i}"><i class="dot st-${wordStatus(w)}"></i><span class="hz s">${esc(w.h)}</span><span>${esc(w.p)}</span><span class="muted">${esc(shortMeaning(w))}</span></button>`).join('');
+    shown.map((w) => `<button class="li wbtn" data-w="${w.i}"><i class="dot st-${wordStatus(w)}"></i><span class="hz s">${esc(w.h)}</span><span>${esc(w.p)}</span><span class="muted">${isGrammarOnly(w) ? "Grammar · "+esc(shortMeaning(w)) : esc(shortMeaning(w))}</span></button>`).join('');
   app.querySelectorAll('.wbtn').forEach((b) => (b.onclick = () => wordSheet(+b.dataset.w)));
 }
 function wordSheet(id) {
   const w = S.byId.get(id); const now = Date.now();
   const rows = Object.keys(KINDS).map((k) => { const c = S.cards.get(key(id, k)); if (!c) return ''; return `<div class="kv"><span>${KINDS[k].label}</span><b>${c.state === State.Review ? `next ${fmtInterval(Math.max(0, Date.parse(c.due) - now))} · ${pct(recallProb(c, now, factorOf(k)))} recall` : ['new', 'learning', '', 'relearning'][c.state]}${c.lapses ? ` · forgot ${c.lapses}×` : ''}</b></div>`; }).join('');
   const sheet = document.createElement('div'); sheet.className = 'sheet';
-  const mc = S.cards.get(key(id, 'meaning'));
-  sheet.innerHTML = `<div class="sheetin">${wordBlock(w)}${examplesBlock(w)}${breakdownBlock(w)}${rows || '<p class="muted">Not started yet.</p>'}
+  const mc = S.cards.get(key(id, 'meaning')); const grammarOnly=isGrammarOnly(w);
+  sheet.innerHTML = `<div class="sheetin">${wordBlock(w)}${examplesBlock(w)}${breakdownBlock(w)}${grammarOnly ? '<p class="muted small">Meaning and recall cards are paused; your historical progress is retained. Learn usage in Grammar.</p>' : ''}${rows || '<p class="muted">Not started yet.</p>'}
     ${mc ? `<label class="note">Your memory hook<textarea id="wnote" rows="2">${esc(mc.note || '')}</textarea></label>` : ''}
-    <div class="${!mc ? 'row2' : ''}">${!mc ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
+    <div class="${!mc && !grammarOnly ? 'row2' : ''}">${!mc && !grammarOnly ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
   document.body.append(sheet);
   const close = async () => { const n = $('#wnote')?.value?.trim(); if (mc && n !== (mc.note || '')) { await saveCards([{ ...mc, note: n, updated_at: new Date().toISOString() }]); scheduleSync(); } sheet.remove(); };
   $('#close', sheet).onclick = close; sheet.onclick = (e) => { if (e.target === sheet) close(); };
