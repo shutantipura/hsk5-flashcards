@@ -57,7 +57,9 @@ export async function addLog(log) {
   S.logs.push(log); S.outbox.logs.add(log.client_id);
   await idb.put('logs', log.client_id, log); await saveOutbox();
 }
+let settingsRevision = 0;
 export async function saveSettings(patch) {
+  settingsRevision++;
   S.settings = { ...S.settings, ...patch };
   S.outbox.settings = true;
   await idb.put('kv', 'settings', S.settings); await saveOutbox(); emit();
@@ -106,10 +108,11 @@ async function doSync() {
     }
     if (S.outbox.settings) {
       const remoteSettings = await api.rest(`settings?select=data&user_id=eq.${uid}`);
-      S.settings = {...S.settings, grammarProgress:mergeGrammarProgress(S.settings.grammarProgress,remoteSettings?.[0]?.data?.grammarProgress)};
+      S.settings = {...S.settings, grammarProgress:mergeGrammarProgress(S.settings.grammarProgress,remoteSettings?.[0]?.data?.grammarProgress), practiceProgress:mergeGrammarProgress(S.settings.practiceProgress,remoteSettings?.[0]?.data?.practiceProgress)};
       await idb.put('kv','settings',S.settings);
+      const sentRevision=settingsRevision;
       await api.rest('settings?on_conflict=user_id', { method: 'POST', body: [{ user_id: uid, data: S.settings, updated_at: new Date().toISOString() }], prefer: 'resolution=merge-duplicates,return=minimal' });
-      S.outbox.settings = false;
+      if(settingsRevision===sentRevision) S.outbox.settings = false;
     }
     await saveOutbox();
 
@@ -139,12 +142,13 @@ async function doSync() {
     }
     const st = await api.rest(`settings?select=data,updated_at&user_id=eq.${uid}`);
     if (st?.[0]?.data && !S.outbox.settings) {
-      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, grammarProgress: mergeGrammarProgress(S.settings.grammarProgress,st[0].data.grammarProgress), kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
+      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, grammarProgress: mergeGrammarProgress(S.settings.grammarProgress,st[0].data.grammarProgress), practiceProgress: mergeGrammarProgress(S.settings.practiceProgress,st[0].data.practiceProgress), kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
       await idb.put('kv', 'settings', S.settings);
     }
     meta.uid = uid; meta.last = new Date().toISOString();
     await idb.put('kv', 'syncMeta', meta);
     S.sync = { status: 'ok', last: meta.last, error: null, pulled: changed.length + newLogs.length };
+    if(S.outbox.settings) scheduleSync(1000);
   } catch (e) {
     S.sync = { ...S.sync, status: navigator.onLine ? 'error' : 'offline', error: String(e.message || e) };
     console.warn('sync failed', e);
