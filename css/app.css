@@ -169,3 +169,6 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .example-en { font-size: 13px; line-height: 1.45; margin-top: 2px; overflow-wrap: anywhere; }
 .example-target { background: transparent; color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .example .spk { flex: 0 0 36px; }
+
+/* Level-controlled examples: keep the Chinese prominent and aids optional. */
+.example-body{min-width:0;flex:1}.example-help{margin-top:.4rem;font-size:.85rem}.example-help summary{cursor:pointer;color:inherit;opacity:.8}.example-help .example-en{margin-top:.35rem}.example-glossary{display:grid;gap:.25rem;margin-top:.5rem}.example-audio{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex-shrink:0}
