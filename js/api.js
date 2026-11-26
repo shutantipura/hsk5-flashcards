@@ -5,9 +5,10 @@ import * as idb from './idb.js';
 const MAP_KEY='hsk5-named-profiles-v1', START_KEY='hsk5-start-profile-v1', LEGACY_KEY='hsk5-legacy-profile-v1';
 export const PROFILE_NAMES=['Boyfriend','Girlfriend'];
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-let profile=null, name=null;
+let profile=null, name=null, fresh=false;
 export const userId=()=>profile;
 export const profileName=()=>name;
+export const isFreshProfile=()=>fresh;
 export const getSession=()=>profile?{profile,name}:null;
 export function namedProfiles(){
   try {const v=JSON.parse(localStorage.getItem(MAP_KEY)||'{}');return Object.fromEntries(PROFILE_NAMES.filter(n=>UUID.test(v?.[n]||'')).map(n=>[n,v[n].toLowerCase()]));}
@@ -32,16 +33,17 @@ export async function chooseProfile(n,{code='',legacy=false}={}){
   if(!PROFILE_NAMES.includes(n))throw new Error('Choose a profile.');
   const map=namedProfiles(),old=await legacyProfile();
   if((code||legacy)&&map[n])throw new Error('This profile is already set up on this device.');
+  const create=!map[n]&&!legacy&&!code;
   const id=map[n]||(legacy?old:code?await checkCode(code):crypto.randomUUID());
   if(!id)throw new Error('No previous progress was found on this device.');
   if(Object.entries(map).some(([k,v])=>k!==n&&v===id))throw new Error('That progress is already linked to the other profile.');
   map[n]=id;writeMap(map);
-  sessionStorage.setItem(START_KEY,JSON.stringify({name:n}));
+  sessionStorage.setItem(START_KEY,JSON.stringify({name:n,fresh:create}));
 }
 export async function loadSession(){
   const pending=sessionStorage.getItem(START_KEY);sessionStorage.removeItem(START_KEY);
   if(!pending)return null;
-  let n;try{n=JSON.parse(pending).name;}catch{return null;}
+  let n;try{const choice=JSON.parse(pending);n=choice.name;fresh=choice.fresh===true;}catch{return null;}
   const id=namedProfiles()[n];if(!id)return null;
   const old=await legacyProfile();
   idb.selectProfile(id,id===old);profile=id;name=n;return profile;
@@ -50,7 +52,7 @@ export async function forgetProfile(){
   if(!profile)return;
   const map=namedProfiles();delete map[name];writeMap(map);
   if(localStorage.getItem(LEGACY_KEY)===profile){localStorage.removeItem(LEGACY_KEY);localStorage.removeItem('hsk5-profile');}
-  profile=null;name=null;sessionStorage.removeItem(START_KEY);
+  profile=null;name=null;fresh=false;sessionStorage.removeItem(START_KEY);
 }
 
 /** REST call against PostgREST. */
