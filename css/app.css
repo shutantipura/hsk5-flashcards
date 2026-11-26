@@ -197,3 +197,28 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 /* Passage-based reading review */
 .pr-selected{outline:2px solid var(--primary);outline-offset:1px}
 .pr-gloss{padding:8px 0;border-bottom:1px solid var(--line)}
+
+/* Passage-first reading room */
+.read-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.read-card{display:grid;gap:9px;text-align:left;width:100%;padding:18px;margin:12px 0;border-radius:20px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.read-card strong{font-size:21px;line-height:1.22}
+.read-feature{background:var(--surface2);border-left:5px solid #8a9e76;padding:23px}
+.read-meta{color:var(--muted);font-size:12px;font-weight:500}
+.read-preview{font:18px/1.7 var(--hz)}
+.read-filters,.read-actions,.read-tally{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.read-filters label{flex:1;min-width:130px}
+.read-tally{gap:15px;font-size:13px;color:var(--muted);padding:10px 0}
+.read-tally b{color:var(--ink)}
+.read-actions .btn{width:auto;flex:1;min-width:80px;margin:4px 0;padding:10px;font-size:13px}
+.read-paper{padding:18px}
+.read-text{font:22px/2.05 var(--hz);overflow-wrap:anywhere;white-space:pre-wrap}
+.read-word{display:inline;border:0;padding:0 0 1px;margin:0;background:transparent;color:inherit;font:inherit;line-height:inherit;cursor:pointer;border-radius:3px;vertical-align:baseline}
+.read-word.read-new{background:rgba(218,169,70,.22);box-shadow:inset 0 -2px #c8a45c}
+.read-word.read-active{background:var(--surface2);outline:1px solid var(--muted)}
+.read-word:focus-visible{outline:2px solid var(--seal)}
+.read-gloss{background:var(--surface2);padding:12px;margin:10px 0}
+.read-gloss b[lang]{font-size:26px}
+.read-translation{border-top:1px solid var(--line);padding-top:12px;line-height:1.7}
+.read-tags{display:flex;gap:6px;flex-wrap:wrap}
+.read-tags span{background:var(--surface2);padding:5px 9px;border-radius:10px}
+#read-writing{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px;border-radius:10px}

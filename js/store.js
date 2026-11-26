@@ -108,7 +108,7 @@ async function doSync() {
     }
     if (S.outbox.settings) {
       const remoteSettings = await api.rest(`settings?select=data&user_id=eq.${uid}`);
-      S.settings = {...S.settings, grammarProgress:mergeGrammarProgress(S.settings.grammarProgress,remoteSettings?.[0]?.data?.grammarProgress), practiceProgress:mergeGrammarProgress(S.settings.practiceProgress,remoteSettings?.[0]?.data?.practiceProgress)};
+      S.settings = {...S.settings, grammarProgress:mergeGrammarProgress(S.settings.grammarProgress,remoteSettings?.[0]?.data?.grammarProgress), practiceProgress:mergeGrammarProgress(S.settings.practiceProgress,remoteSettings?.[0]?.data?.practiceProgress), readerWords:mergeGrammarProgress(S.settings.readerWords,remoteSettings?.[0]?.data?.readerWords), readerVisits:mergeGrammarProgress(S.settings.readerVisits,remoteSettings?.[0]?.data?.readerVisits)};
       await idb.put('kv','settings',S.settings);
       const sentRevision=settingsRevision;
       await api.rest('settings?on_conflict=user_id', { method: 'POST', body: [{ user_id: uid, data: S.settings, updated_at: new Date().toISOString() }], prefer: 'resolution=merge-duplicates,return=minimal' });
@@ -142,7 +142,7 @@ async function doSync() {
     }
     const st = await api.rest(`settings?select=data,updated_at&user_id=eq.${uid}`);
     if (st?.[0]?.data && !S.outbox.settings) {
-      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, grammarProgress: mergeGrammarProgress(S.settings.grammarProgress,st[0].data.grammarProgress), practiceProgress: mergeGrammarProgress(S.settings.practiceProgress,st[0].data.practiceProgress), kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
+      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, grammarProgress: mergeGrammarProgress(S.settings.grammarProgress,st[0].data.grammarProgress), practiceProgress: mergeGrammarProgress(S.settings.practiceProgress,st[0].data.practiceProgress), readerWords:mergeGrammarProgress(S.settings.readerWords,st[0].data.readerWords), readerVisits:mergeGrammarProgress(S.settings.readerVisits,st[0].data.readerVisits), kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
       await idb.put('kv', 'settings', S.settings);
     }
     meta.uid = uid; meta.last = new Date().toISOString();

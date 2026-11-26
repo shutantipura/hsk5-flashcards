@@ -43,3 +43,6 @@ Run `node scripts/audit_examples.mjs` to validate all five levels and report how
 
 ### Reading practice (v1.12)
 50 curated passages and 123 reading questions, with HSK-level and question-type filters, grouped passage sessions, deferred answers, English translations, vocabulary review, and accuracy by reading skill. Adaptive ordering prioritises due questions and aims for a manageable challenge using estimated familiar vocabulary. No external AI service is required.
+
+### Passage-first redesign (v2.0)
+Today, Explore, Review and Progress now centre on reading. The checked library groups existing reading questions into stories, validates their authored token boundaries against the 2025 vocabulary and fails closed when a passage or question is not valid. All reading words are tappable; learner-marked familiarity and saved words affect estimated coverage and future story recommendations. Listening (device TTS), contextual reconstruction, optional comprehension and self-assessed retelling use the same story. Existing vocabulary/grammar records remain intact. Reader word/visit state merges by timestamp in the existing synced settings JSON. The vocabulary validator is not a guarantee of grammar-level or word-sense correctness.

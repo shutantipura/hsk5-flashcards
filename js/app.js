@@ -7,6 +7,7 @@ import {
 } from './engine.js';
 import { buildReport, wordStatus } from './report.js';
 import { APP_VERSION } from './config.js';
+import { createReader } from './reader.js';
 import { createGrammarScreen, grammarQueue } from './grammar.js';
 import { GRAMMAR } from './grammar-data.js';
 import { createPracticeScreen, practiceStats } from './practice.js';
@@ -45,8 +46,7 @@ function toast(msg) {
 document.addEventListener('click', (e) => { const el = e.target.closest('[data-tip]'); if (el) toast(esc(el.dataset.tip)); });
 
 // ---------- layout
-const TABS = [['home', 'Today', 'M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z'], ['report', 'Report', 'M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z'],
-  ['grammar', 'Grammar', 'M4 4h7v2H4zm0 5h7v2H4zm0 5h7v2H4zm10-9h6v11h-6zm1 2v7h4V7z'], ['practice', 'Practice', 'M5 3h14v18H5zm3 4v2h8V7zm0 4v2h8v-2zm0 4v2h5v-2z'], ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
+const TABS = [['home','Today','M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z'],['explore','Explore','M4 3h7v17H4zm9 0h7v17h-7z'],['review','Review','M12 3a9 9 0 1 0 9 9h-3a6 6 0 1 1-2-4.5L12 12h9V3l-3 3a9 9 0 0 0-6-3z'],['report','Progress','M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z'],['settings','Settings','M12 2l2 4 4-1 2 4-2 3 2 3-2 4-4-1-2 4-2-4-4 1-2-4 2-3-2-3 2-4 4 1z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z']];
 function shell(route, body) {
   const syncDot = { ok: 'ok', syncing: 'busy', error: 'err', offline: 'off', idle: '' }[S.sync.status] || '';
   app.innerHTML = `<main class="screen">${body}</main>
@@ -61,13 +61,13 @@ function syncLabel() {
 // ---------- router
 const grammar = createGrammarScreen({S,shell,saveSettings,esc});
 const practice = createPracticeScreen({S,shell,saveSettings,esc});
-const routes = { login, placement, home, study, report, words, settings, grammar, practice };
+const reader = createReader({S,shell,saveSettings,esc});
+const routes = { login, placement:reader.today, home:reader.today, explore:reader.explore, review:reader.review, study:reader.today, report:readerReport, words, settings, grammar:reader.review, practice:reader.explore };
 function go(r) { location.hash = `#/${r}`; }
 function route() {
   const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
   if (!api.getSession() && r !== 'login') return go('login');
-  if (api.getSession() && !S.settings.placementDone && !['placement', 'settings'].includes(r)) return go('placement');
-  (routes[r] || home)();
+  (routes[r] || reader.today)();
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route);
@@ -76,7 +76,7 @@ onChange(() => { const d = $('.syncdot'); if (d) { d.className = `syncdot ${{ ok
 // ================= WELCOME (no login: progress is tied to this phone, with a sync code as backup)
 function login() {
   app.innerHTML = `<main class="screen login">
-    <div class="seal">词</div><h1>HSK 5 Flashcards</h1><p class="muted">All ${num(S.vocab.length)} words of the 2025 HSK 3.0 exam syllabus, levels 1–5.</p>
+    <div class="seal">词</div><h1>Chinese Reading Room</h1><p class="muted">Discover Chinese through stories. HSK 3.0 levels 1–5.</p>
     <button class="btn primary big" id="fresh">Start</button>
     <form id="f" class="card">
       <p class="small muted">Already used the app on another phone? Enter your sync code from <b>Settings</b> there.</p>
@@ -85,10 +85,10 @@ function login() {
       <p id="msg" class="muted small"></p>
     </form></main>`;
   const msg = $('#msg');
-  $('#fresh').onclick = async () => { await api.newProfile(); await saveSettings({}); await sync(); go('placement'); };
+  $('#fresh').onclick = async () => { await api.newProfile(); await saveSettings({}); await sync(); go('home'); };
   $('#f').onsubmit = async (e) => {
     e.preventDefault(); msg.textContent = 'Looking up your progress…';
-    try { await api.useSyncCode(e.target.code.value); await sync(); go(S.settings.placementDone ? 'home' : 'placement'); }
+    try { await api.useSyncCode(e.target.code.value); await sync(); go('home'); }
     catch (err) { msg.textContent = err.message; }
   };
 }
@@ -329,6 +329,13 @@ function endSession() {
 }
 
 // ================= REPORT
+function readerReport() {
+  const p=S.settings.practiceProgress||{}, words=S.settings.readerWords||{}, visits=S.settings.readerVisits||{};
+  const summary=(prefix)=>{const rows=Object.entries(p).filter(([k])=>k.startsWith(prefix)).map(([,v])=>v);const correct=rows.reduce((n,x)=>n+(x.correctCount||0),0),wrong=rows.reduce((n,x)=>n+(x.wrongCount||0),0);return correct+wrong?Math.round(100*correct/(correct+wrong))+'% ('+(correct+wrong)+' answers)':'—';};
+  shell('report','<header class="hdr"><div><h1>Your reading journey</h1><p class="muted">Understanding matters more than card counts.</p></div></header><section class="card"><div class="kv"><span>Stories completed</span><b>'+Object.keys(visits).length+'</b></div><div class="kv"><span>Reading accuracy</span><b>'+summary('r-')+'</b></div><div class="kv"><span>Listening accuracy</span><b>'+summary('listen:')+'</b></div><div class="kv"><span>Context recall accuracy</span><b>'+summary('reader:')+'</b></div><div class="kv"><span>Self-marked familiar words</span><b>'+Object.values(words).filter(x=>x.status==='known').length+'</b></div><div class="kv"><span>Saved review words</span><b>'+Object.values(words).filter(x=>x.status==='learning').length+'</b></div></section><p class="muted small">Old flashcard and grammar records are retained. Reading accuracy and self-reported familiarity are not official HSK scores.</p><button class="btn" id="legacy-report">Previous vocabulary statistics</button><a class="btn" href="#/words">Dictionary &amp; saved examples</a>');
+  $('#legacy-report').onclick=report;
+}
+
 function report() {
   const r = buildReport();
   const lvl = Object.entries(r.levels);
