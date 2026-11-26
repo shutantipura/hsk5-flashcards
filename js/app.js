@@ -112,7 +112,7 @@ function renderPlacement() {
       <div class="prog"><i style="width:${(P.idx / P.items.length) * 100}%"></i></div>
       <div class="bigword" id="bw">${esc(w.h)}</div>
       <button class="link center" id="peek">Show meaning</button>
-      <div class="peek hidden" id="pk"><div class="pinyin">${esc(w.p)}</div><div>${esc(meaningText(w, 3))}</div></div>
+      <div class="peek hidden" id="pk"><div class="pinyin">${esc(w.p)}</div><div>${esc(meaningText(w, 3))}</div>${examplesBlock(w)}</div>
       <div class="row2"><button class="btn bad" id="no">Don't know</button><button class="btn good" id="yes">Know it</button></div>`;
     $('#peek').onclick = () => { $('#pk').classList.remove('hidden'); $('#peek').remove(); speak(w.h); };
     const ans = (k) => { (k ? P.known : P.unknown).push(w.i); P.idx++; if (P.idx >= P.items.length) levelDone(); else renderPlacement(); };
@@ -207,6 +207,14 @@ function wordBlock(w, { big = true } = {}) {
     <ul class="mn">${w.m.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
     <div class="meta"><span class="tag">HSK ${w.l}</span>${[...new Set(w.s.map((s) => pos[s] || s))].slice(0, 3).map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div></div>`;
 }
+function examplesBlock(w) {
+  const examples = S.examples.get(w.i);
+  if (!examples?.length) return '';
+  const highlight = (sentence) => sentence.split(w.h).map(esc).join('<mark class="example-target">' + esc(w.h) + '</mark>');
+  return `<section class="examples" aria-label="Example sentences"><h3>Example sentences</h3>
+    ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e.zh)}</div><div class="example-en muted">${esc(e.en)}</div></div><button type="button" class="spk" data-say="${esc(e.zh)}" aria-label="Play example sentence">🔊</button></div>`).join('')}
+  </section>`;
+}
 function breakdownBlock(w) {
   const parts = charBreakdown(w); if ([...w.h].length < 2 && !parts[0]?.others.length) return '';
   return `<div class="bd"><h3>Characters</h3>${parts.map((p) => `<div class="bdrow"><span class="ch">${esc(p.ch)}</span><div>${p.single && p.single.i !== w.i ? `<b>${esc(p.single.p)}</b> ${esc(shortMeaning(p.single))}<br>` : ''}${p.others.length ? `<span class="muted small">also in ${p.others.map((o) => `${esc(o.h)} (${esc(o.m[0])})`).join(', ')}</span>` : ''}</div></div>`).join('')}</div>`;
@@ -215,7 +223,7 @@ document.addEventListener('click', (e) => { const b = e.target.closest('[data-sa
 
 function renderIntro() {
   const { w } = CUR;
-  $('#stage').innerHTML = `<div class="kindtag new">New word</div>${wordBlock(w)}${breakdownBlock(w)}
+  $('#stage').innerHTML = `<div class="kindtag new">New word</div>${wordBlock(w)}${examplesBlock(w)}${breakdownBlock(w)}
     <button class="btn primary big" id="ok">Got it</button><p class="muted small center">You'll be tested on it in a minute.</p>`;
   speak(w.h);
   $('#ok').onclick = async () => { await introduce(w.i); SES.newSeen++; SES.done++; nextCard(); };
@@ -257,7 +265,7 @@ function choose(i) {
   const why = !correct ? (i < 0 ? 'Marked as not known' : 'Not quite') : rating === 2 ? `Correct, but slow (${secs(ms)})` : rating === 4 ? `Correct and fast (${secs(ms)})` : `Correct (${secs(ms)})`;
   const reveal = document.createElement('div'); reveal.className = 'reveal';
   reveal.innerHTML = `<div class="verdict ${correct ? 'ok' : 'no'}">${correct ? '✓' : '✗'} ${why}</div>
-    ${wordBlock(w, { big: false })}
+    ${wordBlock(w, { big: false })}${examplesBlock(w)}
     ${wrongWord ? `<div class="confuse">You picked <b>${esc(wrongWord.h)}</b> ${esc(wrongWord.p)} – ${esc(shortMeaning(wrongWord))}<button class="spk" data-say="${esc(wrongWord.h)}">🔊</button></div>` : ''}
     ${showAid ? breakdownBlock(w) : ''}
     ${showAid && cardRec ? `<label class="note">Your memory hook<textarea id="note" rows="2" placeholder="e.g. a story or picture that links the characters to the meaning">${esc(cardRec.note || '')}</textarea></label>` : ''}
@@ -379,7 +387,7 @@ function wordSheet(id) {
   const rows = Object.keys(KINDS).map((k) => { const c = S.cards.get(key(id, k)); if (!c) return ''; return `<div class="kv"><span>${KINDS[k].label}</span><b>${c.state === State.Review ? `next ${fmtInterval(Math.max(0, Date.parse(c.due) - now))} · ${pct(recallProb(c, now, factorOf(k)))} recall` : ['new', 'learning', '', 'relearning'][c.state]}${c.lapses ? ` · forgot ${c.lapses}×` : ''}</b></div>`; }).join('');
   const sheet = document.createElement('div'); sheet.className = 'sheet';
   const mc = S.cards.get(key(id, 'meaning'));
-  sheet.innerHTML = `<div class="sheetin">${wordBlock(w)}${breakdownBlock(w)}${rows || '<p class="muted">Not started yet.</p>'}
+  sheet.innerHTML = `<div class="sheetin">${wordBlock(w)}${examplesBlock(w)}${breakdownBlock(w)}${rows || '<p class="muted">Not started yet.</p>'}
     ${mc ? `<label class="note">Your memory hook<textarea id="wnote" rows="2">${esc(mc.note || '')}</textarea></label>` : ''}
     <div class="${!mc ? 'row2' : ''}">${!mc ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
   document.body.append(sheet);
