@@ -150,7 +150,7 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .sheetin { background: var(--bg); width: 100%; max-width: 560px; margin: 0 auto; max-height: 88dvh; overflow: auto; border-radius: 20px 20px 0 0; padding: 18px 16px calc(env(safe-area-inset-bottom) + 18px); }
 
 /* chrome */
-.tabbar { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, 1fr); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 6px 0 calc(env(safe-area-inset-bottom) + 4px); z-index: 10; }
+.tabbar { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 6px 0 calc(env(safe-area-inset-bottom) + 4px); z-index: 10; }
 .tabbar a { display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--muted); text-decoration: none; font-size: 11px; padding: 4px 0; }
 .tabbar svg { width: 24px; height: 24px; fill: currentColor; } .tabbar a.on { color: var(--seal); }
 .syncdot { position: fixed; top: calc(env(safe-area-inset-top) + 14px); right: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--s-new); z-index: 11; }
@@ -172,3 +172,13 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 
 /* Level-controlled examples: keep the Chinese prominent and aids optional. */
 .example-body{min-width:0;flex:1}.example-help{margin-top:.4rem;font-size:.85rem}.example-help summary{cursor:pointer;color:inherit;opacity:.8}.example-help .example-en{margin-top:.35rem}.example-glossary{display:grid;gap:.25rem;margin-top:.5rem}.example-audio{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex-shrink:0}
+
+/* Grammar practice */
+.grammar-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;text-align:center}
+.grammar-stats b{display:block;font-size:24px}.grammar-stats span{display:block;font-size:12px;color:var(--muted)}
+.grammar-pattern{display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px}
+.grammar-pattern small{display:block;font-weight:400;color:var(--muted);margin-top:4px}
+.grammar-example{border-top:1px solid var(--line);padding:12px 0}.grammar-zh{font-size:22px;line-height:1.6}
+.grammar-question{font-size:25px;line-height:1.5;overflow-wrap:anywhere}
+.grammar-option{font-size:23px}.grammar-option:disabled{cursor:default}
+.grammar-pattern:disabled,.btn:disabled{opacity:.65;cursor:default}
