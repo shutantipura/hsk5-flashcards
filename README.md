@@ -66,3 +66,6 @@ Every reading/listening passage must contain at most 100 syllabus word tokens (n
 
 ### v2.7 extended passages
 The 100-word maximum from v2.6 has been replaced with a target of approximately 150 Chinese syllabus tokens per reading/listening passage (accepted range 125–175). All 103 stories are expanded, with existing target words, questions, and chapter links retained. English translations remain concise summaries, updated to cover added material. The runtime checker and audit enforce the new range and at least five distinct targets. Token checks do not guarantee linguistic segmentation or native-speaker naturalness.
+
+### v2.8 gap-focused reading
+Reading and listening recommendations and Applied Practice use an exact HSK level selection. Explore retains its All tab and chapter links are preserved. Additional independently authored stories live in `js/coverage-practice-data.js`, included in the checked library, practice and offline cache. The coverage audit now reports missing vocabulary grouped by level (`--gaps`). Coverage is measured by distinct written vocabulary forms, not individual senses; complete syllabus coverage is not yet achieved.
