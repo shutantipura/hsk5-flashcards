@@ -69,9 +69,22 @@ function go(r) { location.hash = `#/${r}`; }
 let ready=false;
 function route() {
   if(!ready)return;
-  const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
+  const [r,query=''] = (location.hash.replace('#/', '') || 'home').split('?');
+  const params=new URLSearchParams(query),passageId=params.get('passage'),listen=params.get('mode')==='listen';
   if (!api.getSession() && r !== 'login') { go('login'); return login(); }
   if(api.getSession()&&r==='login'){location.reload();return;}
+  if(r==='flashcards'&&passageId){
+    const p=checkedLibrary(S.vocab).find(p=>p.id===passageId);
+    if(p){
+      const from=['home','explore','review'].includes(params.get('from'))?params.get('from'):'home';
+      flashcards.openPassage(p,()=>{location.hash='#/'+from+'?'+new URLSearchParams({passage:p.id,mode:listen?'listen':'read'});});
+      window.scrollTo(0,0);return;
+    }
+  }
+  if(['home','explore','review'].includes(r)&&passageId){
+    history.replaceState(null,'','#/'+r);
+    if(reader.openById(passageId,r,listen))return;
+  }
   (routes[r] || reader.today)();
   window.scrollTo(0, 0);
 }
