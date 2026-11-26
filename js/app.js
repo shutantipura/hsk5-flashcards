@@ -215,7 +215,7 @@ function examplesBlock(w) {
     for (const token of e.tokens || []) {
       const at = e.zh.indexOf(token, offset);
       if (at < 0) return esc(e.zh);
-      out += esc(e.zh.slice(offset, at)) + (token === w.h ? '<mark class="example-target">' + esc(token) + '</mark>' : esc(token));
+      out += esc(e.zh.slice(offset, at)) + (token === w.h ? '<mark class="example-target">' + esc(token) + '</mark>' : token === e.targetComponent ? token.split(w.h).map(esc).join('<mark class="example-target">' + esc(w.h) + '</mark>') : esc(token));
       offset = at + token.length;
     }
     return out + esc(e.zh.slice(offset));
