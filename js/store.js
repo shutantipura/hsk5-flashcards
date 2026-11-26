@@ -69,6 +69,14 @@ const LOG_COLS = ['client_id', 'word_id', 'kind', 'rating', 'correct', 'response
   'stability_before', 'difficulty_before', 'elapsed_days', 'retrievability', 'reviewed_at'];
 const pick = (o, cols) => Object.fromEntries(cols.map((c) => [c, o[c] ?? null]));
 
+// Merge independently reviewed grammar skills by their FSRS update timestamp.
+export function mergeGrammarProgress(local={},remote={}) {
+  const merged={...remote};
+  for(const [k,c] of Object.entries(local)) {
+    if(!merged[k] || Date.parse(c.updated_at||0)>=Date.parse(merged[k].updated_at||0)) merged[k]=c;
+  }
+  return merged;
+}
 let syncTimer = null, syncing = null;
 export function scheduleSync(delay = 4000) { clearTimeout(syncTimer); syncTimer = setTimeout(() => sync(), delay); }
 
@@ -97,6 +105,9 @@ async function doSync() {
       lk.slice(i, i + 500).forEach((k) => S.outbox.logs.delete(k));
     }
     if (S.outbox.settings) {
+      const remoteSettings = await api.rest(`settings?select=data&user_id=eq.${uid}`);
+      S.settings = {...S.settings, grammarProgress:mergeGrammarProgress(S.settings.grammarProgress,remoteSettings?.[0]?.data?.grammarProgress)};
+      await idb.put('kv','settings',S.settings);
       await api.rest('settings?on_conflict=user_id', { method: 'POST', body: [{ user_id: uid, data: S.settings, updated_at: new Date().toISOString() }], prefer: 'resolution=merge-duplicates,return=minimal' });
       S.outbox.settings = false;
     }
@@ -128,7 +139,7 @@ async function doSync() {
     }
     const st = await api.rest(`settings?select=data,updated_at&user_id=eq.${uid}`);
     if (st?.[0]?.data && !S.outbox.settings) {
-      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
+      S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, grammarProgress: mergeGrammarProgress(S.settings.grammarProgress,st[0].data.grammarProgress), kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
       await idb.put('kv', 'settings', S.settings);
     }
     meta.uid = uid; meta.last = new Date().toISOString();
