@@ -151,14 +151,19 @@ export function createReader({S,shell,saveSettings,esc}){
     if(where==='explore'){document.querySelectorAll('[data-browse-level]').forEach(b=>b.onclick=()=>{browseLevel=+b.dataset.browseLevel;dashboard(where);});$('#read-topic').onchange=e=>{topic=e.target.value;dashboard(where);};$('#read-search').onsubmit=e=>{e.preventDefault();search=e.target.q.value.trim();dashboard(where);};}
   }
   function nextPassage(id){return rankPassages(library(),S,5,goal).find(x=>x.id===id);}
-  function open(p,listen=false){audio.stop();current=p;mode=listen?'audio':'read';showTranslation=false;activeWord=null;activeIndex=null;listeningTranscript=false;if(listen)renderListening();else render();window.scrollTo(0,0);}
+  function open(p,listen=false){audio.stop();highlight=true;current=p;mode=listen?'audio':'read';showTranslation=false;activeWord=null;activeIndex=null;listeningTranscript=false;if(listen)renderListening();else render();window.scrollTo(0,0);}
   function wordMarkup(p){
     const spans=tokenSpans(p.body,p.tokens);if(!spans)return esc(p.body);
     return spans.map((s,i)=>{
       if(!s.word)return esc(s.text);
-      const state=p.status?.get(s.text)||prefs()[s.text]?.status,unknown=state==='learning'||(state!=='known'&&p.targets.includes(s.text)&&!p.known.has(s.text));
-      return '<button class="read-word '+(highlight&&unknown?'read-new ':'')+(activeIndex===String(i)?'read-active':'')+'" data-word="'+esc(s.text)+'" data-word-index="'+i+'" aria-expanded="'+(activeIndex===String(i))+'" aria-controls="read-gloss">'+esc(s.text)+'</button>';
+      const target=p.targets.includes(s.text),state=prefs()[s.text]?.status||p.status?.get(s.text);
+      const learning=state==='learning';
+      return '<button class="read-word '+(highlight&&target?'read-target ':'')+(highlight&&learning?'read-new ':'')+(activeIndex===String(i)?'read-active':'')+'" data-word="'+esc(s.text)+'" data-word-index="'+i+'" aria-expanded="'+(activeIndex===String(i))+'" aria-controls="read-gloss">'+esc(s.text)+'</button>';
     }).join('');
+  }
+  function highlightedText(p){
+    const spans=tokenSpans(p.body,p.tokens);if(!spans)return esc(p.body);
+    return spans.map(s=>s.word&&p.targets.includes(s.text)?'<span class="read-target">'+esc(s.text)+'</span>':esc(s.text)).join('');
   }
   function wordPanel(){
     if(!activeWord)return '';
@@ -169,7 +174,7 @@ export function createReader({S,shell,saveSettings,esc}){
   async function setWord(w,status){const old=prefs()[w]||{};await saveSettings({readerWords:{...prefs(),[w]:{...old,status,updated_at:stamp(),due:status==='learning'?stamp():old.due||stamp()}}});}
   function render(){
     audio.stop();mode='read';const p=current;if(!p)return dashboard(route);
-    shell(route,'<button class="link" id="read-back">‹ '+(route==='home'?'Today':route==='explore'?'Explore':'Review')+'</button><header class="hdr"><div><p class="read-eyebrow">HSK '+p.level+' · '+esc(category(p))+'</p><h1>'+esc(p.title)+'</h1><p class="muted">'+p.tokens.length+' words · '+Math.round(p.familiar*100)+'% estimated familiar</p></div></header>'+targetList(p)+'<section class="card read-paper">'+playerMarkup()+'<div class="read-actions"><button class="btn" id="read-highlight">'+(highlight?'Hide highlights':'Highlight new words')+'</button></div><div class="read-text" lang="zh-CN">'+wordMarkup(p)+'</div><p class="muted small read-tip">Tap a word for pinyin and meaning. Tap it again to hide.</p><div id="read-gloss" class="read-popup" role="region" aria-label="Word definition" hidden></div><button class="link" id="read-translate">'+(showTranslation?'Hide translation':'Show translation')+'</button>'+(showTranslation?'<p class="read-translation">'+esc(p.translation||'No translation available.')+'</p>':'')+'</section><h3>Keep exploring this passage</h3><button class="btn primary" id="read-quiz">Reading questions · '+p.questions.length+'</button><button class="btn" id="read-listen">Listen without text</button><button class="btn" id="read-recall">Recall a word in this story</button><button class="btn" id="read-retell">Retell the story</button><button class="btn ghost" id="read-done">Finish reading — no quiz</button>'+(p.next?'<button class="btn primary" id="read-next-chapter">Next chapter →</button>':''));
+    shell(route,'<button class="link" id="read-back">‹ '+(route==='home'?'Today':route==='explore'?'Explore':'Review')+'</button><header class="hdr"><div><p class="read-eyebrow">HSK '+p.level+' · '+esc(category(p))+'</p><h1>'+esc(p.title)+'</h1><p class="muted">'+p.tokens.length+' words · '+Math.round(p.familiar*100)+'% estimated familiar</p></div></header>'+targetList(p)+'<section class="card read-paper">'+playerMarkup()+'<div class="read-actions"><button class="btn" id="read-highlight">'+(highlight?'Hide highlights':'Highlight target words')+'</button></div><div class="read-text" lang="zh-CN">'+wordMarkup(p)+'</div><p class="muted small read-tip">Tap a word for pinyin and meaning. Tap it again to hide.</p><div id="read-gloss" class="read-popup" role="region" aria-label="Word definition" hidden></div><button class="link" id="read-translate">'+(showTranslation?'Hide translation':'Show translation')+'</button>'+(showTranslation?'<p class="read-translation">'+esc(p.translation||'No translation available.')+'</p>':'')+'</section><h3>Keep exploring this passage</h3><button class="btn primary" id="read-quiz">Reading questions · '+p.questions.length+'</button><button class="btn" id="read-listen">Listen without text</button><button class="btn" id="read-recall">Recall a word in this story</button><button class="btn" id="read-retell">Retell the story</button><button class="btn ghost" id="read-done">Finish reading — no quiz</button>'+(p.next?'<button class="btn primary" id="read-next-chapter">Next chapter →</button>':''));
     bindPlayer(p);$('#read-back').onclick=()=>dashboard(route);$('#read-highlight').onclick=()=>{highlight=!highlight;render();};$('#read-translate').onclick=()=>{showTranslation=!showTranslation;render();};
     document.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{if(activeIndex===b.dataset.wordIndex){closeGloss();return;}activeIndex=b.dataset.wordIndex;activeWord=b.dataset.word;refreshGloss();});refreshGloss();
     $('#read-quiz').onclick=()=>startQuiz(false);$('#read-listen').onclick=()=>{audio.stop();listeningTranscript=false;renderListening();};$('#read-recall').onclick=recall;$('#read-retell').onclick=retell;$('#read-done').onclick=async()=>{await markRead();dashboard(route);};if($('#read-next-chapter'))$('#read-next-chapter').onclick=async()=>{await markRead();const next=nextPassage(p.next);if(next)open(next);};
@@ -212,7 +217,7 @@ export function createReader({S,shell,saveSettings,esc}){
   function bindGloss(){
     $('#read-close').onclick=closeGloss;
     const update=async status=>{const w=activeWord,i=activeIndex,p=current;await setWord(w,status);if(current!==p||activeWord!==w||activeIndex!==i||!$('#read-gloss'))return;
-      document.querySelectorAll('[data-word]').forEach(b=>{if(b.dataset.word===w)b.classList.toggle('read-new',highlight&&status==='learning');});refreshGloss();};
+      document.querySelectorAll('[data-word]').forEach(b=>{if(b.dataset.word===w){b.classList.toggle('read-new',highlight&&status==='learning');b.classList.toggle('read-target',highlight&&p.targets.includes(w)&&!b.classList.contains('target-word'));}});refreshGloss();};
     $('#read-save').onclick=()=>update('learning');
     $('#read-known').onclick=()=>update('known');
     $('#read-gloss').querySelectorAll('details').forEach(d=>d.addEventListener('toggle',positionGloss));
@@ -225,7 +230,7 @@ export function createReader({S,shell,saveSettings,esc}){
   function startQuiz(listen){audio.stop();activeWord=null;activeIndex=null;mode=listen?'listen':'quiz';quiz=current.questions;answers=[];index=0;busy=false;renderQuiz();}
   function renderQuiz(){
     const p=current,q=quiz[index],opts=shuffle(q.choices);
-    shell(route,'<button class="link" id="read-return">‹ Back to story</button><p class="read-eyebrow">'+(mode==='listen'?'Listening':'Reading')+' · '+(index+1)+' / '+quiz.length+'</p><h1>'+esc(p.title)+'</h1><section class="card">'+(mode==='listen'?playerMarkup():'<p class="read-text" lang="zh-CN">'+esc(p.body)+'</p>')+'</section><section class="card"><p class="muted small">'+esc(READING_TYPES[q.questionType]||'Comprehension')+'</p><h2 lang="zh-CN">'+esc(q.prompt)+'</h2>'+opts.map((o,i)=>'<button class="btn" data-choice="'+i+'">'+esc(o)+'</button>').join('')+'<button class="btn ghost" data-choice="-1">I don’t know</button><div id="read-feedback" aria-live="polite"></div></section>');
+    shell(route,'<button class="link" id="read-return">‹ Back to story</button><p class="read-eyebrow">'+(mode==='listen'?'Listening':'Reading')+' · '+(index+1)+' / '+quiz.length+'</p><h1>'+esc(p.title)+'</h1><section class="card">'+(mode==='listen'?playerMarkup():'<p class="read-text" lang="zh-CN">'+highlightedText(p)+'</p>')+'</section><section class="card"><p class="muted small">'+esc(READING_TYPES[q.questionType]||'Comprehension')+'</p><h2 lang="zh-CN">'+esc(q.prompt)+'</h2>'+opts.map((o,i)=>'<button class="btn" data-choice="'+i+'">'+esc(o)+'</button>').join('')+'<button class="btn ghost" data-choice="-1">I don’t know</button><div id="read-feedback" aria-live="polite"></div></section>');
     if(mode==='listen')bindPlayer(p);$('#read-return').onclick=()=>{audio.stop();if(mode==='listen')renderListening();else render();};
     document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=async()=>{
       if(busy)return;busy=true;const chosen=opts[+b.dataset.choice],ok=chosen===q.answer;
@@ -239,7 +244,7 @@ export function createReader({S,shell,saveSettings,esc}){
   }
   function results(){
     audio.stop();const p=current;markRead().catch(()=>{});
-    shell(route,'<h1>'+answers.filter(a=>a.ok).length+' / '+answers.length+' correct</h1><p class="muted">'+esc(p.title)+'</p><section class="card"><p class="read-text">'+esc(p.body)+'</p><details><summary>Translation</summary><p>'+esc(p.translation)+'</p></details></section>'+answers.map(a=>'<section class="card"><p class="'+(a.ok?'good':'bad')+'">'+(a.ok?'Correct':'Review')+'</p><b>'+esc(a.q.prompt)+'</b><p>Your answer: '+esc(a.chosen||'I don’t know')+'</p><p>Answer: '+esc(a.q.answer)+'</p><p>'+esc(a.q.explain)+'</p></section>').join('')+'<button class="btn" id="read-return">Back to story</button><button class="btn primary" id="read-finish">Find another story</button>');
+    shell(route,'<h1>'+answers.filter(a=>a.ok).length+' / '+answers.length+' correct</h1><p class="muted">'+esc(p.title)+'</p><section class="card"><p class="read-text">'+highlightedText(p)+'</p><details><summary>Translation</summary><p>'+esc(p.translation)+'</p></details></section>'+answers.map(a=>'<section class="card"><p class="'+(a.ok?'good':'bad')+'">'+(a.ok?'Correct':'Review')+'</p><b>'+esc(a.q.prompt)+'</b><p>Your answer: '+esc(a.chosen||'I don’t know')+'</p><p>Answer: '+esc(a.q.answer)+'</p><p>'+esc(a.q.explain)+'</p></section>').join('')+'<button class="btn" id="read-return">Back to story</button><button class="btn primary" id="read-finish">Find another story</button>');
     $('#read-return').onclick=render;$('#read-finish').onclick=()=>dashboard(route);
   }
   function recall(override=null){audio.stop();activeWord=null;activeIndex=null;
@@ -262,7 +267,7 @@ export function createReader({S,shell,saveSettings,esc}){
   }
   function retell(){audio.stop();activeWord=null;activeIndex=null;
     const p=current;shell(route,'<button class="link" id="read-return">‹ Back to story</button><h1>Retell the story</h1><p>Write or say what happened in your own Chinese. Try not to look at the original first.</p><section class="card"><textarea id="read-writing" rows="6" placeholder="用自己的话说一说…"></textarea><button class="btn" id="read-compare">Compare with original</button><div id="read-feedback"></div></section>');
-    $('#read-return').onclick=render;$('#read-compare').onclick=()=>{$('#read-feedback').innerHTML='<p class="read-text">'+esc(p.body)+'</p><p class="muted small">Self-check: Did you capture the main idea? Did you use the new words naturally? No automated grammar grade is claimed.</p>';};
+    $('#read-return').onclick=render;$('#read-compare').onclick=()=>{$('#read-feedback').innerHTML='<p class="read-text">'+highlightedText(p)+'</p><p class="muted small">Self-check: Did you capture the main idea? Did you use the new words naturally? No automated grammar grade is claimed.</p>';};
   }
   return {today:()=>dashboard('home'),explore:()=>dashboard('explore'),review:()=>dashboard('review')};
 }
