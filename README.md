@@ -78,3 +78,6 @@ All reading and listening passages are again approximately 100 syllabus word tok
 
 ### v2.11 expanded HSK 4 and 5 reading library
 HSK 4 and HSK 5 now each contain 101 passages (216 total across HSK 1–5). This adds 88 level-four and 11 level-five original stories without changing any prior question or passage ID. The 99 additions contain 94–120 syllabus word tokens and at least five same-level targets, prioritizing vocabulary missing from earlier passages. Each includes an English summary and a three-choice comprehension question, and works with the existing listening, highlighting and flashcard exposure features. Automated validation checks segmentation against the bundled vocabulary, target presence, word count, question options and unique IDs; it is not a native-speaker review.
+
+### v2.12 spoken comprehension questions
+Reading and listening quizzes now support Mandarin playback for the question, each visible answer option, and the entire question with options A–C in displayed order. Separate audio and answer buttons prevent accidental grading. Playback uses device speech synthesis, shares the story speed preference, and stops when submitting or navigating to another question. No answer is identified during playback.
