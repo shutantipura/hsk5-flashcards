@@ -4775,5 +4775,642 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "men-plural",
+    "word": "们",
+    "level": 1,
+    "pattern": "pronoun / person + 们",
+    "meaning": "men · plural marker",
+    "explain": "们 marks a group of people. It is common with personal pronouns; normally do not add it after a specific number.",
+    "distractors": [
+      "的",
+      "了"
+    ],
+    "contrast": "Which suffix marks a group of people?",
+    "examples": [
+      {
+        "zh": "我们是学生。",
+        "en": "We are students.",
+        "tokens": [
+          "我",
+          "们",
+          "是",
+          "学生"
+        ]
+      },
+      {
+        "zh": "你们去哪里？",
+        "en": "Where are you all going?",
+        "tokens": [
+          "你",
+          "们",
+          "去",
+          "哪里"
+        ]
+      },
+      {
+        "zh": "他们都在家。",
+        "en": "They are all at home.",
+        "tokens": [
+          "他",
+          "们",
+          "都",
+          "在",
+          "家"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "di-ordinal",
+    "word": "第",
+    "level": 1,
+    "pattern": "第 + number + measure word",
+    "meaning": "dì · ordinal marker",
+    "explain": "第 makes a number ordinal: first, second, third.",
+    "distractors": [
+      "的",
+      "也"
+    ],
+    "contrast": "Which prefix turns a number into an ordinal?",
+    "examples": [
+      {
+        "zh": "我要第一个。",
+        "en": "I want the first one.",
+        "tokens": [
+          "我",
+          "要",
+          "第",
+          "一",
+          "个"
+        ]
+      },
+      {
+        "zh": "他在第二个房间。",
+        "en": "He is in the second room.",
+        "tokens": [
+          "他",
+          "在",
+          "第",
+          "二",
+          "个",
+          "房间"
+        ]
+      },
+      {
+        "zh": "这是第三本书。",
+        "en": "This is the third book.",
+        "tokens": [
+          "这",
+          "是",
+          "第",
+          "三",
+          "本",
+          "书"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a-exclaim",
+    "word": "啊",
+    "level": 2,
+    "pattern": "clause + 啊",
+    "meaning": "a · emotional particle",
+    "explain": "啊 can soften a statement or add emotion at the end of a sentence.",
+    "distractors": [
+      "的",
+      "得"
+    ],
+    "contrast": "Which sentence-final particle adds emotion?",
+    "examples": [
+      {
+        "zh": "你来了啊！",
+        "en": "Oh, you have arrived!",
+        "tokens": [
+          "你",
+          "来",
+          "了",
+          "啊"
+        ]
+      },
+      {
+        "zh": "真好看啊！",
+        "en": "How pretty!",
+        "tokens": [
+          "真",
+          "好看",
+          "啊"
+        ]
+      },
+      {
+        "zh": "今天真冷啊！",
+        "en": "It is really cold today!",
+        "tokens": [
+          "今天",
+          "真",
+          "冷",
+          "啊"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dan",
+    "word": "但",
+    "level": 2,
+    "pattern": "A，但 B",
+    "meaning": "dàn · but",
+    "explain": "但 introduces a contrasting clause, like 但是 but often more concise.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which short conjunction introduces a contrast?",
+    "examples": [
+      {
+        "zh": "我想去，但没有时间。",
+        "en": "I want to go but have no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "但",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "他很累，但还在工作。",
+        "en": "He is tired but still working.",
+        "tokens": [
+          "他",
+          "很",
+          "累",
+          "但",
+          "还",
+          "在",
+          "工作"
+        ]
+      },
+      {
+        "zh": "这本书很好，但很贵。",
+        "en": "This book is good but expensive.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "很",
+          "好",
+          "但",
+          "很",
+          "贵"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gen-with",
+    "word": "跟",
+    "level": 2,
+    "pattern": "跟 + person + action",
+    "meaning": "gēn · with",
+    "explain": "跟 introduces a companion in everyday speech. 与 is the formal alternative.",
+    "distractors": [
+      "从",
+      "比"
+    ],
+    "contrast": "Which preposition introduces a companion?",
+    "examples": [
+      {
+        "zh": "我跟他去学校。",
+        "en": "I go to school with him.",
+        "tokens": [
+          "我",
+          "跟",
+          "他",
+          "去",
+          "学校"
+        ]
+      },
+      {
+        "zh": "她跟我一起工作。",
+        "en": "She works with me.",
+        "tokens": [
+          "她",
+          "跟",
+          "我",
+          "一起",
+          "工作"
+        ]
+      },
+      {
+        "zh": "你想跟谁去？",
+        "en": "Who do you want to go with?",
+        "tokens": [
+          "你",
+          "想",
+          "跟",
+          "谁",
+          "去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wang-direction",
+    "word": "往",
+    "level": 2,
+    "pattern": "往 + direction + action",
+    "meaning": "wǎng · towards",
+    "explain": "往 introduces a direction in which someone or something moves.",
+    "distractors": [
+      "从",
+      "比"
+    ],
+    "contrast": "Which preposition indicates the direction of movement?",
+    "examples": [
+      {
+        "zh": "请往左走。",
+        "en": "Please walk to the left.",
+        "tokens": [
+          "请",
+          "往",
+          "左",
+          "走"
+        ]
+      },
+      {
+        "zh": "我们往前走。",
+        "en": "We walk forward.",
+        "tokens": [
+          "我们",
+          "往",
+          "前",
+          "走"
+        ]
+      },
+      {
+        "zh": "他往家走。",
+        "en": "He walks toward home.",
+        "tokens": [
+          "他",
+          "往",
+          "家",
+          "走"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiang-direction",
+    "word": "向",
+    "level": 3,
+    "pattern": "向 + person / direction + action",
+    "meaning": "xiàng · towards",
+    "explain": "向 introduces a direction or the recipient of an action such as asking or learning.",
+    "distractors": [
+      "把",
+      "被"
+    ],
+    "contrast": "Which preposition introduces a recipient or direction?",
+    "examples": [
+      {
+        "zh": "我向老师学习。",
+        "en": "I learn from the teacher.",
+        "tokens": [
+          "我",
+          "向",
+          "老师",
+          "学习"
+        ]
+      },
+      {
+        "zh": "他向我走来。",
+        "en": "He walked towards me.",
+        "tokens": [
+          "他",
+          "向",
+          "我",
+          "走",
+          "来"
+        ]
+      },
+      {
+        "zh": "请向左走。",
+        "en": "Please walk to the left.",
+        "tokens": [
+          "请",
+          "向",
+          "左",
+          "走"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ranhou",
+    "word": "然后",
+    "level": 3,
+    "pattern": "A，然后 B",
+    "meaning": "rán hòu · then",
+    "explain": "然后 marks a subsequent event or action in sequence.",
+    "distractors": [
+      "因为",
+      "但是"
+    ],
+    "contrast": "Which word introduces the next event in a sequence?",
+    "examples": [
+      {
+        "zh": "我先吃饭，然后看书。",
+        "en": "I eat first, then read.",
+        "tokens": [
+          "我",
+          "先",
+          "吃",
+          "饭",
+          "然后",
+          "看",
+          "书"
+        ]
+      },
+      {
+        "zh": "他先写字，然后休息。",
+        "en": "He writes first, then rests.",
+        "tokens": [
+          "他",
+          "先",
+          "写",
+          "字",
+          "然后",
+          "休息"
+        ]
+      },
+      {
+        "zh": "先买书，然后回家。",
+        "en": "Buy books first, then go home.",
+        "tokens": [
+          "先",
+          "买",
+          "书",
+          "然后",
+          "回",
+          "家"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "keshi",
+    "word": "可是",
+    "level": 3,
+    "pattern": "A，可是 B",
+    "meaning": "kě shì · but",
+    "explain": "可是 introduces a contrast, commonly in conversation.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which conjunction introduces a contrasting clause?",
+    "examples": [
+      {
+        "zh": "我想去，可是没有时间。",
+        "en": "I want to go but have no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "可是",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "我很累，可是还要工作。",
+        "en": "I am tired but still have to work.",
+        "tokens": [
+          "我",
+          "很",
+          "累",
+          "可是",
+          "还",
+          "要",
+          "工作"
+        ]
+      },
+      {
+        "zh": "这本书很好，可是太贵了。",
+        "en": "This book is good but too expensive.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "很",
+          "好",
+          "可是",
+          "太",
+          "贵",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yaoshi",
+    "word": "要是",
+    "level": 4,
+    "pattern": "要是 A，就 B",
+    "meaning": "yào shi · if",
+    "explain": "要是 introduces a hypothetical condition in everyday conversation, like 如果.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which colloquial conjunction introduces a hypothetical condition?",
+    "examples": [
+      {
+        "zh": "要是下雨，我就不去。",
+        "en": "If it rains, I will not go.",
+        "tokens": [
+          "要是",
+          "下雨",
+          "我",
+          "就",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "要是有时间，就来我家。",
+        "en": "If you have time, come to my home.",
+        "tokens": [
+          "要是",
+          "有",
+          "时间",
+          "就",
+          "来",
+          "我",
+          "家"
+        ]
+      },
+      {
+        "zh": "要是你不知道，就问我。",
+        "en": "If you do not know, ask me.",
+        "tokens": [
+          "要是",
+          "你",
+          "不",
+          "知道",
+          "就",
+          "问",
+          "我"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wei-formal",
+    "word": "为",
+    "level": 4,
+    "pattern": "A 为 B",
+    "meaning": "wéi · formal is / equals",
+    "explain": "为 pronounced wéi can function as a formal verb meaning is or equals, especially with values or classifications.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which formal verb, pronounced wéi, can mean equals?",
+    "examples": [
+      {
+        "zh": "这次比赛的时间为三天。",
+        "en": "The duration of this competition is three days.",
+        "tokens": [
+          "这",
+          "次",
+          "比赛",
+          "的",
+          "时间",
+          "为",
+          "三",
+          "天"
+        ]
+      },
+      {
+        "zh": "每人的费用为一百元。",
+        "en": "The fee per person is one hundred yuan.",
+        "tokens": [
+          "每",
+          "人",
+          "的",
+          "费用",
+          "为",
+          "一",
+          "百",
+          "元"
+        ]
+      },
+      {
+        "zh": "正确的答案为三。",
+        "en": "The correct answer is three.",
+        "tokens": [
+          "正确",
+          "的",
+          "答案",
+          "为",
+          "三"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ya-exclaim",
+    "word": "呀",
+    "level": 5,
+    "pattern": "clause + 呀",
+    "meaning": "yā · expressive particle",
+    "explain": "呀 is an expressive sentence-final particle; it can soften a question or add emotion.",
+    "distractors": [
+      "的",
+      "得"
+    ],
+    "contrast": "Which sentence-final particle adds friendly emotion?",
+    "examples": [
+      {
+        "zh": "你怎么在这儿呀？",
+        "en": "How come you are here?",
+        "tokens": [
+          "你",
+          "怎么",
+          "在",
+          "这儿",
+          "呀"
+        ]
+      },
+      {
+        "zh": "真好看呀！",
+        "en": "How pretty!",
+        "tokens": [
+          "真",
+          "好看",
+          "呀"
+        ]
+      },
+      {
+        "zh": "你去哪里呀？",
+        "en": "Where are you going?",
+        "tokens": [
+          "你",
+          "去",
+          "哪里",
+          "呀"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "de-emphasis",
+    "word": "的",
+    "level": 1,
+    "pattern": "是……的 / sentence-final 的",
+    "meaning": "de · assurance",
+    "explain": "的 can end a statement to express assurance or emphasize a fact, often with 是.",
+    "distractors": [
+      "吗",
+      "呢"
+    ],
+    "contrast": "Which particle can end a statement of assurance?",
+    "examples": [
+      {
+        "zh": "我会来的。",
+        "en": "I will come, I assure you.",
+        "tokens": [
+          "我",
+          "会",
+          "来",
+          "的"
+        ]
+      },
+      {
+        "zh": "他会知道的。",
+        "en": "He will know.",
+        "tokens": [
+          "他",
+          "会",
+          "知道",
+          "的"
+        ]
+      },
+      {
+        "zh": "这是真的。",
+        "en": "This is true.",
+        "tokens": [
+          "这",
+          "是",
+          "真",
+          "的"
+        ]
+      }
+    ]
   }
 ];
