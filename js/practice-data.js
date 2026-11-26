@@ -2302,7 +2302,14 @@ export const PRACTICE = [
       "公司"
     ],
     "explain": "The passage says 吃了早饭，我就去学校。",
-    "words": [],
+    "words": [
+      "每",
+      "起床",
+      "早饭",
+      "就",
+      "一起",
+      "家人"
+    ],
     "tokens": [
       "我",
       "每",
@@ -2387,7 +2394,14 @@ export const PRACTICE = [
       "同学"
     ],
     "explain": "The last sentence says 和家人一起吃饭。",
-    "words": [],
+    "words": [
+      "每",
+      "起床",
+      "早饭",
+      "就",
+      "一起",
+      "家人"
+    ],
     "tokens": [
       "我",
       "每",
@@ -6307,7 +6321,15 @@ export const PRACTICE = [
       "学生"
     ],
     "explain": "The mother is a doctor.",
-    "words": [],
+    "words": [
+      "学生",
+      "爸爸",
+      "老师",
+      "妈妈",
+      "医生",
+      "喜欢",
+      "米饭"
+    ],
     "tokens": [
       "我",
       "是",
@@ -6371,7 +6393,15 @@ export const PRACTICE = [
       "我"
     ],
     "explain": "The father is a teacher.",
-    "words": [],
+    "words": [
+      "学生",
+      "爸爸",
+      "老师",
+      "妈妈",
+      "医生",
+      "喜欢",
+      "米饭"
+    ],
     "tokens": [
       "我",
       "是",
@@ -6435,7 +6465,14 @@ export const PRACTICE = [
       "十点"
     ],
     "explain": "The time is 七点.",
-    "words": [],
+    "words": [
+      "每",
+      "早饭",
+      "喜欢",
+      "牛奶",
+      "茶",
+      "没有"
+    ],
     "tokens": [
       "我",
       "每",
@@ -6522,7 +6559,14 @@ export const PRACTICE = [
       "茶"
     ],
     "explain": "There was no milk, so the speaker drank water.",
-    "words": [],
+    "words": [
+      "每",
+      "早饭",
+      "喜欢",
+      "牛奶",
+      "茶",
+      "没有"
+    ],
     "tokens": [
       "我",
       "每",
@@ -6604,7 +6648,14 @@ export const PRACTICE = [
       "老师"
     ],
     "explain": "The final clause gives the speaker's intention.",
-    "words": [],
+    "words": [
+      "汉语",
+      "上午",
+      "下午",
+      "朋友",
+      "因为",
+      "一起"
+    ],
     "tokens": [
       "我",
       "上午",
@@ -16639,7 +16690,14 @@ export const PRACTICE = [
       "吃",
       "饭"
     ],
-    "words": [],
+    "words": [
+      "汉语",
+      "上午",
+      "下午",
+      "朋友",
+      "因为",
+      "一起"
+    ],
     "id": "r-library-1",
     "kind": "reading",
     "level": 3,
@@ -19309,7 +19367,14 @@ export const PRACTICE = [
       "看",
       "书"
     ],
-    "words": [],
+    "words": [
+      "哥哥",
+      "妹妹",
+      "医院",
+      "工作",
+      "学生",
+      "喜欢"
+    ],
     "id": "r-family2-1",
     "kind": "reading",
     "level": 1,
@@ -19386,7 +19451,14 @@ export const PRACTICE = [
       "看",
       "书"
     ],
-    "words": [],
+    "words": [
+      "哥哥",
+      "妹妹",
+      "医院",
+      "工作",
+      "学生",
+      "喜欢"
+    ],
     "id": "r-family2-2",
     "kind": "reading",
     "level": 1,
@@ -19462,7 +19534,14 @@ export const PRACTICE = [
       "看",
       "书"
     ],
-    "words": [],
+    "words": [
+      "哥哥",
+      "妹妹",
+      "医院",
+      "工作",
+      "学生",
+      "喜欢"
+    ],
     "id": "r-family2-3",
     "kind": "reading",
     "level": 1,
@@ -19719,7 +19798,14 @@ export const PRACTICE = [
       "他",
       "家"
     ],
-    "words": [],
+    "words": [
+      "星期天",
+      "朋友",
+      "上午",
+      "下午",
+      "要",
+      "所以"
+    ],
     "id": "r-friend-1",
     "kind": "reading",
     "level": 2,
@@ -19794,7 +19880,14 @@ export const PRACTICE = [
       "他",
       "家"
     ],
-    "words": [],
+    "words": [
+      "星期天",
+      "朋友",
+      "上午",
+      "下午",
+      "要",
+      "所以"
+    ],
     "id": "r-friend-2",
     "kind": "reading",
     "level": 2,
@@ -21263,7 +21356,15 @@ export const PRACTICE = [
       "了",
       "水"
     ],
-    "words": [],
+    "words": [
+      "饭店",
+      "米饭",
+      "面条儿",
+      "都",
+      "喝",
+      "就",
+      "要"
+    ],
     "level": 2,
     "questionType": "detail",
     "prompt": "朋友想吃什么？",
@@ -21344,7 +21445,15 @@ export const PRACTICE = [
       "了",
       "水"
     ],
-    "words": [],
+    "words": [
+      "饭店",
+      "米饭",
+      "面条儿",
+      "都",
+      "喝",
+      "就",
+      "要"
+    ],
     "level": 2,
     "questionType": "detail",
     "prompt": "我们要了什么？",

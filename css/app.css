@@ -247,3 +247,20 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .story-listening{padding:22px 16px}
 #story-audio-status{min-height:20px}
 #audio-text[hidden]{display:none!important}
+
+/* Browse by exact HSK level and preview each passage's vocabulary. */
+.level-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin:14px 0}
+.level-tab{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 2px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.level-tab small{display:block;font-size:11px;font-weight:400;margin-top:3px;opacity:.8}
+.level-tab.on{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.level-heading,.target-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.level-heading{margin:22px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.level-heading h2,.target-heading h3{margin:0}
+.target-section{padding:14px 16px}
+.target-section summary{cursor:pointer;font-weight:600}
+.target-list,.target-preview{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.target-list .target-word{font:500 19px/1.35 var(--hz);border:1px solid var(--line);background:var(--surface2);border-radius:9px;padding:6px 10px}
+.target-list .target-word.read-active{background:rgba(218,169,70,.22);outline:1px solid var(--muted)}
+.target-preview{margin:0;gap:5px;align-items:center}
+.target-preview span{font:14px/1.4 var(--hz);padding:3px 7px;border-radius:7px;background:var(--surface2);border:1px solid var(--line)}
+.target-preview small{color:var(--muted);font-size:11px}
