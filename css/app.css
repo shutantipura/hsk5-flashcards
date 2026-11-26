@@ -234,3 +234,16 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .read-popup details{font-size:12px;margin:5px 0}
 .read-popup .read-actions .btn{font-size:12px;padding:7px;min-width:0}
 .read-tip{font-size:12px;margin:8px 0}
+
+/* Audio-first library and passage player */
+.story-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.story-mode .btn{margin:0}
+.story-player{padding:10px 0;text-align:left}
+.story-player-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.story-player-controls .btn{width:auto;flex:1;padding:10px 8px;margin:0;font-size:14px;white-space:nowrap}
+.story-player label{display:block;margin-top:12px;font-size:13px}
+.story-player select{margin-top:4px}
+.story-listening-icon{font-size:52px;text-align:center;margin:12px 0 18px}
+.story-listening{padding:22px 16px}
+#story-audio-status{min-height:20px}
+#audio-text[hidden]{display:none!important}

@@ -51,3 +51,6 @@ The reader also checks that Chinese fragments in question explanations are drawn
 
 ### v2.1 reading expansion
 103 checked passages, including longer original case studies and linked mystery chapters. Vocabulary exposure is tracked separately from mastery; run `node scripts/audit_reading.mjs --gaps` to see missing written forms and repetition coverage. Automated checks verify declared token levels and text reconstruction, not semantic or grammar-level accuracy.
+
+### v2.2 audio-first study
+Every checked passage has an audio-only mode, using the browser/device's Mandarin text-to-speech engine. The library can be browsed without Chinese previews, playback has play/pause/replay/stop and adjustable speed, transcripts and comprehension questions are optional, and chapter sequences can continue in listening mode. Audio quality and voice availability depend on the device; no recorded or server-generated audio is stored. Listening-question progress retains the existing `listen:` question IDs.
