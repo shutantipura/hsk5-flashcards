@@ -40,3 +40,6 @@ Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitH
 The full syllabus currently has three selected examples per entry (10,731 sentences across 3,577 entries). Grammar has a separate 179-pattern library (537 examples); compound lessons use explicit component boundaries. These checks validate vocabulary levels and target inclusion, not exhaustive linguistic correctness.
 
 Run `node scripts/audit_examples.mjs` to validate all five levels and report how many entries have zero, one, two, or three displayed examples. Add `--list-missing` for a backlog of entries, or `--require-three` to make incomplete coverage fail the audit. The audit checks declared token levels and target inclusion, not grammar or pronunciation; authored examples can include explicit vocabulary boundaries to avoid false rejections by automated segmentation.
+
+### Reading practice (v1.12)
+50 curated passages and 123 reading questions, with HSK-level and question-type filters, grouped passage sessions, deferred answers, English translations, vocabulary review, and accuracy by reading skill. Adaptive ordering prioritises due questions and aims for a manageable challenge using estimated familiar vocabulary. No external AI service is required.
