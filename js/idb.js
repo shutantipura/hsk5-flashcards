@@ -1,6 +1,11 @@
 // Tiny IndexedDB wrapper: stores "cards" (key = word_id:kind), "logs" (key = client_id), "kv".
-const DB_NAME = 'hsk5', VER = 1;
+let DB_NAME = 'hsk5'; const VER = 1;
 let dbp;
+// Select once per page load, before any profile state is read or written.
+export function selectProfile(id, legacy=false) {
+  if (dbp) { dbp.then(db=>db.close()).catch(()=>{}); dbp=undefined; }
+  DB_NAME=legacy?'hsk5':'hsk5-profile-'+id;
+}
 function open() {
   if (!dbp) dbp = new Promise((res, rej) => {
     const r = indexedDB.open(DB_NAME, VER);
