@@ -313,3 +313,15 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .quiz-audio-btn.audio-active{border-color:var(--primary);outline:1px solid var(--primary)}
 .quiz-audio-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 #quiz-audio-status{min-height:18px;margin:4px 0 8px}
+
+/* Flashcard context and a plain, paginated vocabulary reference. */
+.flash-subnav{display:flex;gap:8px;margin:0 0 12px}.flash-subnav .btn{flex:1;margin:0;padding:10px}
+.flash-examples{margin:10px 0;text-align:left}.flash-examples summary{cursor:pointer;font-weight:600}.flash-example{align-items:flex-start}.flash-example .example-zh{font-size:19px;line-height:1.7}.flash-example .spk{flex-shrink:0}
+.vocab-levels{display:flex;flex-wrap:wrap;gap:5px}.vocab-levels .level-tab{flex:1;min-width:45px;padding:9px 5px;font-size:12px}
+.vocab-search{display:block;margin:10px 0}
+.vocab-list-table{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.vocab-list-head,.vocab-list-row{display:grid;grid-template-columns:minmax(52px,.8fr) minmax(65px,1fr) minmax(0,2.2fr);gap:8px;padding:10px 9px;align-items:start}
+.vocab-list-head{background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted)}
+.vocab-list-row{border-top:1px solid var(--line);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
+.vocab-list-row b{font:600 19px/1.4 var(--hz);display:block}.vocab-list-row small{display:block;font-size:10px}
+.vocab-list-pinyin{color:var(--ink)}.vocab-paging{display:flex;align-items:center;justify-content:space-between;gap:10px}.vocab-paging .btn{width:auto;flex:1;padding:10px;font-size:12px}.vocab-paging span{white-space:nowrap}
