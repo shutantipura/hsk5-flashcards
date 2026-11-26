@@ -5,7 +5,7 @@ A personal, installable flashcard web app for the **2025 HSK 3.0 exam syllabus, 
 - **Spaced repetition:** FSRS-5, with learning steps and personal calibration. After 30+ reviews per card type, the app fits a stability multiplier to your own recall history.
 - **Learns from how you answer:** grades come from whether you were right *and* how fast you were, compared with your own median speed. Wrong answers are recorded as confusion pairs and reused as answer choices.
 - **Three answer choices:** every quiz uses one correct option and two distractors, with a separate “I don't know” action.
-- **Example sentences:** three Chinese sentences and English translations for every vocabulary entry, with target-word highlighting and speech playback. Examples appear when learning a new word, after answering, and in the word browser.
+- **Example sentences:** up to three Chinese sentences selected against the app's 2025 HSK word list, with optional translations, vocabulary glosses, target-word highlighting and normal/slow speech playback. The selector prefers curated examples; harder or unrecognized vocabulary is excluded where detected. Cards with fewer than three suitable examples report the gap instead of displaying unchecked examples. Automated segmentation is conservative but is not a substitute for a human sense/grammar review. Examples appear when learning a new word, after answering, and in the word browser.
 - **Card types:** meaning (hanzi → English), listening (audio → hanzi, with similar-sounding, distinguishable distractors), tones (hanzi → pinyin), recall (English → hanzi).
 - **Pacing:** sets the daily number of new words from your exam date and the words left, keeps the last 10 days for review, and slows down when the review backlog is large.
 - **Placement test:** samples each level so you can skip what you already know. Skipped words are rechecked gradually.
@@ -21,6 +21,7 @@ Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitH
 - `js/report.js` – analytics
 - `js/store.js` – local storage and sync
 - `js/app.js` – UI
+- `js/examples.js` – level-aware example selection and curated replacements
 - `data/vocab.json` – word list built by `scripts/build_vocab.py`
 
 ## Data sources and licences
