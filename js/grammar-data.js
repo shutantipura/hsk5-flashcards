@@ -4727,5 +4727,53 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "de-adverb",
+    "word": "地",
+    "level": 2,
+    "pattern": "adjective + 地 + verb",
+    "meaning": "de · manner marker",
+    "explain": "地 links a description of manner to the action. It comes before the verb.",
+    "distractors": [
+      "的",
+      "得"
+    ],
+    "contrast": "Which structural particle links manner to the following verb?",
+    "examples": [
+      {
+        "zh": "他高兴地笑了。",
+        "en": "He smiled happily.",
+        "tokens": [
+          "他",
+          "高兴",
+          "地",
+          "笑",
+          "了"
+        ]
+      },
+      {
+        "zh": "她慢地走。",
+        "en": "She walks slowly.",
+        "tokens": [
+          "她",
+          "慢",
+          "地",
+          "走"
+        ]
+      },
+      {
+        "zh": "他高兴地回家了。",
+        "en": "He went home happily.",
+        "tokens": [
+          "他",
+          "高兴",
+          "地",
+          "回",
+          "家",
+          "了"
+        ]
+      }
+    ]
   }
 ];
