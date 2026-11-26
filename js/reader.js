@@ -1,5 +1,7 @@
 // Passage-first reader. Existing cards and question IDs are preserved.
-import { PRACTICE } from './practice-data.js';
+import { PRACTICE as BASE_PRACTICE } from './practice-data.js';
+import { COVERAGE_PRACTICE } from './coverage-practice-data.js';
+const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE];
 import { buildKnowledge, gradePractice, practiceCard, READING_TYPES } from './practice.js';
 import { grammarPatternsFor } from './learning-mode.js';
 import { flashFamiliarity } from './flashcards.js';
@@ -39,7 +41,7 @@ export function syllabusExposure(library,vocab){
   return {total:forms.length,seen:forms.filter(t=>frequencies.has(t)).length,repeated:forms.filter(t=>frequencies.get(t)>=3).length,levels:[1,2,3,4,5].map(level=>{const terms=[...new Set(vocab.filter(w=>w.l===level).map(w=>w.h))];return {level,total:terms.length,seen:terms.filter(t=>frequencies.has(t)).length,repeated:terms.filter(t=>frequencies.get(t)>=3).length};})};
 }
 export function coverage(p,known){return p.tokens.filter(t=>known.has(t)).length/p.tokens.length;}
-export function rankPassages(library,S,level,goal=.95,now=Date.now()){
+export function rankPassages(library,S,level,goal=.95,now=Date.now(),exact=false){
   const known=buildKnowledge(S,now), words=S.settings.readerWords||{}, visits=S.settings.readerVisits||{}, progress=S.settings.practiceProgress||{};
   for(const w of S.vocab)if(w.l<=(S.settings.readerBaseline||0))known.add(w.h);
   for(const [w,c] of Object.entries(words)){if(c.status==='known')known.add(w);else if(c.status==='learning')known.delete(w);}
@@ -47,7 +49,7 @@ export function rankPassages(library,S,level,goal=.95,now=Date.now()){
   for(const l of S.logs){const w=S.byId.get(l.word_id);if(!w)continue;const age=Math.max(0,(now-Date.parse(l.reviewed_at))/86400000);if(age<30)weak.set(w.h,(weak.get(w.h)||0)+(l.correct?-.2:1)*Math.exp(-age/14));}
   for(const w of S.vocab){const patterns=grammarPatternsFor(w);if(patterns.some(p=>['cloze','function','contrast','produce'].some(k=>S.settings.grammarProgress?.[p.id+':'+k]?.lastRating===1)))weak.set(w.h,(weak.get(w.h)||0)+1);}
   const familiarity=new Map([1,2,3,4,5].map(l=>[l,flashFamiliarity(S.vocab,S.settings.flashcardRatings,words,l)]));
-  return library.filter(p=>p.level<=level).map(p=>{
+  return library.filter(p=>exact?p.level===level:p.level<=level).map(p=>{
     const localKnown=new Set(known),status=familiarity.get(p.level)||new Map();for(const [w,s] of status){if(s==='known')localKnown.add(w);else if(s==='learning')localKnown.delete(w);}
     const familiar=coverage(p,localKnown),ts=uniq(p.tokens),due=p.questions.filter(q=>{const c=progress[q.id];return c?.reps&&Date.parse(c.due)<=now;}).length;
     const recycle=ts.filter(t=>status.get(t)==='learning'&&(words[t]?.status!=='learning'||!words[t].due||Date.parse(words[t].due)<=now)).length;
@@ -103,7 +105,7 @@ export function createReader({S,shell,saveSettings,esc}){
   let level=5,goal=.95,topic='All',search='',browseLevel=0,current=null,mode='read',quiz=[],answers=[],index=0,showTranslation=false,highlight=true,activeWord=null,activeIndex=null,route='home',busy=false,libraryMode='read',listeningTranscript=false,audioRate=1;
   const $=s=>document.querySelector(s), library=()=>checkedLibrary(S.vocab), prefs=()=>S.settings.readerWords||{};
   const stamp=()=>new Date().toISOString();
-  const rank=()=>rankPassages(library(),S,level,goal);
+  const rank=()=>rankPassages(library(),S,level,goal,Date.now(),true);
   const audio=createStoryAudio(window.speechSynthesis,window.SpeechSynthesisUtterance,({state,error})=>{
     const b=$('#story-play'),s=$('#story-audio-status');if(!b||!s)return;
     b.textContent=state==='playing'?'❚❚ Pause':state==='paused'?'▶ Resume':state==='ended'?'▶ Play again':'▶ Play story';
@@ -131,7 +133,7 @@ export function createReader({S,shell,saveSettings,esc}){
   function bindCards(){document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{const p=(route==='explore'?rankPassages(library(),S,5,goal):rank()).find(x=>x.id===b.dataset.open);if(p)open(p,libraryMode==='listen');});}
   function dashboard(where='home'){
     audio.stop();route=where;current=null;activeWord=null;activeIndex=null;level=S.settings.readerLevel||5;goal=S.settings.readerGoal||.95;audioRate=S.settings.readerAudioRate||1;const ranked=where==='explore'?rankPassages(library(),S,5,goal):rank(),words=prefs(),visits=S.settings.readerVisits||{},all=ranked.filter(p=>!ranked.some(prev=>prev.next===p.id&&!visits[prev.id]));
-    const filters='<div class="story-mode" aria-label="Study mode"><button class="btn '+(libraryMode==='read'?'primary':'')+'" id="library-read" aria-pressed="'+(libraryMode==='read')+'">📖 Read</button><button class="btn '+(libraryMode==='listen'?'primary':'')+'" id="library-listen" aria-pressed="'+(libraryMode==='listen')+'">🎧 Listen</button></div><div class="read-filters">'+(where==='explore'?'':'<label>Maximum level<select id="read-level">'+[1,2,3,4,5].map(n=>'<option value="'+n+'" '+(n===level?'selected':'')+'>HSK '+n+'</option>').join('')+'</select></label>')+'<label>Reading style<select id="read-goal">'+[[.98,'Relaxed'],[.95,'Daily learning'],[.9,'Challenge']].map(([v,n])=>'<option value="'+v+'" '+(v===goal?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div>';
+    const filters='<div class="story-mode" aria-label="Study mode"><button class="btn '+(libraryMode==='read'?'primary':'')+'" id="library-read" aria-pressed="'+(libraryMode==='read')+'">📖 Read</button><button class="btn '+(libraryMode==='listen'?'primary':'')+'" id="library-listen" aria-pressed="'+(libraryMode==='listen')+'">🎧 Listen</button></div><div class="read-filters">'+(where==='explore'?'':'<label>HSK level<select id="read-level">'+[1,2,3,4,5].map(n=>'<option value="'+n+'" '+(n===level?'selected':'')+'>HSK '+n+'</option>').join('')+'</select></label>')+'<label>Reading style<select id="read-goal">'+[[.98,'Relaxed'],[.95,'Daily learning'],[.9,'Challenge']].map(([v,n])=>'<option value="'+v+'" '+(v===goal?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div>';
     let body='';
     if(where==='home')body='<header class="hdr"><div><p class="read-eyebrow">YOUR CHINESE READING ROOM</p><h1 lang="zh-CN">今天想读什么？</h1><p class="muted">A little Chinese, a new discovery.</p></div></header>'+filters+'<div class="read-tally"><span><b>'+Object.keys(visits).length+'</b> stories completed</span><span><b>'+Object.values(words).filter(x=>x.status==='learning').length+'</b> words to revisit</span></div><h3>For you today</h3>'+(all[0]?card(all[0],true):'<p>No checked passages available.</p>')+'<h3>More to discover</h3>'+all.slice(1,5).map(p=>card(p)).join('')+'<a class="btn" href="#/explore">Explore the full library →</a>';
     else if(where==='explore'){
@@ -148,7 +150,7 @@ export function createReader({S,shell,saveSettings,esc}){
     if($('#read-level'))$('#read-level').onchange=async e=>{await saveSettings({readerLevel:+e.target.value});dashboard(where);};$('#read-goal').onchange=async e=>{await saveSettings({readerGoal:+e.target.value});dashboard(where);};
     if(where==='explore'){document.querySelectorAll('[data-browse-level]').forEach(b=>b.onclick=()=>{browseLevel=+b.dataset.browseLevel;dashboard(where);});$('#read-topic').onchange=e=>{topic=e.target.value;dashboard(where);};$('#read-search').onsubmit=e=>{e.preventDefault();search=e.target.q.value.trim();dashboard(where);};}
   }
-  function nextPassage(id){return (route==='explore'?rankPassages(library(),S,5,goal):rank()).find(x=>x.id===id);}
+  function nextPassage(id){return rankPassages(library(),S,5,goal).find(x=>x.id===id);}
   function open(p,listen=false){audio.stop();current=p;mode=listen?'audio':'read';showTranslation=false;activeWord=null;activeIndex=null;listeningTranscript=false;if(listen)renderListening();else render();window.scrollTo(0,0);}
   function wordMarkup(p){
     const spans=tokenSpans(p.body,p.tokens);if(!spans)return esc(p.body);
