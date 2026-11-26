@@ -10919,6 +10919,18 @@ export const curatedExamples = {
         "喜欢",
         "鸟"
       ]
+    },
+    {
+      "zh": "外面有很多鸟。",
+      "en": "There are many birds outside.",
+      "source": "original",
+      "verifiedTokens": [
+        "外面",
+        "有",
+        "很",
+        "多",
+        "鸟"
+      ]
     }
   ],
   "414": [
@@ -12994,6 +13006,18 @@ export const curatedExamples = {
         "我",
         "一",
         "个",
+        "本子"
+      ]
+    },
+    {
+      "zh": "我买了新本子。",
+      "en": "I bought a new notebook.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "新",
         "本子"
       ]
     }
