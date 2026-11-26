@@ -2648,5 +2648,1702 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "de-possessive",
+    "word": "的",
+    "level": 1,
+    "pattern": "A 的 B",
+    "meaning": "de · possession",
+    "explain": "的 links an owner or modifier to a noun.",
+    "distractors": [
+      "了",
+      "吗"
+    ],
+    "contrast": "Which particle connects an owner to a noun?",
+    "examples": [
+      {
+        "zh": "这是我的书。",
+        "en": "This is my book.",
+        "tokens": [
+          "这",
+          "是",
+          "我",
+          "的",
+          "书"
+        ]
+      },
+      {
+        "zh": "他是我的朋友。",
+        "en": "He is my friend.",
+        "tokens": [
+          "他",
+          "是",
+          "我",
+          "的",
+          "朋友"
+        ]
+      },
+      {
+        "zh": "我喜欢你的衣服。",
+        "en": "I like your clothes.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "你",
+          "的",
+          "衣服"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-completed",
+    "word": "了",
+    "level": 1,
+    "pattern": "verb + 了 + object",
+    "meaning": "le · completed action",
+    "explain": "了 after a verb marks an event viewed as completed. It is not simply a past-tense marker.",
+    "distractors": [
+      "的",
+      "吗"
+    ],
+    "contrast": "Which particle marks a completed event?",
+    "examples": [
+      {
+        "zh": "我买了一本书。",
+        "en": "I bought a book.",
+        "tokens": [
+          "我",
+          "买",
+          "了",
+          "一",
+          "本",
+          "书"
+        ]
+      },
+      {
+        "zh": "他吃了三个苹果。",
+        "en": "He ate three apples.",
+        "tokens": [
+          "他",
+          "吃",
+          "了",
+          "三",
+          "个",
+          "苹果"
+        ]
+      },
+      {
+        "zh": "我写了两个字。",
+        "en": "I wrote two characters.",
+        "tokens": [
+          "我",
+          "写",
+          "了",
+          "两",
+          "个",
+          "字"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-change",
+    "word": "了",
+    "level": 1,
+    "pattern": "clause + 了",
+    "meaning": "le · changed situation",
+    "explain": "At the end of a clause, 了 marks a new situation or change.",
+    "distractors": [
+      "的",
+      "呢"
+    ],
+    "contrast": "Which particle at the end signals a new situation?",
+    "examples": [
+      {
+        "zh": "下雨了。",
+        "en": "It has started raining.",
+        "tokens": [
+          "下雨",
+          "了"
+        ]
+      },
+      {
+        "zh": "我不想去了。",
+        "en": "I no longer want to go.",
+        "tokens": [
+          "我",
+          "不",
+          "想",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "天气好了。",
+        "en": "The weather has improved.",
+        "tokens": [
+          "天气",
+          "好",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ma-question",
+    "word": "吗",
+    "level": 1,
+    "pattern": "statement + 吗？",
+    "meaning": "ma · yes/no question",
+    "explain": "吗 turns a statement into a yes/no question; do not add it to a normal question-word question.",
+    "distractors": [
+      "呢",
+      "吧"
+    ],
+    "contrast": "Which particle asks a neutral yes/no question?",
+    "examples": [
+      {
+        "zh": "你是老师吗？",
+        "en": "Are you a teacher?",
+        "tokens": [
+          "你",
+          "是",
+          "老师",
+          "吗"
+        ]
+      },
+      {
+        "zh": "你喜欢茶吗？",
+        "en": "Do you like tea?",
+        "tokens": [
+          "你",
+          "喜欢",
+          "茶",
+          "吗"
+        ]
+      },
+      {
+        "zh": "你明天来吗？",
+        "en": "Are you coming tomorrow?",
+        "tokens": [
+          "你",
+          "明天",
+          "来",
+          "吗"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ne-return",
+    "word": "呢",
+    "level": 1,
+    "pattern": "noun / pronoun + 呢？",
+    "meaning": "ne · return a question",
+    "explain": "呢 can return a question to another person or ask about someone's whereabouts.",
+    "distractors": [
+      "吗",
+      "了"
+    ],
+    "contrast": "Which particle means what about someone?",
+    "examples": [
+      {
+        "zh": "我很好，你呢？",
+        "en": "I am fine; what about you?",
+        "tokens": [
+          "我",
+          "很",
+          "好",
+          "你",
+          "呢"
+        ]
+      },
+      {
+        "zh": "我要茶，你呢？",
+        "en": "I want tea; what about you?",
+        "tokens": [
+          "我",
+          "要",
+          "茶",
+          "你",
+          "呢"
+        ]
+      },
+      {
+        "zh": "妈妈呢？",
+        "en": "Where is Mum?",
+        "tokens": [
+          "妈妈",
+          "呢"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zai-progress",
+    "word": "在",
+    "level": 1,
+    "pattern": "在 + verb",
+    "meaning": "zài · action in progress",
+    "explain": "在 before a verb marks an ongoing action, unlike 在 followed by a place.",
+    "distractors": [
+      "了",
+      "的"
+    ],
+    "contrast": "Which word before a verb indicates an action is happening now?",
+    "examples": [
+      {
+        "zh": "我在看书。",
+        "en": "I am reading a book.",
+        "tokens": [
+          "我",
+          "在",
+          "看",
+          "书"
+        ]
+      },
+      {
+        "zh": "他在吃饭。",
+        "en": "He is eating.",
+        "tokens": [
+          "他",
+          "在",
+          "吃",
+          "饭"
+        ]
+      },
+      {
+        "zh": "妈妈在写字。",
+        "en": "Mum is writing characters.",
+        "tokens": [
+          "妈妈",
+          "在",
+          "写",
+          "字"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ye-also",
+    "word": "也",
+    "level": 1,
+    "pattern": "subject + 也 + predicate",
+    "meaning": "yě · also",
+    "explain": "也 comes before the predicate to indicate that another person or thing shares a property.",
+    "distractors": [
+      "的",
+      "吗"
+    ],
+    "contrast": "Which adverb means also?",
+    "examples": [
+      {
+        "zh": "我也喜欢茶。",
+        "en": "I like tea too.",
+        "tokens": [
+          "我",
+          "也",
+          "喜欢",
+          "茶"
+        ]
+      },
+      {
+        "zh": "他也是学生。",
+        "en": "He is also a student.",
+        "tokens": [
+          "他",
+          "也",
+          "是",
+          "学生"
+        ]
+      },
+      {
+        "zh": "我也想去。",
+        "en": "I want to go too.",
+        "tokens": [
+          "我",
+          "也",
+          "想",
+          "去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dou-all",
+    "word": "都",
+    "level": 1,
+    "pattern": "plural subject + 都 + predicate",
+    "meaning": "dōu · all / both",
+    "explain": "都 comes before a predicate and covers all members of a group.",
+    "distractors": [
+      "的",
+      "吗"
+    ],
+    "contrast": "Which word indicates all members of a group?",
+    "examples": [
+      {
+        "zh": "我们都是学生。",
+        "en": "We are all students.",
+        "tokens": [
+          "我们",
+          "都",
+          "是",
+          "学生"
+        ]
+      },
+      {
+        "zh": "他们都喜欢茶。",
+        "en": "They all like tea.",
+        "tokens": [
+          "他们",
+          "都",
+          "喜欢",
+          "茶"
+        ]
+      },
+      {
+        "zh": "爸爸和妈妈都在家。",
+        "en": "Dad and Mum are both at home.",
+        "tokens": [
+          "爸爸",
+          "和",
+          "妈妈",
+          "都",
+          "在",
+          "家"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dui-towards",
+    "word": "对",
+    "level": 1,
+    "pattern": "对 + person + adjective",
+    "meaning": "duì · towards / to",
+    "explain": "对 introduces the person toward whom a quality or attitude is directed.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word introduces the person towards whom an attitude is directed?",
+    "examples": [
+      {
+        "zh": "他对我很好。",
+        "en": "He is very kind to me.",
+        "tokens": [
+          "他",
+          "对",
+          "我",
+          "很",
+          "好"
+        ]
+      },
+      {
+        "zh": "老师对我们很好。",
+        "en": "The teacher is very kind to us.",
+        "tokens": [
+          "老师",
+          "对",
+          "我们",
+          "很",
+          "好"
+        ]
+      },
+      {
+        "zh": "妈妈对孩子很好。",
+        "en": "Mum is very kind to the child.",
+        "tokens": [
+          "妈妈",
+          "对",
+          "孩子",
+          "很",
+          "好"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hai-still",
+    "word": "还",
+    "level": 1,
+    "pattern": "还 + verb / adjective",
+    "meaning": "hái · still",
+    "explain": "还 marks a state or action that continues.",
+    "distractors": [
+      "的",
+      "吗"
+    ],
+    "contrast": "Which adverb expresses that something still holds?",
+    "examples": [
+      {
+        "zh": "他还在家。",
+        "en": "He is still at home.",
+        "tokens": [
+          "他",
+          "还",
+          "在",
+          "家"
+        ]
+      },
+      {
+        "zh": "我还想喝水。",
+        "en": "I still want to drink water.",
+        "tokens": [
+          "我",
+          "还",
+          "想",
+          "喝",
+          "水"
+        ]
+      },
+      {
+        "zh": "现在还早。",
+        "en": "It is still early.",
+        "tokens": [
+          "现在",
+          "还",
+          "早"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhengzai",
+    "word": "正在",
+    "level": 1,
+    "pattern": "正在 + verb",
+    "meaning": "zhèng zài · right now",
+    "explain": "正在 emphasizes that an action is in progress right now.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word emphasizes an action happening right now?",
+    "examples": [
+      {
+        "zh": "我正在看书。",
+        "en": "I am reading a book right now.",
+        "tokens": [
+          "我",
+          "正在",
+          "看",
+          "书"
+        ]
+      },
+      {
+        "zh": "他正在写字。",
+        "en": "He is writing characters right now.",
+        "tokens": [
+          "他",
+          "正在",
+          "写",
+          "字"
+        ]
+      },
+      {
+        "zh": "妈妈正在做饭。",
+        "en": "Mum is cooking right now.",
+        "tokens": [
+          "妈妈",
+          "正在",
+          "做",
+          "饭"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhe-state",
+    "word": "着",
+    "level": 2,
+    "pattern": "verb + 着",
+    "meaning": "zhe · continuing state",
+    "explain": "着 after a verb describes a continuing state. It is pronounced with a neutral tone.",
+    "distractors": [
+      "了",
+      "得"
+    ],
+    "contrast": "Which particle describes a state that continues?",
+    "examples": [
+      {
+        "zh": "门开着。",
+        "en": "The door is open.",
+        "tokens": [
+          "门",
+          "开",
+          "着"
+        ]
+      },
+      {
+        "zh": "他穿着白色的衣服。",
+        "en": "He is wearing white clothes.",
+        "tokens": [
+          "他",
+          "穿",
+          "着",
+          "白色",
+          "的",
+          "衣服"
+        ]
+      },
+      {
+        "zh": "她坐着。",
+        "en": "She is sitting.",
+        "tokens": [
+          "她",
+          "坐",
+          "着"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhe-manner",
+    "word": "着",
+    "level": 2,
+    "pattern": "verb 1 + 着 + verb 2",
+    "meaning": "zhe · accompanying action",
+    "explain": "着 marks the ongoing action or manner that accompanies another action.",
+    "distractors": [
+      "了",
+      "得"
+    ],
+    "contrast": "Which particle marks the action accompanying another action?",
+    "examples": [
+      {
+        "zh": "他笑着说。",
+        "en": "He says it with a smile.",
+        "tokens": [
+          "他",
+          "笑",
+          "着",
+          "说"
+        ]
+      },
+      {
+        "zh": "她坐着看书。",
+        "en": "She reads while sitting.",
+        "tokens": [
+          "她",
+          "坐",
+          "着",
+          "看",
+          "书"
+        ]
+      },
+      {
+        "zh": "他站着吃饭。",
+        "en": "He eats while standing.",
+        "tokens": [
+          "他",
+          "站",
+          "着",
+          "吃",
+          "饭"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhao-result",
+    "word": "着",
+    "level": 4,
+    "pattern": "verb + 着 (zháo)",
+    "meaning": "zháo · successful result",
+    "explain": "着 pronounced zháo is a result complement. It indicates reaching a result, not a continuing state.",
+    "distractors": [
+      "了",
+      "过"
+    ],
+    "contrast": "Which complement, pronounced zháo, indicates reaching a result?",
+    "examples": [
+      {
+        "zh": "孩子睡着了。",
+        "en": "The child fell asleep.",
+        "tokens": [
+          "孩子",
+          "睡",
+          "着",
+          "了"
+        ]
+      },
+      {
+        "zh": "我找着了。",
+        "en": "I found it.",
+        "tokens": [
+          "我",
+          "找",
+          "着",
+          "了"
+        ]
+      },
+      {
+        "zh": "他买着了。",
+        "en": "He managed to buy it.",
+        "tokens": [
+          "他",
+          "买",
+          "着",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "de-degree",
+    "word": "得",
+    "level": 2,
+    "pattern": "verb + 得 + description",
+    "meaning": "de · degree / manner complement",
+    "explain": "得 connects an action to a following description of how well or how much it occurs.",
+    "distractors": [
+      "的",
+      "地"
+    ],
+    "contrast": "Which structural particle comes after the verb and before a description?",
+    "examples": [
+      {
+        "zh": "他写得很好。",
+        "en": "He writes very well.",
+        "tokens": [
+          "他",
+          "写",
+          "得",
+          "很",
+          "好"
+        ]
+      },
+      {
+        "zh": "她跑得很快。",
+        "en": "She runs very fast.",
+        "tokens": [
+          "她",
+          "跑",
+          "得",
+          "很",
+          "快"
+        ]
+      },
+      {
+        "zh": "你说得很好。",
+        "en": "You speak very well.",
+        "tokens": [
+          "你",
+          "说",
+          "得",
+          "很",
+          "好"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "guo-experience",
+    "word": "过",
+    "level": 2,
+    "pattern": "verb + 过",
+    "meaning": "guò · past experience",
+    "explain": "过 after a verb means having experienced something before, rather than simply completing a specific event.",
+    "distractors": [
+      "了",
+      "着"
+    ],
+    "contrast": "Which particle indicates past experience?",
+    "examples": [
+      {
+        "zh": "我去过中国。",
+        "en": "I have been to China.",
+        "tokens": [
+          "我",
+          "去",
+          "过",
+          "中国"
+        ]
+      },
+      {
+        "zh": "我看过这本书。",
+        "en": "I have read this book before.",
+        "tokens": [
+          "我",
+          "看",
+          "过",
+          "这",
+          "本",
+          "书"
+        ]
+      },
+      {
+        "zh": "他吃过这个。",
+        "en": "He has eaten this before.",
+        "tokens": [
+          "他",
+          "吃",
+          "过",
+          "这个"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cong-origin",
+    "word": "从",
+    "level": 2,
+    "pattern": "从 + place / time + action",
+    "meaning": "cóng · from",
+    "explain": "从 introduces a starting point in place or time.",
+    "distractors": [
+      "比",
+      "给"
+    ],
+    "contrast": "Which word introduces a starting point?",
+    "examples": [
+      {
+        "zh": "我从家来。",
+        "en": "I came from home.",
+        "tokens": [
+          "我",
+          "从",
+          "家",
+          "来"
+        ]
+      },
+      {
+        "zh": "他从学校回家。",
+        "en": "He goes home from school.",
+        "tokens": [
+          "他",
+          "从",
+          "学校",
+          "回",
+          "家"
+        ]
+      },
+      {
+        "zh": "我从今天开始学习。",
+        "en": "I start studying from today.",
+        "tokens": [
+          "我",
+          "从",
+          "今天",
+          "开始",
+          "学习"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bi-compare",
+    "word": "比",
+    "level": 2,
+    "pattern": "A 比 B + adjective",
+    "meaning": "bǐ · comparison",
+    "explain": "比 marks the standard of comparison; the adjective follows B.",
+    "distractors": [
+      "从",
+      "给"
+    ],
+    "contrast": "Which word introduces the standard of a comparison?",
+    "examples": [
+      {
+        "zh": "他比我高。",
+        "en": "He is taller than me.",
+        "tokens": [
+          "他",
+          "比",
+          "我",
+          "高"
+        ]
+      },
+      {
+        "zh": "今天比昨天冷。",
+        "en": "Today is colder than yesterday.",
+        "tokens": [
+          "今天",
+          "比",
+          "昨天",
+          "冷"
+        ]
+      },
+      {
+        "zh": "这本书比那本贵。",
+        "en": "This book is more expensive than that one.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "比",
+          "那",
+          "本",
+          "贵"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rang-cause",
+    "word": "让",
+    "level": 2,
+    "pattern": "让 + person + action",
+    "meaning": "ràng · let / make",
+    "explain": "让 introduces the person who is allowed or caused to do something.",
+    "distractors": [
+      "从",
+      "比"
+    ],
+    "contrast": "Which word means let or cause someone to do something?",
+    "examples": [
+      {
+        "zh": "妈妈让我吃饭。",
+        "en": "Mum tells me to eat.",
+        "tokens": [
+          "妈妈",
+          "让",
+          "我",
+          "吃",
+          "饭"
+        ]
+      },
+      {
+        "zh": "老师让他写字。",
+        "en": "The teacher asks him to write characters.",
+        "tokens": [
+          "老师",
+          "让",
+          "他",
+          "写",
+          "字"
+        ]
+      },
+      {
+        "zh": "请让我看一下。",
+        "en": "Please let me take a look.",
+        "tokens": [
+          "请",
+          "让",
+          "我",
+          "看",
+          "一",
+          "下"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jiu-then",
+    "word": "就",
+    "level": 2,
+    "pattern": "condition + 就 + result",
+    "meaning": "jiù · then / soon after",
+    "explain": "就 marks a prompt consequence or something happening immediately after a condition.",
+    "distractors": [
+      "比",
+      "从"
+    ],
+    "contrast": "Which word indicates an immediate consequence?",
+    "examples": [
+      {
+        "zh": "你来，我就去。",
+        "en": "If you come, I will go.",
+        "tokens": [
+          "你",
+          "来",
+          "我",
+          "就",
+          "去"
+        ]
+      },
+      {
+        "zh": "我吃完饭就走。",
+        "en": "I will leave as soon as I finish eating.",
+        "tokens": [
+          "我",
+          "吃",
+          "完",
+          "饭",
+          "就",
+          "走"
+        ]
+      },
+      {
+        "zh": "他一到家就睡觉。",
+        "en": "As soon as he gets home, he goes to sleep.",
+        "tokens": [
+          "他",
+          "一",
+          "到",
+          "家",
+          "就",
+          "睡觉"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yinwei",
+    "word": "因为",
+    "level": 2,
+    "pattern": "因为 A，所以 B",
+    "meaning": "yīn wèi · because",
+    "explain": "因为 introduces a reason; 所以 introduces its result.",
+    "distractors": [
+      "所以",
+      "但是"
+    ],
+    "contrast": "Which word introduces a reason?",
+    "examples": [
+      {
+        "zh": "因为下雨，我不去。",
+        "en": "Because it is raining, I am not going.",
+        "tokens": [
+          "因为",
+          "下雨",
+          "我",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "因为他很忙，所以没有来。",
+        "en": "Because he is busy, he did not come.",
+        "tokens": [
+          "因为",
+          "他",
+          "很",
+          "忙",
+          "所以",
+          "没有",
+          "来"
+        ]
+      },
+      {
+        "zh": "我高兴，因为你来了。",
+        "en": "I am happy because you came.",
+        "tokens": [
+          "我",
+          "高兴",
+          "因为",
+          "你",
+          "来",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "suoyi",
+    "word": "所以",
+    "level": 2,
+    "pattern": "reason，所以 + result",
+    "meaning": "suǒ yǐ · so",
+    "explain": "所以 introduces the consequence of a reason, not the reason itself.",
+    "distractors": [
+      "因为",
+      "但是"
+    ],
+    "contrast": "Which word introduces a consequence?",
+    "examples": [
+      {
+        "zh": "我很累，所以想睡觉。",
+        "en": "I am tired, so I want to sleep.",
+        "tokens": [
+          "我",
+          "很",
+          "累",
+          "所以",
+          "想",
+          "睡觉"
+        ]
+      },
+      {
+        "zh": "今天下雨，所以我不去。",
+        "en": "It is raining, so I will not go.",
+        "tokens": [
+          "今天",
+          "下雨",
+          "所以",
+          "我",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "他很忙，所以没有来。",
+        "en": "He is busy, so he did not come.",
+        "tokens": [
+          "他",
+          "很",
+          "忙",
+          "所以",
+          "没有",
+          "来"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "suiran",
+    "word": "虽然",
+    "level": 2,
+    "pattern": "虽然 A，但是 B",
+    "meaning": "suī rán · although",
+    "explain": "虽然 introduces a fact that contrasts with the following main clause.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which word introduces a concessive fact?",
+    "examples": [
+      {
+        "zh": "虽然很累，他还在工作。",
+        "en": "Although tired, he is still working.",
+        "tokens": [
+          "虽然",
+          "很",
+          "累",
+          "他",
+          "还",
+          "在",
+          "工作"
+        ]
+      },
+      {
+        "zh": "虽然下雨，我们还是去了。",
+        "en": "Although it rained, we still went.",
+        "tokens": [
+          "虽然",
+          "下雨",
+          "我们",
+          "还是",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "虽然很冷，但是我很高兴。",
+        "en": "Although it is cold, I am happy.",
+        "tokens": [
+          "虽然",
+          "很",
+          "冷",
+          "但是",
+          "我",
+          "很",
+          "高兴"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "danshi",
+    "word": "但是",
+    "level": 2,
+    "pattern": "A，但是 B",
+    "meaning": "dàn shì · but",
+    "explain": "但是 joins two contrasting clauses. It often follows 虽然.",
+    "distractors": [
+      "所以",
+      "因为"
+    ],
+    "contrast": "Which conjunction introduces a contrast?",
+    "examples": [
+      {
+        "zh": "我想去，但是没有时间。",
+        "en": "I want to go, but I have no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "但是",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "这本书很好，但是很贵。",
+        "en": "This book is good but expensive.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "很",
+          "好",
+          "但是",
+          "很",
+          "贵"
+        ]
+      },
+      {
+        "zh": "他很累，但是还在工作。",
+        "en": "He is tired but still working.",
+        "tokens": [
+          "他",
+          "很",
+          "累",
+          "但是",
+          "还",
+          "在",
+          "工作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "haishi-choice",
+    "word": "还是",
+    "level": 2,
+    "pattern": "A 还是 B？",
+    "meaning": "hái shi · or (question)",
+    "explain": "还是 offers alternatives in a question. 或者 is generally used for alternatives in statements.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which word offers a choice in a question?",
+    "examples": [
+      {
+        "zh": "你要茶还是水？",
+        "en": "Do you want tea or water?",
+        "tokens": [
+          "你",
+          "要",
+          "茶",
+          "还是",
+          "水"
+        ]
+      },
+      {
+        "zh": "你今天来还是明天来？",
+        "en": "Will you come today or tomorrow?",
+        "tokens": [
+          "你",
+          "今天",
+          "来",
+          "还是",
+          "明天",
+          "来"
+        ]
+      },
+      {
+        "zh": "你去学校还是回家？",
+        "en": "Are you going to school or home?",
+        "tokens": [
+          "你",
+          "去",
+          "学校",
+          "还是",
+          "回",
+          "家"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "haishi-still",
+    "word": "还是",
+    "level": 2,
+    "pattern": "A，还是 B",
+    "meaning": "hái shi · still / nevertheless",
+    "explain": "还是 can indicate that a decision or condition remains unchanged despite something else.",
+    "distractors": [
+      "所以",
+      "因为"
+    ],
+    "contrast": "Which word indicates that a decision remains unchanged?",
+    "examples": [
+      {
+        "zh": "虽然下雨，我还是去了。",
+        "en": "Although it rained, I still went.",
+        "tokens": [
+          "虽然",
+          "下雨",
+          "我",
+          "还是",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "他很累，还是来了。",
+        "en": "He was tired but came anyway.",
+        "tokens": [
+          "他",
+          "很",
+          "累",
+          "还是",
+          "来",
+          "了"
+        ]
+      },
+      {
+        "zh": "我想了想，还是不去了。",
+        "en": "I thought about it and decided not to go after all.",
+        "tokens": [
+          "我",
+          "想",
+          "了",
+          "想",
+          "还是",
+          "不",
+          "去",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ba-disposal",
+    "word": "把",
+    "level": 3,
+    "pattern": "把 + object + verb + result",
+    "meaning": "bǎ · disposal",
+    "explain": "把 moves a specific object before an action that affects it. A result, direction or other complement normally follows the verb.",
+    "distractors": [
+      "被",
+      "从"
+    ],
+    "contrast": "Which word moves an affected object before the verb?",
+    "examples": [
+      {
+        "zh": "请把门打开。",
+        "en": "Please open the door.",
+        "tokens": [
+          "请",
+          "把",
+          "门",
+          "打开"
+        ]
+      },
+      {
+        "zh": "我把书放在桌子上。",
+        "en": "I put the book on the table.",
+        "tokens": [
+          "我",
+          "把",
+          "书",
+          "放",
+          "在",
+          "桌子",
+          "上"
+        ]
+      },
+      {
+        "zh": "他把饭吃完了。",
+        "en": "He finished eating his meal.",
+        "tokens": [
+          "他",
+          "把",
+          "饭",
+          "吃",
+          "完",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ruguo",
+    "word": "如果",
+    "level": 3,
+    "pattern": "如果 A，就 B",
+    "meaning": "rú guǒ · if",
+    "explain": "如果 introduces a hypothetical condition; 就 often introduces the result.",
+    "distractors": [
+      "因为",
+      "所以"
+    ],
+    "contrast": "Which word introduces a hypothetical condition?",
+    "examples": [
+      {
+        "zh": "如果下雨，我就不去。",
+        "en": "If it rains, I will not go.",
+        "tokens": [
+          "如果",
+          "下雨",
+          "我",
+          "就",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "如果有时间，就来我家。",
+        "en": "If you have time, come to my home.",
+        "tokens": [
+          "如果",
+          "有",
+          "时间",
+          "就",
+          "来",
+          "我",
+          "家"
+        ]
+      },
+      {
+        "zh": "如果你不知道，可以问我。",
+        "en": "If you do not know, you can ask me.",
+        "tokens": [
+          "如果",
+          "你",
+          "不",
+          "知道",
+          "可以",
+          "问",
+          "我"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cai-late",
+    "word": "才",
+    "level": 3,
+    "pattern": "time + 才 + verb",
+    "meaning": "cái · only then / late",
+    "explain": "才 signals that an action happened later than expected or only when a condition was met.",
+    "distractors": [
+      "从",
+      "被"
+    ],
+    "contrast": "Which word signals that an event happened later than expected?",
+    "examples": [
+      {
+        "zh": "他十点才来。",
+        "en": "He did not come until ten.",
+        "tokens": [
+          "他",
+          "十",
+          "点",
+          "才",
+          "来"
+        ]
+      },
+      {
+        "zh": "我今天才知道。",
+        "en": "I only found out today.",
+        "tokens": [
+          "我",
+          "今天",
+          "才",
+          "知道"
+        ]
+      },
+      {
+        "zh": "她昨天才回家。",
+        "en": "She did not return home until yesterday.",
+        "tokens": [
+          "她",
+          "昨天",
+          "才",
+          "回",
+          "家"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "you-again",
+    "word": "又",
+    "level": 3,
+    "pattern": "又 + verb",
+    "meaning": "yòu · again (already happened)",
+    "explain": "又 often marks repetition that has occurred or is occurring. 再 commonly marks a future repetition.",
+    "distractors": [
+      "把",
+      "被"
+    ],
+    "contrast": "Which word commonly marks a repetition that has already happened?",
+    "examples": [
+      {
+        "zh": "他又来了。",
+        "en": "He came again.",
+        "tokens": [
+          "他",
+          "又",
+          "来",
+          "了"
+        ]
+      },
+      {
+        "zh": "今天又下雨了。",
+        "en": "It is raining again today.",
+        "tokens": [
+          "今天",
+          "又",
+          "下雨",
+          "了"
+        ]
+      },
+      {
+        "zh": "我又看了一次。",
+        "en": "I watched it again.",
+        "tokens": [
+          "我",
+          "又",
+          "看",
+          "了",
+          "一",
+          "次"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "huozhe",
+    "word": "或者",
+    "level": 3,
+    "pattern": "A 或者 B",
+    "meaning": "huò zhě · or (statement)",
+    "explain": "或者 presents alternatives in a statement. 还是 commonly presents a choice in a question.",
+    "distractors": [
+      "所以",
+      "因为"
+    ],
+    "contrast": "Which word generally offers alternatives in a statement?",
+    "examples": [
+      {
+        "zh": "我可以喝茶或者水。",
+        "en": "I can drink tea or water.",
+        "tokens": [
+          "我",
+          "可以",
+          "喝",
+          "茶",
+          "或者",
+          "水"
+        ]
+      },
+      {
+        "zh": "今天或者明天都可以。",
+        "en": "Today or tomorrow is fine.",
+        "tokens": [
+          "今天",
+          "或者",
+          "明天",
+          "都",
+          "可以"
+        ]
+      },
+      {
+        "zh": "你可以坐车或者走路。",
+        "en": "You can take a vehicle or walk.",
+        "tokens": [
+          "你",
+          "可以",
+          "坐",
+          "车",
+          "或者",
+          "走",
+          "路"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "erqie",
+    "word": "而且",
+    "level": 3,
+    "pattern": "A，而且 B",
+    "meaning": "ér qiě · moreover",
+    "explain": "而且 adds another fact, often in the pattern 不但……而且…….",
+    "distractors": [
+      "但是",
+      "所以"
+    ],
+    "contrast": "Which word adds a further fact?",
+    "examples": [
+      {
+        "zh": "这本书很便宜，而且很好看。",
+        "en": "This book is cheap and also looks good.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "很",
+          "便宜",
+          "而且",
+          "很",
+          "好看"
+        ]
+      },
+      {
+        "zh": "他不但会写，而且会说。",
+        "en": "He can not only write but also speak.",
+        "tokens": [
+          "他",
+          "不但",
+          "会",
+          "写",
+          "而且",
+          "会",
+          "说"
+        ]
+      },
+      {
+        "zh": "她很聪明，而且很努力。",
+        "en": "She is clever and hardworking too.",
+        "tokens": [
+          "她",
+          "很",
+          "聪明",
+          "而且",
+          "很",
+          "努力"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budan",
+    "word": "不但",
+    "level": 3,
+    "pattern": "不但 A，而且 B",
+    "meaning": "bú dàn · not only",
+    "explain": "不但 introduces the first of two true points. 而且 introduces the second.",
+    "distractors": [
+      "如果",
+      "所以"
+    ],
+    "contrast": "Which word starts the not-only construction?",
+    "examples": [
+      {
+        "zh": "他不但会写，而且会说。",
+        "en": "He can not only write but also speak.",
+        "tokens": [
+          "他",
+          "不但",
+          "会",
+          "写",
+          "而且",
+          "会",
+          "说"
+        ]
+      },
+      {
+        "zh": "这里不但安静，而且漂亮。",
+        "en": "It is not only quiet here but also beautiful.",
+        "tokens": [
+          "这里",
+          "不但",
+          "安静",
+          "而且",
+          "漂亮"
+        ]
+      },
+      {
+        "zh": "她不但学习好，而且很努力。",
+        "en": "She not only studies well but also works hard.",
+        "tokens": [
+          "她",
+          "不但",
+          "学习",
+          "好",
+          "而且",
+          "很",
+          "努力"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yibian",
+    "word": "一边",
+    "level": 3,
+    "pattern": "一边 A，一边 B",
+    "meaning": "yì biān · while doing",
+    "explain": "一边 repeated before two actions shows they take place at the same time.",
+    "distractors": [
+      "所以",
+      "因为"
+    ],
+    "contrast": "Which word repeats to indicate simultaneous actions?",
+    "examples": [
+      {
+        "zh": "他一边吃饭，一边看电视。",
+        "en": "He eats while watching television.",
+        "tokens": [
+          "他",
+          "一边",
+          "吃",
+          "饭",
+          "一边",
+          "看",
+          "电视"
+        ]
+      },
+      {
+        "zh": "她一边走，一边说话。",
+        "en": "She talks while walking.",
+        "tokens": [
+          "她",
+          "一边",
+          "走",
+          "一边",
+          "说话"
+        ]
+      },
+      {
+        "zh": "我一边看书，一边听音乐。",
+        "en": "I read while listening to music.",
+        "tokens": [
+          "我",
+          "一边",
+          "看",
+          "书",
+          "一边",
+          "听",
+          "音乐"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yue-compare",
+    "word": "越",
+    "level": 3,
+    "pattern": "越 A，越 B",
+    "meaning": "yuè · increasing degree",
+    "explain": "Repeated 越 connects two increasing or decreasing degrees.",
+    "distractors": [
+      "又",
+      "才"
+    ],
+    "contrast": "Which word is repeated to link two changing degrees?",
+    "examples": [
+      {
+        "zh": "越学越有意思。",
+        "en": "The more I study, the more interesting it becomes.",
+        "tokens": [
+          "越",
+          "学",
+          "越",
+          "有意思"
+        ]
+      },
+      {
+        "zh": "越多越好。",
+        "en": "The more, the better.",
+        "tokens": [
+          "越",
+          "多",
+          "越",
+          "好"
+        ]
+      },
+      {
+        "zh": "天气越来越冷。",
+        "en": "The weather is getting colder and colder.",
+        "tokens": [
+          "天气",
+          "越",
+          "来",
+          "越",
+          "冷"
+        ]
+      }
+    ]
   }
 ];
