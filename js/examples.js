@@ -3815,14 +3815,41 @@ export const curatedExamples = {
   ],
   "2030": [
     {
-      "zh": "他们很好处。",
-      "en": "They are easy to get along with.",
+      "zh": "你和他处得怎么样？",
+      "en": "How do you get along with him?",
       "source": "original",
       "verifiedTokens": [
-        "他们",
+        "你",
+        "和",
+        "他",
+        "处",
+        "得",
+        "怎么样"
+      ]
+    },
+    {
+      "zh": "他和我处得不错。",
+      "en": "He and I get along quite well.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "和",
+        "我",
+        "处",
+        "得",
+        "不错"
+      ]
+    },
+    {
+      "zh": "我们处得很好。",
+      "en": "We get along very well.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "处",
+        "得",
         "很",
-        "好",
-        "处"
+        "好"
       ]
     },
     {
@@ -3837,20 +3864,6 @@ export const curatedExamples = {
         "得",
         "很",
         "好"
-      ]
-    },
-    {
-      "zh": "这两个人不好处。",
-      "en": "These two people are hard to get along with.",
-      "source": "original",
-      "verifiedTokens": [
-        "这",
-        "两",
-        "个",
-        "人",
-        "不",
-        "好",
-        "处"
       ]
     }
   ],
@@ -5394,6 +5407,20 @@ export const curatedExamples = {
   ],
   "2156": [
     {
+      "zh": "这是我最喜欢的宝。",
+      "en": "This is my favorite treasure.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "是",
+        "我",
+        "最",
+        "喜欢",
+        "的",
+        "宝"
+      ]
+    },
+    {
       "zh": "孩子是我们家的宝。",
       "en": "The child is our family's treasure.",
       "source": "original",
@@ -6771,6 +6798,32 @@ export const curatedExamples = {
     }
   ],
   "2252": [
+    {
+      "zh": "这次比赛谁胜了？",
+      "en": "Who won this competition?",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "次",
+        "比赛",
+        "谁",
+        "胜",
+        "了"
+      ]
+    },
+    {
+      "zh": "我们的队昨天胜了。",
+      "en": "Our team won yesterday.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "的",
+        "队",
+        "昨天",
+        "胜",
+        "了"
+      ]
+    },
     {
       "zh": "我们的队以三比一取胜。",
       "en": "Our team won three to one.",
@@ -12003,6 +12056,18 @@ export const curatedExamples = {
     }
   ],
   "2704": [
+    {
+      "zh": "请录下这个节目。",
+      "en": "Please record this program.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "录",
+        "下",
+        "这个",
+        "节目"
+      ]
+    },
     {
       "zh": "我想录一个视频。",
       "en": "I want to record a video.",
