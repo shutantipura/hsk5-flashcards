@@ -7,7 +7,7 @@ import {
 } from './engine.js';
 import { buildReport, wordStatus } from './report.js';
 import { APP_VERSION } from './config.js';
-import { createReader } from './reader.js';
+import { createReader, checkedLibrary, syllabusExposure } from './reader.js';
 import { createGrammarScreen, grammarQueue } from './grammar.js';
 import { GRAMMAR } from './grammar-data.js';
 import { createPracticeScreen, practiceStats } from './practice.js';
@@ -331,8 +331,10 @@ function endSession() {
 // ================= REPORT
 function readerReport() {
   const p=S.settings.practiceProgress||{}, words=S.settings.readerWords||{}, visits=S.settings.readerVisits||{};
+  const library=checkedLibrary(S.vocab), exposure=syllabusExposure(library,S.vocab), personal=syllabusExposure(library.filter(p=>visits[p.id]),S.vocab);
+  const coverageBlock='<section class="card"><h3>Reading vocabulary exposure</h3><div class="kv"><span>Library words covered</span><b>'+exposure.seen+' / '+exposure.total+'</b></div><div class="kv"><span>In 3 or more different stories</span><b>'+exposure.repeated+'</b></div><div class="kv"><span>Words in stories you finished</span><b>'+personal.seen+'</b></div>'+exposure.levels.map(l=>'<div class="kv"><span>HSK '+l.level+'</span><b>'+l.seen+' / '+l.total+'</b></div>').join('')+'<p class="muted small">Counts distinct written word forms in checked passage tokens, not meanings, pronunciation, or mastery. A word appearing in multiple HSK levels can be counted in each level.</p></section>';
   const summary=(prefix)=>{const rows=Object.entries(p).filter(([k])=>k.startsWith(prefix)).map(([,v])=>v);const correct=rows.reduce((n,x)=>n+(x.correctCount||0),0),wrong=rows.reduce((n,x)=>n+(x.wrongCount||0),0);return correct+wrong?Math.round(100*correct/(correct+wrong))+'% ('+(correct+wrong)+' answers)':'—';};
-  shell('report','<header class="hdr"><div><h1>Your reading journey</h1><p class="muted">Understanding matters more than card counts.</p></div></header><section class="card"><div class="kv"><span>Stories completed</span><b>'+Object.keys(visits).length+'</b></div><div class="kv"><span>Reading accuracy</span><b>'+summary('r-')+'</b></div><div class="kv"><span>Listening accuracy</span><b>'+summary('listen:')+'</b></div><div class="kv"><span>Context recall accuracy</span><b>'+summary('reader:')+'</b></div><div class="kv"><span>Self-marked familiar words</span><b>'+Object.values(words).filter(x=>x.status==='known').length+'</b></div><div class="kv"><span>Saved review words</span><b>'+Object.values(words).filter(x=>x.status==='learning').length+'</b></div></section><p class="muted small">Old flashcard and grammar records are retained. Reading accuracy and self-reported familiarity are not official HSK scores.</p><button class="btn" id="legacy-report">Previous vocabulary statistics</button><a class="btn" href="#/words">Dictionary &amp; saved examples</a>');
+  shell('report','<header class="hdr"><div><h1>Your reading journey</h1><p class="muted">Understanding matters more than card counts.</p></div></header><section class="card"><div class="kv"><span>Stories completed</span><b>'+Object.keys(visits).length+'</b></div><div class="kv"><span>Reading accuracy</span><b>'+summary('r-')+'</b></div><div class="kv"><span>Listening accuracy</span><b>'+summary('listen:')+'</b></div><div class="kv"><span>Context recall accuracy</span><b>'+summary('reader:')+'</b></div><div class="kv"><span>Self-marked familiar words</span><b>'+Object.values(words).filter(x=>x.status==='known').length+'</b></div><div class="kv"><span>Saved review words</span><b>'+Object.values(words).filter(x=>x.status==='learning').length+'</b></div></section><p class="muted small">Old flashcard and grammar records are retained. Reading accuracy and self-reported familiarity are not official HSK scores.</p>'+coverageBlock+'<button class="btn" id="legacy-report">Previous vocabulary statistics</button><a class="btn" href="#/words">Dictionary &amp; saved examples</a>');
   $('#legacy-report').onclick=report;
 }
 

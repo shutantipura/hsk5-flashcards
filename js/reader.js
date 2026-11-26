@@ -30,6 +30,11 @@ export function tokenSpans(text,tokens){
   for(const t of tokens){const at=text.indexOf(t,pos);if(at<0)return null;if(at>pos)out.push({text:text.slice(pos,at)});out.push({text:t,word:true});pos=at+t.length;}
   if(pos<text.length)out.push({text:text.slice(pos)});return out;
 }
+export function syllabusExposure(library,vocab){
+  const frequencies=new Map();for(const p of library)for(const t of new Set(p.tokens))frequencies.set(t,(frequencies.get(t)||0)+1);
+  const forms=[...new Set(vocab.map(w=>w.h))];
+  return {total:forms.length,seen:forms.filter(t=>frequencies.has(t)).length,repeated:forms.filter(t=>frequencies.get(t)>=3).length,levels:[1,2,3,4,5].map(level=>{const terms=[...new Set(vocab.filter(w=>w.l===level).map(w=>w.h))];return {level,total:terms.length,seen:terms.filter(t=>frequencies.has(t)).length,repeated:terms.filter(t=>frequencies.get(t)>=3).length};})};
+}
 export function coverage(p,known){return p.tokens.filter(t=>known.has(t)).length/p.tokens.length;}
 export function rankPassages(library,S,level,goal=.95,now=Date.now()){
   const known=buildKnowledge(S,now), words=S.settings.readerWords||{}, visits=S.settings.readerVisits||{}, progress=S.settings.practiceProgress||{};
@@ -51,9 +56,10 @@ const categories=[
   ['Mystery & stories',/^Mystery/i],
   ['Science & psychology',/^Science/i],
   ['Relationships',/^Relationships/i],
-  ['Business & work',/work|team|stock|customer|staff|market|meeting|position|decision|information|quality|price|tool|trust|supply|feedback|career|complaint|delivery/i],
+  ['Culture & history',/^Culture/i],
+  ['Business & work',/^Business|work|team|stock|customer|staff|market|meeting|position|decision|information|quality|price|tool|trust|supply|feedback|career|complaint|delivery/i],
   ['Learning & growth',/learn|school|exam|study|conversation|reading|language|mistake/i],
-  ['Travel & daily life',/travel|hotel|commut|bus|appointment|shop|fruit|restaurant|gift|meal|breakfast|morning|routine|rain|weekend/i],
+  ['Travel & daily life',/^Everyday life|travel|hotel|commut|bus|appointment|shop|fruit|restaurant|gift|meal|breakfast|morning|routine|rain|weekend/i],
   ['People & wellbeing',/family|friend|birthday|health|exercise|home|park|environment|waste|room|phone/i]
 ];
 const category=p=>categories.find(([,r])=>r.test(p.title))?.[0]||'More stories';
