@@ -1007,18 +1007,35 @@ export const curatedExamples = {
   ],
   "633": [
     {
-      "zh": "我收到了你的信。",
-      "en": "I received your letter.",
+      "zh": "他收了这个礼物。",
+      "en": "He accepted this gift.",
       "source": "original"
     },
     {
-      "zh": "你收到我的钱了吗？",
-      "en": "Did you receive my money?",
+      "zh": "你收了多少钱？",
+      "en": "How much money did you collect?",
       "source": "original"
     },
     {
-      "zh": "请把书收起来。",
-      "en": "Please put the books away.",
+      "zh": "我今天收了两封信。",
+      "en": "I received two letters today.",
+      "source": "original"
+    }
+  ],
+  "995": [
+    {
+      "zh": "他昨天很晚才睡着。",
+      "en": "He fell asleep very late yesterday.",
+      "source": "original"
+    },
+    {
+      "zh": "我一上车就睡着了。",
+      "en": "I fell asleep as soon as I got in the vehicle.",
+      "source": "original"
+    },
+    {
+      "zh": "房子着火了。",
+      "en": "The house caught fire.",
       "source": "original"
     }
   ],
@@ -1039,6 +1056,295 @@ export const curatedExamples = {
       "source": "original"
     }
   ],
+  "997": [
+    {
+      "zh": "会议将于明天开始。",
+      "en": "The meeting will start tomorrow.",
+      "source": "original"
+    },
+    {
+      "zh": "我将去中国学习。",
+      "en": "I will go to China to study.",
+      "source": "original"
+    },
+    {
+      "zh": "我们将继续工作。",
+      "en": "We will continue working.",
+      "source": "original"
+    }
+  ],
+  "998": [
+    {
+      "zh": "他喜欢茶，而我喜欢水。",
+      "en": "He likes tea, while I like water.",
+      "source": "original"
+    },
+    {
+      "zh": "这本书又便宜而且好看。",
+      "en": "This book is inexpensive and interesting.",
+      "source": "original"
+    },
+    {
+      "zh": "她没有生气，而是笑了。",
+      "en": "She didn't get angry; instead, she smiled.",
+      "source": "original"
+    }
+  ],
+  "1002": [
+    {
+      "zh": "会议正在进行。",
+      "en": "The meeting is in progress.",
+      "source": "original"
+    },
+    {
+      "zh": "比赛进行得很顺利。",
+      "en": "The competition is going smoothly.",
+      "source": "original"
+    },
+    {
+      "zh": "我们正在进行研究。",
+      "en": "We are conducting research.",
+      "source": "original"
+    }
+  ],
+  "1003": [
+    {
+      "zh": "他是一名记者。",
+      "en": "He is a reporter.",
+      "source": "original"
+    },
+    {
+      "zh": "记者来了。",
+      "en": "The reporter has arrived.",
+      "source": "original"
+    },
+    {
+      "zh": "记者问了我几个问题。",
+      "en": "The reporter asked me a few questions.",
+      "source": "original"
+    }
+  ],
+  "1004": [
+    {
+      "zh": "他买了书，并买了衣服。",
+      "en": "He bought books and clothes.",
+      "source": "original"
+    },
+    {
+      "zh": "我并不喜欢这个办法。",
+      "en": "I don't really like this method.",
+      "source": "original"
+    },
+    {
+      "zh": "她并没有生气。",
+      "en": "She wasn't angry at all.",
+      "source": "original"
+    }
+  ],
+  "1005": [
+    {
+      "zh": "会议已结束。",
+      "en": "The meeting has already ended.",
+      "source": "original"
+    },
+    {
+      "zh": "他已到家。",
+      "en": "He has already arrived home.",
+      "source": "original"
+    },
+    {
+      "zh": "我已完成工作。",
+      "en": "I have already finished the work.",
+      "source": "original"
+    }
+  ],
+  "1006": [
+    {
+      "zh": "我去市场买菜。",
+      "en": "I'm going to the market to buy vegetables.",
+      "source": "original"
+    },
+    {
+      "zh": "这个市场很大。",
+      "en": "This market is large.",
+      "source": "original"
+    },
+    {
+      "zh": "市场里有很多人。",
+      "en": "There are many people in the market.",
+      "source": "original"
+    }
+  ],
+  "1010": [
+    {
+      "zh": "我很忙，他却很有空。",
+      "en": "I'm busy, but he has plenty of free time.",
+      "source": "original"
+    },
+    {
+      "zh": "他想去，却没有时间。",
+      "en": "He wants to go but has no time.",
+      "source": "original"
+    },
+    {
+      "zh": "大家都来了，他却没来。",
+      "en": "Everyone came, but he didn't.",
+      "source": "original"
+    }
+  ],
+  "1011": [
+    {
+      "zh": "经济发展很快。",
+      "en": "The economy is developing rapidly.",
+      "source": "original"
+    },
+    {
+      "zh": "他学习经济。",
+      "en": "He studies economics.",
+      "source": "original"
+    },
+    {
+      "zh": "这个国家的经济很好。",
+      "en": "This country's economy is doing well.",
+      "source": "original"
+    }
+  ],
+  "1013": [
+    {
+      "zh": "目前我在中国工作。",
+      "en": "I currently work in China.",
+      "source": "original"
+    },
+    {
+      "zh": "目前没有问题。",
+      "en": "There are currently no problems.",
+      "source": "original"
+    },
+    {
+      "zh": "目前我们需要更多时间。",
+      "en": "At present we need more time.",
+      "source": "original"
+    }
+  ],
+  "1014": [
+    {
+      "zh": "学校今天有活动。",
+      "en": "The school has an activity today.",
+      "source": "original"
+    },
+    {
+      "zh": "我喜欢参加活动。",
+      "en": "I like taking part in activities.",
+      "source": "original"
+    },
+    {
+      "zh": "这个活动很有意思。",
+      "en": "This activity is interesting.",
+      "source": "original"
+    }
+  ],
+  "1015": [
+    {
+      "zh": "这个消息使我很高兴。",
+      "en": "This news makes me very happy.",
+      "source": "original"
+    },
+    {
+      "zh": "运动使人健康。",
+      "en": "Exercise makes people healthy.",
+      "source": "original"
+    },
+    {
+      "zh": "这件事使他很生气。",
+      "en": "This matter made him very angry.",
+      "source": "original"
+    }
+  ],
+  "1016": [
+    {
+      "zh": "他负责管理公司。",
+      "en": "He is responsible for managing the company.",
+      "source": "original"
+    },
+    {
+      "zh": "我在学习管理。",
+      "en": "I'm studying management.",
+      "source": "original"
+    },
+    {
+      "zh": "这家店管理得很好。",
+      "en": "This store is managed well.",
+      "source": "original"
+    }
+  ],
+  "1017": [
+    {
+      "zh": "我通过了考试。",
+      "en": "I passed the exam.",
+      "source": "original"
+    },
+    {
+      "zh": "他通过努力找到了工作。",
+      "en": "He found a job through hard work.",
+      "source": "original"
+    },
+    {
+      "zh": "我们通过电话联系。",
+      "en": "We communicate by phone.",
+      "source": "original"
+    }
+  ],
+  "1019": [
+    {
+      "zh": "他表示同意。",
+      "en": "He expressed agreement.",
+      "source": "original"
+    },
+    {
+      "zh": "我向你表示感谢。",
+      "en": "I express my thanks to you.",
+      "source": "original"
+    },
+    {
+      "zh": "她表示不想去。",
+      "en": "She said she didn't want to go.",
+      "source": "original"
+    }
+  ],
+  "1020": [
+    {
+      "zh": "现在情况怎么样？",
+      "en": "How are things now?",
+      "source": "original"
+    },
+    {
+      "zh": "我不了解这里的情况。",
+      "en": "I don't understand the situation here.",
+      "source": "original"
+    },
+    {
+      "zh": "情况比昨天好。",
+      "en": "The situation is better than yesterday.",
+      "source": "original"
+    }
+  ],
+  "1023": [
+    {
+      "zh": "两个人同时到了。",
+      "en": "Two people arrived at the same time.",
+      "source": "original"
+    },
+    {
+      "zh": "我不能同时做两件事。",
+      "en": "I can't do two things at once.",
+      "source": "original"
+    },
+    {
+      "zh": "他们同时开始工作。",
+      "en": "They started working at the same time.",
+      "source": "original"
+    }
+  ],
   "1024": [
     {
       "zh": "他想成为老师。",
@@ -1053,6 +1359,108 @@ export const curatedExamples = {
     {
       "zh": "我们成为了好朋友。",
       "en": "We became good friends.",
+      "source": "original"
+    }
+  ],
+  "1025": [
+    {
+      "zh": "他学习电脑技术。",
+      "en": "He studies computer technology.",
+      "source": "original"
+    },
+    {
+      "zh": "这项技术很好。",
+      "en": "This technology is good.",
+      "source": "original"
+    },
+    {
+      "zh": "我们需要学习新的技术。",
+      "en": "We need to learn new technology.",
+      "source": "original"
+    }
+  ],
+  "1027": [
+    {
+      "zh": "他突然出现了。",
+      "en": "He suddenly appeared.",
+      "source": "original"
+    },
+    {
+      "zh": "电脑出现了问题。",
+      "en": "The computer developed a problem.",
+      "source": "original"
+    },
+    {
+      "zh": "这种情况经常出现。",
+      "en": "This situation often occurs.",
+      "source": "original"
+    }
+  ],
+  "1028": [
+    {
+      "zh": "由于下雨，我们没去。",
+      "en": "Because it rained, we didn't go.",
+      "source": "original"
+    },
+    {
+      "zh": "由于时间不够，他没有完成工作。",
+      "en": "Because there wasn't enough time, he didn't finish the work.",
+      "source": "original"
+    },
+    {
+      "zh": "由于身体不好，她今天没来。",
+      "en": "Because she was unwell, she didn't come today.",
+      "source": "original"
+    }
+  ],
+  "1030": [
+    {
+      "zh": "这方面我不太了解。",
+      "en": "I don't know much about this area.",
+      "source": "original"
+    },
+    {
+      "zh": "他在这方面很有经验。",
+      "en": "He is experienced in this area.",
+      "source": "original"
+    },
+    {
+      "zh": "我想了解工作方面的问题。",
+      "en": "I want to understand work-related problems.",
+      "source": "original"
+    }
+  ],
+  "1032": [
+    {
+      "zh": "这个价格太高了。",
+      "en": "This price is too high.",
+      "source": "original"
+    },
+    {
+      "zh": "水果的价格变了。",
+      "en": "The price of fruit changed.",
+      "source": "original"
+    },
+    {
+      "zh": "我们需要了解价格。",
+      "en": "We need to find out the price.",
+      "source": "original"
+    }
+  ],
+  "1033": [
+    {
+      "zh": "他正在研究这个问题。",
+      "en": "He is studying this problem.",
+      "source": "original"
+    },
+    {
+      "zh": "我想研究中国文化。",
+      "en": "I want to research Chinese culture.",
+      "source": "original"
+    },
+    {
+      "zh": "我们一起做研究。",
+      "en": "We do research together.",
       "source": "original"
     }
   ],
@@ -1294,6 +1702,40 @@ export const curatedExamples = {
       "source": "original"
     }
   ],
+  "2016": [
+    {
+      "zh": "人数已超一百。",
+      "en": "The number of people has exceeded one hundred.",
+      "source": "original"
+    },
+    {
+      "zh": "价格超了我们的计划。",
+      "en": "The price exceeded our planned amount.",
+      "source": "original"
+    },
+    {
+      "zh": "时间已超十分钟。",
+      "en": "The time has exceeded ten minutes.",
+      "source": "original"
+    }
+  ],
+  "2018": [
+    {
+      "zh": "这张桌子占了很多地方。",
+      "en": "This table takes up a lot of space.",
+      "source": "original"
+    },
+    {
+      "zh": "他占了两个位置。",
+      "en": "He took up two places.",
+      "source": "original"
+    },
+    {
+      "zh": "工作占了我很多时间。",
+      "en": "Work takes up a lot of my time.",
+      "source": "original"
+    }
+  ],
   "2020": [
     {
       "zh": "她设计了一件衣服。",
@@ -1328,6 +1770,74 @@ export const curatedExamples = {
       "source": "original"
     }
   ],
+  "2022": [
+    {
+      "zh": "公司正在开发新产品。",
+      "en": "The company is developing new products.",
+      "source": "original"
+    },
+    {
+      "zh": "我们计划开发这个项目。",
+      "en": "We plan to develop this project.",
+      "source": "original"
+    },
+    {
+      "zh": "他们开发了一种新技术。",
+      "en": "They developed a new technology.",
+      "source": "original"
+    }
+  ],
+  "2023": [
+    {
+      "zh": "他具有丰富的经验。",
+      "en": "He has extensive experience.",
+      "source": "original"
+    },
+    {
+      "zh": "这个产品具有很多优点。",
+      "en": "This product has many advantages.",
+      "source": "original"
+    },
+    {
+      "zh": "这项技术具有很大的价值。",
+      "en": "This technology has great value.",
+      "source": "original"
+    }
+  ],
+  "2024": [
+    {
+      "zh": "他在市中心工作。",
+      "en": "He works in the city center.",
+      "source": "original"
+    },
+    {
+      "zh": "这里是活动中心。",
+      "en": "This is the activity center.",
+      "source": "original"
+    },
+    {
+      "zh": "学校在城市的中心。",
+      "en": "The school is in the center of the city.",
+      "source": "original"
+    }
+  ],
+  "2026": [
+    {
+      "zh": "这是我的个人意见。",
+      "en": "This is my personal opinion.",
+      "source": "original"
+    },
+    {
+      "zh": "请注意个人信息。",
+      "en": "Please pay attention to personal information.",
+      "source": "original"
+    },
+    {
+      "zh": "他有自己的个人计划。",
+      "en": "He has his own personal plan.",
+      "source": "original"
+    }
+  ],
   "2027": [
     {
       "zh": "我们可以一起合作。",
@@ -1342,6 +1852,57 @@ export const curatedExamples = {
     {
       "zh": "谢谢你和我们合作。",
       "en": "Thank you for cooperating with us.",
+      "source": "original"
+    }
+  ],
+  "2029": [
+    {
+      "zh": "他代表公司参加会议。",
+      "en": "He represents the company at the meeting.",
+      "source": "original"
+    },
+    {
+      "zh": "我是学校的代表。",
+      "en": "I am the school's representative.",
+      "source": "original"
+    },
+    {
+      "zh": "这个颜色代表什么？",
+      "en": "What does this color represent?",
+      "source": "original"
+    }
+  ],
+  "2033": [
+    {
+      "zh": "这是一个新的机构。",
+      "en": "This is a new organization.",
+      "source": "original"
+    },
+    {
+      "zh": "他在这个机构工作。",
+      "en": "He works at this institution.",
+      "source": "original"
+    },
+    {
+      "zh": "这个机构帮助了很多人。",
+      "en": "This organization helped many people.",
+      "source": "original"
+    }
+  ],
+  "2034": [
+    {
+      "zh": "我们需要更多资金。",
+      "en": "We need more funds.",
+      "source": "original"
+    },
+    {
+      "zh": "这个项目没有足够的资金。",
+      "en": "This project does not have enough funding.",
+      "source": "original"
+    },
+    {
+      "zh": "公司正在准备资金。",
+      "en": "The company is preparing funds.",
       "source": "original"
     }
   ],
