@@ -1,0 +1,455 @@
+import { S, key, loadVocab, loadLocal, saveCards, saveSettings, sync, scheduleSync, onChange, resetLocal } from './store.js';
+import * as api from './api.js';
+import { State, fmtInterval, recallProb } from './fsrs.js';
+import {
+  KINDS, Session, introduce, answer, options, autoGrade, previewFor, charBreakdown, numericToMarks, pacing, daysToExam,
+  markKnown, sample, dueCards, factorOf, enabledKinds,
+} from './engine.js';
+import { buildReport, wordStatus } from './report.js';
+import { APP_VERSION } from './config.js';
+
+const $ = (s, el = document) => el.querySelector(s);
+const app = $('#app');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pct = (x, d = 0) => (x == null ? '–' : `${(x * 100).toFixed(d)}%`);
+const num = (n) => Number(n).toLocaleString('en-US');
+const secs = (ms) => (ms == null ? '–' : `${(ms / 1000).toFixed(1)}s`);
+const fmtDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const meaningText = (w, n = 2) => w.m.slice(0, n).join('; ');
+const shortMeaning = (w) => { const t = meaningText(w, 2); return t.length > 64 ? t.slice(0, 62) + '…' : t; };
+
+// ---------- speech
+let zhVoice = null;
+function pickVoice() {
+  const vs = speechSynthesis.getVoices().filter((v) => /^zh[-_](CN|Hans)/i.test(v.lang) || v.lang === 'zh-CN');
+  zhVoice = vs.find((v) => /Tingting|Ting-Ting|Yu-shu|Li-mu/i.test(v.name)) || vs[0] || null;
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, slow = false) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text); u.lang = 'zh-CN'; if (zhVoice) u.voice = zhVoice;
+  u.rate = slow ? 0.55 : S.settings.voiceRate || 0.9; speechSynthesis.speak(u);
+}
+
+// ---------- toast / tip
+let toastT;
+function toast(msg) {
+  let t = $('#toast'); if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.append(t); }
+  t.innerHTML = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600);
+}
+document.addEventListener('click', (e) => { const el = e.target.closest('[data-tip]'); if (el) toast(esc(el.dataset.tip)); });
+
+// ---------- layout
+const TABS = [['home', 'Today', 'M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z'], ['report', 'Report', 'M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z'],
+  ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
+function shell(route, body) {
+  const syncDot = { ok: 'ok', syncing: 'busy', error: 'err', offline: 'off', idle: '' }[S.sync.status] || '';
+  app.innerHTML = `<main class="screen">${body}</main>
+  <nav class="tabbar">${TABS.map(([r, l, d]) => `<a href="#/${r}" class="${route === r ? 'on' : ''}"><svg viewBox="0 0 24 24"><path d="${d}"/></svg><span>${l}</span></a>`).join('')}</nav>
+  <i class="syncdot ${syncDot}" data-tip="${esc(syncLabel())}"></i>`;
+}
+function syncLabel() {
+  const s = S.sync; if (s.status === 'error') return `Sync error: ${s.error}`; if (s.status === 'offline') return 'Offline – your progress is saved on this phone and will sync later';
+  if (s.status === 'syncing') return 'Syncing…'; return s.last ? `Synced ${new Date(s.last).toLocaleTimeString()}` : 'Not synced yet';
+}
+
+// ---------- router
+const routes = { login, placement, home, study, report, words, settings };
+function go(r) { location.hash = `#/${r}`; }
+function route() {
+  const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
+  if (!api.getSession() && r !== 'login') return go('login');
+  if (api.getSession() && !S.settings.placementDone && !['placement', 'settings'].includes(r)) return go('placement');
+  (routes[r] || home)();
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+onChange(() => { const d = $('.syncdot'); if (d) { d.className = `syncdot ${{ ok: 'ok', syncing: 'busy', error: 'err', offline: 'off' }[S.sync.status] || ''}`; d.dataset.tip = syncLabel(); } });
+
+// ================= LOGIN
+function login() {
+  app.innerHTML = `<main class="screen login">
+    <div class="seal">词</div><h1>HSK 5 Flashcards</h1><p class="muted">All ${num(S.vocab.length)} words of the 2025 HSK 3.0 exam syllabus, levels 1–5.</p>
+    <form id="f" class="card">
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Password<input name="pw" type="password" autocomplete="current-password" minlength="6" required></label>
+      <button class="btn primary" name="in">Sign in</button>
+      <button class="btn ghost" type="button" id="up">Create account</button>
+      <p id="msg" class="muted small"></p>
+    </form></main>`;
+  const f = $('#f'), msg = $('#msg');
+  const run = async (fn) => {
+    msg.textContent = 'Working…';
+    try { await fn(); } catch (e) { msg.textContent = e.message; }
+  };
+  f.onsubmit = (e) => { e.preventDefault(); run(async () => { await api.signIn(f.email.value.trim(), f.pw.value); await afterLogin(); }); };
+  $('#up').onclick = () => { if (!f.reportValidity()) return; run(async () => {
+    const r = await api.signUp(f.email.value.trim(), f.pw.value);
+    if (r.session) await afterLogin();
+    else msg.innerHTML = 'Check your inbox and tap the confirmation link, then come back here and <b>Sign in</b>.';
+  }); };
+}
+async function afterLogin() { await sync(); go(S.settings.placementDone ? 'home' : 'placement'); }
+
+// ================= PLACEMENT
+let P = null;
+function placement() {
+  if (!P) P = { phase: 'intro', level: 1, items: [], idx: 0, known: [], unknown: [] };
+  app.innerHTML = `<main class="screen placement" id="pl"></main>`;
+  renderPlacement();
+}
+function renderPlacement() {
+  const el = $('#pl'); if (!el) return;
+  const lvWords = (l) => S.vocab.filter((w) => w.l === l && !S.cards.has(key(w.i, 'meaning')));
+  if (P.phase === 'intro') {
+    el.innerHTML = `<h1>Let's find what you already know</h1>
+      <p>We'll show you 15 random words from each HSK level. Tap <b>Know it</b> only if you can recall the meaning right away.</p>
+      <p class="muted">If you know most of a level, you can mark the whole level as known. You'll still be tested on those words now and then over the coming weeks, so anything you've forgotten comes back automatically.</p>
+      <button class="btn primary" id="go">Start with HSK 1</button>
+      <button class="btn ghost" id="skip">Skip – I'm starting from zero</button>`;
+    $('#go').onclick = () => startLevel(1);
+    $('#skip').onclick = finishPlacement;
+  } else if (P.phase === 'test' || P.phase === 'sweep') {
+    const w = P.items[P.idx];
+    const label = P.phase === 'test' ? `HSK ${P.level} · sample ${P.idx + 1}/${P.items.length}` : `HSK ${P.level} · word ${P.idx + 1}/${P.items.length}`;
+    el.innerHTML = `<div class="ptop"><span class="tag">${label}</span>${P.phase === 'sweep' ? '<button class="link" id="stop">Stop here</button>' : ''}</div>
+      <div class="prog"><i style="width:${(P.idx / P.items.length) * 100}%"></i></div>
+      <div class="bigword" id="bw">${esc(w.h)}</div>
+      <button class="link center" id="peek">Show meaning</button>
+      <div class="peek hidden" id="pk"><div class="pinyin">${esc(w.p)}</div><div>${esc(meaningText(w, 3))}</div></div>
+      <div class="row2"><button class="btn bad" id="no">Don't know</button><button class="btn good" id="yes">Know it</button></div>`;
+    $('#peek').onclick = () => { $('#pk').classList.remove('hidden'); $('#peek').remove(); speak(w.h); };
+    const ans = (k) => { (k ? P.known : P.unknown).push(w.i); P.idx++; if (P.idx >= P.items.length) levelDone(); else renderPlacement(); };
+    $('#yes').onclick = () => ans(true); $('#no').onclick = () => ans(false);
+    if ($('#stop')) $('#stop').onclick = levelDone;
+  } else if (P.phase === 'result') {
+    const n = P.sampleKnown, t = P.sampleTotal, rate = t ? n / t : 0, rest = lvWords(P.level).filter((w) => !P.known.includes(w.i)).length;
+    const advice = rate >= 0.85 ? `You know most of HSK ${P.level}. Marking it as known is the fastest option.` : rate >= 0.4 ? `You know some of HSK ${P.level}. Going through the list word by word takes a few minutes and saves you a lot of study time.` : `HSK ${P.level} is mostly new to you, so these words will be taught from scratch.`;
+    el.innerHTML = `<h1>HSK ${P.level}: you knew ${n} of ${t}</h1><p>${advice}</p>
+      <div class="stack">
+      <button class="btn ${rate >= 0.85 ? 'primary' : ''}" id="all">Mark the other ${rest} HSK ${P.level} words as known</button>
+      <button class="btn ${rate >= 0.4 && rate < 0.85 ? 'primary' : ''}" id="sweep">Go through HSK ${P.level} word by word</button>
+      <button class="btn ${rate < 0.4 ? 'primary' : ''}" id="new">Learn the rest of HSK ${P.level} as new words</button>
+      </div>`;
+    const next = async () => { await markKnown(P.known); P.known = []; P.unknown = [];
+      if (P.level >= 5 || rate < 0.3) return finishPlacement(); startLevel(P.level + 1); };
+    $('#all').onclick = async () => { await markKnown(lvWords(P.level).map((w) => w.i)); next(); };
+    $('#sweep').onclick = async () => { await markKnown(P.known); P.known = []; P.phase = 'sweep'; P.items = lvWords(P.level).filter((w) => !P.unknown.includes(w.i)); P.idx = 0; renderPlacement(); };
+    $('#new').onclick = next;
+  }
+}
+function startLevel(l) {
+  const ws = S.vocab.filter((w) => w.l === l && !S.cards.has(key(w.i, 'meaning')));
+  if (!ws.length) { if (l < 5) return startLevel(l + 1); return finishPlacement(); }
+  P = { ...P, phase: 'test', level: l, items: sample(ws, 15), idx: 0, known: [], unknown: [] };
+  renderPlacement();
+}
+async function levelDone() {
+  if (P.phase === 'sweep') { await markKnown(P.known); P.known = []; if (P.level >= 5) return finishPlacement(); return startLevel(P.level + 1); }
+  P.sampleKnown = P.known.length; P.sampleTotal = P.items.length; P.phase = 'result'; renderPlacement();
+}
+async function finishPlacement() {
+  await markKnown(P?.known || []); P = null;
+  await saveSettings({ placementDone: true }); scheduleSync(500); go('home');
+}
+
+// ================= HOME
+function home() {
+  const p = pacing(); const r = buildReport(); const dueN = dueCards().length;
+  const newLeft = Math.max(0, p.target - p.today);
+  const doneToday = !dueN && !newLeft;
+  shell('home', `
+    <header class="hdr"><div class="seal sm">词</div><div><h1>Today</h1><p class="muted">${new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}</p></div></header>
+    <section class="card exam"><div class="big">${p.dte}</div><div><b>days to HSK 5</b><div class="muted">${fmtDate(S.settings.examDate + 'T09:00:00')}</div></div></section>
+    <section class="card today">
+      <div class="tiles">
+        <div><b>${num(dueN)}</b><span>reviews due</span></div>
+        <div><b>${newLeft}</b><span>new words left</span></div>
+        <div><b>${r.today.n}</b><span>done today</span></div>
+      </div>
+      ${doneToday ? `<p class="center">All done for today. Nice work.</p><button class="btn" id="extra">Learn 10 extra words</button>`
+        : `<button class="btn primary big" id="start">Start studying</button>`}
+      <p class="muted small" data-tip="${esc(p.reason)}">Daily target: ${p.target} new words · ${esc(p.reason)}</p>
+    </section>
+    <section class="card">
+      <div class="kv"><span>Words started</span><b>${num(r.seen)} / ${num(r.total)}</b></div>
+      <div class="bar"><i style="width:${(r.seen / r.total) * 100}%"></i><i class="exp" style="width:${(r.expected / r.total) * 100}%"></i></div>
+      <div class="kv"><span>You'd recall today</span><b>~${num(Math.round(r.expected))} words (${pct(r.expected / r.total)})</b></div>
+      <div class="kv"><span>Streak</span><b>${r.streak} day${r.streak === 1 ? '' : 's'}</b></div>
+      <a class="link" href="#/report">Full report →</a>
+    </section>`);
+  if ($('#start')) $('#start').onclick = () => startStudy();
+  if ($('#extra')) $('#extra').onclick = () => startStudy(10);
+}
+
+// ================= STUDY
+let SES = null, CUR = null;
+function startStudy(extraNew = 0) { SES = new Session({ extraNew }); CUR = null; go('study'); }
+function study() {
+  if (!SES) SES = new Session();
+  app.innerHTML = `<main class="screen study"><div class="stop"><button class="link" id="quit">✕ End</button><span id="cnt" class="muted small"></span></div>
+    <div class="prog"><i id="pg"></i></div><div id="stage"></div></main>`;
+  $('#quit').onclick = endSession;
+  nextCard();
+}
+function updateCount() {
+  const rem = SES.remaining(); const total = SES.done + rem;
+  $('#cnt').textContent = `${SES.done} done · ${rem} left`; $('#pg').style.width = `${total ? (SES.done / total) * 100 : 100}%`;
+}
+function nextCard() {
+  const c = SES.next();
+  if (!c) return endSession();
+  CUR = { card: c, w: S.byId.get(c.word_id) };
+  updateCount();
+  if (c.intro) renderIntro(); else renderQuiz();
+}
+function wordBlock(w, { big = true } = {}) {
+  const pos = { n: 'noun', v: 'verb', a: 'adjective', d: 'adverb', c: 'conjunction', p: 'preposition', m: 'measure word', q: 'measure word', r: 'pronoun', u: 'particle', e: 'interjection', vn: 'verb/noun', an: 'adj/noun', ad: 'adj/adverb', t: 'time word', f: 'locative', s: 'place word', i: 'idiom', l: 'phrase', nr: 'name', ns: 'place name', y: 'particle', o: 'onomatopoeia', b: 'attributive', z: 'descriptive' };
+  return `<div class="word ${big ? 'big' : ''}"><div class="hz">${esc(w.h)}</div>
+    <div class="py">${esc(w.p)}${w.a ? ` <span class="muted small">also ${esc(w.a.join(', '))}</span>` : ''}
+      <button class="spk" data-say="${esc(w.h)}" aria-label="Play">🔊</button><button class="spk slow" data-say="${esc(w.h)}" data-slow="1" aria-label="Play slowly">🐢</button></div>
+    <ul class="mn">${w.m.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+    <div class="meta"><span class="tag">HSK ${w.l}</span>${[...new Set(w.s.map((s) => pos[s] || s))].slice(0, 3).map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div></div>`;
+}
+function breakdownBlock(w) {
+  const parts = charBreakdown(w); if ([...w.h].length < 2 && !parts[0]?.others.length) return '';
+  return `<div class="bd"><h3>Characters</h3>${parts.map((p) => `<div class="bdrow"><span class="ch">${esc(p.ch)}</span><div>${p.single && p.single.i !== w.i ? `<b>${esc(p.single.p)}</b> ${esc(shortMeaning(p.single))}<br>` : ''}${p.others.length ? `<span class="muted small">also in ${p.others.map((o) => `${esc(o.h)} (${esc(o.m[0])})`).join(', ')}</span>` : ''}</div></div>`).join('')}</div>`;
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-say]'); if (b) { e.preventDefault(); speak(b.dataset.say, !!b.dataset.slow); } });
+
+function renderIntro() {
+  const { w } = CUR;
+  $('#stage').innerHTML = `<div class="kindtag new">New word</div>${wordBlock(w)}${breakdownBlock(w)}
+    <button class="btn primary big" id="ok">Got it</button><p class="muted small center">You'll be tested on it in a minute.</p>`;
+  speak(w.h);
+  $('#ok').onclick = async () => { await introduce(w.i); SES.newSeen++; SES.done++; nextCard(); };
+}
+
+function renderQuiz() {
+  const { card, w } = CUR; const kind = card.kind; const opts = options(card);
+  CUR.opts = opts; CUR.t0 = performance.now(); CUR.answered = false;
+  let prompt = '';
+  const twin = S.vocab.some((o) => o.h === w.h && o.i !== w.i);
+  if (kind === 'meaning') prompt = `<div class="prompt hz">${esc(w.h)}</div>${twin ? `<p class="muted center">${esc(w.p)}</p>` : ''}`;
+  if (kind === 'tone') prompt = `<div class="prompt hz">${esc(w.h)}</div><p class="muted center small">${esc(shortMeaning(w))}</p>`;
+  if (kind === 'recall') prompt = `<div class="prompt en">${esc(meaningText(w, 3))}</div><p class="muted center small">${[...w.h].length} character${[...w.h].length > 1 ? 's' : ''}</p>`;
+  if (kind === 'listen') prompt = `<button class="prompt listen" data-say="${esc(w.h)}">🔊<span>Tap to replay</span></button><button class="link center" data-say="${esc(w.h)}" data-slow="1">Play slowly</button>`;
+  const label = (o) => kind === 'meaning' ? esc(shortMeaning(o.word)) : kind === 'tone' ? esc(o.pinyin) : esc(o.word.h);
+  const isNewCard = card.state === State.New;
+  $('#stage').innerHTML = `<div class="kindtag ${kind}">${KINDS[kind].label}${isNewCard ? ' · first time' : ''}${card.lapses >= 4 ? ' · <span data-tip="You keep forgetting this one. Check the character breakdown and add your own note.">hard word</span>' : ''}</div>
+    ${prompt}<p class="q muted center">${KINDS[kind].hint}</p>
+    <div class="opts ${kind === 'meaning' ? 'en' : 'zh'}">${opts.map((o, i) => `<button class="opt" data-i="${i}">${label(o)}</button>`).join('')}</div>
+    <button class="link center" id="idk">I don't know</button>`;
+  if (kind === 'listen') setTimeout(() => speak(w.h), 50);
+  app.querySelectorAll('.opt').forEach((b) => (b.onclick = () => choose(+b.dataset.i)));
+  $('#idk').onclick = () => choose(-1);
+}
+
+function choose(i) {
+  if (CUR.answered) return; CUR.answered = true;
+  const ms = performance.now() - CUR.t0; const { card, w, opts } = CUR; const kind = card.kind;
+  const picked = opts[i]; const correct = !!picked && picked.id === w.i;
+  const rating = i < 0 ? 1 : autoGrade(kind, correct, ms);
+  CUR.result = { correct, ms, chosen: picked && picked.id > 0 ? picked.id : null, auto: rating };
+  app.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (opts[j].id === w.i) b.classList.add('right'); else if (j === i) b.classList.add('wrong'); });
+  if (kind !== 'listen') speak(w.h);
+  const prev = previewFor(card);
+  const wrongWord = !correct && picked?.word && picked.word.i !== w.i ? picked.word : null;
+  const showAid = !correct || (card.lapses || 0) >= 3;
+  const cardRec = S.cards.get(key(w.i, 'meaning'));
+  const names = { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' };
+  const why = !correct ? (i < 0 ? 'Marked as not known' : 'Not quite') : rating === 2 ? `Correct, but slow (${secs(ms)})` : rating === 4 ? `Correct and fast (${secs(ms)})` : `Correct (${secs(ms)})`;
+  const reveal = document.createElement('div'); reveal.className = 'reveal';
+  reveal.innerHTML = `<div class="verdict ${correct ? 'ok' : 'no'}">${correct ? '✓' : '✗'} ${why}</div>
+    ${wordBlock(w, { big: false })}
+    ${wrongWord ? `<div class="confuse">You picked <b>${esc(wrongWord.h)}</b> ${esc(wrongWord.p)} – ${esc(shortMeaning(wrongWord))}<button class="spk" data-say="${esc(wrongWord.h)}">🔊</button></div>` : ''}
+    ${showAid ? breakdownBlock(w) : ''}
+    ${showAid && cardRec ? `<label class="note">Your memory hook<textarea id="note" rows="2" placeholder="e.g. a story or picture that links the characters to the meaning">${esc(cardRec.note || '')}</textarea></label>` : ''}
+    <div class="grades">${[1, 2, 3, 4].map((g) => `<button class="g g${g} ${g === rating ? 'sel' : ''}" data-g="${g}"><b>${names[g]}</b><span>${fmtInterval(prev[g])}</span></button>`).join('')}</div>
+    <button class="btn primary big" id="cont">Continue · ${names[rating]}</button>
+    <p class="muted small center">The app picked a grade from your answer and speed. Tap a different one to change it.</p>`;
+  $('#idk')?.remove();
+  $('#stage').append(reveal);
+  reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const commit = async (g) => {
+    const note = $('#note')?.value?.trim();
+    if (note != null && cardRec && note !== (cardRec.note || '')) await saveCards([{ ...cardRec, note, updated_at: new Date().toISOString() }]);
+    await answer(card, { rating: g, correct, ms, chosen: CUR.result.chosen });
+    SES.done++; if (correct) SES.correct++; SES.results.push({ w, kind, correct, g });
+    scheduleSync(); nextCard();
+  };
+  reveal.querySelectorAll('.g').forEach((b) => (b.onclick = () => commit(+b.dataset.g)));
+  $('#cont').onclick = () => commit(rating);
+}
+
+function endSession() {
+  const s = SES; SES = null; scheduleSync(300);
+  if (!s || !s.done) return go('home');
+  const mins = Math.max(1, Math.round((Date.now() - s.started) / 60000));
+  const quizzes = s.results.length; const missed = s.results.filter((r) => !r.correct);
+  app.innerHTML = `<main class="screen"><h1>Session complete</h1>
+    <section class="card"><div class="tiles"><div><b>${quizzes}</b><span>cards</span></div><div><b>${pct(quizzes ? s.correct / quizzes : null)}</b><span>correct</span></div><div><b>${s.newSeen}</b><span>new words</span></div><div><b>${mins}m</b><span>time</span></div></div></section>
+    ${missed.length ? `<section class="card"><h3>To look at again</h3>${[...new Map(missed.map((r) => [r.w.i, r])).values()].slice(0, 15).map((r) => `<div class="li"><span class="hz s">${esc(r.w.h)}</span><span>${esc(r.w.p)}</span><span class="muted">${esc(shortMeaning(r.w))}</span></div>`).join('')}</section>` : ''}
+    <button class="btn primary big" id="h">Done</button><button class="btn" id="more">Keep going (10 extra words)</button></main>`;
+  $('#h').onclick = () => go('home'); $('#more').onclick = () => startStudy(10);
+}
+
+// ================= REPORT
+function report() {
+  const r = buildReport();
+  const lvl = Object.entries(r.levels);
+  const seg = (L, k) => (L[k] / L.total) * 100;
+  const kindsWithData = Object.keys(KINDS).filter((k) => r.retention[k].d30.n || enabledKinds().includes(k));
+  const maxF = Math.max(1, ...r.forecast.map((f) => f.n));
+  const maxD = Math.max(1, ...r.days.map((d) => d.n));
+  const heat = (n) => (n === 0 ? 'h0' : n < maxD * 0.25 ? 'h1' : n < maxD * 0.5 ? 'h2' : n < maxD * 0.75 ? 'h3' : 'h4');
+  const target = S.settings.retention;
+  const proj = r.unseen === 0 ? 'You have started every word. Now it is about keeping them.' : r.pace > 0
+    ? (r.finishDays <= r.dte ? `At your pace of ${r.pace.toFixed(1)} new words a day, you'll have started every word by <b>${fmtDate(Date.now() + r.finishDays * 864e5)}</b>, ${r.dte - r.finishDays} days before the exam.`
+      : `At ${r.pace.toFixed(1)} new words a day you'd reach about <b>${num(r.projectedSeen)}</b> of ${num(r.total)} words by exam day. You need about <b>${Math.ceil(r.unseen / Math.max(1, r.dte - 10))}</b> a day to finish in time.`)
+    : 'Start learning new words to get a projection.';
+  shell('report', `
+    <header class="hdr"><h1>Report</h1></header>
+    <section class="card hero"><div class="muted small">Words you'd recall if tested today</div>
+      <div class="heronum">${num(Math.round(r.expected))}<span> / ${num(r.total)}</span></div>
+      <div class="bar"><i style="width:${(r.seen / r.total) * 100}%"></i><i class="exp" style="width:${(r.expected / r.total) * 100}%"></i></div>
+      <div class="legend"><span><i class="sw exp"></i>Expected recall (${pct(r.expected / r.total)})</span><span><i class="sw seen"></i>Started (${num(r.seen)})</span></div>
+      <p>${proj}</p></section>
+
+    <section class="card"><h3>By HSK level</h3>
+      <div class="legend"><span><i class="sw s-new"></i>New</span><span><i class="sw s-learning"></i>Learning</span><span><i class="sw s-young"></i>Young</span><span><i class="sw s-mature"></i>Mature (3+ weeks)</span></div>
+      ${lvl.map(([l, L]) => `<div class="lvl"><span class="lv">HSK ${l}</span><div class="stk">${['new', 'learning', 'young', 'mature'].map((k) => L[k] ? `<i class="s-${k}" style="width:${seg(L, k)}%" data-tip="HSK ${l} · ${k}: ${L[k]} of ${L.total} words"></i>` : '').join('')}</div><span class="muted small">${pct(L.expected / L.total)}</span></div>`).join('')}
+      <p class="muted small">Right-hand number: share of that level you'd recall today.</p></section>
+
+    <section class="card"><h3>Retention on reviews</h3><p class="muted small">How often you remembered a card that was due for review. Your target is ${pct(target)}.</p>
+      ${kindsWithData.map((k) => { const d = r.retention[k]; const v = d.d30.rate; return `<div class="row"><span class="lv">${KINDS[k].label}</span><div class="meter">${v != null ? `<i style="width:${v * 100}%"></i>` : ''}<b class="tgt" style="left:${target * 100}%"></b></div><span class="val">${pct(v)}<small>${d.d30.n ? ` · ${d.d30.n}` : ''}</small></span></div>`; }).join('')}
+      <p class="muted small">Last 30 days; last 7 days: ${kindsWithData.map((k) => `${KINDS[k].label} ${pct(r.retention[k].d7.rate)}`).join(' · ')}</p></section>
+
+    <section class="card"><h3>Answer speed</h3><table class="tbl"><tr><th></th><th>This week</th><th>Last week</th></tr>
+      ${kindsWithData.map((k) => { const s = r.speed[k]; const better = s.now && s.prev ? (s.now < s.prev ? '↓ faster' : s.now > s.prev ? '↑ slower' : '') : ''; return `<tr><td>${KINDS[k].label}</td><td>${secs(s.now)} <small class="muted">${better}</small></td><td>${secs(s.prev)}</td></tr>`; }).join('')}</table>
+      <p class="muted small">Median time for correct answers. Faster answers mean the word is getting automatic, which matters for the timed exam.</p></section>
+
+    <section class="card"><h3>Activity · ${r.streak}-day streak</h3>
+      <div class="heat">${r.days.map((d) => `<i class="${heat(d.n)}" data-tip="${d.d}: ${d.n} reviews"></i>`).join('')}</div>
+      <div class="legend"><span>Less</span>${['h0', 'h1', 'h2', 'h3', 'h4'].map((h) => `<i class="sw ${h}"></i>`).join('')}<span>More</span></div></section>
+
+    <section class="card"><h3>Reviews coming up</h3>
+      <div class="fc">${r.forecast.map((f) => `<div data-tip="${f.i === 0 ? 'Today' : new Date(Date.now() + f.i * 864e5).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}: ${f.n} reviews"><i style="height:${(f.n / maxF) * 100}%"></i><span>${f.i === 0 ? 'T' : new Date(Date.now() + f.i * 864e5).toLocaleDateString('en-GB', { weekday: 'narrow' })}</span></div>`).join('')}</div>
+      <p class="muted small">Today: ${r.forecast[0].n} · next 7 days: ${num(r.forecast.slice(0, 7).reduce((a, f) => a + f.n, 0))}. New words add to this.</p></section>
+
+    <section class="card"><h3>When you study best</h3>
+      ${r.tod.map((t) => `<div class="row"><span class="lv">${t.name}</span><div class="meter">${t.rate != null ? `<i style="width:${t.rate * 100}%"></i>` : ''}</div><span class="val">${pct(t.rate)}<small>${t.n ? ` · ${t.n}` : ''}</small></span></div>`).join('')}
+      <p class="muted small">Share correct, last 30 days, all cards.</p></section>
+
+    ${r.weakest.length ? `<section class="card"><h3>Weakest areas</h3>${r.weakest.map((x) => `<div class="kv"><span>${esc(x.g)}</span><b>${pct(x.rate)}</b></div>`).join('')}</section>` : ''}
+
+    <section class="card"><h3>Words you mix up</h3>${r.pairs.length ? r.pairs.map((p) => `<div class="pair"><span class="hz s">${esc(p.a.h)}</span><span class="muted small">${esc(p.a.m[0])}</span><span class="vs">↔</span><span class="hz s">${esc(p.b.h)}</span><span class="muted small">${esc(p.b.m[0])}</span><b>${p.n}×</b></div>`).join('') + '<p class="muted small">These pairs are shown together as answer choices, so you learn to tell them apart.</p>' : '<p class="muted small">Nothing yet. When you pick a wrong answer, the pair is tracked here.</p>'}</section>
+
+    <section class="card"><h3>Hardest words</h3>${r.hard.length ? r.hard.map((h) => `<div class="li"><span class="hz s">${esc(h.w.h)}</span><span>${esc(h.w.p)}</span><span class="muted">${esc(KINDS[h.kind].label)} · forgotten ${h.lapses}×</span></div>`).join('') : '<p class="muted small">No repeat offenders yet.</p>'}</section>
+
+    <section class="card"><h3>Your memory profile</h3>
+      ${Object.keys(KINDS).filter((k) => r.factors[k]).map((k) => { const f = r.factors[k]; return `<div class="kv"><span>${KINDS[k].label}</span><b>${f.n < 30 ? `<span class="muted">learning (${f.n}/30 reviews)</span>` : `${f.factor.toFixed(2)}×`}</b></div>`; }).join('')}
+      <p class="muted small">After 30+ reviews, the app compares how often you actually remember against what the model predicted, then adjusts. Above 1× means you remember better than average, so reviews are spaced further apart. Below 1× means reviews come sooner.</p>
+      <div class="kv"><span>Total reviews</span><b>${num(r.totalReviews)}</b></div></section>`);
+}
+
+// ================= WORDS
+let WQ = { q: '', l: 0 };
+function words() {
+  shell('words', `<header class="hdr"><h1>Words</h1></header>
+    <input id="q" class="search" placeholder="Search hanzi, pinyin or English" value="${esc(WQ.q)}">
+    <div class="chips">${[0, 1, 2, 3, 4, 5].map((l) => `<button class="chip ${WQ.l === l ? 'on' : ''}" data-l="${l}">${l ? `HSK ${l}` : 'All'}</button>`).join('')}</div>
+    <div id="wl"></div>`);
+  $('#q').oninput = (e) => { WQ.q = e.target.value; renderList(); };
+  app.querySelectorAll('.chip').forEach((b) => (b.onclick = () => { WQ.l = +b.dataset.l; words(); }));
+  renderList();
+}
+const stripTones = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s/g, '').toLowerCase();
+function renderList() {
+  const q = WQ.q.trim().toLowerCase(); const qs = stripTones(q);
+  let list = S.vocab.filter((w) => !WQ.l || w.l === WQ.l);
+  if (q) {
+    const re = new RegExp(`\\b${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i');
+    const score = (w) => (w.h.includes(q) ? 0 : stripTones(w.p).startsWith(qs) ? 1 : stripTones(w.p).includes(qs) ? 2 : w.m.some((m) => re.test(m)) ? 3 : 9);
+    list = list.map((w) => [score(w), w]).filter(([sc]) => sc < 9).sort((a, b) => a[0] - b[0]).map(([, w]) => w);
+  }
+  const shown = list.slice(0, 200);
+  $('#wl').innerHTML = `<p class="muted small">${num(list.length)} words${list.length > 200 ? ' · showing first 200' : ''}</p>` +
+    shown.map((w) => `<button class="li wbtn" data-w="${w.i}"><i class="dot st-${wordStatus(w)}"></i><span class="hz s">${esc(w.h)}</span><span>${esc(w.p)}</span><span class="muted">${esc(shortMeaning(w))}</span></button>`).join('');
+  app.querySelectorAll('.wbtn').forEach((b) => (b.onclick = () => wordSheet(+b.dataset.w)));
+}
+function wordSheet(id) {
+  const w = S.byId.get(id); const now = Date.now();
+  const rows = Object.keys(KINDS).map((k) => { const c = S.cards.get(key(id, k)); if (!c) return ''; return `<div class="kv"><span>${KINDS[k].label}</span><b>${c.state === State.Review ? `next ${fmtInterval(Math.max(0, Date.parse(c.due) - now))} · ${pct(recallProb(c, now, factorOf(k)))} recall` : ['new', 'learning', '', 'relearning'][c.state]}${c.lapses ? ` · forgot ${c.lapses}×` : ''}</b></div>`; }).join('');
+  const sheet = document.createElement('div'); sheet.className = 'sheet';
+  const mc = S.cards.get(key(id, 'meaning'));
+  sheet.innerHTML = `<div class="sheetin">${wordBlock(w)}${breakdownBlock(w)}${rows || '<p class="muted">Not started yet.</p>'}
+    ${mc ? `<label class="note">Your memory hook<textarea id="wnote" rows="2">${esc(mc.note || '')}</textarea></label>` : ''}
+    <div class="${!mc ? 'row2' : ''}">${!mc ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
+  document.body.append(sheet);
+  const close = async () => { const n = $('#wnote')?.value?.trim(); if (mc && n !== (mc.note || '')) { await saveCards([{ ...mc, note: n, updated_at: new Date().toISOString() }]); scheduleSync(); } sheet.remove(); };
+  $('#close', sheet).onclick = close; sheet.onclick = (e) => { if (e.target === sheet) close(); };
+  if ($('#known', sheet)) $('#known', sheet).onclick = async () => { await markKnown([id]); scheduleSync(); sheet.remove(); renderList(); toast('Marked as known – it will come up for a check later.'); };
+}
+
+// ================= SETTINGS
+function settings() {
+  const st = S.settings; const p = pacing();
+  shell('settings', `<header class="hdr"><h1>Settings</h1></header>
+    <section class="card form">
+      <label>Exam date<input type="date" id="exam" value="${esc(st.examDate)}"></label>
+      <label>Target recall<select id="ret">${[0.85, 0.88, 0.9, 0.92, 0.95].map((v) => `<option value="${v}" ${v === st.retention ? 'selected' : ''}>${pct(v)}${v === 0.9 ? ' (recommended)' : v > 0.9 ? ' (more reviews)' : ' (fewer reviews)'}</option>`).join('')}</select></label>
+      <label>New words per day<select id="pace"><option value="auto" ${st.pace === 'auto' ? 'selected' : ''}>Automatic (now ${p.target}/day)</option>${[5, 10, 15, 20, 25, 30, 40, 50].map((n) => `<option value="${n}" ${String(st.pace) === String(n) ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
+    </section>
+    <section class="card form"><h3>Card types</h3>
+      <label class="tg"><input type="checkbox" checked disabled> Meaning (hanzi → English)</label>
+      ${[['listen', 'Listening (audio → hanzi)'], ['tone', 'Tones (hanzi → pinyin)'], ['recall', 'Recall (English → hanzi)']].map(([k, l]) => `<label class="tg"><input type="checkbox" data-k="${k}" ${st.kinds[k] ? 'checked' : ''}> ${l}</label>`).join('')}
+      <p class="muted small">Extra card types for a word unlock once you know its meaning well. Each one adds reviews.</p>
+    </section>
+    <section class="card form"><h3>Voice</h3>
+      <label>Speed<select id="rate">${[0.7, 0.8, 0.9, 1].map((v) => `<option value="${v}" ${v === st.voiceRate ? 'selected' : ''}>${v === 1 ? 'Normal' : `${Math.round(v * 100)}%`}</option>`).join('')}</select></label>
+      <button class="btn" id="test">Test voice · 你好，欢迎学习</button>
+    </section>
+    <section class="card form"><h3>Data</h3>
+      <div class="kv"><span>Account</span><b>${esc(api.getSession()?.user?.email || '')}</b></div>
+      <div class="kv"><span>Sync</span><b>${esc(syncLabel())}</b></div>
+      <button class="btn" id="sync">Sync now</button>
+      <button class="btn" id="exp">Export my data (JSON)</button>
+      <button class="btn" id="replace">Run placement test again</button>
+      <button class="btn bad" id="out">Sign out</button>
+      <p class="muted small center">Version ${APP_VERSION}</p>
+    </section>`);
+  $('#exam').onchange = (e) => e.target.value && saveSettings({ examDate: e.target.value });
+  $('#ret').onchange = (e) => saveSettings({ retention: +e.target.value });
+  $('#pace').onchange = (e) => saveSettings({ pace: e.target.value === 'auto' ? 'auto' : +e.target.value }).then(settings);
+  $('#rate').onchange = (e) => saveSettings({ voiceRate: +e.target.value });
+  app.querySelectorAll('[data-k]').forEach((c) => (c.onchange = () => saveSettings({ kinds: { ...S.settings.kinds, [c.dataset.k]: c.checked } })));
+  $('#test').onclick = () => speak('你好，欢迎学习');
+  $('#sync').onclick = async () => { await sync(); settings(); toast(esc(syncLabel())); };
+  $('#exp').onclick = () => {
+    const blob = new Blob([JSON.stringify({ settings: S.settings, cards: [...S.cards.values()], logs: S.logs }, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hsk5-export-${new Date().toISOString().slice(0, 10)}.json`; a.click();
+  };
+  $('#replace').onclick = async () => { await saveSettings({ placementDone: false }); P = null; go('placement'); };
+  $('#out').onclick = async () => {
+    if (S.outbox.cards.size || S.outbox.logs.size) await sync();
+    if ((S.outbox.cards.size || S.outbox.logs.size) && !confirm('Some progress has not synced yet and will be lost. Sign out anyway?')) return;
+    await api.signOut(); await resetLocal(); go('login');
+  };
+}
+
+// ================= BOOT
+async function boot() {
+  app.innerHTML = '<main class="screen center"><div class="seal">词</div><p class="muted">Loading…</p></main>';
+  await Promise.all([loadVocab(), loadLocal(), api.loadSession()]);
+  route();
+  if (api.getSession()) { sync().then(() => { if (!SES && ['home', ''].includes(location.hash.replace('#/', ''))) route(); }); }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') sync(); else if (api.getSession()) scheduleSync(500); });
+  window.addEventListener('online', () => scheduleSync(500));
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
+}
+boot();
+
+// Expose for debugging / tests
+window.__hsk = { S, api };
