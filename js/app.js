@@ -236,7 +236,7 @@ function examplesBlock(w) {
     ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e)}</div>
       <details class="example-help"><summary>Translation &amp; vocabulary</summary><div class="example-en">${esc(e.en)}</div><div class="example-glossary muted small">${glossary(e)}</div></details></div>
       <div class="example-audio"><button type="button" class="spk" data-say="${esc(e.zh)}" aria-label="Play example sentence">🔊</button><button type="button" class="spk slow" data-say="${esc(e.zh)}" data-slow="1" aria-label="Play example slowly">🐢</button></div></div>`).join('')}
-    ${hasGrammar ? `<p><a class="link" href="#/grammar">Learn grammar patterns →</a></p>` : ''}
+    ${hasGrammar ? `<p><a class="link" href="#/grammar?q=${encodeURIComponent(w.h)}">Learn grammar patterns →</a></p>` : ''}
     ${examples.length < 3 ? `<p class="muted small">${examples.length ? examples.length + ' of 3 examples pass' : 'No example currently passes'} the vocabulary check. Harder or unrecognized words are not shown.</p>` : ''}
   </section>`;
 }
@@ -419,7 +419,7 @@ function wordSheet(id) {
     <div class="${!mc && !grammarOnly ? 'row2' : ''}">${!mc && !grammarOnly ? '<button class="btn" id="known">I know this</button>' : ''}<button class="btn primary" id="close">Close</button></div></div>`;
   document.body.append(sheet);
   const close = async () => { const n = $('#wnote')?.value?.trim(); if (mc && n !== (mc.note || '')) { await saveCards([{ ...mc, note: n, updated_at: new Date().toISOString() }]); scheduleSync(); } sheet.remove(); };
-  sheet.querySelector('a[href="#/grammar"]')?.addEventListener('click',e=>{e.preventDefault();close().then(()=>go('grammar'));});
+  sheet.querySelector('a[href^="#/grammar"]')?.addEventListener('click',e=>{e.preventDefault();const href=e.currentTarget.getAttribute('href');close().then(()=>{location.hash=href;});});
   $('#close', sheet).onclick = close; sheet.onclick = (e) => { if (e.target === sheet) close(); };
   if ($('#known', sheet)) $('#known', sheet).onclick = async () => { await markKnown([id]); scheduleSync(); sheet.remove(); renderList(); toast('Marked as known – it will come up for a check later.'); };
 }
