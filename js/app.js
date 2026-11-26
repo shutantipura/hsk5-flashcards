@@ -9,6 +9,7 @@ import { buildReport, wordStatus } from './report.js';
 import { APP_VERSION } from './config.js';
 import { createGrammarScreen, grammarQueue } from './grammar.js';
 import { GRAMMAR } from './grammar-data.js';
+import { createPracticeScreen, practiceStats } from './practice.js';
 import { isGrammarOnly, learningType, learningLabel, vocabularyMeanings, grammarPatternsFor, pronunciationExample } from './learning-mode.js';
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -45,7 +46,7 @@ document.addEventListener('click', (e) => { const el = e.target.closest('[data-t
 
 // ---------- layout
 const TABS = [['home', 'Today', 'M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z'], ['report', 'Report', 'M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z'],
-  ['grammar', 'Grammar', 'M4 4h7v2H4zm0 5h7v2H4zm0 5h7v2H4zm10-9h6v11h-6zm1 2v7h4V7z'], ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
+  ['grammar', 'Grammar', 'M4 4h7v2H4zm0 5h7v2H4zm0 5h7v2H4zm10-9h6v11h-6zm1 2v7h4V7z'], ['practice', 'Practice', 'M5 3h14v18H5zm3 4v2h8V7zm0 4v2h8v-2zm0 4v2h5v-2z'], ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
 function shell(route, body) {
   const syncDot = { ok: 'ok', syncing: 'busy', error: 'err', offline: 'off', idle: '' }[S.sync.status] || '';
   app.innerHTML = `<main class="screen">${body}</main>
@@ -59,7 +60,8 @@ function syncLabel() {
 
 // ---------- router
 const grammar = createGrammarScreen({S,shell,saveSettings,esc});
-const routes = { login, placement, home, study, report, words, settings, grammar };
+const practice = createPracticeScreen({S,shell,saveSettings,esc});
+const routes = { login, placement, home, study, report, words, settings, grammar, practice };
 function go(r) { location.hash = `#/${r}`; }
 function route() {
   const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
@@ -159,6 +161,7 @@ function home() {
   const newLeft = Math.max(0, p.target - p.today);
   const doneToday = !dueN && !newLeft;
   const grammarStats = grammarQueue(S.settings.grammarProgress || {}); const grammarDue=grammarStats.due.length;
+  const applied = practiceStats(S);
   shell('home', `
     <header class="hdr"><div class="seal sm">词</div><div><h1>Today</h1><p class="muted">${new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}</p></div></header>
     <section class="card exam"><div class="big">${p.dte}</div><div><b>days to HSK 5</b><div class="muted">${fmtDate(S.settings.examDate + 'T09:00:00')}</div></div></section>
@@ -173,6 +176,7 @@ function home() {
       <p class="muted small" data-tip="${esc(p.reason)}">Daily target: ${p.target} new words · ${esc(p.reason)}</p>
     </section>
     <section class="card"><div class="kv"><span>Grammar Practice</span><b>${grammarDue} due</b></div><p class="muted small">Learn formal connectors and sentence patterns, then practise using them.</p><a class="link" href="#/grammar">Practise grammar →</a></section>
+    <section class="card"><div class="kv"><span>Applied Practice</span><b>${applied.due} due</b></div><p class="muted small">Reading, collocations, near-synonyms, sentence order and personal mistake review.</p><a class="link" href="#/practice">Practise using Chinese →</a></section>
     <section class="card">
       <div class="kv"><span>Words started</span><b>${num(r.seen)} / ${num(r.total)}</b></div>
       <div class="bar"><i style="width:${(r.seen / r.total) * 100}%"></i><i class="exp" style="width:${(r.expected / r.total) * 100}%"></i></div>
@@ -346,7 +350,7 @@ function report() {
       <div class="legend"><span><i class="sw exp"></i>Expected recall (${pct(r.expected / r.total)})</span><span><i class="sw seen"></i>Started (${num(r.seen)})</span></div>
       <p>${proj}</p></section>
 
-    <section class="card"><h3>Grammar progress</h3><div class="kv"><span>Skills practised</span><b>${grammarQueue(S.settings.grammarProgress||{}).items.filter(x=>x.c.reps).length} / ${grammarQueue(S.settings.grammarProgress||{}).items.length}</b></div><div class="kv"><span>Grammar-only entries</span><b>${S.vocab.filter(isGrammarOnly).length}</b></div><a class="link" href="#/grammar">Grammar practice →</a></section><section class="card"><h3>By HSK level · vocabulary</h3>
+    <section class="card"><h3>Applied Practice</h3><div class="kv"><span>Questions practised</span><b>${practiceStats(S).seen}</b></div><div class="kv"><span>Accuracy</span><b>${pct((practiceStats(S).correct+practiceStats(S).wrong)?practiceStats(S).correct/(practiceStats(S).correct+practiceStats(S).wrong):null)}</b></div><a class="link" href="#/practice">Applied Practice →</a></section><section class="card"><h3>Grammar progress</h3><div class="kv"><span>Skills practised</span><b>${grammarQueue(S.settings.grammarProgress||{}).items.filter(x=>x.c.reps).length} / ${grammarQueue(S.settings.grammarProgress||{}).items.length}</b></div><div class="kv"><span>Grammar-only entries</span><b>${S.vocab.filter(isGrammarOnly).length}</b></div><a class="link" href="#/grammar">Grammar practice →</a></section><section class="card"><h3>By HSK level · vocabulary</h3>
       <div class="legend"><span><i class="sw s-new"></i>New</span><span><i class="sw s-learning"></i>Learning</span><span><i class="sw s-young"></i>Young</span><span><i class="sw s-mature"></i>Mature (3+ weeks)</span></div>
       ${lvl.map(([l, L]) => `<div class="lvl"><span class="lv">HSK ${l}</span><div class="stk">${['new', 'learning', 'young', 'mature'].map((k) => L[k] ? `<i class="s-${k}" style="width:${seg(L, k)}%" data-tip="HSK ${l} · ${k}: ${L[k]} of ${L.total} words"></i>` : '').join('')}</div><span class="muted small">${pct(L.expected / L.total)}</span></div>`).join('')}
       <p class="muted small">Right-hand number: share of that level you'd recall today.</p></section>
