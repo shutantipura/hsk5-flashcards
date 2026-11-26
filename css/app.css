@@ -222,3 +222,15 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .read-tags{display:flex;gap:6px;flex-wrap:wrap}
 .read-tags span{background:var(--surface2);padding:5px 9px;border-radius:10px}
 #read-writing{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px;border-radius:10px}
+
+/* Tap-to-toggle vocabulary bubble: does not reflow or scroll the passage. */
+.read-popup{position:fixed;z-index:19;width:min(300px,calc(100vw - 16px));overflow:auto;overscroll-behavior:contain;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.2);font:14px/1.45 var(--ui);white-space:normal}
+.read-popup[hidden]{display:none!important}
+.read-popup .read-gloss{background:transparent;margin:0;padding:12px}
+.read-gloss-head{display:flex;align-items:center;gap:12px}
+.read-gloss-head b{margin-right:auto}
+.read-gloss-head .link{padding:3px 6px;font-size:18px}
+.read-popup p{margin:5px 0 8px}
+.read-popup details{font-size:12px;margin:5px 0}
+.read-popup .read-actions .btn{font-size:12px;padding:7px;min-width:0}
+.read-tip{font-size:12px;margin:8px 0}
