@@ -1,5 +1,6 @@
 // Performance analytics computed from local cards + review logs.
 import { S, key } from './store.js';
+import { isGrammarOnly, allowsCard } from './learning-mode.js';
 import { State, DAY, recallProb } from './fsrs.js';
 import { factors, factorOf, daysToExam, dayKey, endOfDay, KINDS, enabledKinds, confusions, pacing } from './engine.js';
 
@@ -16,16 +17,16 @@ export function buildReport(now = Date.now()) {
   let expected = 0, seen = 0;
   const levels = {};
   for (let l = 1; l <= 5; l++) levels[l] = { new: 0, learning: 0, young: 0, mature: 0, total: 0, expected: 0 };
-  for (const w of S.vocab) {
+  for (const w of S.vocab.filter(w=>!isGrammarOnly(w))) {
     const c = S.cards.get(key(w.i, 'meaning'));
     const st = wordStatus(w, now); const L = levels[w.l];
     L[st]++; L.total++;
     if (c && c.state !== State.New) { seen++; const r = recallProb(c, now, fm); expected += r; L.expected += r; }
   }
-  const total = S.vocab.length;
+  const total = S.vocab.filter(w=>!isGrammarOnly(w)).length;
 
   // --- pace and projection
-  const intro7 = [...S.cards.values()].filter((c) => c.kind === 'meaning' && c.introduced_at && now - Date.parse(c.introduced_at) < 7 * DAY).length;
+  const intro7 = [...S.cards.values()].filter((c) => c.kind === 'meaning' && allowsCard(S.byId.get(c.word_id),c.kind) && c.introduced_at && now - Date.parse(c.introduced_at) < 7 * DAY).length;
   const pace = intro7 / 7; const dte = daysToExam(now); const unseen = total - seen;
   const finishDays = pace > 0 ? Math.ceil(unseen / pace) : null;
   const projectedSeen = Math.min(total, seen + Math.round(pace * dte));
@@ -61,7 +62,7 @@ export function buildReport(now = Date.now()) {
   const kinds = new Set(enabledKinds()); const forecast = Array.from({ length: 14 }, (_, i) => ({ i, n: 0 }));
   const eod0 = endOfDay(now);
   for (const c of S.cards.values()) {
-    if (!kinds.has(c.kind) || c.state === State.New) continue;
+    if (!kinds.has(c.kind) || !allowsCard(S.byId.get(c.word_id),c.kind) || c.state === State.New) continue;
     const t = Date.parse(c.due); const idx = t <= eod0 ? 0 : Math.ceil((t - eod0) / DAY);
     if (idx < 14) forecast[idx].n++;
   }
@@ -74,7 +75,7 @@ export function buildReport(now = Date.now()) {
   });
 
   // --- hardest words & confused pairs
-  const hard = [...S.cards.values()].filter((c) => c.lapses >= 2)
+  const hard = [...S.cards.values()].filter((c) => c.lapses >= 2 && allowsCard(S.byId.get(c.word_id),c.kind))
     .sort((a, b) => b.lapses - a.lapses || b.difficulty - a.difficulty).slice(0, 12)
     .map((c) => ({ w: S.byId.get(c.word_id), kind: c.kind, lapses: c.lapses }));
   const pairs = [...confusions()].sort((a, b) => b[1] - a[1]).slice(0, 10)
