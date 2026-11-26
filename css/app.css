@@ -158,3 +158,14 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 @keyframes pulse { 50% { opacity: .3; } }
 #toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 84px); transform: translate(-50%, 20px); background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 12px; font-size: 14px; opacity: 0; transition: .2s; pointer-events: none; z-index: 30; max-width: 90vw; }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Example sentences: keep the target word visible and audio within easy reach. */
+.examples { margin: 12px 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); text-align: left; }
+.examples h3 { margin: 0 0 6px; }
+.example { display: flex; align-items: center; gap: 10px; padding: 9px 0; }
+.example + .example { border-top: 1px solid var(--line); }
+.example-body { flex: 1; min-width: 0; }
+.example-zh { font: 500 19px/1.5 var(--hz); overflow-wrap: anywhere; }
+.example-en { font-size: 13px; line-height: 1.45; margin-top: 2px; overflow-wrap: anywhere; }
+.example-target { background: transparent; color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.example .spk { flex: 0 0 36px; }
