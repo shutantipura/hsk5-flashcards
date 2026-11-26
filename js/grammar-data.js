@@ -4345,5 +4345,387 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "de-modifier",
+    "word": "的",
+    "level": 1,
+    "pattern": "description + 的 + noun",
+    "meaning": "de · describing a noun",
+    "explain": "的 links a description to a noun, including a phrase that describes it.",
+    "distractors": [
+      "了",
+      "吗"
+    ],
+    "contrast": "Which particle comes after a description and before a noun?",
+    "examples": [
+      {
+        "zh": "我喜欢大的房间。",
+        "en": "I like big rooms.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "大",
+          "的",
+          "房间"
+        ]
+      },
+      {
+        "zh": "这是他买的书。",
+        "en": "This is the book he bought.",
+        "tokens": [
+          "这",
+          "是",
+          "他",
+          "买",
+          "的",
+          "书"
+        ]
+      },
+      {
+        "zh": "我喜欢新的衣服。",
+        "en": "I like new clothes.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "新",
+          "的",
+          "衣服"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "de-nominal",
+    "word": "的",
+    "level": 1,
+    "pattern": "description + 的",
+    "meaning": "de · noun omitted",
+    "explain": "的 allows a known noun to be omitted: the one that is described.",
+    "distractors": [
+      "了",
+      "吗"
+    ],
+    "contrast": "Which particle lets a description stand for a noun?",
+    "examples": [
+      {
+        "zh": "我要大的。",
+        "en": "I want the big one.",
+        "tokens": [
+          "我",
+          "要",
+          "大",
+          "的"
+        ]
+      },
+      {
+        "zh": "这本书是我的。",
+        "en": "This book is mine.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "是",
+          "我",
+          "的"
+        ]
+      },
+      {
+        "zh": "我要小的。",
+        "en": "I want the small one.",
+        "tokens": [
+          "我",
+          "要",
+          "小",
+          "的"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ba-suggest",
+    "word": "吧",
+    "level": 1,
+    "pattern": "proposal + 吧",
+    "meaning": "ba · suggestion",
+    "explain": "吧 softens a suggestion or invitation rather than asking a neutral yes/no question.",
+    "distractors": [
+      "吗",
+      "的"
+    ],
+    "contrast": "Which particle softens a suggestion?",
+    "examples": [
+      {
+        "zh": "我们去吧。",
+        "en": "Let's go.",
+        "tokens": [
+          "我们",
+          "去",
+          "吧"
+        ]
+      },
+      {
+        "zh": "你来我家吧。",
+        "en": "Come to my home.",
+        "tokens": [
+          "你",
+          "来",
+          "我",
+          "家",
+          "吧"
+        ]
+      },
+      {
+        "zh": "我们喝茶吧。",
+        "en": "Let's drink tea.",
+        "tokens": [
+          "我们",
+          "喝",
+          "茶",
+          "吧"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "he-and",
+    "word": "和",
+    "level": 1,
+    "pattern": "noun + 和 + noun",
+    "meaning": "hé · and",
+    "explain": "和 joins nouns and noun phrases. It does not normally connect complete sentences.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word joins two nouns?",
+    "examples": [
+      {
+        "zh": "我喜欢茶和水。",
+        "en": "I like tea and water.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "茶",
+          "和",
+          "水"
+        ]
+      },
+      {
+        "zh": "爸爸和妈妈都在家。",
+        "en": "Dad and Mum are both at home.",
+        "tokens": [
+          "爸爸",
+          "和",
+          "妈妈",
+          "都",
+          "在",
+          "家"
+        ]
+      },
+      {
+        "zh": "我买了苹果和书。",
+        "en": "I bought apples and books.",
+        "tokens": [
+          "我",
+          "买",
+          "了",
+          "苹果",
+          "和",
+          "书"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "he-with",
+    "word": "和",
+    "level": 1,
+    "pattern": "和 + person + action",
+    "meaning": "hé · with",
+    "explain": "和 introduces a companion participating in an action.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word introduces the person you do an action with?",
+    "examples": [
+      {
+        "zh": "我和他去学校。",
+        "en": "I go to school with him.",
+        "tokens": [
+          "我",
+          "和",
+          "他",
+          "去",
+          "学校"
+        ]
+      },
+      {
+        "zh": "我和妈妈去买书。",
+        "en": "I go to buy books with Mum.",
+        "tokens": [
+          "我",
+          "和",
+          "妈妈",
+          "去",
+          "买",
+          "书"
+        ]
+      },
+      {
+        "zh": "他和我都在工作。",
+        "en": "He and I are both working.",
+        "tokens": [
+          "他",
+          "和",
+          "我",
+          "都",
+          "在",
+          "工作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gei-benefit",
+    "word": "给",
+    "level": 1,
+    "pattern": "给 + person + action",
+    "meaning": "gěi · for / to someone",
+    "explain": "给 can introduce the recipient or beneficiary before an action, rather than being the main verb give.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word introduces the recipient of an action?",
+    "examples": [
+      {
+        "zh": "我给他买书。",
+        "en": "I buy books for him.",
+        "tokens": [
+          "我",
+          "给",
+          "他",
+          "买",
+          "书"
+        ]
+      },
+      {
+        "zh": "妈妈给我做饭。",
+        "en": "Mum cooks for me.",
+        "tokens": [
+          "妈妈",
+          "给",
+          "我",
+          "做",
+          "饭"
+        ]
+      },
+      {
+        "zh": "我给你写字。",
+        "en": "I write characters for you.",
+        "tokens": [
+          "我",
+          "给",
+          "你",
+          "写",
+          "字"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zai-again",
+    "word": "再",
+    "level": 1,
+    "pattern": "再 + verb",
+    "meaning": "zài · again / then",
+    "explain": "再 often describes a future repetition or the next action, not an already completed repetition.",
+    "distractors": [
+      "的",
+      "吗"
+    ],
+    "contrast": "Which word marks a future repetition?",
+    "examples": [
+      {
+        "zh": "请再说。",
+        "en": "Please say it again.",
+        "tokens": [
+          "请",
+          "再",
+          "说"
+        ]
+      },
+      {
+        "zh": "明天再来。",
+        "en": "Come again tomorrow.",
+        "tokens": [
+          "明天",
+          "再",
+          "来"
+        ]
+      },
+      {
+        "zh": "我想再看。",
+        "en": "I want to watch it again.",
+        "tokens": [
+          "我",
+          "想",
+          "再",
+          "看"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bei-passive",
+    "word": "被",
+    "level": 3,
+    "pattern": "patient + 被 + agent + action",
+    "meaning": "bèi · passive",
+    "explain": "被 introduces the doer in a passive sentence, or marks a passive action when the doer is omitted.",
+    "distractors": [
+      "把",
+      "从"
+    ],
+    "contrast": "Which word marks the passive construction?",
+    "examples": [
+      {
+        "zh": "我的书被他拿走了。",
+        "en": "My book was taken away by him.",
+        "tokens": [
+          "我",
+          "的",
+          "书",
+          "被",
+          "他",
+          "拿",
+          "走",
+          "了"
+        ]
+      },
+      {
+        "zh": "门被打开了。",
+        "en": "The door was opened.",
+        "tokens": [
+          "门",
+          "被",
+          "打开",
+          "了"
+        ]
+      },
+      {
+        "zh": "苹果被他吃了。",
+        "en": "The apple was eaten by him.",
+        "tokens": [
+          "苹果",
+          "被",
+          "他",
+          "吃",
+          "了"
+        ]
+      }
+    ]
   }
 ];
