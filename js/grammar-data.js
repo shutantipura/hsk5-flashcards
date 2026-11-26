@@ -2174,5 +2174,427 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "wei-er-purpose",
+    "word": "为",
+    "level": 4,
+    "pattern": "为 A 而 B",
+    "meaning": "wèi … ér … · for a purpose",
+    "explain": "为 introduces the purpose; 而 links it to the action. More formal than 为了.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word introduces a purpose in the structure ___ A 而 B?",
+    "examples": [
+      {
+        "zh": "我们为生活而工作。",
+        "en": "We work to make a living.",
+        "tokens": [
+          "我们",
+          "为",
+          "生活",
+          "而",
+          "工作"
+        ]
+      },
+      {
+        "zh": "他为自己的梦想而努力。",
+        "en": "He works hard for his dream.",
+        "tokens": [
+          "他",
+          "为",
+          "自己",
+          "的",
+          "梦想",
+          "而",
+          "努力"
+        ]
+      },
+      {
+        "zh": "她为孩子而努力。",
+        "en": "She works hard for her child.",
+        "tokens": [
+          "她",
+          "为",
+          "孩子",
+          "而",
+          "努力"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chule",
+    "word": "除了",
+    "level": 3,
+    "pattern": "除了 A，(还 / 都) B",
+    "meaning": "chú le · besides / except",
+    "explain": "With 还 or 也, 除了 often adds A to another item. With 都, it can exclude A.",
+    "distractors": [
+      "根据",
+      "为了"
+    ],
+    "contrast": "Which word can introduce an exception or additional item?",
+    "examples": [
+      {
+        "zh": "除了我，大家都来了。",
+        "en": "Everyone except me came.",
+        "tokens": [
+          "除了",
+          "我",
+          "大家",
+          "都",
+          "来",
+          "了"
+        ]
+      },
+      {
+        "zh": "除了汉语，他还学数学。",
+        "en": "Besides Chinese, he studies mathematics.",
+        "tokens": [
+          "除了",
+          "汉语",
+          "他",
+          "还",
+          "学",
+          "数学"
+        ]
+      },
+      {
+        "zh": "除了今天，我每天都有时间。",
+        "en": "I have time every day except today.",
+        "tokens": [
+          "除了",
+          "今天",
+          "我",
+          "每",
+          "天",
+          "都",
+          "有",
+          "时间"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yiwai",
+    "word": "以外",
+    "level": 3,
+    "pattern": "除了 A 以外，B",
+    "meaning": "yǐ wài · apart from",
+    "explain": "以外 follows the item being excluded. It is often paired with 除了.",
+    "distractors": [
+      "以前",
+      "以后"
+    ],
+    "contrast": "Which word means apart from in 除了 A ___?",
+    "examples": [
+      {
+        "zh": "除了他以外，大家都来了。",
+        "en": "Everyone except him came.",
+        "tokens": [
+          "除了",
+          "他",
+          "以外",
+          "大家",
+          "都",
+          "来",
+          "了"
+        ]
+      },
+      {
+        "zh": "除了这本书以外，我都看过。",
+        "en": "I have read all of them except this book.",
+        "tokens": [
+          "除了",
+          "这",
+          "本",
+          "书",
+          "以外",
+          "我",
+          "都",
+          "看",
+          "过"
+        ]
+      },
+      {
+        "zh": "汉语以外，他还学数学。",
+        "en": "Besides Chinese, he also studies mathematics.",
+        "tokens": [
+          "汉语",
+          "以外",
+          "他",
+          "还",
+          "学",
+          "数学"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "conger",
+    "word": "从而",
+    "level": 5,
+    "pattern": "A，从而 B",
+    "meaning": "cóng ér · thereby",
+    "explain": "从而 expresses a result achieved through the preceding action or change.",
+    "distractors": [
+      "尽管",
+      "由于"
+    ],
+    "contrast": "Which connector means thereby, introducing an achieved result?",
+    "examples": [
+      {
+        "zh": "我们改变方法，从而提高了工作效率。",
+        "en": "We changed our method, thereby improving efficiency.",
+        "tokens": [
+          "我们",
+          "改变",
+          "方法",
+          "从而",
+          "提高",
+          "了",
+          "工作",
+          "效率"
+        ]
+      },
+      {
+        "zh": "他每天练习，从而提高了水平。",
+        "en": "He practised daily, thereby improving his level.",
+        "tokens": [
+          "他",
+          "每",
+          "天",
+          "练习",
+          "从而",
+          "提高",
+          "了",
+          "水平"
+        ]
+      },
+      {
+        "zh": "我们减少成本，从而增加收入。",
+        "en": "We reduced costs, thereby increasing revenue.",
+        "tokens": [
+          "我们",
+          "减少",
+          "成本",
+          "从而",
+          "增加",
+          "收入"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhi",
+    "word": "之",
+    "level": 4,
+    "pattern": "A 之 B",
+    "meaning": "zhī · of / between",
+    "explain": "之 is a formal linking element, often in fixed expressions. 的 is the everyday possessive.",
+    "distractors": [
+      "与",
+      "由"
+    ],
+    "contrast": "Which formal linker is used in 三人 ___ 中?",
+    "examples": [
+      {
+        "zh": "三人之中，他最高。",
+        "en": "Among three people, he is tallest.",
+        "tokens": [
+          "三",
+          "人",
+          "之",
+          "中",
+          "他",
+          "最",
+          "高"
+        ]
+      },
+      {
+        "zh": "一年之中，我最喜欢春天。",
+        "en": "Of the seasons in a year, I like spring most.",
+        "tokens": [
+          "一",
+          "年",
+          "之",
+          "中",
+          "我",
+          "最",
+          "喜欢",
+          "春天"
+        ]
+      },
+      {
+        "zh": "两国之间有很多不同。",
+        "en": "There are many differences between the two countries.",
+        "tokens": [
+          "两",
+          "国",
+          "之",
+          "间",
+          "有",
+          "很",
+          "多",
+          "不同"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zhishao",
+    "word": "至少",
+    "level": 4,
+    "pattern": "至少 + quantity / action",
+    "meaning": "zhì shǎo · at least",
+    "explain": "至少 indicates a minimum quantity or requirement, not a maximum.",
+    "distractors": [
+      "因此",
+      "仍然"
+    ],
+    "contrast": "Which word expresses a minimum?",
+    "examples": [
+      {
+        "zh": "你至少要等三天。",
+        "en": "You must wait at least three days.",
+        "tokens": [
+          "你",
+          "至少",
+          "要",
+          "等",
+          "三",
+          "天"
+        ]
+      },
+      {
+        "zh": "我每天至少学两小时。",
+        "en": "I study at least two hours each day.",
+        "tokens": [
+          "我",
+          "每",
+          "天",
+          "至少",
+          "学",
+          "两",
+          "小时"
+        ]
+      },
+      {
+        "zh": "这里至少有十个人。",
+        "en": "There are at least ten people here.",
+        "tokens": [
+          "这里",
+          "至少",
+          "有",
+          "十",
+          "个",
+          "人"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nandao",
+    "word": "难道",
+    "level": 4,
+    "pattern": "难道……吗？",
+    "meaning": "nán dào · could it really be that…?",
+    "explain": "难道 introduces a rhetorical question, often expecting the opposite of the literal statement.",
+    "distractors": [
+      "因此",
+      "仍然"
+    ],
+    "contrast": "Which word marks a rhetorical question?",
+    "examples": [
+      {
+        "zh": "难道你不知道吗？",
+        "en": "Surely you know?",
+        "tokens": [
+          "难道",
+          "你",
+          "不",
+          "知道",
+          "吗"
+        ]
+      },
+      {
+        "zh": "难道这不对吗？",
+        "en": "Isn't this right?",
+        "tokens": [
+          "难道",
+          "这",
+          "不",
+          "对",
+          "吗"
+        ]
+      },
+      {
+        "zh": "难道他不想去吗？",
+        "en": "Doesn't he want to go?",
+        "tokens": [
+          "难道",
+          "他",
+          "不",
+          "想",
+          "去",
+          "吗"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "buru",
+    "word": "不如",
+    "level": 4,
+    "pattern": "A 不如 B",
+    "meaning": "bù rú · not as good as / might as well",
+    "explain": "不如 compares A unfavourably with B or suggests a better alternative.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word means not as good as?",
+    "examples": [
+      {
+        "zh": "我的汉语不如他的好。",
+        "en": "My Chinese is not as good as his.",
+        "tokens": [
+          "我",
+          "的",
+          "汉语",
+          "不如",
+          "他",
+          "的",
+          "好"
+        ]
+      },
+      {
+        "zh": "这里的茶不如那里的好。",
+        "en": "The tea here is not as good as the tea there.",
+        "tokens": [
+          "这里",
+          "的",
+          "茶",
+          "不如",
+          "那里",
+          "的",
+          "好"
+        ]
+      },
+      {
+        "zh": "坐车不如走路。",
+        "en": "Walking is better than taking a vehicle.",
+        "tokens": [
+          "坐",
+          "车",
+          "不如",
+          "走",
+          "路"
+        ]
+      }
+    ]
   }
 ];
