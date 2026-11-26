@@ -23,7 +23,9 @@ export function checkedLibrary(vocab, questions=PRACTICE){
       validTokens(q.passageTokens,q.passage)&&Array.isArray(q.choices)&&q.choices.length===3&&new Set(q.choices).size===3&&q.choices.includes(q.answer)&&
       validTokens(q.tokens,q.passage+q.prompt+q.choices.join(''))&&(String(q.explain||'').match(/\p{Script=Han}+/gu)||[]).every(s=>clean(q.passage+q.prompt+q.choices.join('')).includes(s))&&!/\p{Script=Han}/u.test(q.title||'') // titles currently English; Chinese titles need authored tokens
     ))return [];
-    return [{id,level,title:p.title,body:p.passage,translation:p.translation,tokens:p.passageTokens,targets:uniq(qs.flatMap(q=>q.words||[])).filter(t=>p.passageTokens.includes(t)&&levels.get(t)<=level),questions:qs,next:p.next}];
+    const targets=uniq(qs.flatMap(q=>q.words||[]));
+    if(p.passageTokens.length>100||targets.length<5||targets.some(t=>!p.passageTokens.includes(t)||!(levels.get(t)<=level)))return [];
+    return [{id,level,title:p.title,body:p.passage,translation:p.translation,tokens:p.passageTokens,targets,questions:qs,next:p.next}];
   });
 }
 export function tokenSpans(text,tokens){

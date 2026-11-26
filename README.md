@@ -60,3 +60,6 @@ Separate exact-level decks group readings of the same written word within that l
 
 ### v2.5 smart flashcards
 Default smart queue includes saved reading words, due FSRS reviews, and unassessed words from completed passages (target words first). Exact HSK decks remain, with manual filters to study other words. FSRS uses the four confidence grades (Again/Hard/Good/Easy), preserving v2.4 ratings by scheduling from their original timestamp. Reading exposure alone never changes mastery. Cross-level homographs are tracked separately; generic reading familiarity is conservative. The reader uses flashcard confidence for highlighting and recommendations.
+
+### v2.6 short passages
+Every reading/listening passage must contain at most 100 syllabus word tokens (not Chinese characters) and at least five distinct target words occurring in the passage. The runtime checker and audit script enforce these limits. Existing story IDs, chapter links and question IDs are retained; some older passages target useful lower-level words as well as their declared level.
