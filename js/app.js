@@ -66,33 +66,43 @@ const reader = createReader({S,shell,saveSettings,esc});
 const flashcards = createFlashcards({S,shell,saveSettings,esc,getLibrary:()=>checkedLibrary(S.vocab)});
 const routes = { flashcards:flashcards.open, login, placement:reader.today, home:reader.today, explore:reader.explore, review:reader.review, study:flashcards.open, report:readerReport, words, settings, grammar:reader.review, practice:reader.explore };
 function go(r) { location.hash = `#/${r}`; }
+let ready=false;
 function route() {
+  if(!ready)return;
   const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
-  if (!api.getSession() && r !== 'login') return go('login');
+  if (!api.getSession() && r !== 'login') { go('login'); return login(); }
+  if(api.getSession()&&r==='login'){location.reload();return;}
   (routes[r] || reader.today)();
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route);
 onChange(() => { const d = $('.syncdot'); if (d) { d.className = `syncdot ${{ ok: 'ok', syncing: 'busy', error: 'err', offline: 'off' }[S.sync.status] || ''}`; d.dataset.tip = syncLabel(); } });
 
-// ================= WELCOME (no login: progress is tied to this phone, with a sync code as backup)
+// ================= WELCOME
 function login() {
-  app.innerHTML = `<main class="screen login">
-    <div class="seal">词</div><h1>Chinese Reading Room</h1><p class="muted">Discover Chinese through stories. HSK 3.0 levels 1–5.</p>
-    <button class="btn primary big" id="fresh">Start</button>
-    <form id="f" class="card">
-      <p class="small muted">Already used the app on another phone? Enter your sync code from <b>Settings</b> there.</p>
-      <label>Sync code<input name="code" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></label>
-      <button class="btn">Restore my progress</button>
-      <p id="msg" class="muted small"></p>
-    </form></main>`;
-  const msg = $('#msg');
-  $('#fresh').onclick = async () => { await api.newProfile(); await saveSettings({}); await sync(); go('home'); };
-  $('#f').onsubmit = async (e) => {
-    e.preventDefault(); msg.textContent = 'Looking up your progress…';
-    try { await api.useSyncCode(e.target.code.value); await sync(); go('home'); }
-    catch (err) { msg.textContent = err.message; }
+  const map=api.namedProfiles();
+  app.innerHTML = `<main class="screen login profile-welcome">
+    <div class="seal">词</div><h1>Chinese Reading Room</h1><p class="muted">学中文，一起进步</p>
+    <h2>Who's studying today?</h2>
+    <div class="profile-choices">${api.PROFILE_NAMES.map((n,i)=>`<button class="profile-choice ${i?'girlfriend':'boyfriend'}" data-profile="${n}"><span class="profile-avatar" aria-hidden="true">${i?'🌸':'🌿'}</span><strong>${n}</strong><span class="muted small">${map[n]?'Continue learning':'Start learning'}</span></button>`).join('')}</div>
+    <p class="muted small">No password needed. Your progress is separate.</p>
+    <p id="profile-msg" role="status" class="muted small"></p>
+    <details class="card profile-restore" id="profile-restore" ${api.PROFILE_NAMES.every(n=>map[n])?'hidden':''}><summary>Restore existing progress (optional)</summary>
+    <form id="restore-form"><label>Profile<select name="profile">${api.PROFILE_NAMES.filter(n=>!map[n]).map(n=>`<option>${n}</option>`).join('')}</select></label>
+    <label>Sync code<input name="code" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Your existing sync code" required></label>
+    <button class="btn">Restore progress</button></form><button class="btn" id="restore-legacy" hidden>Use previous progress on this device</button>
+    <p class="muted small">Only needed once to use the same progress on another device.</p></details></main>`;
+  let busy=false;
+  const msg=$('#profile-msg');
+  const select=async(n,opts={})=>{
+    if(busy)return;busy=true;app.querySelectorAll('button').forEach(b=>b.disabled=true);msg.textContent='Opening '+n+'…';
+    try{await api.chooseProfile(n,opts);location.reload();}
+    catch(err){msg.textContent=err.message;busy=false;app.querySelectorAll('button').forEach(b=>b.disabled=false);}
   };
+  app.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>select(b.dataset.profile));
+  const form=$('#restore-form');form.onsubmit=e=>{e.preventDefault();select(form.profile.value,{code:form.code.value});};
+  const legacy=$('#restore-legacy');legacy.onclick=()=>select(form.profile.value,{legacy:true});
+  api.legacyProfile().then(id=>{if(id&&!Object.values(map).includes(id)&&api.PROFILE_NAMES.some(n=>!map[n]))legacy.hidden=false;}).catch(()=>{});
 }
 
 // ================= PLACEMENT
@@ -455,6 +465,7 @@ function settings() {
       <label>Speed<select id="rate">${[0.7, 0.8, 0.9, 1].map((v) => `<option value="${v}" ${v === st.voiceRate ? 'selected' : ''}>${v === 1 ? 'Normal' : `${Math.round(v * 100)}%`}</option>`).join('')}</select></label>
       <button class="btn" id="test">Test voice · 你好，欢迎学习</button>
     </section>
+    <section class="card form"><h3>Profile</h3><div class="kv"><span>Studying as</span><b>${esc(api.profileName()||"")}</b></div><button class="btn" id="switch-profile">Switch profile</button></section>
     <section class="card form"><h3>Data</h3>
       <label>Sync code<input id="code" readonly value="${esc(api.userId() || '')}"></label>
       <button class="btn" id="copy">Copy sync code</button>
@@ -465,6 +476,7 @@ function settings() {
       <button class="btn bad" id="out">Remove progress from this phone</button>
       <p class="muted small center">Version ${APP_VERSION}</p>
     </section>`);
+  $('#switch-profile').onclick=()=>{location.hash='#/login';};
   $('#exam').onchange = (e) => e.target.value && saveSettings({ examDate: e.target.value });
   $('#ret').onchange = (e) => saveSettings({ retention: +e.target.value });
   $('#reader-baseline').onchange = e => saveSettings({readerBaseline:+e.target.value});
@@ -480,16 +492,21 @@ function settings() {
     await sync();
     const unsynced = S.outbox.cards.size || S.outbox.logs.size || S.outbox.settings;
     if (!confirm(unsynced ? 'Some progress has not synced yet and will be lost. Remove anyway?' : 'Your progress stays saved online. You can bring it back with your sync code. Remove it from this phone?')) return;
-    await api.forgetProfile(); await resetLocal(); go('login');
+    await resetLocal(); await api.forgetProfile(); location.hash='#/login'; location.reload();
   };
 }
 
 // ================= BOOT
 async function boot() {
   app.innerHTML = '<main class="screen center"><div class="seal">词</div><p class="muted">Loading…</p></main>';
-  await Promise.all([loadVocab(), loadLocal(), api.loadSession()]);
-  route();
-  if (api.getSession()) { sync().then(() => { if (!SES && ['home', ''].includes(location.hash.replace('#/', '')) && $('#read-level')) route(); }); }
+  await api.loadSession();
+  await loadVocab();
+  if(api.getSession()){
+    await loadLocal();
+    history.replaceState(null,'','#/home');
+  }else history.replaceState(null,'','#/login');
+  ready=true;route();
+  if(api.getSession()){sync().then(()=>{if(api.getSession()&&location.hash==='#/home'&&$('#read-level'))route();});}
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') sync(); else if (api.getSession()) scheduleSync(500); });
   window.addEventListener('online', () => scheduleSync(500));
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
