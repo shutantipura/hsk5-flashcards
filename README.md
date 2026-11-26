@@ -7,6 +7,7 @@ A personal, installable flashcard web app for the **2025 HSK 3.0 exam syllabus, 
 - **Three answer choices:** every quiz uses one correct option and two distractors, with a separate “I don't know” action.
 - **Example sentences:** up to three Chinese sentences selected against the app's 2025 HSK word list, with optional translations, vocabulary glosses, target-word highlighting and normal/slow speech playback. The selector prefers curated examples; harder or unrecognized vocabulary is excluded where detected. Cards with fewer than three suitable examples report the gap instead of displaying unchecked examples. Automated segmentation is conservative but is not a substitute for a human sense/grammar review. Examples appear when learning a new word, after answering, and in the word browser.
 - **Grammar Practice:** a separate pattern library, three level-checked examples per pattern, contextual cloze, contrast questions, function identification and self-graded Chinese production. Each skill has its own FSRS review schedule stored in synced settings; vocabulary statistics remain separate. The library covers all previously pending function-word and word-building candidates, with search, weakest-first sorting and per-pattern due counts. Grammar-only entries with matching lessons are excluded from meaning/recall quizzes and vocabulary coverage, but existing records are retained; optional listening and tones use sentence context. Mixed entries retain independent lexical meanings; entries without matching lessons remain in vocabulary study.
+- **Applied Practice:** level-checked reading passages ranked by estimated familiar vocabulary, collocations, near-synonyms, tap-to-order sentences and personalised mistake review. Independent FSRS scheduling and timestamp-merged progress in existing settings.
 - **Card types:** meaning (hanzi → English), listening (audio → hanzi, with similar-sounding, distinguishable distractors), tones (hanzi → pinyin), recall (English → hanzi).
 - **Pacing:** sets the daily number of new words from your exam date and the words left, keeps the last 10 days for review, and slows down when the review backlog is large.
 - **Placement test:** samples each level so you can skip what you already know. Skipped words are rechecked gradually.
@@ -22,6 +23,7 @@ Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitH
 - `js/report.js` – analytics
 - `js/store.js` – local storage and sync
 - `js/app.js` – UI
+- `js/practice.js` / `js/practice-data.js` – applied practice, adaptive selection and personal error review
 - `js/learning-mode.js` – reading-specific learning-type classification and review routing
 - `js/grammar.js` / `js/grammar-data.js` – grammar practice and pattern content
 - `js/examples.js` – level-aware example selection and curated replacements
