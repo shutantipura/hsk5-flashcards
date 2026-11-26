@@ -8,8 +8,8 @@ export const GRAMMAR = [
     "meaning": "wèi · for someone",
     "explain": "为 introduces the beneficiary or person concerned. 为了 introduces a purpose.",
     "distractors": [
-      "而",
-      "与"
+      "从",
+      "对"
     ],
     "contrast": "For whom is the action done?",
     "examples": [
@@ -1082,16 +1082,18 @@ export const GRAMMAR = [
     "contrast": "Which word expresses two developments changing together?",
     "examples": [
       {
-        "zh": "随着时间的变化，他长大了。",
-        "en": "As time passed, he grew up.",
+        "zh": "随着时间的变化，我们的生活也变了。",
+        "en": "As time passes, our lives also change.",
         "tokens": [
           "随着",
           "时间",
           "的",
           "变化",
-          "他",
-          "长",
-          "大",
+          "我们",
+          "的",
+          "生活",
+          "也",
+          "变",
           "了"
         ]
       },
@@ -1549,6 +1551,626 @@ export const GRAMMAR = [
           "我",
           "很",
           "满意"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yu-related",
+    "word": "与",
+    "level": 4,
+    "pattern": "与 A 有关",
+    "meaning": "yǔ · be related to",
+    "explain": "与 introduces the entity to which something is related. In everyday speech, 和 is common.",
+    "distractors": [
+      "由",
+      "而"
+    ],
+    "contrast": "Which formal preposition links something to 有关?",
+    "examples": [
+      {
+        "zh": "这件事与我有关。",
+        "en": "This matter concerns me.",
+        "tokens": [
+          "这",
+          "件",
+          "事",
+          "与",
+          "我",
+          "有关"
+        ]
+      },
+      {
+        "zh": "这个问题与钱有关。",
+        "en": "This question is related to money.",
+        "tokens": [
+          "这",
+          "个",
+          "问题",
+          "与",
+          "钱",
+          "有关"
+        ]
+      },
+      {
+        "zh": "这个故事与他的生活有关。",
+        "en": "This story is related to his life.",
+        "tokens": [
+          "这个",
+          "故事",
+          "与",
+          "他",
+          "的",
+          "生活",
+          "有关"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yi-wei",
+    "word": "以",
+    "level": 5,
+    "pattern": "以 A 为 B",
+    "meaning": "yǐ … wéi … · take A as B",
+    "explain": "以 introduces the thing being used as a standard, and 为 introduces its role.",
+    "distractors": [
+      "及",
+      "而"
+    ],
+    "contrast": "Which word starts the structure ___ A 为 B?",
+    "examples": [
+      {
+        "zh": "我们以客户的需要为目标。",
+        "en": "We take customers’ needs as our goal.",
+        "tokens": [
+          "我们",
+          "以",
+          "客户",
+          "的",
+          "需要",
+          "为",
+          "目标"
+        ]
+      },
+      {
+        "zh": "他以书为礼物。",
+        "en": "He gives a book as a gift.",
+        "tokens": [
+          "他",
+          "以",
+          "书",
+          "为",
+          "礼物"
+        ]
+      },
+      {
+        "zh": "我们以质量为标准。",
+        "en": "We take quality as our standard.",
+        "tokens": [
+          "我们",
+          "以",
+          "质量",
+          "为",
+          "标准"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "queshi",
+    "word": "却",
+    "level": 4,
+    "pattern": "A，却 B",
+    "meaning": "què · yet",
+    "explain": "却 signals a result that contrasts with the previous fact or expectation. It usually comes before the verb or adjective.",
+    "distractors": [
+      "由于",
+      "与"
+    ],
+    "contrast": "Which word means yet, before a contrasting predicate?",
+    "examples": [
+      {
+        "zh": "他很累，却不想休息。",
+        "en": "He is tired, yet does not want to rest.",
+        "tokens": [
+          "他",
+          "很",
+          "累",
+          "却",
+          "不",
+          "想",
+          "休息"
+        ]
+      },
+      {
+        "zh": "我认识他，他却不认识我。",
+        "en": "I know him, but he does not know me.",
+        "tokens": [
+          "我",
+          "认识",
+          "他",
+          "他",
+          "却",
+          "不",
+          "认识",
+          "我"
+        ]
+      },
+      {
+        "zh": "天气很好，她却不想出去。",
+        "en": "The weather is nice, yet she does not want to go out.",
+        "tokens": [
+          "天气",
+          "很",
+          "好",
+          "她",
+          "却",
+          "不",
+          "想",
+          "出去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wu-lun",
+    "word": "无论",
+    "level": 4,
+    "pattern": "无论 A，都 B",
+    "meaning": "wú lùn · regardless of",
+    "explain": "无论 introduces alternatives; the result is unchanged. It is more formal than 不管.",
+    "distractors": [
+      "既然",
+      "由于"
+    ],
+    "contrast": "Which word formally means regardless of?",
+    "examples": [
+      {
+        "zh": "无论你去哪里，我都跟你去。",
+        "en": "Wherever you go, I will go with you.",
+        "tokens": [
+          "无论",
+          "你",
+          "去",
+          "哪里",
+          "我",
+          "都",
+          "跟",
+          "你",
+          "去"
+        ]
+      },
+      {
+        "zh": "无论多难，我都不放弃。",
+        "en": "However difficult it is, I will not give up.",
+        "tokens": [
+          "无论",
+          "多",
+          "难",
+          "我",
+          "都",
+          "不",
+          "放弃"
+        ]
+      },
+      {
+        "zh": "无论谁来，都可以参加。",
+        "en": "Whoever comes can participate.",
+        "tokens": [
+          "无论",
+          "谁",
+          "来",
+          "都",
+          "可以",
+          "参加"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bing",
+    "word": "并",
+    "level": 4,
+    "pattern": "并 + verb / 并不 + adjective",
+    "meaning": "bìng · and / not actually",
+    "explain": "并 can link actions or emphasize a negation in 并不 or 并没有. It often corrects an assumption.",
+    "distractors": [
+      "与",
+      "由"
+    ],
+    "contrast": "Which adverb can emphasize a negation in ___ 不?",
+    "examples": [
+      {
+        "zh": "这件事并不难。",
+        "en": "This matter is not actually difficult.",
+        "tokens": [
+          "这",
+          "件",
+          "事",
+          "并",
+          "不",
+          "难"
+        ]
+      },
+      {
+        "zh": "我并不同意。",
+        "en": "I do not actually agree.",
+        "tokens": [
+          "我",
+          "并",
+          "不",
+          "同意"
+        ]
+      },
+      {
+        "zh": "他并没有生气。",
+        "en": "He was not angry after all.",
+        "tokens": [
+          "他",
+          "并",
+          "没有",
+          "生气"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bq",
+    "word": "并且",
+    "level": 4,
+    "pattern": "A，并且 B",
+    "meaning": "bìng qiě · and also",
+    "explain": "并且 adds another action or fact to the previous one.",
+    "distractors": [
+      "否则",
+      "因此"
+    ],
+    "contrast": "Which word adds another fact?",
+    "examples": [
+      {
+        "zh": "他同意了，并且愿意帮忙。",
+        "en": "He agreed and was also willing to help.",
+        "tokens": [
+          "他",
+          "同意",
+          "了",
+          "并且",
+          "愿意",
+          "帮忙"
+        ]
+      },
+      {
+        "zh": "她会说汉语，并且会写汉字。",
+        "en": "She speaks Chinese and can also write Chinese characters.",
+        "tokens": [
+          "她",
+          "会",
+          "说",
+          "汉语",
+          "并且",
+          "会",
+          "写",
+          "汉字"
+        ]
+      },
+      {
+        "zh": "请看这本书，并且回答问题。",
+        "en": "Please read this book and answer the questions.",
+        "tokens": [
+          "请",
+          "看",
+          "这",
+          "本",
+          "书",
+          "并且",
+          "回答",
+          "问题"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jiyou",
+    "word": "既",
+    "level": 4,
+    "pattern": "既 A，又 B",
+    "meaning": "jì … yòu … · both A and B",
+    "explain": "既 and 又 present two simultaneous qualities or conditions.",
+    "distractors": [
+      "与",
+      "由"
+    ],
+    "contrast": "Which word begins the paired structure ___ A 又 B?",
+    "examples": [
+      {
+        "zh": "这个房间既大又漂亮。",
+        "en": "This room is both big and beautiful.",
+        "tokens": [
+          "这个",
+          "房间",
+          "既",
+          "大",
+          "又",
+          "漂亮"
+        ]
+      },
+      {
+        "zh": "这本书既便宜又有意思。",
+        "en": "This book is both cheap and interesting.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "既",
+          "便宜",
+          "又",
+          "有意思"
+        ]
+      },
+      {
+        "zh": "她既聪明又努力。",
+        "en": "She is both clever and hardworking.",
+        "tokens": [
+          "她",
+          "既",
+          "聪明",
+          "又",
+          "努力"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shenzhi",
+    "word": "甚至",
+    "level": 4,
+    "pattern": "A，甚至 B",
+    "meaning": "shèn zhì · even",
+    "explain": "甚至 introduces a stronger or more surprising example.",
+    "distractors": [
+      "因此",
+      "由于"
+    ],
+    "contrast": "Which word introduces a stronger, surprising case?",
+    "examples": [
+      {
+        "zh": "他很忙，甚至没有时间吃饭。",
+        "en": "He is so busy he does not even have time to eat.",
+        "tokens": [
+          "他",
+          "很",
+          "忙",
+          "甚至",
+          "没有",
+          "时间",
+          "吃",
+          "饭"
+        ]
+      },
+      {
+        "zh": "我太累了，甚至不想说话。",
+        "en": "I am so tired I do not even want to talk.",
+        "tokens": [
+          "我",
+          "太",
+          "累",
+          "了",
+          "甚至",
+          "不",
+          "想",
+          "说话"
+        ]
+      },
+      {
+        "zh": "她很高兴，甚至哭了。",
+        "en": "She was so happy she even cried.",
+        "tokens": [
+          "她",
+          "很",
+          "高兴",
+          "甚至",
+          "哭",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anzhao",
+    "word": "按照",
+    "level": 4,
+    "pattern": "按照 + rule / plan + action",
+    "meaning": "àn zhào · according to",
+    "explain": "按照 indicates following a rule, method or plan. 根据 often points to the information behind a decision.",
+    "distractors": [
+      "关于",
+      "由于"
+    ],
+    "contrast": "Which word means following a rule or plan?",
+    "examples": [
+      {
+        "zh": "请按照计划工作。",
+        "en": "Please work according to the plan.",
+        "tokens": [
+          "请",
+          "按照",
+          "计划",
+          "工作"
+        ]
+      },
+      {
+        "zh": "我们按照老师的要求做。",
+        "en": "We do as the teacher requires.",
+        "tokens": [
+          "我们",
+          "按照",
+          "老师",
+          "的",
+          "要求",
+          "做"
+        ]
+      },
+      {
+        "zh": "他按照这个方法学习。",
+        "en": "He studies according to this method.",
+        "tokens": [
+          "他",
+          "按照",
+          "这个",
+          "方法",
+          "学习"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rengran",
+    "word": "仍然",
+    "level": 4,
+    "pattern": "仍然 + verb / adjective",
+    "meaning": "réng rán · still",
+    "explain": "仍然 shows that a state continues despite time passing or changed circumstances.",
+    "distractors": [
+      "因此",
+      "否则"
+    ],
+    "contrast": "Which word indicates that a state continues?",
+    "examples": [
+      {
+        "zh": "他仍然在学习。",
+        "en": "He is still studying.",
+        "tokens": [
+          "他",
+          "仍然",
+          "在",
+          "学习"
+        ]
+      },
+      {
+        "zh": "天气仍然很冷。",
+        "en": "The weather is still cold.",
+        "tokens": [
+          "天气",
+          "仍然",
+          "很",
+          "冷"
+        ]
+      },
+      {
+        "zh": "她仍然记得我。",
+        "en": "She still remembers me.",
+        "tokens": [
+          "她",
+          "仍然",
+          "记得",
+          "我"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nengfou",
+    "word": "能否",
+    "level": 4,
+    "pattern": "能否 + verb",
+    "meaning": "néng fǒu · whether one can",
+    "explain": "能否 asks about possibility or ability. 是否 is a more general yes-or-no question.",
+    "distractors": [
+      "由于",
+      "仍然"
+    ],
+    "contrast": "Which word asks whether something is possible?",
+    "examples": [
+      {
+        "zh": "请问您能否帮我？",
+        "en": "May I ask whether you can help me?",
+        "tokens": [
+          "请",
+          "问",
+          "您",
+          "能否",
+          "帮",
+          "我"
+        ]
+      },
+      {
+        "zh": "我不知道他能否来。",
+        "en": "I do not know whether he can come.",
+        "tokens": [
+          "我",
+          "不",
+          "知道",
+          "他",
+          "能否",
+          "来"
+        ]
+      },
+      {
+        "zh": "你能否再说一次？",
+        "en": "Could you say it again?",
+        "tokens": [
+          "你",
+          "能否",
+          "再",
+          "说",
+          "一",
+          "次"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yilai",
+    "word": "以来",
+    "level": 5,
+    "pattern": "time / event + 以来",
+    "meaning": "yǐ lái · since",
+    "explain": "以来 marks the period from a past time or event up to now. Place it after the starting point.",
+    "distractors": [
+      "以前",
+      "以后"
+    ],
+    "contrast": "Which word marks a period continuing from the past until now?",
+    "examples": [
+      {
+        "zh": "去年以来，我一直在学汉语。",
+        "en": "I have been learning Chinese since last year.",
+        "tokens": [
+          "去年",
+          "以来",
+          "我",
+          "一直",
+          "在",
+          "学",
+          "汉语"
+        ]
+      },
+      {
+        "zh": "三年以来，他一直在这里工作。",
+        "en": "He has worked here for the past three years.",
+        "tokens": [
+          "三",
+          "年",
+          "以来",
+          "他",
+          "一直",
+          "在",
+          "这里",
+          "工作"
+        ]
+      },
+      {
+        "zh": "从那天以来，我们常常联系。",
+        "en": "Since that day, we have often been in touch.",
+        "tokens": [
+          "从",
+          "那",
+          "天",
+          "以来",
+          "我们",
+          "常常",
+          "联系"
         ]
       }
     ]
