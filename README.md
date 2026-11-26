@@ -46,3 +46,5 @@ Run `node scripts/audit_examples.mjs` to validate all five levels and report how
 
 ### Passage-first redesign (v2.0)
 Today, Explore, Review and Progress now centre on reading. The checked library groups existing reading questions into stories, validates their authored token boundaries against the 2025 vocabulary and fails closed when a passage or question is not valid. All reading words are tappable; learner-marked familiarity and saved words affect estimated coverage and future story recommendations. Listening (device TTS), contextual reconstruction, optional comprehension and self-assessed retelling use the same story. Existing vocabulary/grammar records remain intact. Reader word/visit state merges by timestamp in the existing synced settings JSON. The vocabulary validator is not a guarantee of grammar-level or word-sense correctness.
+
+The reader also checks that Chinese fragments in question explanations are drawn from the checked passage or question text. New original stories introduce business, relationships, science and mystery topics, with linked chapters where available.

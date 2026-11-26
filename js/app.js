@@ -490,7 +490,7 @@ async function boot() {
   app.innerHTML = '<main class="screen center"><div class="seal">词</div><p class="muted">Loading…</p></main>';
   await Promise.all([loadVocab(), loadLocal(), api.loadSession()]);
   route();
-  if (api.getSession()) { sync().then(() => { if (!SES && ['home', ''].includes(location.hash.replace('#/', ''))) route(); }); }
+  if (api.getSession()) { sync().then(() => { if (!SES && ['home', ''].includes(location.hash.replace('#/', '')) && $('#read-level')) route(); }); }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') sync(); else if (api.getSession()) scheduleSync(500); });
   window.addEventListener('online', () => scheduleSync(500));
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');

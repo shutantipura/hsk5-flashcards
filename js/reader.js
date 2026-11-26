@@ -20,9 +20,9 @@ export function checkedLibrary(vocab, questions=PRACTICE){
     const validTokens=(ts,s)=>Array.isArray(ts)&&ts.length>0&&ts.every(t=>t&&levels.get(t)<=level)&&ts.join('')===clean(s);
     if(!id||!qs.every(q=>q.passage===p.passage&&(q.passageLevel||q.level)===level&&q.level<=level&&
       validTokens(q.passageTokens,q.passage)&&Array.isArray(q.choices)&&q.choices.length===3&&new Set(q.choices).size===3&&q.choices.includes(q.answer)&&
-      validTokens(q.tokens,q.passage+q.prompt+q.choices.join(''))&&!/\p{Script=Han}/u.test(q.title||'') // titles currently English; Chinese titles need authored tokens
+      validTokens(q.tokens,q.passage+q.prompt+q.choices.join(''))&&(q.explain.match(/\p{Script=Han}+/gu)||[]).every(s=>clean(q.passage+q.prompt+q.choices.join('')).includes(s))&&!/\p{Script=Han}/u.test(q.title||'') // titles currently English; Chinese titles need authored tokens
     ))return [];
-    return [{id,level,title:p.title,body:p.passage,translation:p.translation,tokens:p.passageTokens,targets:uniq(qs.flatMap(q=>q.words||[])),questions:qs}];
+    return [{id,level,title:p.title,body:p.passage,translation:p.translation,tokens:p.passageTokens,targets:uniq(qs.flatMap(q=>q.words||[])),questions:qs,next:p.next}];
   });
 }
 export function tokenSpans(text,tokens){
@@ -47,6 +47,9 @@ export function rankPassages(library,S,level,goal=.95,now=Date.now()){
   }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
 }
 const categories=[
+  ['Mystery & stories',/^Mystery/i],
+  ['Science & psychology',/^Science/i],
+  ['Relationships',/^Relationships/i],
   ['Business & work',/work|team|stock|customer|staff|market|meeting|position|decision|information|quality|price|tool|trust|supply|feedback|career|complaint|delivery/i],
   ['Learning & growth',/learn|school|exam|study|conversation|reading|language|mistake/i],
   ['Travel & daily life',/travel|hotel|commut|bus|appointment|shop|fruit|restaurant|gift|meal|breakfast|morning|routine|rain|weekend/i],
@@ -88,21 +91,21 @@ export function createReader({S,shell,saveSettings,esc}){
   function wordPanel(){
     if(!activeWord)return '<p class="muted small">Tap any word for its pronunciation and dictionary meanings.</p>';
     const ws=S.vocab.filter(w=>w.h===activeWord&&w.l<=current.level);
-    const w=activeWord,state=prefs()[w]?.status;
-    return '<section class="card read-gloss"><div class="kv"><b lang="zh-CN">'+esc(w)+'</b><button class="link" data-say="'+esc(w)+'">🔊</button><button class="link" id="read-close">Close</button></div>'+ws.map(x=>'<p><b>'+esc(x.p)+'</b> · HSK '+x.l+'<br>'+esc((x.m||[]).slice(0,4).join('; '))+'</p>').join('')+'<p class="muted small">Dictionary senses — use the passage to decide which fits.</p>'+ws.flatMap(grammarPatternsFor).filter(p=>p.level<=current.level).slice(0,3).map(p=>'<details><summary>'+esc(p.meaning)+'</summary><p>'+esc(p.explain)+'</p></details>').join('')+'<div class="read-actions"><button class="btn" id="read-save">'+(state==='learning'?'Saved for review ✓':'Save to review')+'</button><button class="btn" id="read-known">'+(state==='known'?'Marked familiar ✓':'I know this')+'</button></div></section>';
+    const w=activeWord,state=prefs()[w]?.status;const contextual=current.questions.filter(q=>q.focus===w).map(q=>'<p><b>In this story:</b> '+esc(q.explain)+'</p>').join('');
+    return '<section class="card read-gloss"><div class="kv"><b lang="zh-CN">'+esc(w)+'</b><button class="link" data-say="'+esc(w)+'">🔊</button><button class="link" id="read-close">Close</button></div>'+ws.map(x=>'<p><b>'+esc(x.p)+'</b> · HSK '+x.l+'<br>'+esc((x.m||[]).slice(0,4).join('; '))+'</p>').join('')+'<p class="muted small">Dictionary senses — use the passage to decide which fits.</p>'+contextual+ws.flatMap(grammarPatternsFor).filter(p=>p.level<=current.level).slice(0,3).map(p=>'<details><summary>'+esc(p.meaning)+'</summary><p>'+esc(p.explain)+'</p></details>').join('')+'<div class="read-actions"><button class="btn" id="read-save">'+(state==='learning'?'Saved for review ✓':'Save to review')+'</button><button class="btn" id="read-known">'+(state==='known'?'Marked familiar ✓':'I know this')+'</button></div></section>';
   }
   async function setWord(w,status){const old=prefs()[w]||{};await saveSettings({readerWords:{...prefs(),[w]:{...old,status,updated_at:stamp(),due:status==='learning'?stamp():old.due||stamp()}}});}
   function render(){
     const p=current;if(!p)return dashboard(route);
-    shell(route,'<button class="link" id="read-back">‹ '+(route==='home'?'Today':route==='explore'?'Explore':'Review')+'</button><header class="hdr"><div><p class="read-eyebrow">HSK '+p.level+' · '+esc(category(p))+'</p><h1>'+esc(p.title)+'</h1><p class="muted">'+p.tokens.length+' words · '+Math.round(p.familiar*100)+'% estimated familiar</p></div></header><section class="card read-paper"><div class="read-actions"><button class="btn" data-say="'+esc(p.body)+'">▶ Listen</button><button class="btn" data-say="'+esc(p.body)+'" data-slow="1">Slow audio</button><button class="btn" id="read-highlight">'+(highlight?'Hide highlights':'Highlight new words')+'</button></div><div class="read-text" lang="zh-CN">'+wordMarkup(p)+'</div><div id="read-gloss">'+wordPanel()+'</div><button class="link" id="read-translate">'+(showTranslation?'Hide translation':'Show translation')+'</button>'+(showTranslation?'<p class="read-translation">'+esc(p.translation||'No translation available.')+'</p>':'')+'</section><h3>Keep exploring this passage</h3><button class="btn primary" id="read-quiz">Reading questions · '+p.questions.length+'</button><button class="btn" id="read-listen">Listening challenge</button><button class="btn" id="read-recall">Recall a word in this story</button><button class="btn" id="read-retell">Retell the story</button><button class="btn ghost" id="read-done">Finish reading — no quiz</button>');
+    shell(route,'<button class="link" id="read-back">‹ '+(route==='home'?'Today':route==='explore'?'Explore':'Review')+'</button><header class="hdr"><div><p class="read-eyebrow">HSK '+p.level+' · '+esc(category(p))+'</p><h1>'+esc(p.title)+'</h1><p class="muted">'+p.tokens.length+' words · '+Math.round(p.familiar*100)+'% estimated familiar</p></div></header><section class="card read-paper"><div class="read-actions"><button class="btn" data-say="'+esc(p.body)+'">▶ Listen</button><button class="btn" data-say="'+esc(p.body)+'" data-slow="1">Slow audio</button><button class="btn" id="read-highlight">'+(highlight?'Hide highlights':'Highlight new words')+'</button></div><div class="read-text" lang="zh-CN">'+wordMarkup(p)+'</div><div id="read-gloss">'+wordPanel()+'</div><button class="link" id="read-translate">'+(showTranslation?'Hide translation':'Show translation')+'</button>'+(showTranslation?'<p class="read-translation">'+esc(p.translation||'No translation available.')+'</p>':'')+'</section><h3>Keep exploring this passage</h3><button class="btn primary" id="read-quiz">Reading questions · '+p.questions.length+'</button><button class="btn" id="read-listen">Listening challenge</button><button class="btn" id="read-recall">Recall a word in this story</button><button class="btn" id="read-retell">Retell the story</button><button class="btn ghost" id="read-done">Finish reading — no quiz</button>'+(p.next?'<button class="btn primary" id="read-next-chapter">Next chapter →</button>':''));
     $('#read-back').onclick=()=>dashboard(route);$('#read-highlight').onclick=()=>{highlight=!highlight;render();};$('#read-translate').onclick=()=>{showTranslation=!showTranslation;render();};
     document.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{activeWord=b.dataset.word;document.querySelectorAll('[data-word]').forEach(x=>x.classList.toggle('read-active',x.dataset.word===activeWord));$('#read-gloss').innerHTML=wordPanel();bindGloss();$('#read-gloss').scrollIntoView({block:'nearest'});});bindGloss();
-    $('#read-quiz').onclick=()=>startQuiz(false);$('#read-listen').onclick=()=>startQuiz(true);$('#read-recall').onclick=recall;$('#read-retell').onclick=retell;$('#read-done').onclick=async()=>{await markRead();dashboard(route);};
+    $('#read-quiz').onclick=()=>startQuiz(false);$('#read-listen').onclick=()=>startQuiz(true);$('#read-recall').onclick=recall;$('#read-retell').onclick=retell;$('#read-done').onclick=async()=>{await markRead();dashboard(route);};if($('#read-next-chapter'))$('#read-next-chapter').onclick=async()=>{await markRead();const next=rank().find(x=>x.id===p.next);if(next)open(next);};
   }
   function bindGloss(){
     if(!activeWord)return;
     $('#read-close').onclick=()=>{activeWord=null;render();};
-    $('#read-save').onclick=async()=>{const w=activeWord;await setWord(w,'learning');if(current&&activeWord===w){$('#read-gloss').innerHTML=wordPanel();bindGloss();}};
+    $('#read-save').onclick=async()=>{const w=activeWord;await setWord(w,'learning');if(current&&activeWord===w){render();}};
     $('#read-known').onclick=async()=>{const w=activeWord;await setWord(w,'known');if(current&&activeWord===w){$('#read-gloss').innerHTML=wordPanel();bindGloss();}};
   }
   async function markRead(){const id=current.id,old=S.settings.readerVisits?.[id]||{};await saveSettings({readerVisits:{...S.settings.readerVisits,[id]:{...old,updated_at:stamp()}}});}
@@ -126,11 +129,11 @@ export function createReader({S,shell,saveSettings,esc}){
     shell(route,'<h1>'+answers.filter(a=>a.ok).length+' / '+answers.length+' correct</h1><p class="muted">'+esc(p.title)+'</p><section class="card"><p class="read-text">'+esc(p.body)+'</p><details><summary>Translation</summary><p>'+esc(p.translation)+'</p></details></section>'+answers.map(a=>'<section class="card"><p class="'+(a.ok?'good':'bad')+'">'+(a.ok?'Correct':'Review')+'</p><b>'+esc(a.q.prompt)+'</b><p>Your answer: '+esc(a.chosen||'I don’t know')+'</p><p>Answer: '+esc(a.q.answer)+'</p><p>'+esc(a.q.explain)+'</p></section>').join('')+'<button class="btn" id="read-return">Back to story</button><button class="btn primary" id="read-finish">Find another story</button>');
     $('#read-return').onclick=render;$('#read-finish').onclick=()=>dashboard(route);
   }
-  function recall(){
+  function recall(override=null){
     const p=current,spans=tokenSpans(p.body,p.tokens);if(!spans)return render();
     const saved=prefs(), candidates=uniq(p.tokens).filter(t=>saved[t]?.status==='learning'||p.targets.includes(t));
     candidates.sort((a,b)=>Number(saved[b]?.status==='learning')-Number(saved[a]?.status==='learning')||Number(Date.parse(saved[a]?.due||0)>Date.now())-Number(Date.parse(saved[b]?.due||0)>Date.now()));
-    const target=candidates.find(t=>saved[t]?.status!=='known')||candidates[0]||p.tokens.find(t=>t.length>1)||p.tokens[0];
+    const target=(typeof override==='string'&&p.tokens.includes(override)?override:null)||candidates.find(t=>saved[t]?.status==='learning'&&Date.parse(saved[t].due||0)<=Date.now())||candidates.find(t=>!saved[t])||candidates[0]||p.tokens.find(t=>t.length>1)||p.tokens[0];
     const sentences=[];let sentence=[];for(const span of spans){sentence.push(span);if(!span.word&&/[。！？]/u.test(span.text)){sentences.push(sentence);sentence=[];}}if(sentence.length)sentences.push(sentence);
     const source=sentences.find(s=>s.some(x=>x.word&&x.text===target));if(!source)return render();
     let blanked=false;const prompt=source.map(s=>{if(s.word&&s.text===target&&!blanked){blanked=true;return '＿＿';}return s.text;}).join('');
@@ -140,7 +143,7 @@ export function createReader({S,shell,saveSettings,esc}){
     async function check(value){if(answered)return;answered=true;const ok=value.trim()===target;const old=prefs()[target]||{};const id='reader:'+target;const next=gradePractice(S.settings.practiceProgress||{},id,ok,Date.now(),S.settings.retention);
       try{await saveSettings({practiceProgress:next,readerWords:{...prefs(),[target]:{...old,status:'learning',due:next[id].due,updated_at:stamp()}}});}catch(e){answered=false;$('#read-feedback').textContent='Could not save. Try again.';return;}
       if(!$('#read-feedback')||current!==p)return;
-      $('#read-cloze').querySelector('button').disabled=true;$('#read-reveal').disabled=true;$('#read-feedback').innerHTML='<p><b>'+esc(target)+'</b> · '+(ok?'Correct':'Original word')+'</p><p>'+esc(source.map(s=>s.text).join(''))+'</p><button class="btn" id="read-return2">Return to story</button>';$('#read-return2').onclick=render;
+      $('#read-cloze').querySelector('button').disabled=true;$('#read-reveal').disabled=true;$('#read-feedback').innerHTML='<p><b>'+esc(target)+'</b> · '+(ok?'Correct':'Original word')+'</p><p>'+esc(source.map(s=>s.text).join(''))+'</p><button class="btn" id="read-return2">Return to story</button><button class="btn" id="read-another">Try another word in this story</button>';$('#read-return2').onclick=render;$('#read-another').onclick=()=>recall(candidates.find(t=>t!==target&&!S.settings.practiceProgress?.['reader:'+t]?.reps)||candidates.find(t=>t!==target)||p.tokens.find(t=>t!==target));
     }
     $('#read-cloze').onsubmit=e=>{e.preventDefault();check(e.target.answer.value);};$('#read-reveal').onclick=()=>check('');
   }
