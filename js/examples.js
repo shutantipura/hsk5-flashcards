@@ -7,6 +7,7 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
   }
   const seg = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('zh-CN', {granularity:'word'}) : null;
   const maxLen = Math.max(...Array.from(levels.keys(), x => x.length));
+  const grammar = new Set(vocab.filter(w=>w.s?.some(p=>['particle','pronoun','numeral','measure word','preposition','conjunction','adverb','suffix','prefix'].includes(p))).map(w=>w.h));
   const cache = new Map();
   function analyze(zh) {
     if (cache.has(zh)) return cache.get(zh);
@@ -18,16 +19,31 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
         continue;
       }
       const parts = [...seg.segment(chunk)];
-      const boundaries = new Set([...parts.map(p=>p.index),chunk.length]);
+      // ICU sometimes groups several simple words together (我的, 一本书).
+      // Scan known syllabus words greedily; never split a known harder word.
+      // For an ICU segment not in the list, only accept a split if it has a
+      // grammatical component, or is a normal number / classifier phrase.
+      const local = [];
       for(let i=0;i<chunk.length;) {
         let hit = '';
         for(let end=Math.min(i+maxLen,chunk.length);end>i;end--) {
           const word=chunk.slice(i,end);
-          if(boundaries.has(end)&&levels.has(word)){hit=word;break;}
+          if(levels.has(word)){hit=word;break;}
         }
         if(!hit){cache.set(zh,null);return null;}
-        tokens.push(hit); level=Math.max(level,levels.get(hit)); i+=hit.length;
+        local.push({word:hit,start:i,end:i+hit.length}); i+=hit.length;
       }
+      for(const part of parts) {
+        if(levels.has(part.segment)) {
+          level=Math.max(level,levels.get(part.segment));
+          continue;
+        }
+        const overlap=local.filter(t=>t.start<part.index+part.segment.length && t.end>part.index);
+        const grammatical=overlap.some(t=>grammar.has(t.word));
+        const spans=overlap.some(t=>t.start<part.index || t.end>part.index+part.segment.length);
+        if(!grammatical && !spans){cache.set(zh,null);return null;}
+      }
+      for(const t of local){tokens.push(t.word);level=Math.max(level,levels.get(t.word));}
     }
     const result = tokens.length ? {tokens,level} : null;
     cache.set(zh,result); return result;
@@ -54,6 +70,7 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
     const chosen = [], seen = new Set();
     const add = e=>{
       if(chosen.length>=3 || !valid(e) || seen.has(e.zh)) return;
+      if (['也同学在这个学校学习。','那多的书看。','请不要与我的事情有关。'].includes(e.zh)) return;
       const a=analyze(e.zh);
       if(!a || a.level>w.l || !a.tokens.includes(w.h)) return;
       chosen.push({...e, tokens:a.tokens, maxLevel:a.level});seen.add(e.zh);
