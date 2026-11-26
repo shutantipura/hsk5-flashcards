@@ -208,11 +208,28 @@ function wordBlock(w, { big = true } = {}) {
     <div class="meta"><span class="tag">HSK ${w.l}</span>${[...new Set(w.s.map((s) => pos[s] || s))].slice(0, 3).map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div></div>`;
 }
 function examplesBlock(w) {
-  const examples = S.examples.get(w.i);
-  if (!examples?.length) return '';
-  const highlight = (sentence) => sentence.split(w.h).map(esc).join('<mark class="example-target">' + esc(w.h) + '</mark>');
-  return `<section class="examples" aria-label="Example sentences"><h3>Example sentences</h3>
-    ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e.zh)}</div><div class="example-en muted">${esc(e.en)}</div></div><button type="button" class="spk" data-say="${esc(e.zh)}" aria-label="Play example sentence">🔊</button></div>`).join('')}
+  const examples = S.examples.get(w.i) || [];
+  // Hide English until requested, so each example is also a reading exercise.
+  const highlight = (e) => {
+    let out = '', offset = 0;
+    for (const token of e.tokens || []) {
+      const at = e.zh.indexOf(token, offset);
+      if (at < 0) return esc(e.zh);
+      out += esc(e.zh.slice(offset, at)) + (token === w.h ? '<mark class="example-target">' + esc(token) + '</mark>' : esc(token));
+      offset = at + token.length;
+    }
+    return out + esc(e.zh.slice(offset));
+  };
+  const glossary = (e) => [...new Set(e.tokens || [])].filter(t => t !== w.h).map(t => {
+    const matches = S.vocab.filter(v => v.h === t && v.l <= w.l);
+    const v = matches.sort((a,b) => a.l-b.l)[0];
+    return v ? `<span><b lang="zh-CN">${esc(t)}</b> ${esc(v.p)} · ${esc(shortMeaning(v))}</span>` : '';
+  }).filter(Boolean).join('');
+  return `<section class="examples" aria-label="Example sentences"><h3>Example sentences <span class="muted small">· HSK ${w.l} or below</span></h3>
+    ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e)}</div>
+      <details class="example-help"><summary>Translation &amp; vocabulary</summary><div class="example-en">${esc(e.en)}</div><div class="example-glossary muted small">${glossary(e)}</div></details></div>
+      <div class="example-audio"><button type="button" class="spk" data-say="${esc(e.zh)}" aria-label="Play example sentence">🔊</button><button type="button" class="spk slow" data-say="${esc(e.zh)}" data-slow="1" aria-label="Play example slowly">🐢</button></div></div>`).join('')}
+    ${examples.length < 3 ? `<p class="muted small">${examples.length ? examples.length + ' of 3 examples pass' : 'No example currently passes'} the vocabulary check. Harder or unrecognized words are not shown.</p>` : ''}
   </section>`;
 }
 function breakdownBlock(w) {
