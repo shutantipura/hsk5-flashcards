@@ -437,17 +437,13 @@ function wordSheet(id) {
 
 // ================= SETTINGS
 function settings() {
-  const st = S.settings; const p = pacing();
+  const st = S.settings;
   shell('settings', `<header class="hdr"><h1>Settings</h1></header>
     <section class="card form">
       <label>Exam date<input type="date" id="exam" value="${esc(st.examDate)}"></label>
       <label>Target recall<select id="ret">${[0.85, 0.88, 0.9, 0.92, 0.95].map((v) => `<option value="${v}" ${v === st.retention ? 'selected' : ''}>${pct(v)}${v === 0.9 ? ' (recommended)' : v > 0.9 ? ' (more reviews)' : ' (fewer reviews)'}</option>`).join('')}</select></label>
-      <label>New words per day<select id="pace"><option value="auto" ${st.pace === 'auto' ? 'selected' : ''}>Automatic (now ${p.target}/day)</option>${[5, 10, 15, 20, 25, 30, 40, 50].map((n) => `<option value="${n}" ${String(st.pace) === String(n) ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
-    </section>
-    <section class="card form"><h3>Card types</h3>
-      <label class="tg"><input type="checkbox" checked disabled> Meaning (hanzi → English)</label>
-      ${[['listen', 'Listening (audio → hanzi)'], ['tone', 'Tones (hanzi → pinyin)'], ['recall', 'Recall (English → hanzi)']].map(([k, l]) => `<label class="tg"><input type="checkbox" data-k="${k}" ${st.kinds[k] ? 'checked' : ''}> ${l}</label>`).join('')}
-      <p class="muted small">Extra card types for a word unlock once you know its meaning well. Each one adds reviews.</p>
+      <label>Assume familiar through (optional)<select id="reader-baseline">${[0,1,2,3,4].map(n=>`<option value="${n}" ${n===(st.readerBaseline||0)?'selected':''}>${n?'HSK '+n:'No assumption'}</option>`).join('')}</select></label>
+      <p class="muted small">Only used for reading difficulty estimates. Marking individual words overrides this assumption; it does not certify vocabulary mastery.</p>
     </section>
     <section class="card form"><h3>Voice</h3>
       <label>Speed<select id="rate">${[0.7, 0.8, 0.9, 1].map((v) => `<option value="${v}" ${v === st.voiceRate ? 'selected' : ''}>${v === 1 ? 'Normal' : `${Math.round(v * 100)}%`}</option>`).join('')}</select></label>
@@ -460,26 +456,23 @@ function settings() {
       <div class="kv"><span>Sync</span><b>${esc(syncLabel())}</b></div>
       <button class="btn" id="sync">Sync now</button>
       <button class="btn" id="exp">Export my data (JSON)</button>
-      <button class="btn" id="replace">Run placement test again</button>
       <button class="btn bad" id="out">Remove progress from this phone</button>
       <p class="muted small center">Version ${APP_VERSION}</p>
     </section>`);
   $('#exam').onchange = (e) => e.target.value && saveSettings({ examDate: e.target.value });
   $('#ret').onchange = (e) => saveSettings({ retention: +e.target.value });
-  $('#pace').onchange = (e) => saveSettings({ pace: e.target.value === 'auto' ? 'auto' : +e.target.value }).then(settings);
+  $('#reader-baseline').onchange = e => saveSettings({readerBaseline:+e.target.value});
   $('#rate').onchange = (e) => saveSettings({ voiceRate: +e.target.value });
-  app.querySelectorAll('[data-k]').forEach((c) => (c.onchange = () => saveSettings({ kinds: { ...S.settings.kinds, [c.dataset.k]: c.checked } })));
   $('#test').onclick = () => speak('你好，欢迎学习');
   $('#sync').onclick = async () => { await sync(); settings(); toast(esc(syncLabel())); };
   $('#exp').onclick = () => {
     const blob = new Blob([JSON.stringify({ settings: S.settings, cards: [...S.cards.values()], logs: S.logs }, null, 1)], { type: 'application/json' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hsk5-export-${new Date().toISOString().slice(0, 10)}.json`; a.click();
   };
-  $('#replace').onclick = async () => { await saveSettings({ placementDone: false }); P = null; go('placement'); };
   $('#copy').onclick = async () => { try { await navigator.clipboard.writeText(api.userId()); toast('Sync code copied'); } catch { $('#code').select(); toast('Select and copy the code'); } };
   $('#out').onclick = async () => {
     await sync();
-    const unsynced = S.outbox.cards.size || S.outbox.logs.size;
+    const unsynced = S.outbox.cards.size || S.outbox.logs.size || S.outbox.settings;
     if (!confirm(unsynced ? 'Some progress has not synced yet and will be lost. Remove anyway?' : 'Your progress stays saved online. You can bring it back with your sync code. Remove it from this phone?')) return;
     await api.forgetProfile(); await resetLocal(); go('login');
   };

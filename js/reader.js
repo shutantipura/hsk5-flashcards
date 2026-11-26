@@ -20,7 +20,7 @@ export function checkedLibrary(vocab, questions=PRACTICE){
     const validTokens=(ts,s)=>Array.isArray(ts)&&ts.length>0&&ts.every(t=>t&&levels.get(t)<=level)&&ts.join('')===clean(s);
     if(!id||!qs.every(q=>q.passage===p.passage&&(q.passageLevel||q.level)===level&&q.level<=level&&
       validTokens(q.passageTokens,q.passage)&&Array.isArray(q.choices)&&q.choices.length===3&&new Set(q.choices).size===3&&q.choices.includes(q.answer)&&
-      validTokens(q.tokens,q.passage+q.prompt+q.choices.join(''))&&(q.explain.match(/\p{Script=Han}+/gu)||[]).every(s=>clean(q.passage+q.prompt+q.choices.join('')).includes(s))&&!/\p{Script=Han}/u.test(q.title||'') // titles currently English; Chinese titles need authored tokens
+      validTokens(q.tokens,q.passage+q.prompt+q.choices.join(''))&&(String(q.explain||'').match(/\p{Script=Han}+/gu)||[]).every(s=>clean(q.passage+q.prompt+q.choices.join('')).includes(s))&&!/\p{Script=Han}/u.test(q.title||'') // titles currently English; Chinese titles need authored tokens
     ))return [];
     return [{id,level,title:p.title,body:p.passage,translation:p.translation,tokens:p.passageTokens,targets:uniq(qs.flatMap(q=>q.words||[])),questions:qs,next:p.next}];
   });
@@ -33,6 +33,7 @@ export function tokenSpans(text,tokens){
 export function coverage(p,known){return p.tokens.filter(t=>known.has(t)).length/p.tokens.length;}
 export function rankPassages(library,S,level,goal=.95,now=Date.now()){
   const known=buildKnowledge(S,now), words=S.settings.readerWords||{}, visits=S.settings.readerVisits||{}, progress=S.settings.practiceProgress||{};
+  for(const w of S.vocab)if(w.l<=(S.settings.readerBaseline||0))known.add(w.h);
   for(const [w,c] of Object.entries(words)){if(c.status==='known')known.add(w);else if(c.status==='learning')known.delete(w);}
   const weak=new Map();
   for(const l of S.logs){const w=S.byId.get(l.word_id);if(!w)continue;const age=Math.max(0,(now-Date.parse(l.reviewed_at))/86400000);if(age<30)weak.set(w.h,(weak.get(w.h)||0)+(l.correct?-.2:1)*Math.exp(-age/14));}
@@ -64,7 +65,7 @@ export function createReader({S,shell,saveSettings,esc}){
   const card=(p,featured=false)=>'<button class="read-card '+(featured?'read-feature':'')+'" data-open="'+esc(p.id)+'"><span class="read-meta">HSK '+p.level+' · '+p.tokens.length+' words · '+esc(category(p))+'</span><strong>'+esc(p.title)+'</strong><span class="read-preview" lang="zh-CN">'+esc(p.body.split(/[。！？]/u)[0])+'…</span><span class="read-meta">'+Math.round(p.familiar*100)+'% estimated familiar'+(p.recycle?' · '+p.recycle+' review words':'')+' · '+(S.settings.readerVisits?.[p.id]?'Read again':'Read story')+' →</span></button>';
   function bindCards(){document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{const p=rank().find(x=>x.id===b.dataset.open);if(p)open(p);});}
   function dashboard(where='home'){
-    route=where;current=null;const all=rank(),words=prefs(),visits=S.settings.readerVisits||{};
+    route=where;current=null;level=S.settings.readerLevel||5;goal=S.settings.readerGoal||.95;const ranked=rank(),words=prefs(),visits=S.settings.readerVisits||{},all=ranked.filter(p=>!ranked.some(prev=>prev.next===p.id&&!visits[prev.id]));
     const filters='<div class="read-filters"><label>Maximum level<select id="read-level">'+[1,2,3,4,5].map(n=>'<option value="'+n+'" '+(n===level?'selected':'')+'>HSK '+n+'</option>').join('')+'</select></label><label>Reading style<select id="read-goal">'+[[.98,'Relaxed'],[.95,'Daily learning'],[.9,'Challenge']].map(([v,n])=>'<option value="'+v+'" '+(v===goal?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div>';
     let body='';
     if(where==='home')body='<header class="hdr"><div><p class="read-eyebrow">YOUR CHINESE READING ROOM</p><h1 lang="zh-CN">今天想读什么？</h1><p class="muted">A little Chinese, a new discovery.</p></div></header>'+filters+'<div class="read-tally"><span><b>'+Object.keys(visits).length+'</b> stories read</span><span><b>'+Object.values(words).filter(x=>x.status==='learning').length+'</b> words to revisit</span></div><h3>For you today</h3>'+(all[0]?card(all[0],true):'<p>No checked passages available.</p>')+'<h3>More to discover</h3>'+all.slice(1,5).map(p=>card(p)).join('')+'<a class="btn" href="#/explore">Explore the full library →</a>';
@@ -76,7 +77,7 @@ export function createReader({S,shell,saveSettings,esc}){
       body='<header class="hdr"><div><h1>Review in context</h1><p class="muted">Meet familiar words in another story.</p></div></header>'+filters+'<section class="card"><h3>'+due.length+' saved words ready to revisit</h3><div class="read-tags">'+saved.map(([w])=>'<span>'+esc(w)+'</span>').join('')+'</div><p class="muted small">Reading a word is not automatically counted as mastery. Practise recalling it in its original sentence.</p></section><h3>Stories to revisit</h3>'+ (matches.length?matches:all.slice(0,5)).map(p=>card(p)).join('');
     }
     shell(where,body);bindCards();
-    $('#read-level').onchange=e=>{level=+e.target.value;dashboard(where);};$('#read-goal').onchange=e=>{goal=+e.target.value;dashboard(where);};
+    $('#read-level').onchange=async e=>{await saveSettings({readerLevel:+e.target.value});dashboard(where);};$('#read-goal').onchange=async e=>{await saveSettings({readerGoal:+e.target.value});dashboard(where);};
     if(where==='explore'){$('#read-exact').onchange=e=>{exact=e.target.checked;dashboard(where);};$('#read-topic').onchange=e=>{topic=e.target.value;dashboard(where);};$('#read-search').onsubmit=e=>{e.preventDefault();search=e.target.q.value.trim();dashboard(where);};}
   }
   function open(p){current=p;mode='read';showTranslation=false;activeWord=null;render();window.scrollTo(0,0);}
