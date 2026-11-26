@@ -4793,34 +4793,35 @@ export const GRAMMAR = [
         "zh": "我们是学生。",
         "en": "We are students.",
         "tokens": [
-          "我",
-          "们",
+          "我们",
           "是",
           "学生"
-        ]
+        ],
+        "component": "我们"
       },
       {
         "zh": "你们去哪里？",
         "en": "Where are you all going?",
         "tokens": [
-          "你",
-          "们",
+          "你们",
           "去",
           "哪里"
-        ]
+        ],
+        "component": "你们"
       },
       {
         "zh": "他们都在家。",
         "en": "They are all at home.",
         "tokens": [
-          "他",
-          "们",
+          "他们",
           "都",
           "在",
           "家"
-        ]
+        ],
+        "component": "他们"
       }
-    ]
+    ],
+    "morphology": true
   },
   {
     "id": "di-ordinal",
@@ -5519,13 +5520,13 @@ export const GRAMMAR = [
     "contrast": "Which word fits this function: and so on?",
     "examples": [
       {
-        "zh": "我喜欢苹果、水果等。",
-        "en": "I like apples, fruit and so on.",
+        "zh": "我喜欢茶、水等。",
+        "en": "I like tea, water and so on.",
         "tokens": [
           "我",
           "喜欢",
-          "苹果",
-          "水果",
+          "茶",
+          "水",
           "等"
         ]
       },
@@ -8275,7 +8276,7 @@ export const GRAMMAR = [
     "level": 3,
     "pattern": "institution + 长",
     "meaning": "zhǎng · head / leader suffix",
-    "explain": "长 pronounced zhǎng can be a component in a title meaning the head of an organization.",
+    "explain": "长 pronounced zhǎng can be a component in a title meaning head of an organization, such as 校长. Its independent verb meaning grow is retained.",
     "distractors": [
       "人",
       "家"
@@ -8323,7 +8324,7 @@ export const GRAMMAR = [
     "id": "w551-usage",
     "word": "老",
     "level": 3,
-    "pattern": "老 + person",
+    "pattern": "老 in person-related compounds",
     "meaning": "lǎo · older / familiar (word-building)",
     "explain": "老 can refer to age or familiarity; some compounds have fixed meanings, such as 老师. The familiar surname prefix is a different use.",
     "distractors": [
@@ -8479,7 +8480,7 @@ export const GRAMMAR = [
     "id": "w1199-usage",
     "word": "性",
     "level": 4,
-    "pattern": "category + 性",
+    "pattern": "性 in category-related words",
     "meaning": "xìng · sex / nature (word-building)",
     "explain": "性 can indicate a category or nature; 女性 and 男性 refer to sex. The productive suffix for abstract qualities is a related but separate use.",
     "distractors": [
@@ -8528,7 +8529,7 @@ export const GRAMMAR = [
     "id": "w1213-usage",
     "word": "感",
     "level": 4,
-    "pattern": "感 + word",
+    "pattern": "感 in feeling-related words",
     "meaning": "gǎn · feeling / perception (word-building)",
     "explain": "感 contributes a sense of feeling or perception in common compounds. The productive suffix meaning a sense of something is not illustrated at this level.",
     "distractors": [
@@ -8924,16 +8925,15 @@ export const GRAMMAR = [
         "component": "现代化"
       },
       {
-        "zh": "我们要注意这些变化。",
-        "en": "We need to pay attention to these changes.",
+        "zh": "这个城市正在现代化。",
+        "en": "This city is modernizing.",
         "tokens": [
-          "我们",
-          "要",
-          "注意",
-          "这些",
-          "变化"
+          "这个",
+          "城市",
+          "正在",
+          "现代化"
         ],
-        "component": "变化"
+        "component": "现代化"
       }
     ],
     "morphology": true
@@ -8989,6 +8989,153 @@ export const GRAMMAR = [
           "文化"
         ],
         "component": "民族"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w49-usage",
+    "word": "小",
+    "level": 1,
+    "pattern": "小 + noun",
+    "meaning": "xiǎo · small / young (word-building)",
+    "explain": "小 can form words referring to small or young people or things. Learn each complete compound.",
+    "distractors": [
+      "大",
+      "新"
+    ],
+    "contrast": "Which word or component expresses small / young (word-building)?",
+    "examples": [
+      {
+        "zh": "小朋友喜欢吃苹果。",
+        "en": "Children like eating apples.",
+        "tokens": [
+          "小朋友",
+          "喜欢",
+          "吃",
+          "苹果"
+        ],
+        "component": "小朋友"
+      },
+      {
+        "zh": "他是小学生。",
+        "en": "He is a primary school pupil.",
+        "tokens": [
+          "他",
+          "是",
+          "小学生"
+        ],
+        "component": "小学生"
+      },
+      {
+        "zh": "我去小学。",
+        "en": "I am going to the primary school.",
+        "tokens": [
+          "我",
+          "去",
+          "小学"
+        ],
+        "component": "小学"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w56-usage",
+    "word": "家",
+    "level": 1,
+    "pattern": "家 in family-related compounds",
+    "meaning": "jiā · family / home (word-building)",
+    "explain": "家 refers to a home or family in compounds. The suffix meaning specialist is a separate use; suitable compounds are above this level.",
+    "distractors": [
+      "人",
+      "国"
+    ],
+    "contrast": "Which word or component expresses family / home (word-building)?",
+    "examples": [
+      {
+        "zh": "我的家人在中国。",
+        "en": "My family is in China.",
+        "tokens": [
+          "我",
+          "的",
+          "家人",
+          "在",
+          "中国"
+        ],
+        "component": "家人"
+      },
+      {
+        "zh": "我喜欢我的家人。",
+        "en": "I love my family.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "我",
+          "的",
+          "家人"
+        ],
+        "component": "家人"
+      },
+      {
+        "zh": "他的家人都在家。",
+        "en": "His family are all at home.",
+        "tokens": [
+          "他",
+          "的",
+          "家人",
+          "都",
+          "在",
+          "家"
+        ],
+        "component": "家人"
+      }
+    ],
+    "morphology": true
+  },
+  {
+    "id": "w820-usage",
+    "word": "员",
+    "level": 3,
+    "pattern": "activity + 员",
+    "meaning": "yuán · person / participant suffix",
+    "explain": "员 identifies someone involved in an activity, as in 运动员.",
+    "distractors": [
+      "人",
+      "家"
+    ],
+    "contrast": "Which word or component expresses person / participant suffix?",
+    "examples": [
+      {
+        "zh": "他是运动员。",
+        "en": "He is an athlete.",
+        "tokens": [
+          "他",
+          "是",
+          "运动员"
+        ],
+        "component": "运动员"
+      },
+      {
+        "zh": "运动员每天运动。",
+        "en": "Athletes exercise every day.",
+        "tokens": [
+          "运动员",
+          "每",
+          "天",
+          "运动"
+        ],
+        "component": "运动员"
+      },
+      {
+        "zh": "我喜欢运动员。",
+        "en": "I like athletes.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "运动员"
+        ],
+        "component": "运动员"
       }
     ],
     "morphology": true
