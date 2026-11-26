@@ -1,5 +1,6 @@
 // Study engine: daily pacing, queue building, distractors, auto-grading, personalisation.
 import { S, key, saveCards, addLog } from './store.js';
+import { isGrammarOnly, allowsCard, vocabularyMeanings, grammarStarted } from './learning-mode.js';
 import { schedule, recallProb, fitFactor, State, DAY, retrievability, elapsedDays } from './fsrs.js';
 
 export const KINDS = {
@@ -52,14 +53,14 @@ export function autoGrade(kind, correct, ms) {
 export const meaningCard = (wid) => S.cards.get(key(wid, 'meaning'));
 export function introducedToday(now = Date.now()) {
   const dk = dayKey(now); let n = 0;
-  for (const c of S.cards.values()) if (c.kind === 'meaning' && c.introduced_at && dayKey(Date.parse(c.introduced_at)) === dk) n++;
+  for (const c of S.cards.values()) if (c.kind === 'meaning' && allowsCard(S.byId.get(c.word_id),c.kind) && c.introduced_at && dayKey(Date.parse(c.introduced_at)) === dk) n++;
   return n;
 }
-export function unseenWords() { return S.vocab.filter((w) => !S.cards.has(key(w.i, 'meaning'))); }
+export function unseenWords() { return S.vocab.filter((w) => !isGrammarOnly(w) && !S.cards.has(key(w.i, 'meaning'))); }
 
 export function dueCards(now = Date.now(), until = endOfDay(now)) {
   const kinds = new Set(enabledKinds()); const out = [];
-  for (const c of S.cards.values()) if (c.state !== State.New && kinds.has(c.kind) && Date.parse(c.due) <= until) out.push(c);
+  for (const c of S.cards.values()) if (c.state !== State.New && kinds.has(c.kind) && allowsCard(S.byId.get(c.word_id),c.kind) && Date.parse(c.due) <= until) out.push(c);
   return out;
 }
 
@@ -94,15 +95,19 @@ export class Session {
     for (const kind of enabledKinds().slice(1)) {
       for (const c of S.cards.values()) {
         if (c.kind !== 'meaning' || c.state !== State.Review || c.stability < 2) continue;
-        if (!S.cards.has(key(c.word_id, kind))) out.push({ word_id: c.word_id, kind });
+        if (allowsCard(S.byId.get(c.word_id),kind) && !S.cards.has(key(c.word_id, kind))) out.push({ word_id: c.word_id, kind });
       }
+    }
+    // Grammar-only words acquire optional pronunciation cards after starting their lesson.
+    for(const kind of enabledKinds().filter(k=>k==='listen'||k==='tone')) {
+      for(const w of S.vocab) if(isGrammarOnly(w) && grammarStarted(w,S.settings.grammarProgress) && !S.cards.has(key(w.i,kind)) && !out.some(x=>x.word_id===w.i&&x.kind===kind)) out.push({word_id:w.i,kind});
     }
     return out.sort((a, b) => a.word_id - b.word_id);
   }
   next() {
     const now = Date.now();
     const kinds = new Set(enabledKinds());
-    const all = [...S.cards.values()].filter((c) => kinds.has(c.kind) && c.state !== State.New);
+    const all = [...S.cards.values()].filter((c) => kinds.has(c.kind) && allowsCard(S.byId.get(c.word_id),c.kind) && c.state !== State.New);
     // 1) learning cards due now
     const learning = all.filter((c) => (c.state === State.Learning || c.state === State.Relearning) && Date.parse(c.due) <= now)
       .sort((a, b) => a.due.localeCompare(b.due));
@@ -199,14 +204,14 @@ export function options(cardLike) {
   const w = S.byId.get(cardLike.word_id);
   if (cardLike.kind === 'tone') return toneOptions(w);
   const chosen = new Set([w.i]); const picks = [];
-  const label = (o) => { if (cardLike.kind !== 'meaning') return o.h; const t = o.m.slice(0, 2).join('; '); return t.length > 64 ? t.slice(0, 62) + '…' : t; };
+  const label = (o) => { if (cardLike.kind !== 'meaning') return o.h; const t = vocabularyMeanings(o).slice(0, 2).join('; '); return t.length > 64 ? t.slice(0, 62) + '…' : t; };
   const labels = new Set([label(w)]);
   // avoid distractors whose meaning overlaps the answer (otherwise two choices could be right)
   const STOP = new Set(['to', 'a', 'an', 'the', 'of', 'and', 'or', 'sth', 'sb', 'in', 'on', 'for', 'with', 'be', 'is', 'as', 'at', 'by', 'one', 'etc', 'used', 'after', 'before', 'from', 'up', 'out', 'not']);
   const words = (ms) => new Set(ms.join(' ').toLowerCase().replace(/\([^)]*\)/g, ' ').split(/[^a-z']+/).filter((x) => x.length > 2 && !STOP.has(x)));
-  const target = words(w.m);
-  const overlaps = (o) => [...words(o.m.slice(0, 2))].some((x) => target.has(x));
-  const add = (id) => { if (picks.length < 2 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && o.m[0] !== w.m[0] && o.h !== w.h && !labels.has(label(o)) && (cardLike.kind === 'listen' ? o.n !== w.n : !overlaps(o))) { chosen.add(id); labels.add(label(o)); picks.push(id); } } };
+  const target = words(vocabularyMeanings(w));
+  const overlaps = (o) => [...words(vocabularyMeanings(o).slice(0, 2))].some((x) => target.has(x));
+  const add = (id) => { if (picks.length < 2 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && allowsCard(o,cardLike.kind) && vocabularyMeanings(o)[0] !== vocabularyMeanings(w)[0] && o.h !== w.h && !labels.has(label(o)) && (cardLike.kind === 'listen' ? o.n !== w.n : !overlaps(o))) { chosen.add(id); labels.add(label(o)); picks.push(id); } } };
   // 1) words you've confused with this one before
   confusedWith(w.i).slice(0, 1).forEach(add);
   const pool = S.vocab;
@@ -263,7 +268,7 @@ export function charBreakdown(w) {
 
 // ---------- placement
 export async function markKnown(wordIds, now = Date.now()) {
-  const cards = wordIds.filter((id) => !S.cards.has(key(id, 'meaning'))).map((id, i) => {
+  const cards = wordIds.filter((id) => !isGrammarOnly(S.byId.get(id)) && !S.cards.has(key(id, 'meaning'))).map((id, i) => {
     // spread verification reviews over the coming weeks so they don't all land on one day
     const days = 2 + ((id * 7919 + i) % 38);
     return { word_id: id, kind: 'meaning', state: State.Review, stability: 20, difficulty: 4.5, reps: 1, lapses: 0, step: 0,
