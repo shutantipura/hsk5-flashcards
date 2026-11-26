@@ -140,7 +140,7 @@ export class Session {
   pick(c) { this.lastWord = c.word_id; if (!c.intro) this.introStreak = 0; return c; }
   remaining() {
     const now = Date.now(); const kinds = new Set(enabledKinds());
-    let n = 0; for (const c of S.cards.values()) if (kinds.has(c.kind) && c.state !== State.New && Date.parse(c.due) <= (c.state === State.Review ? endOfDay(now) : now + 10 * 60000)) n++;
+    let n = 0; for (const c of S.cards.values()) if (kinds.has(c.kind) && allowsCard(S.byId.get(c.word_id),c.kind) && c.state !== State.New && Date.parse(c.due) <= (c.state === State.Review ? endOfDay(now) : now + 10 * 60000)) n++;
     return n + this.newQueue.length;
   }
 }
