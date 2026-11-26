@@ -15,13 +15,14 @@ const missing=[];
 let total=0;
 for(const w of vocab){
   const es=result.get(w.i);
-  assert(Array.isArray(es) && es.length<=3,'invalid example count for '+w.i);
+  assert(Array.isArray(es) && es.length===3,'expected exactly three examples for '+w.i);
   assert.equal(new Set(es.map(e=>e.zh)).size,es.length,'duplicate examples for '+w.i);
   for(const e of es){
-    assert(e.tokens.includes(w.h) || (e.source==='original' && ({589:['桌子','杯子','椅子'],778:['季节','四季'],994:['成为','认为','以为','作为','分为']}[w.i]||[]).includes(e.targetComponent) && e.targetComponent.includes(w.h) && e.tokens.includes(e.targetComponent)),'missing target '+w.h+': '+e.zh);
+    assert(e.tokens.includes(w.h) || (e.source==='original' && ({589:['桌子','杯子','椅子'],778:['季节','四季'],994:['成为','认为','以为','作为','分为'],2339:['食品','药品'],2602:['民族']}[w.i]||[]).includes(e.targetComponent) && e.targetComponent.includes(w.h) && e.tokens.includes(e.targetComponent)),'missing target '+w.h+': '+e.zh);
     assert(e.tokens.every(t=>levels.has(t)&&levels.get(t)<=w.l),'out-of-level token: '+e.zh);
     assert.equal(e.tokens.join(''),e.zh.replace(/[\p{P}\p{Z}\p{N}\s]/gu,''),'unaccounted sentence text: '+e.zh);
     assert(e.maxLevel<=w.l,'out-of-level example: '+e.zh);
+    assert(typeof e.en==='string' && e.en.trim(),'missing translation: '+e.zh);
     total++;
   }
   (stats[w.l]??={zero:0,one:0,two:0,three:0})[['zero','one','two','three'][es.length]]++;
