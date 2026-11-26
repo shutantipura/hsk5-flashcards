@@ -1,5 +1,6 @@
 // App state: vocab, cards, review logs, settings. Local-first (IndexedDB) with Supabase sync.
 import * as idb from './idb.js';
+import { buildLevelExamples, curatedExamples } from './examples.js';
 import * as api from './api.js';
 import { DEFAULT_SETTINGS } from './config.js';
 
@@ -28,7 +29,7 @@ export async function loadVocab() {
     }),
   ]);
   S.vocab = await r.json();
-  S.examples = new Map(exampleFiles.flatMap((data) => Object.entries(data)).map(([id, examples]) => [Number(id), examples]));
+  S.examples = buildLevelExamples(S.vocab, exampleFiles, curatedExamples);
   for (const w of S.vocab) {
     S.byId.set(w.i, w); S.byHanzi.set(w.h, w);
     for (const ch of new Set(w.h)) { if (!S.charIndex.has(ch)) S.charIndex.set(ch, []); S.charIndex.get(ch).push(w.i); }
