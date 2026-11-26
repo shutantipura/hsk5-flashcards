@@ -1651,6 +1651,18 @@ export const curatedExamples = {
         "参加",
         "会议"
       ]
+    },
+    {
+      "zh": "请所有人员来这里。",
+      "en": "All personnel, please come here.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "所有",
+        "人员",
+        "来",
+        "这里"
+      ]
     }
   ],
   "1051": [
@@ -1721,6 +1733,18 @@ export const curatedExamples = {
         "一",
         "组"
       ]
+    },
+    {
+      "zh": "请大家分两组。",
+      "en": "Everyone, please split into two groups.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "大家",
+        "分",
+        "两",
+        "组"
+      ]
     }
   ],
   "1056": [
@@ -1786,6 +1810,18 @@ export const curatedExamples = {
         "很",
         "快"
       ]
+    },
+    {
+      "zh": "我们的收入增长了。",
+      "en": "Our income grew.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "的",
+        "收入",
+        "增长",
+        "了"
+      ]
     }
   ],
   "1061": [
@@ -1811,6 +1847,19 @@ export const curatedExamples = {
         "的",
         "价格",
         "不同"
+      ]
+    },
+    {
+      "zh": "这个区的人很多。",
+      "en": "Many people live in this district.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "区",
+        "的",
+        "人",
+        "很",
+        "多"
       ]
     }
   ],
@@ -2108,6 +2157,16 @@ export const curatedExamples = {
         "新",
         "问题"
       ]
+    },
+    {
+      "zh": "他不断努力。",
+      "en": "He keeps trying.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "不断",
+        "努力"
+      ]
     }
   ],
   "1098": [
@@ -2362,6 +2421,16 @@ export const curatedExamples = {
         "的",
         "回复"
       ]
+    },
+    {
+      "zh": "请回复我。",
+      "en": "Please reply to me.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "回复",
+        "我"
+      ]
     }
   ],
   "1126": [
@@ -2589,6 +2658,21 @@ export const curatedExamples = {
         "者",
         "更",
         "好"
+      ]
+    },
+    {
+      "zh": "前者是老师，后者是学生。",
+      "en": "The former is a teacher and the latter is a student.",
+      "source": "original",
+      "verifiedTokens": [
+        "前",
+        "者",
+        "是",
+        "老师",
+        "后",
+        "者",
+        "是",
+        "学生"
       ]
     }
   ],
@@ -2888,6 +2972,18 @@ export const curatedExamples = {
         "请",
         "指出",
         "错误"
+      ]
+    },
+    {
+      "zh": "请指出问题在哪里。",
+      "en": "Please point out where the problem is.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "指出",
+        "问题",
+        "在",
+        "哪里"
       ]
     }
   ],
@@ -4720,6 +4816,19 @@ export const curatedExamples = {
         "还",
         "青"
       ]
+    },
+    {
+      "zh": "这些苹果还是青的。",
+      "en": "These apples are still green.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "苹果",
+        "还",
+        "是",
+        "青",
+        "的"
+      ]
     }
   ],
   "2469": [
@@ -5266,6 +5375,18 @@ export const curatedExamples = {
         "阵",
         "雨"
       ]
+    },
+    {
+      "zh": "外面有一阵响声。",
+      "en": "There was a burst of noise outside.",
+      "source": "original",
+      "verifiedTokens": [
+        "外面",
+        "有",
+        "一",
+        "阵",
+        "响声"
+      ]
     }
   ],
   "2760": [
@@ -5330,6 +5451,19 @@ export const curatedExamples = {
         "了",
         "很",
         "久"
+      ]
+    },
+    {
+      "zh": "我不能再忍了。",
+      "en": "I can't stand it anymore.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "能",
+        "再",
+        "忍",
+        "了"
       ]
     }
   ],
@@ -5781,6 +5915,18 @@ export const curatedExamples = {
         "一",
         "辆",
         "列车"
+      ]
+    },
+    {
+      "zh": "这辆列车很快。",
+      "en": "This train is fast.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "辆",
+        "列车",
+        "很",
+        "快"
       ]
     }
   ],
@@ -7404,6 +7550,19 @@ export const curatedExamples = {
         "轻重",
         "作出",
         "决定"
+      ]
+    },
+    {
+      "zh": "他不了解事情的轻重。",
+      "en": "He does not understand how serious the matter is.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "不",
+        "了解",
+        "事情",
+        "的",
+        "轻重"
       ]
     }
   ],
