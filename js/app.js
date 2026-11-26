@@ -500,9 +500,9 @@ function settings() {
 async function boot() {
   app.innerHTML = '<main class="screen center"><div class="seal">词</div><p class="muted">Loading…</p></main>';
   await api.loadSession();
-  await loadVocab();
   if(api.getSession()){
-    await loadLocal();
+    await Promise.all([loadVocab(),loadLocal()]);
+    if(api.isFreshProfile())await saveSettings({});
     history.replaceState(null,'','#/home');
   }else history.replaceState(null,'','#/login');
   ready=true;route();
