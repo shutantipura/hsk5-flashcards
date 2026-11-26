@@ -63,7 +63,7 @@ function syncLabel() {
 const grammar = createGrammarScreen({S,shell,saveSettings,esc});
 const practice = createPracticeScreen({S,shell,saveSettings,esc});
 const reader = createReader({S,shell,saveSettings,esc});
-const flashcards = createFlashcards({S,shell,saveSettings,esc});
+const flashcards = createFlashcards({S,shell,saveSettings,esc,getLibrary:()=>checkedLibrary(S.vocab)});
 const routes = { flashcards:flashcards.open, login, placement:reader.today, home:reader.today, explore:reader.explore, review:reader.review, study:flashcards.open, report:readerReport, words, settings, grammar:reader.review, practice:reader.explore };
 function go(r) { location.hash = `#/${r}`; }
 function route() {

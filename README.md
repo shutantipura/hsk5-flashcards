@@ -57,3 +57,6 @@ Every checked passage has an audio-only mode, using the browser/device's Mandari
 
 ### v2.4 self-assessment flashcards
 Separate exact-level decks group readings of the same written word within that level. Four confidence ratings are saved in `settings.flashcardRatings` with per-word timestamps, separate from historic quiz cards/logs. Known advances immediately; all other ratings reveal dictionary pinyin and definitions before Next. Session filters include unmarked and non-known vocabulary. No quiz scores are generated.
+
+### v2.5 smart flashcards
+Default smart queue includes saved reading words, due FSRS reviews, and unassessed words from completed passages (target words first). Exact HSK decks remain, with manual filters to study other words. FSRS uses the four confidence grades (Again/Hard/Good/Easy), preserving v2.4 ratings by scheduling from their original timestamp. Reading exposure alone never changes mastery. Cross-level homographs are tracked separately; generic reading familiarity is conservative. The reader uses flashcard confidence for highlighting and recommendations.

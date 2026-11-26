@@ -2,6 +2,7 @@
 import { PRACTICE } from './practice-data.js';
 import { buildKnowledge, gradePractice, practiceCard, READING_TYPES } from './practice.js';
 import { grammarPatternsFor } from './learning-mode.js';
+import { flashFamiliarity } from './flashcards.js';
 
 const clean=s=>String(s??'').replace(/[\p{P}\p{Z}\s]/gu,'');
 const uniq=a=>[...new Set(a)];
@@ -43,13 +44,15 @@ export function rankPassages(library,S,level,goal=.95,now=Date.now()){
   const weak=new Map();
   for(const l of S.logs){const w=S.byId.get(l.word_id);if(!w)continue;const age=Math.max(0,(now-Date.parse(l.reviewed_at))/86400000);if(age<30)weak.set(w.h,(weak.get(w.h)||0)+(l.correct?-.2:1)*Math.exp(-age/14));}
   for(const w of S.vocab){const patterns=grammarPatternsFor(w);if(patterns.some(p=>['cloze','function','contrast','produce'].some(k=>S.settings.grammarProgress?.[p.id+':'+k]?.lastRating===1)))weak.set(w.h,(weak.get(w.h)||0)+1);}
+  const familiarity=new Map([1,2,3,4,5].map(l=>[l,flashFamiliarity(S.vocab,S.settings.flashcardRatings,words,l)]));
   return library.filter(p=>p.level<=level).map(p=>{
-    const familiar=coverage(p,known),ts=uniq(p.tokens),due=p.questions.filter(q=>{const c=progress[q.id];return c?.reps&&Date.parse(c.due)<=now;}).length;
-    const recycle=ts.filter(t=>words[t]?.status==='learning'&&(!words[t].due||Date.parse(words[t].due)<=now)).length;
+    const localKnown=new Set(known),status=familiarity.get(p.level)||new Map();for(const [w,s] of status){if(s==='known')localKnown.add(w);else if(s==='learning')localKnown.delete(w);}
+    const familiar=coverage(p,localKnown),ts=uniq(p.tokens),due=p.questions.filter(q=>{const c=progress[q.id];return c?.reps&&Date.parse(c.due)<=now;}).length;
+    const recycle=ts.filter(t=>status.get(t)==='learning'&&(words[t]?.status!=='learning'||!words[t].due||Date.parse(words[t].due)<=now)).length;
     const weakness=ts.reduce((n,t)=>n+Math.max(0,weak.get(t)||0),0);
     const visited=visits[p.id],recent=visited?Math.max(0,1-(now-Date.parse(visited.updated_at))/86400000):0;
     const score=4*(1-Math.abs(goal-familiar))+.65* Math.min(recycle,4)+.3*Math.min(weakness,4)+.3*Math.min(due,3)+.55*Number(!visited)-2*recent;
-    return {...p,familiar,recycle,due,score,known};
+    return {...p,familiar,recycle,due,score,known:localKnown,status};
   }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
 }
 const categories=[
@@ -149,7 +152,7 @@ export function createReader({S,shell,saveSettings,esc}){
     const spans=tokenSpans(p.body,p.tokens);if(!spans)return esc(p.body);
     return spans.map((s,i)=>{
       if(!s.word)return esc(s.text);
-      const state=prefs()[s.text]?.status,unknown=state==='learning'||(state!=='known'&&p.targets.includes(s.text)&&!p.known.has(s.text));
+      const state=p.status?.get(s.text)||prefs()[s.text]?.status,unknown=state==='learning'||(state!=='known'&&p.targets.includes(s.text)&&!p.known.has(s.text));
       return '<button class="read-word '+(highlight&&unknown?'read-new ':'')+(activeIndex===String(i)?'read-active':'')+'" data-word="'+esc(s.text)+'" data-word-index="'+i+'" aria-expanded="'+(activeIndex===String(i))+'" aria-controls="read-gloss">'+esc(s.text)+'</button>';
     }).join('');
   }
