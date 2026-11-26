@@ -2367,7 +2367,11 @@ export const PRACTICE = [
       "一起",
       "吃",
       "饭"
-    ]
+    ],
+    "translation": "I get up at seven every morning. After breakfast I go to school. In the afternoon I return home and read. In the evening I eat with my family.",
+    "questionType": "detail",
+    "passageId": "r-day",
+    "passageLevel": 2
   },
   {
     "id": "r-day-2",
@@ -2450,7 +2454,11 @@ export const PRACTICE = [
       "一起",
       "吃",
       "饭"
-    ]
+    ],
+    "translation": "I get up at seven every morning. After breakfast I go to school. In the afternoon I return home and read. In the evening I eat with my family.",
+    "questionType": "detail",
+    "passageId": "r-day",
+    "passageLevel": 2
   },
   {
     "id": "r-work-1",
@@ -2585,7 +2593,11 @@ export const PRACTICE = [
       "试",
       "一",
       "试"
-    ]
+    ],
+    "translation": "The manager noticed low work efficiency and asked everyone to discuss it. Some suggested changing work methods, while others suggested reducing unnecessary meetings. The manager agreed and decided to try the suggestions next week.",
+    "questionType": "inference",
+    "passageId": "r-work",
+    "passageLevel": 5
   },
   {
     "id": "r-work-2",
@@ -2719,7 +2731,11 @@ export const PRACTICE = [
       "试",
       "一",
       "试"
-    ]
+    ],
+    "translation": "The manager noticed low work efficiency and asked everyone to discuss it. Some suggested changing work methods, while others suggested reducing unnecessary meetings. The manager agreed and decided to try the suggestions next week.",
+    "questionType": "inference",
+    "passageId": "r-work",
+    "passageLevel": 5
   },
   {
     "id": "r-team-2",
@@ -2854,7 +2870,11 @@ export const PRACTICE = [
       "地",
       "完成",
       "任务"
-    ]
+    ],
+    "translation": "One person's ability is limited, whereas a team lets everyone use their strengths. Some are good at planning and others at solving problems. Only by helping each other can everyone complete tasks better.",
+    "questionType": "inference",
+    "passageId": "r-team",
+    "passageLevel": 5
   },
   {
     "id": "r-weather-1",
@@ -2941,7 +2961,11 @@ export const PRACTICE = [
       "出去",
       "吃",
       "饭"
-    ]
+    ],
+    "translation": "At the weekend I wanted to go to the park with friends. It rained in the morning, so we watched television at home. The weather improved in the afternoon, and we went out to eat.",
+    "questionType": "inference",
+    "passageId": "r-weather",
+    "passageLevel": 3
   },
   {
     "id": "r-weather-2",
@@ -3029,7 +3053,11 @@ export const PRACTICE = [
       "出去",
       "吃",
       "饭"
-    ]
+    ],
+    "translation": "At the weekend I wanted to go to the park with friends. It rained in the morning, so we watched television at home. The weather improved in the afternoon, and we went out to eat.",
+    "questionType": "detail",
+    "passageId": "r-weather",
+    "passageLevel": 3
   },
   {
     "id": "r-school-1",
@@ -3146,7 +3174,11 @@ export const PRACTICE = [
       "汉语",
       "很",
       "有意思"
-    ]
+    ],
+    "translation": "He used to dislike studying Chinese because he thought it was difficult. His teacher told him that practising speaking every day would help him improve. Now he often speaks Chinese with friends and finds studying Chinese interesting.",
+    "questionType": "inference",
+    "passageId": "r-school",
+    "passageLevel": 3
   },
   {
     "id": "r-school-2",
@@ -3265,7 +3297,11 @@ export const PRACTICE = [
       "汉语",
       "很",
       "有意思"
-    ]
+    ],
+    "translation": "He used to dislike studying Chinese because he thought it was difficult. His teacher told him that practising speaking every day would help him improve. Now he often speaks Chinese with friends and finds studying Chinese interesting.",
+    "questionType": "inference",
+    "passageId": "r-school",
+    "passageLevel": 3
   },
   {
     "id": "r-shop-1",
@@ -3373,7 +3409,11 @@ export const PRACTICE = [
       "第",
       "二",
       "件"
-    ]
+    ],
+    "translation": "Today she went shopping for clothes. She looked at two items. One was pretty but too expensive. The other's colour was nice and the price was not high. She bought the second one.",
+    "questionType": "inference",
+    "passageId": "r-shop",
+    "passageLevel": 4
   },
   {
     "id": "r-shop-2",
@@ -3482,7 +3522,11 @@ export const PRACTICE = [
       "第",
       "二",
       "件"
-    ]
+    ],
+    "translation": "Today she went shopping for clothes. She looked at two items. One was pretty but too expensive. The other's colour was nice and the price was not high. She bought the second one.",
+    "questionType": "detail",
+    "passageId": "r-shop",
+    "passageLevel": 4
   },
   {
     "id": "r-health-1",
@@ -3605,7 +3649,11 @@ export const PRACTICE = [
       "运动",
       "更",
       "重要"
-    ]
+    ],
+    "translation": "He rarely exercised and often felt tired. A doctor suggested walking for half an hour every day. He kept it up for two months and feels much better. He thinks developing a good habit is more important than occasional exercise.",
+    "questionType": "detail",
+    "passageId": "r-health",
+    "passageLevel": 4
   },
   {
     "id": "r-health-2",
@@ -3727,7 +3775,11 @@ export const PRACTICE = [
       "运动",
       "更",
       "重要"
-    ]
+    ],
+    "translation": "He rarely exercised and often felt tired. A doctor suggested walking for half an hour every day. He kept it up for two months and feels much better. He thinks developing a good habit is more important than occasional exercise.",
+    "questionType": "inference",
+    "passageId": "r-health",
+    "passageLevel": 4
   },
   {
     "id": "r-customer-1",
@@ -3863,7 +3915,11 @@ export const PRACTICE = [
       "多",
       "了",
       "起来"
-    ]
+    ],
+    "translation": "A shop had fewer customers recently. A survey showed that customers wanted more choice. The shop added types of products and improved service quality. A month later, customer numbers increased again.",
+    "questionType": "detail",
+    "passageId": "r-customer",
+    "passageLevel": 5
   },
   {
     "id": "r-customer-2",
@@ -3998,7 +4054,11 @@ export const PRACTICE = [
       "多",
       "了",
       "起来"
-    ]
+    ],
+    "translation": "A shop had fewer customers recently. A survey showed that customers wanted more choice. The shop added types of products and improved service quality. A month later, customer numbers increased again.",
+    "questionType": "detail",
+    "passageId": "r-customer",
+    "passageLevel": 5
   },
   {
     "id": "r-travel-1",
@@ -4118,7 +4178,11 @@ export const PRACTICE = [
       "路上",
       "看",
       "风景"
-    ]
+    ],
+    "translation": "He originally planned to fly to China, but his flight was cancelled because of the weather. He did not want to change the travel plan, so he decided to take a boat. Although the journey takes longer, he can enjoy the scenery.",
+    "questionType": "inference",
+    "passageId": "r-travel",
+    "passageLevel": 4
   },
   {
     "id": "r-travel-2",
@@ -4239,7 +4303,11 @@ export const PRACTICE = [
       "路上",
       "看",
       "风景"
-    ]
+    ],
+    "translation": "He originally planned to fly to China, but his flight was cancelled because of the weather. He did not want to change the travel plan, so he decided to take a boat. Although the journey takes longer, he can enjoy the scenery.",
+    "questionType": "inference",
+    "passageId": "r-travel",
+    "passageLevel": 4
   },
   {
     "id": "r-business-1",
@@ -4377,7 +4445,11 @@ export const PRACTICE = [
       "也",
       "提高",
       "了"
-    ]
+    ],
+    "translation": "A shop began recording daily sales to reduce costs. The manager adjusted product quantities based on these data. Previously some items often ran out while others were excessive. The situation has improved and efficiency has increased.",
+    "questionType": "detail",
+    "passageId": "r-business",
+    "passageLevel": 5
   },
   {
     "id": "r-business-2",
@@ -4521,7 +4593,11 @@ export const PRACTICE = [
       "也",
       "提高",
       "了"
-    ]
+    ],
+    "translation": "A shop began recording daily sales to reduce costs. The manager adjusted product quantities based on these data. Previously some items often ran out while others were excessive. The situation has improved and efficiency has increased.",
+    "questionType": "detail",
+    "passageId": "r-business",
+    "passageLevel": 5
   },
   {
     "id": "r-team-1",
@@ -4651,7 +4727,11 @@ export const PRACTICE = [
       "地",
       "完成",
       "任务"
-    ]
+    ],
+    "translation": "One person's ability is limited, whereas a team lets everyone use their strengths. Some are good at planning and others at solving problems. Only by helping each other can everyone complete tasks better.",
+    "questionType": "main",
+    "passageId": "r-team",
+    "passageLevel": 5
   },
   {
     "id": "r-experience-1",
@@ -4810,7 +4890,11 @@ export const PRACTICE = [
       "经验",
       "同样",
       "重要"
-    ]
+    ],
+    "translation": "At the beginning of his working life, he believed knowledge alone was enough to do everything well. Later he discovered real work problems were more complicated than book examples. He took the initiative to learn from colleagues and accumulate experience, finally realising that knowledge and experience are equally important.",
+    "questionType": "detail",
+    "passageId": "r-experience",
+    "passageLevel": 5
   },
   {
     "id": "r-experience-2",
@@ -4967,7 +5051,11 @@ export const PRACTICE = [
       "经验",
       "同样",
       "重要"
-    ]
+    ],
+    "translation": "At the beginning of his working life, he believed knowledge alone was enough to do everything well. Later he discovered real work problems were more complicated than book examples. He took the initiative to learn from colleagues and accumulate experience, finally realising that knowledge and experience are equally important.",
+    "questionType": "detail",
+    "passageId": "r-experience",
+    "passageLevel": 5
   },
   {
     "id": "r-mistake-2",
@@ -5126,7 +5214,11 @@ export const PRACTICE = [
       "寻找",
       "解决",
       "办法"
-    ]
+    ],
+    "translation": "Some people fear admitting mistakes at work. However, if they are unwilling to face problems, it is difficult to improve working methods. A manager sees every mistake as a learning opportunity. He encourages employees to explain the cause promptly and find solutions together.",
+    "questionType": "inference",
+    "passageId": "r-mistake",
+    "passageLevel": 5
   },
   {
     "id": "c23",
@@ -5444,7 +5536,11 @@ export const PRACTICE = [
       "明显",
       "的",
       "提高"
-    ]
+    ],
+    "translation": "To prepare for an exam, he made a study plan. He realised that although he recognised many characters, he could not use them well. Therefore he reviewed words and wrote several sentences each day. Two weeks later, his reading ability had noticeably improved.",
+    "questionType": "main",
+    "passageId": "r-study",
+    "passageLevel": 5
   },
   {
     "id": "r-study-2",
@@ -5601,7 +5697,11 @@ export const PRACTICE = [
       "明显",
       "的",
       "提高"
-    ]
+    ],
+    "translation": "To prepare for an exam, he made a study plan. He realised that although he recognised many characters, he could not use them well. Therefore he reviewed words and wrote several sentences each day. Two weeks later, his reading ability had noticeably improved.",
+    "questionType": "inference",
+    "passageId": "r-study",
+    "passageLevel": 5
   },
   {
     "id": "r-environment-1",
@@ -5734,7 +5834,11 @@ export const PRACTICE = [
       "节约",
       "了",
       "成本"
-    ]
+    ],
+    "translation": "A company used a lot of paper daily. To protect the environment, it decided to use computers whenever possible and paper only when printing was necessary. After three months it reduced paper use and saved costs.",
+    "questionType": "inference",
+    "passageId": "r-environment",
+    "passageLevel": 5
   },
   {
     "id": "r-environment-2",
@@ -5874,7 +5978,11 @@ export const PRACTICE = [
       "节约",
       "了",
       "成本"
-    ]
+    ],
+    "translation": "A company used a lot of paper daily. To protect the environment, it decided to use computers whenever possible and paper only when printing was necessary. After three months it reduced paper use and saved costs.",
+    "questionType": "detail",
+    "passageId": "r-environment",
+    "passageLevel": 5
   },
   {
     "id": "r-delivery-1",
@@ -6026,7 +6134,11 @@ export const PRACTICE = [
       "也",
       "增加",
       "了"
-    ]
+    ],
+    "translation": "The shop formerly required customers to come in themselves. Customers suggested having goods sent home. The manager valued this suggestion and arranged the service. Customers can now wait at home, and the shop's sales increased.",
+    "questionType": "detail",
+    "passageId": "r-delivery",
+    "passageLevel": 5
   },
   {
     "id": "r-delivery-2",
@@ -6175,7 +6287,11 @@ export const PRACTICE = [
       "也",
       "增加",
       "了"
-    ]
+    ],
+    "translation": "The shop formerly required customers to come in themselves. Customers suggested having goods sent home. The manager valued this suggestion and arranged the service. Customers can now wait at home, and the shop's sales increased.",
+    "questionType": "inference",
+    "passageId": "r-delivery",
+    "passageLevel": 5
   },
   {
     "id": "r-simple-1",
@@ -6235,7 +6351,11 @@ export const PRACTICE = [
       "喜欢",
       "吃",
       "米饭"
-    ]
+    ],
+    "translation": "I am a student. My father is a teacher, and my mother is a doctor. We all like eating rice.",
+    "questionType": "detail",
+    "passageId": "r-simple",
+    "passageLevel": 1
   },
   {
     "id": "r-simple-2",
@@ -6293,7 +6413,11 @@ export const PRACTICE = [
       "喜欢",
       "吃",
       "米饭"
-    ]
+    ],
+    "translation": "I am a student. My father is a teacher, and my mother is a doctor. We all like eating rice.",
+    "questionType": "detail",
+    "passageId": "r-simple",
+    "passageLevel": 1
   },
   {
     "id": "r-breakfast-1",
@@ -6378,7 +6502,9 @@ export const PRACTICE = [
       "喝",
       "了",
       "水"
-    ]
+    ],
+    "passageId": "r-breakfast",
+    "passageLevel": 2
   },
   {
     "id": "r-breakfast-2",
@@ -6458,7 +6584,9 @@ export const PRACTICE = [
       "喝",
       "了",
       "水"
-    ]
+    ],
+    "passageId": "r-breakfast",
+    "passageLevel": 2
   },
   {
     "id": "r-library-2",
@@ -6544,7 +6672,9 @@ export const PRACTICE = [
       "一起",
       "吃",
       "饭"
-    ]
+    ],
+    "passageId": "r-library",
+    "passageLevel": 3
   },
   {
     "id": "r-room-1",
@@ -6633,7 +6763,9 @@ export const PRACTICE = [
       "里",
       "看",
       "书"
-    ]
+    ],
+    "passageId": "r-room",
+    "passageLevel": 4
   },
   {
     "id": "r-room-2",
@@ -6720,7 +6852,9 @@ export const PRACTICE = [
       "里",
       "看",
       "书"
-    ]
+    ],
+    "passageId": "r-room",
+    "passageLevel": 4
   },
   {
     "id": "r-call-1",
@@ -6799,7 +6933,9 @@ export const PRACTICE = [
       "好",
       "明天",
       "见面"
-    ]
+    ],
+    "passageId": "r-call",
+    "passageLevel": 3
   },
   {
     "id": "r-call-2",
@@ -6882,7 +7018,9 @@ export const PRACTICE = [
       "好",
       "明天",
       "见面"
-    ]
+    ],
+    "passageId": "r-call",
+    "passageLevel": 3
   },
   {
     "id": "r-bus-1",
@@ -6966,7 +7104,9 @@ export const PRACTICE = [
       "路",
       "去",
       "学校"
-    ]
+    ],
+    "passageId": "r-bus",
+    "passageLevel": 4
   },
   {
     "id": "r-bus-2",
@@ -7051,7 +7191,9 @@ export const PRACTICE = [
       "路",
       "去",
       "学校"
-    ]
+    ],
+    "passageId": "r-bus",
+    "passageLevel": 4
   },
   {
     "id": "r-birthday-1",
@@ -7162,7 +7304,9 @@ export const PRACTICE = [
       "很",
       "喜欢",
       "阅读"
-    ]
+    ],
+    "passageId": "r-birthday",
+    "passageLevel": 5
   },
   {
     "id": "r-birthday-2",
@@ -7271,7 +7415,9 @@ export const PRACTICE = [
       "很",
       "喜欢",
       "阅读"
-    ]
+    ],
+    "passageId": "r-birthday",
+    "passageLevel": 5
   },
   {
     "id": "r-birthday-3",
@@ -7378,7 +7524,9 @@ export const PRACTICE = [
       "很",
       "喜欢",
       "阅读"
-    ]
+    ],
+    "passageId": "r-birthday",
+    "passageLevel": 5
   },
   {
     "id": "r-rain-1",
@@ -7492,7 +7640,9 @@ export const PRACTICE = [
       "再",
       "回",
       "家"
-    ]
+    ],
+    "passageId": "r-rain",
+    "passageLevel": 5
   },
   {
     "id": "r-rain-2",
@@ -7598,7 +7748,9 @@ export const PRACTICE = [
       "再",
       "回",
       "家"
-    ]
+    ],
+    "passageId": "r-rain",
+    "passageLevel": 5
   },
   {
     "id": "r-rain-3",
@@ -7713,7 +7865,9 @@ export const PRACTICE = [
       "再",
       "回",
       "家"
-    ]
+    ],
+    "passageId": "r-rain",
+    "passageLevel": 5
   },
   {
     "id": "r-meal-1",
@@ -7835,7 +7989,9 @@ export const PRACTICE = [
       "帮",
       "她",
       "了"
-    ]
+    ],
+    "passageId": "r-meal",
+    "passageLevel": 4
   },
   {
     "id": "r-meal-2",
@@ -7953,7 +8109,9 @@ export const PRACTICE = [
       "帮",
       "她",
       "了"
-    ]
+    ],
+    "passageId": "r-meal",
+    "passageLevel": 4
   },
   {
     "id": "r-meal-3",
@@ -8073,7 +8231,9 @@ export const PRACTICE = [
       "帮",
       "她",
       "了"
-    ]
+    ],
+    "passageId": "r-meal",
+    "passageLevel": 4
   },
   {
     "id": "r-gift-1",
@@ -8225,7 +8385,9 @@ export const PRACTICE = [
       "缺",
       "一",
       "个"
-    ]
+    ],
+    "passageId": "r-gift",
+    "passageLevel": 5
   },
   {
     "id": "r-gift-3",
@@ -8384,7 +8546,9 @@ export const PRACTICE = [
       "缺",
       "一",
       "个"
-    ]
+    ],
+    "passageId": "r-gift",
+    "passageLevel": 5
   },
   {
     "id": "r-commute-1",
@@ -8540,7 +8704,9 @@ export const PRACTICE = [
       "觉得",
       "浪费",
       "时间"
-    ]
+    ],
+    "passageId": "r-commute",
+    "passageLevel": 5
   },
   {
     "id": "r-commute-3",
@@ -8694,7 +8860,9 @@ export const PRACTICE = [
       "觉得",
       "浪费",
       "时间"
-    ]
+    ],
+    "passageId": "r-commute",
+    "passageLevel": 5
   },
   {
     "id": "r-hotel-2",
@@ -8840,7 +9008,9 @@ export const PRACTICE = [
       "路上",
       "的",
       "时间"
-    ]
+    ],
+    "passageId": "r-hotel",
+    "passageLevel": 5
   },
   {
     "id": "r-hotel-3",
@@ -8981,7 +9151,9 @@ export const PRACTICE = [
       "路上",
       "的",
       "时间"
-    ]
+    ],
+    "passageId": "r-hotel",
+    "passageLevel": 5
   },
   {
     "id": "r-training-1",
@@ -9160,7 +9332,9 @@ export const PRACTICE = [
       "调整",
       "培训",
       "计划"
-    ]
+    ],
+    "passageId": "r-training",
+    "passageLevel": 5
   },
   {
     "id": "r-training-3",
@@ -9335,7 +9509,9 @@ export const PRACTICE = [
       "调整",
       "培训",
       "计划"
-    ]
+    ],
+    "passageId": "r-training",
+    "passageLevel": 5
   },
   {
     "id": "r-stock-1",
@@ -9542,7 +9718,9 @@ export const PRACTICE = [
       "多",
       "的",
       "问题"
-    ]
+    ],
+    "passageId": "r-stock",
+    "passageLevel": 5
   },
   {
     "id": "r-stock-3",
@@ -9753,7 +9931,9 @@ export const PRACTICE = [
       "多",
       "的",
       "问题"
-    ]
+    ],
+    "passageId": "r-stock",
+    "passageLevel": 5
   },
   {
     "id": "r-meeting-1",
@@ -9970,7 +10150,9 @@ export const PRACTICE = [
       "却",
       "提高",
       "了"
-    ]
+    ],
+    "passageId": "r-meeting",
+    "passageLevel": 5
   },
   {
     "id": "r-meeting-2",
@@ -10179,7 +10361,9 @@ export const PRACTICE = [
       "却",
       "提高",
       "了"
-    ]
+    ],
+    "passageId": "r-meeting",
+    "passageLevel": 5
   },
   {
     "id": "r-feedback-1",
@@ -10397,7 +10581,9 @@ export const PRACTICE = [
       "也",
       "表示",
       "满意"
-    ]
+    ],
+    "passageId": "r-feedback",
+    "passageLevel": 5
   },
   {
     "id": "r-feedback-2",
@@ -10612,7 +10798,9 @@ export const PRACTICE = [
       "也",
       "表示",
       "满意"
-    ]
+    ],
+    "passageId": "r-feedback",
+    "passageLevel": 5
   },
   {
     "id": "r-feedback-3",
@@ -10838,7 +11026,9 @@ export const PRACTICE = [
       "也",
       "表示",
       "满意"
-    ]
+    ],
+    "passageId": "r-feedback",
+    "passageLevel": 5
   },
   {
     "id": "r-quality-1",
@@ -11041,7 +11231,9 @@ export const PRACTICE = [
       "员工",
       "的",
       "表现"
-    ]
+    ],
+    "passageId": "r-quality",
+    "passageLevel": 5
   },
   {
     "id": "r-quality-3",
@@ -11234,7 +11426,9 @@ export const PRACTICE = [
       "员工",
       "的",
       "表现"
-    ]
+    ],
+    "passageId": "r-quality",
+    "passageLevel": 5
   },
   {
     "id": "r-data-3",
@@ -11434,7 +11628,9 @@ export const PRACTICE = [
       "的",
       "实际",
       "需求"
-    ]
+    ],
+    "passageId": "r-data",
+    "passageLevel": 5
   },
   {
     "id": "r-career-1",
@@ -11669,7 +11865,9 @@ export const PRACTICE = [
       "遇到",
       "的",
       "困难"
-    ]
+    ],
+    "passageId": "r-career",
+    "passageLevel": 5
   },
   {
     "id": "r-career-3",
@@ -11904,7 +12102,9 @@ export const PRACTICE = [
       "遇到",
       "的",
       "困难"
-    ]
+    ],
+    "passageId": "r-career",
+    "passageLevel": 5
   },
   {
     "id": "r-environment2-1",
@@ -12142,7 +12342,9 @@ export const PRACTICE = [
       "明显",
       "的",
       "效果"
-    ]
+    ],
+    "passageId": "r-environment2",
+    "passageLevel": 5
   },
   {
     "id": "r-change-3",
@@ -12359,7 +12561,9 @@ export const PRACTICE = [
       "开发",
       "新",
       "产品"
-    ]
+    ],
+    "passageId": "r-change",
+    "passageLevel": 5
   },
   {
     "title": "A conversation",
@@ -12509,7 +12713,9 @@ export const PRACTICE = [
       "不",
       "愿意",
       "说话"
-    ]
+    ],
+    "passageId": "r-language",
+    "passageLevel": 5
   },
   {
     "title": "A conversation",
@@ -12667,7 +12873,9 @@ export const PRACTICE = [
       "不",
       "需要",
       "老师"
-    ]
+    ],
+    "passageId": "r-language",
+    "passageLevel": 5
   },
   {
     "title": "Study partners",
@@ -12837,7 +13045,9 @@ export const PRACTICE = [
       "不",
       "喜欢",
       "见面"
-    ]
+    ],
+    "passageId": "r-studygroup",
+    "passageLevel": 5
   },
   {
     "title": "Study partners",
@@ -13000,7 +13210,9 @@ export const PRACTICE = [
       "前后",
       "意思",
       "相反"
-    ]
+    ],
+    "passageId": "r-studygroup",
+    "passageLevel": 5
   },
   {
     "title": "Study partners",
@@ -13170,7 +13382,9 @@ export const PRACTICE = [
       "学习",
       "的",
       "压力"
-    ]
+    ],
+    "passageId": "r-studygroup",
+    "passageLevel": 5
   },
   {
     "title": "A shop's prices",
@@ -13361,7 +13575,9 @@ export const PRACTICE = [
       "都",
       "太",
       "低"
-    ]
+    ],
+    "passageId": "r-price",
+    "passageLevel": 5
   },
   {
     "title": "A shop's prices",
@@ -13538,7 +13754,9 @@ export const PRACTICE = [
       "困难",
       "完全",
       "相反"
-    ]
+    ],
+    "passageId": "r-price",
+    "passageLevel": 5
   },
   {
     "title": "A shop's prices",
@@ -13725,7 +13943,9 @@ export const PRACTICE = [
       "喜欢",
       "低",
       "价格"
-    ]
+    ],
+    "passageId": "r-price",
+    "passageLevel": 5
   },
   {
     "title": "A new tool",
@@ -13945,7 +14165,9 @@ export const PRACTICE = [
       "无法",
       "节约",
       "时间"
-    ]
+    ],
+    "passageId": "r-technology",
+    "passageLevel": 5
   },
   {
     "title": "A new tool",
@@ -14154,7 +14376,9 @@ export const PRACTICE = [
       "还",
       "没有",
       "发生"
-    ]
+    ],
+    "passageId": "r-technology",
+    "passageLevel": 5
   },
   {
     "title": "A new tool",
@@ -14373,7 +14597,9 @@ export const PRACTICE = [
       "必须",
       "马上",
       "完成"
-    ]
+    ],
+    "passageId": "r-technology",
+    "passageLevel": 5
   },
   {
     "title": "Making decisions",
@@ -14575,7 +14801,9 @@ export const PRACTICE = [
       "计划",
       "一定",
       "成功"
-    ]
+    ],
+    "passageId": "r-planning",
+    "passageLevel": 5
   },
   {
     "title": "Making decisions",
@@ -14775,7 +15003,9 @@ export const PRACTICE = [
       "的",
       "工作",
       "经验"
-    ]
+    ],
+    "passageId": "r-planning",
+    "passageLevel": 5
   },
   {
     "title": "Making decisions",
@@ -14982,7 +15212,9 @@ export const PRACTICE = [
       "应该",
       "采取",
       "行动"
-    ]
+    ],
+    "passageId": "r-planning",
+    "passageLevel": 5
   },
   {
     "title": "Exercise and consistency",
@@ -15182,7 +15414,9 @@ export const PRACTICE = [
       "完成",
       "没有",
       "变化"
-    ]
+    ],
+    "passageId": "r-health2",
+    "passageLevel": 5
   },
   {
     "title": "Exercise and consistency",
@@ -15396,7 +15630,9 @@ export const PRACTICE = [
       "能",
       "马上",
       "成功"
-    ]
+    ],
+    "passageId": "r-health2",
+    "passageLevel": 5
   },
   {
     "title": "Working together",
@@ -15603,7 +15839,9 @@ export const PRACTICE = [
       "不",
       "需要",
       "交流"
-    ]
+    ],
+    "passageId": "r-trust",
+    "passageLevel": 5
   },
   {
     "title": "Reading strategies",
@@ -15865,7 +16103,9 @@ export const PRACTICE = [
       "有",
       "难",
       "词"
-    ]
+    ],
+    "passageId": "r-readingstrategy",
+    "passageLevel": 5
   },
   {
     "title": "Reading strategies",
@@ -16107,7 +16347,9 @@ export const PRACTICE = [
       "一",
       "本",
       "字典"
-    ]
+    ],
+    "passageId": "r-readingstrategy",
+    "passageLevel": 5
   },
   {
     "title": "Reading strategies",
@@ -16360,7 +16602,9 @@ export const PRACTICE = [
       "必须",
       "使用",
       "字典"
-    ]
+    ],
+    "passageId": "r-readingstrategy",
+    "passageLevel": 5
   },
   {
     "title": "A day at school",
@@ -16443,7 +16687,9 @@ export const PRACTICE = [
       "汉语",
       "数学",
       "音乐"
-    ]
+    ],
+    "passageId": "r-library",
+    "passageLevel": 3
   },
   {
     "title": "Choosing a gift",
@@ -16591,7 +16837,9 @@ export const PRACTICE = [
       "员工",
       "她",
       "自己"
-    ]
+    ],
+    "passageId": "r-gift",
+    "passageLevel": 5
   },
   {
     "title": "A hotel booking",
@@ -16736,7 +16984,9 @@ export const PRACTICE = [
       "多",
       "都",
       "免费"
-    ]
+    ],
+    "passageId": "r-hotel",
+    "passageLevel": 5
   },
   {
     "title": "Staff training",
@@ -16903,7 +17153,9 @@ export const PRACTICE = [
       "工作",
       "停止",
       "工作"
-    ]
+    ],
+    "passageId": "r-training",
+    "passageLevel": 5
   },
   {
     "title": "Demand and supply",
@@ -17103,7 +17355,9 @@ export const PRACTICE = [
       "次",
       "的",
       "情况"
-    ]
+    ],
+    "passageId": "r-stock",
+    "passageLevel": 5
   },
   {
     "title": "A meeting",
@@ -17318,7 +17572,9 @@ export const PRACTICE = [
       "会议",
       "外",
       "解决"
-    ]
+    ],
+    "passageId": "r-meeting",
+    "passageLevel": 5
   },
   {
     "title": "Product quality",
@@ -17511,7 +17767,9 @@ export const PRACTICE = [
       "有",
       "一",
       "次"
-    ]
+    ],
+    "passageId": "r-quality",
+    "passageLevel": 5
   },
   {
     "title": "Using information",
@@ -17711,7 +17969,9 @@ export const PRACTICE = [
       "一定",
       "提高",
       "了"
-    ]
+    ],
+    "passageId": "r-data",
+    "passageLevel": 5
   },
   {
     "title": "Using information",
@@ -17904,7 +18164,9 @@ export const PRACTICE = [
       "考虑",
       "任何",
       "信息"
-    ]
+    ],
+    "passageId": "r-data",
+    "passageLevel": 5
   },
   {
     "title": "A new position",
@@ -18132,7 +18394,9 @@ export const PRACTICE = [
       "一",
       "个",
       "目标"
-    ]
+    ],
+    "passageId": "r-career",
+    "passageLevel": 5
   },
   {
     "title": "An environmental change",
@@ -18359,7 +18623,9 @@ export const PRACTICE = [
       "不",
       "需要",
       "做"
-    ]
+    ],
+    "passageId": "r-environment2",
+    "passageLevel": 5
   },
   {
     "title": "An environmental change",
@@ -18587,7 +18853,9 @@ export const PRACTICE = [
       "公司",
       "保护",
       "环境"
-    ]
+    ],
+    "passageId": "r-environment2",
+    "passageLevel": 5
   },
   {
     "title": "A changing market",
@@ -18801,7 +19069,9 @@ export const PRACTICE = [
       "再",
       "需要",
       "收入"
-    ]
+    ],
+    "passageId": "r-change",
+    "passageLevel": 5
   },
   {
     "title": "A changing market",
@@ -19006,7 +19276,9 @@ export const PRACTICE = [
       "可能",
       "有",
       "的"
-    ]
+    ],
+    "passageId": "r-change",
+    "passageLevel": 5
   },
   {
     "title": "Family",
@@ -19081,7 +19353,9 @@ export const PRACTICE = [
       "医院",
       "学校",
       "家"
-    ]
+    ],
+    "passageId": "r-family2",
+    "passageLevel": 1
   },
   {
     "title": "Family",
@@ -19155,7 +19429,9 @@ export const PRACTICE = [
       "妹妹",
       "哥哥",
       "爸爸"
-    ]
+    ],
+    "passageId": "r-family2",
+    "passageLevel": 1
   },
   {
     "title": "Family",
@@ -19236,7 +19512,9 @@ export const PRACTICE = [
       "茶",
       "买",
       "衣服"
-    ]
+    ],
+    "passageId": "r-family2",
+    "passageLevel": 1
   },
   {
     "title": "Buying fruit",
@@ -19324,7 +19602,9 @@ export const PRACTICE = [
       "个",
       "一",
       "个"
-    ]
+    ],
+    "passageId": "r-apple",
+    "passageLevel": 3
   },
   {
     "title": "Buying fruit",
@@ -19407,7 +19687,9 @@ export const PRACTICE = [
       "苹果",
       "西瓜",
       "书"
-    ]
+    ],
+    "passageId": "r-apple",
+    "passageLevel": 3
   },
   {
     "title": "Visiting a friend",
@@ -19480,7 +19762,9 @@ export const PRACTICE = [
       "学校",
       "医院",
       "商店"
-    ]
+    ],
+    "passageId": "r-friend",
+    "passageLevel": 2
   },
   {
     "title": "Visiting a friend",
@@ -19564,7 +19848,9 @@ export const PRACTICE = [
       "上午",
       "要",
       "工作"
-    ]
+    ],
+    "passageId": "r-friend",
+    "passageLevel": 2
   },
   {
     "title": "In the park",
@@ -19655,7 +19941,9 @@ export const PRACTICE = [
       "工作",
       "做",
       "饭"
-    ]
+    ],
+    "passageId": "r-park",
+    "passageLevel": 3
   },
   {
     "title": "In the park",
@@ -19747,7 +20035,9 @@ export const PRACTICE = [
       "三",
       "个",
       "小时"
-    ]
+    ],
+    "passageId": "r-park",
+    "passageLevel": 3
   },
   {
     "title": "Changing an appointment",
@@ -19875,7 +20165,9 @@ export const PRACTICE = [
       "四",
       "点",
       "半"
-    ]
+    ],
+    "passageId": "r-schedule",
+    "passageLevel": 4
   },
   {
     "title": "Changing an appointment",
@@ -20003,7 +20295,9 @@ export const PRACTICE = [
       "饭",
       "回",
       "家"
-    ]
+    ],
+    "passageId": "r-schedule",
+    "passageLevel": 4
   },
   {
     "title": "Changing an appointment",
@@ -20136,7 +20430,9 @@ export const PRACTICE = [
       "商品",
       "很",
       "贵"
-    ]
+    ],
+    "passageId": "r-schedule",
+    "passageLevel": 4
   },
   {
     "title": "A conversation",
@@ -20293,7 +20589,9 @@ export const PRACTICE = [
       "多",
       "的",
       "字"
-    ]
+    ],
+    "passageId": "r-language",
+    "passageLevel": 5
   },
   {
     "title": "Exercise and consistency",
@@ -20509,7 +20807,9 @@ export const PRACTICE = [
       "人",
       "觉得",
       "累"
-    ]
+    ],
+    "passageId": "r-health2",
+    "passageLevel": 5
   },
   {
     "title": "Working together",
@@ -20721,7 +21021,9 @@ export const PRACTICE = [
       "交流",
       "的",
       "人"
-    ]
+    ],
+    "passageId": "r-trust",
+    "passageLevel": 5
   },
   {
     "title": "Working together",
@@ -20924,6 +21226,170 @@ export const PRACTICE = [
       "前面",
       "的",
       "意思"
-    ]
+    ],
+    "passageId": "r-trust",
+    "passageLevel": 5
+  },
+  {
+    "id": "r-restaurant-1",
+    "kind": "reading",
+    "title": "Ordering food",
+    "passage": "我和朋友去饭店吃饭。我想吃米饭，他想吃面条儿。我们都不想喝茶，就要了水。",
+    "translation": "A friend and I go to a restaurant. I want rice and he wants noodles. Neither wants tea, so we order water.",
+    "passageTokens": [
+      "我",
+      "和",
+      "朋友",
+      "去",
+      "饭店",
+      "吃",
+      "饭",
+      "我",
+      "想",
+      "吃",
+      "米饭",
+      "他",
+      "想",
+      "吃",
+      "面条儿",
+      "我们",
+      "都",
+      "不",
+      "想",
+      "喝",
+      "茶",
+      "就",
+      "要",
+      "了",
+      "水"
+    ],
+    "words": [],
+    "level": 2,
+    "questionType": "detail",
+    "prompt": "朋友想吃什么？",
+    "answer": "面条儿",
+    "choices": [
+      "面条儿",
+      "米饭",
+      "苹果"
+    ],
+    "explain": "The friend wants noodles.",
+    "tokens": [
+      "我",
+      "和",
+      "朋友",
+      "去",
+      "饭店",
+      "吃",
+      "饭",
+      "我",
+      "想",
+      "吃",
+      "米饭",
+      "他",
+      "想",
+      "吃",
+      "面条儿",
+      "我们",
+      "都",
+      "不",
+      "想",
+      "喝",
+      "茶",
+      "就",
+      "要",
+      "了",
+      "水",
+      "朋友",
+      "想",
+      "吃",
+      "什么",
+      "面条儿",
+      "米饭",
+      "苹果"
+    ],
+    "passageId": "r-restaurant",
+    "passageLevel": 2
+  },
+  {
+    "id": "r-restaurant-2",
+    "kind": "reading",
+    "title": "Ordering food",
+    "passage": "我和朋友去饭店吃饭。我想吃米饭，他想吃面条儿。我们都不想喝茶，就要了水。",
+    "translation": "A friend and I go to a restaurant. I want rice and he wants noodles. Neither wants tea, so we order water.",
+    "passageTokens": [
+      "我",
+      "和",
+      "朋友",
+      "去",
+      "饭店",
+      "吃",
+      "饭",
+      "我",
+      "想",
+      "吃",
+      "米饭",
+      "他",
+      "想",
+      "吃",
+      "面条儿",
+      "我们",
+      "都",
+      "不",
+      "想",
+      "喝",
+      "茶",
+      "就",
+      "要",
+      "了",
+      "水"
+    ],
+    "words": [],
+    "level": 2,
+    "questionType": "detail",
+    "prompt": "我们要了什么？",
+    "answer": "水",
+    "choices": [
+      "水",
+      "茶",
+      "牛奶"
+    ],
+    "explain": "They ordered water.",
+    "tokens": [
+      "我",
+      "和",
+      "朋友",
+      "去",
+      "饭店",
+      "吃",
+      "饭",
+      "我",
+      "想",
+      "吃",
+      "米饭",
+      "他",
+      "想",
+      "吃",
+      "面条儿",
+      "我们",
+      "都",
+      "不",
+      "想",
+      "喝",
+      "茶",
+      "就",
+      "要",
+      "了",
+      "水",
+      "我们",
+      "要",
+      "了",
+      "什么",
+      "水",
+      "茶",
+      "牛奶"
+    ],
+    "passageId": "r-restaurant",
+    "passageLevel": 2
   }
 ];
