@@ -2596,5 +2596,57 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "suo",
+    "word": "所",
+    "level": 5,
+    "pattern": "所 + verb + 的 + noun",
+    "meaning": "suǒ · what is / was done",
+    "explain": "所 marks a relative expression, often referring to what someone does, knows, or needs.",
+    "distractors": [
+      "与",
+      "由"
+    ],
+    "contrast": "Which word forms a relative expression before a verb?",
+    "examples": [
+      {
+        "zh": "这是我所需要的东西。",
+        "en": "This is what I need.",
+        "tokens": [
+          "这",
+          "是",
+          "我",
+          "所",
+          "需要",
+          "的",
+          "东西"
+        ]
+      },
+      {
+        "zh": "他所说的都对。",
+        "en": "Everything he said is right.",
+        "tokens": [
+          "他",
+          "所",
+          "说",
+          "的",
+          "都",
+          "对"
+        ]
+      },
+      {
+        "zh": "我所知道的不多。",
+        "en": "I do not know much.",
+        "tokens": [
+          "我",
+          "所",
+          "知道",
+          "的",
+          "不",
+          "多"
+        ]
+      }
+    ]
   }
 ];
