@@ -81,3 +81,6 @@ HSK 4 and HSK 5 now each contain 101 passages (216 total across HSK 1–5). This
 
 ### v2.12 spoken comprehension questions
 Reading and listening quizzes now support Mandarin playback for the question, each visible answer option, and the entire question with options A–C in displayed order. Separate audio and answer buttons prevent accidental grading. Playback uses device speech synthesis, shares the story speed preference, and stops when submitting or navigating to another question. No answer is identified during playback.
+
+### v2.13 flashcard context and vocab list
+The self-assessment flashcards now offer two level-checked example sentences per written-word card, collapsed before rating and expanded after a non-known rating. Each has target highlighting and Mandarin playback; English meanings are optional after the definition is revealed. Known still advances immediately and FSRS scheduling is unchanged. The Vocab list submenu is a read-only reference for all 3,577 syllabus entries, including separate readings, with full dictionary definitions, HSK filters, tone-insensitive pinyin/Chinese/English search and 100-entry pages.
