@@ -199,12 +199,14 @@ export function options(cardLike) {
   const w = S.byId.get(cardLike.word_id);
   if (cardLike.kind === 'tone') return toneOptions(w);
   const chosen = new Set([w.i]); const picks = [];
+  const label = (o) => { if (cardLike.kind !== 'meaning') return o.h; const t = o.m.slice(0, 2).join('; '); return t.length > 64 ? t.slice(0, 62) + '…' : t; };
+  const labels = new Set([label(w)]);
   // avoid distractors whose meaning overlaps the answer (otherwise two choices could be right)
   const STOP = new Set(['to', 'a', 'an', 'the', 'of', 'and', 'or', 'sth', 'sb', 'in', 'on', 'for', 'with', 'be', 'is', 'as', 'at', 'by', 'one', 'etc', 'used', 'after', 'before', 'from', 'up', 'out', 'not']);
   const words = (ms) => new Set(ms.join(' ').toLowerCase().replace(/\([^)]*\)/g, ' ').split(/[^a-z']+/).filter((x) => x.length > 2 && !STOP.has(x)));
   const target = words(w.m);
   const overlaps = (o) => [...words(o.m.slice(0, 2))].some((x) => target.has(x));
-  const add = (id) => { if (picks.length < 2 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && o.m[0] !== w.m[0] && o.h !== w.h && (cardLike.kind === 'listen' || !overlaps(o))) { chosen.add(id); picks.push(id); } } };
+  const add = (id) => { if (picks.length < 2 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && o.m[0] !== w.m[0] && o.h !== w.h && !labels.has(label(o)) && (cardLike.kind === 'listen' ? o.n !== w.n : !overlaps(o))) { chosen.add(id); labels.add(label(o)); picks.push(id); } } };
   // 1) words you've confused with this one before
   confusedWith(w.i).slice(0, 1).forEach(add);
   const pool = S.vocab;
@@ -217,6 +219,7 @@ export function options(cardLike) {
   }
   shuffle(pool.filter((o) => Math.abs(o.l - w.l) <= 1 && sharesPos(o, w) && sameLen(o, w))).slice(0, 30).forEach((o) => add(o.i));
   shuffle(pool.slice()).slice(0, 20).forEach((o) => add(o.i));
+  if (picks.length < 2) shuffle(pool.slice()).forEach((o) => add(o.i));
   return shuffle([w.i, ...picks.slice(0, 2)]).map((id) => ({ id, word: S.byId.get(id) }));
 }
 
@@ -225,7 +228,7 @@ function markSyllable(syl) { // "hao3" -> "hǎo"
   const m = syl.match(/^([a-zü:v]+)([1-5])$/i); if (!m) return syl;
   let s = m[1].toLowerCase().replace(/u:|v/g, 'ü'); const t = +m[2]; if (t === 5) return s;
   const idx = /a|e/.test(s) ? s.search(/a|e/) : s.includes('ou') ? s.indexOf('o') : (() => { let k = -1; for (let i = 0; i < s.length; i++) if ('aeiouü'.includes(s[i])) k = i; return k; })();
-  if (idx < 0) return s;
+  if (idx < 0) { const nasal = s.search(/[nm]/); return nasal < 0 ? s : (s.slice(0, nasal + 1) + ['', '\u0304', '\u0301', '\u030c', '\u0300'][t] + s.slice(nasal + 1)).normalize('NFC'); }
   return s.slice(0, idx) + TONE_MARKS[s[idx]][t - 1] + s.slice(idx + 1);
 }
 export const numericToMarks = (n) => n.split(' ').map(markSyllable).join(' ');
@@ -237,7 +240,15 @@ function toneOptions(w) {
     const p = numericToMarks(v.join(' '));
     if (!set.has(p)) { set.add(p); outs.push(p); }
   }
-  return shuffle(outs).map((p) => ({ id: p === correct ? w.i : -outs.indexOf(p) - 1, pinyin: p, word: p === correct ? w : null }));
+  // Deterministic fallback for rare random collisions (including neutral-tone words).
+  for (let i = 0; i < syl.length && outs.length < 3; i++) {
+    for (let t = 1; t <= 5 && outs.length < 3; t++) {
+      const v = syl.slice(); v[i] = v[i].replace(/[1-5]$/, String(t));
+      const p = numericToMarks(v.join(' '));
+      if (!set.has(p)) { set.add(p); outs.push(p); }
+    }
+  }
+  return shuffle(outs).map((p, i) => ({ id: p === correct ? w.i : -i - 1, pinyin: p, word: p === correct ? w : null }));
 }
 
 // ---------- character breakdown (memory aid for hard words)
