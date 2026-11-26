@@ -199,9 +199,14 @@ export function options(cardLike) {
   const w = S.byId.get(cardLike.word_id);
   if (cardLike.kind === 'tone') return toneOptions(w);
   const chosen = new Set([w.i]); const picks = [];
-  const add = (id) => { if (picks.length < 3 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && o.m[0] !== w.m[0] && o.h !== w.h) { chosen.add(id); picks.push(id); } } };
+  // avoid distractors whose meaning overlaps the answer (otherwise two choices could be right)
+  const STOP = new Set(['to', 'a', 'an', 'the', 'of', 'and', 'or', 'sth', 'sb', 'in', 'on', 'for', 'with', 'be', 'is', 'as', 'at', 'by', 'one', 'etc', 'used', 'after', 'before', 'from', 'up', 'out', 'not']);
+  const words = (ms) => new Set(ms.join(' ').toLowerCase().replace(/\([^)]*\)/g, ' ').split(/[^a-z']+/).filter((x) => x.length > 2 && !STOP.has(x)));
+  const target = words(w.m);
+  const overlaps = (o) => [...words(o.m.slice(0, 2))].some((x) => target.has(x));
+  const add = (id) => { if (picks.length < 2 && id && !chosen.has(id)) { const o = S.byId.get(id); if (o && o.m[0] !== w.m[0] && o.h !== w.h && (cardLike.kind === 'listen' || !overlaps(o))) { chosen.add(id); picks.push(id); } } };
   // 1) words you've confused with this one before
-  confusedWith(w.i).slice(0, 2).forEach(add);
+  confusedWith(w.i).slice(0, 1).forEach(add);
   const pool = S.vocab;
   if (cardLike.kind === 'listen') {
     pool.filter((o) => toneless(o.n) === toneless(w.n)).forEach((o) => add(o.i));                 // homophones
@@ -212,7 +217,7 @@ export function options(cardLike) {
   }
   shuffle(pool.filter((o) => Math.abs(o.l - w.l) <= 1 && sharesPos(o, w) && sameLen(o, w))).slice(0, 30).forEach((o) => add(o.i));
   shuffle(pool.slice()).slice(0, 20).forEach((o) => add(o.i));
-  return shuffle([w.i, ...picks.slice(0, 3)]).map((id) => ({ id, word: S.byId.get(id) }));
+  return shuffle([w.i, ...picks.slice(0, 2)]).map((id) => ({ id, word: S.byId.get(id) }));
 }
 
 const TONE_MARKS = { a: 'āáǎàa', e: 'ēéěèe', i: 'īíǐìi', o: 'ōóǒòo', u: 'ūúǔùu', ü: 'ǖǘǚǜü', v: 'ǖǘǚǜü' };
@@ -227,7 +232,7 @@ export const numericToMarks = (n) => n.split(' ').map(markSyllable).join(' ');
 function toneOptions(w) {
   const syl = w.n.split(' '); const correct = numericToMarks(w.n); const set = new Set([correct]); const outs = [correct];
   let guard = 0;
-  while (outs.length < 4 && guard++ < 60) {
+  while (outs.length < 3 && guard++ < 60) {
     const v = syl.map((s) => s.replace(/[1-5]$/, (t) => (Math.random() < (syl.length === 1 ? 1 : 0.55) ? String(1 + Math.floor(Math.random() * 4)) : t)));
     const p = numericToMarks(v.join(' '));
     if (!set.has(p)) { set.add(p); outs.push(p); }

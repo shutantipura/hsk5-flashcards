@@ -78,7 +78,8 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .prompt.listen span { font-size: 11px; color: var(--muted); }
 .q { margin: 4px 0 14px; font-size: 14px; }
 .opts { display: grid; gap: 10px; }
-.opts.zh { grid-template-columns: 1fr 1fr; }
+.opts.zh { grid-template-columns: repeat(3, 1fr); }
+.opts.zh.long { grid-template-columns: 1fr; }
 .opt { padding: 16px 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); text-align: left; min-height: 58px; cursor: pointer; }
 .opts.zh .opt { text-align: center; font: 500 26px var(--hz); }
 .opts.zh .opt:not(:has(*)) { font-family: var(--hz); }

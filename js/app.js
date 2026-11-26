@@ -234,7 +234,7 @@ function renderQuiz() {
   const isNewCard = card.state === State.New;
   $('#stage').innerHTML = `<div class="kindtag ${kind}">${KINDS[kind].label}${isNewCard ? ' · first time' : ''}${card.lapses >= 4 ? ' · <span data-tip="You keep forgetting this one. Check the character breakdown and add your own note.">hard word</span>' : ''}</div>
     ${prompt}<p class="q muted center">${KINDS[kind].hint}</p>
-    <div class="opts ${kind === 'meaning' ? 'en' : 'zh'}">${opts.map((o, i) => `<button class="opt" data-i="${i}">${label(o)}</button>`).join('')}</div>
+    <div class="opts ${kind === 'meaning' ? 'en' : 'zh'}${kind !== 'meaning' && opts.some((o) => (o.pinyin || o.word.h).length > 6) ? ' long' : ''}">${opts.map((o, i) => `<button class="opt" data-i="${i}">${label(o)}</button>`).join('')}</div>
     <button class="link center" id="idk">I don't know</button>`;
   if (kind === 'listen') setTimeout(() => speak(w.h), 50);
   app.querySelectorAll('.opt').forEach((b) => (b.onclick = () => choose(+b.dataset.i)));
