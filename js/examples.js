@@ -13392,6 +13392,953 @@ export const curatedExamples = {
       ]
     }
   ],
+  "1177": [
+    {
+      "zh": "这是什么法？",
+      "en": "What law is this?",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "是",
+        "什么",
+        "法"
+      ]
+    },
+    {
+      "zh": "他学过法。",
+      "en": "He has studied law.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "学",
+        "过",
+        "法"
+      ]
+    }
+  ],
+  "1181": [
+    {
+      "zh": "这里的光很强。",
+      "en": "The light here is strong.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "的",
+        "光",
+        "很",
+        "强"
+      ]
+    },
+    {
+      "zh": "我看见了一道光。",
+      "en": "I saw a ray of light.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "看见",
+        "了",
+        "一",
+        "道",
+        "光"
+      ]
+    },
+    {
+      "zh": "房间里没有光。",
+      "en": "There is no light in the room.",
+      "source": "original",
+      "verifiedTokens": [
+        "房间",
+        "里",
+        "没有",
+        "光"
+      ]
+    }
+  ],
+  "1183": [
+    {
+      "zh": "请联系我。",
+      "en": "Please contact me.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "联系",
+        "我"
+      ]
+    },
+    {
+      "zh": "我们通过电话联系。",
+      "en": "We contact each other by phone.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "通过",
+        "电话",
+        "联系"
+      ]
+    }
+  ],
+  "1188": [
+    {
+      "zh": "请加一点儿油。",
+      "en": "Please add a little oil.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "加",
+        "一点儿",
+        "油"
+      ]
+    },
+    {
+      "zh": "这个菜油太多。",
+      "en": "This dish has too much oil.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "菜",
+        "油",
+        "太",
+        "多"
+      ]
+    },
+    {
+      "zh": "我去买油。",
+      "en": "I am going to buy oil.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "买",
+        "油"
+      ]
+    }
+  ],
+  "1195": [
+    {
+      "zh": "请把书装进包里。",
+      "en": "Please put the books into the bag.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "把",
+        "书",
+        "装",
+        "进",
+        "包",
+        "里"
+      ]
+    },
+    {
+      "zh": "这个箱子装了很多东西。",
+      "en": "This box contains many things.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "箱子",
+        "装",
+        "了",
+        "很",
+        "多",
+        "东西"
+      ]
+    },
+    {
+      "zh": "请装满水。",
+      "en": "Please fill it with water.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "装",
+        "满",
+        "水"
+      ]
+    }
+  ],
+  "1199": [
+    {
+      "zh": "他的工作有很强的专业性。",
+      "en": "His work is highly professional.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "工作",
+        "有",
+        "很",
+        "强",
+        "的",
+        "专业",
+        "性"
+      ]
+    }
+  ],
+  "1200": [
+    {
+      "zh": "他的速度很快。",
+      "en": "His speed is high.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "速度",
+        "很",
+        "快"
+      ]
+    },
+    {
+      "zh": "我们要提高速度。",
+      "en": "We need to increase the speed.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "提高",
+        "速度"
+      ]
+    }
+  ],
+  "1213": [
+    {
+      "zh": "我有安全感。",
+      "en": "I feel safe.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有",
+        "安全",
+        "感"
+      ]
+    },
+    {
+      "zh": "他很有责任感。",
+      "en": "He has a strong sense of responsibility.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "很",
+        "有",
+        "责任",
+        "感"
+      ]
+    },
+    {
+      "zh": "她缺少信心和安全感。",
+      "en": "She lacks confidence and a sense of security.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "缺少",
+        "信心",
+        "和",
+        "安全",
+        "感"
+      ]
+    }
+  ],
+  "1215": [
+    {
+      "zh": "书在箱子底。",
+      "en": "The book is at the bottom of the box.",
+      "source": "original",
+      "verifiedTokens": [
+        "书",
+        "在",
+        "箱子",
+        "底"
+      ]
+    },
+    {
+      "zh": "我们月底见。",
+      "en": "See you at the end of the month.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "月",
+        "底",
+        "见"
+      ]
+    },
+    {
+      "zh": "杯子底有水。",
+      "en": "There is water at the bottom of the cup.",
+      "source": "original",
+      "verifiedTokens": [
+        "杯子",
+        "底",
+        "有",
+        "水"
+      ]
+    }
+  ],
+  "1227": [
+    {
+      "zh": "他学习努力，并且很认真。",
+      "en": "He studies hard and is very diligent.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "学习",
+        "努力",
+        "并且",
+        "很",
+        "认真"
+      ]
+    },
+    {
+      "zh": "这里安静并且安全。",
+      "en": "It is quiet and safe here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "安静",
+        "并且",
+        "安全"
+      ]
+    },
+    {
+      "zh": "他买了书，并且写了字。",
+      "en": "He bought books and wrote characters.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "买",
+        "了",
+        "书",
+        "并且",
+        "写",
+        "了",
+        "字"
+      ]
+    }
+  ],
+  "1231": [
+    {
+      "zh": "请给我这些资料。",
+      "en": "Please give me these materials.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "这些",
+        "资料"
+      ]
+    },
+    {
+      "zh": "我在找资料。",
+      "en": "I am looking for information.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "找",
+        "资料"
+      ]
+    },
+    {
+      "zh": "老师发了资料。",
+      "en": "The teacher sent materials.",
+      "source": "original",
+      "verifiedTokens": [
+        "老师",
+        "发",
+        "了",
+        "资料"
+      ]
+    }
+  ],
+  "1234": [
+    {
+      "zh": "请排好队。",
+      "en": "Please line up properly.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "排",
+        "好",
+        "队"
+      ]
+    },
+    {
+      "zh": "我们坐在第一排。",
+      "en": "We sit in the first row.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "坐",
+        "在",
+        "第",
+        "一",
+        "排"
+      ]
+    },
+    {
+      "zh": "这一排都是学生。",
+      "en": "Everyone in this row is a student.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "一",
+        "排",
+        "都",
+        "是",
+        "学生"
+      ]
+    }
+  ],
+  "1236": [
+    {
+      "zh": "杯子里的水满了。",
+      "en": "The cup is full of water.",
+      "source": "original",
+      "verifiedTokens": [
+        "杯子",
+        "里",
+        "的",
+        "水",
+        "满",
+        "了"
+      ]
+    },
+    {
+      "zh": "请把水装满。",
+      "en": "Please fill it with water.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "把",
+        "水",
+        "装",
+        "满"
+      ]
+    },
+    {
+      "zh": "车上的人已经满了。",
+      "en": "The vehicle is already full.",
+      "source": "original",
+      "verifiedTokens": [
+        "车",
+        "上",
+        "的",
+        "人",
+        "已经",
+        "满",
+        "了"
+      ]
+    }
+  ],
+  "1238": [
+    {
+      "zh": "价格高了一倍。",
+      "en": "The price doubled.",
+      "source": "original",
+      "verifiedTokens": [
+        "价格",
+        "高",
+        "了",
+        "一",
+        "倍"
+      ]
+    },
+    {
+      "zh": "这个比那个大两倍。",
+      "en": "This is twice as large as that.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "比",
+        "那个",
+        "大",
+        "两",
+        "倍"
+      ]
+    },
+    {
+      "zh": "他的收入是我的三倍。",
+      "en": "His income is three times mine.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "收入",
+        "是",
+        "我",
+        "的",
+        "三",
+        "倍"
+      ]
+    }
+  ],
+  "1240": [
+    {
+      "zh": "我买了两幅画。",
+      "en": "I bought two paintings.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "两",
+        "幅",
+        "画"
+      ]
+    },
+    {
+      "zh": "这幅画很好看。",
+      "en": "This painting looks nice.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "幅",
+        "画",
+        "很",
+        "好看"
+      ]
+    }
+  ],
+  "1251": [
+    {
+      "zh": "水从这里流出去。",
+      "en": "Water flows out from here.",
+      "source": "original",
+      "verifiedTokens": [
+        "水",
+        "从",
+        "这里",
+        "流",
+        "出去"
+      ]
+    },
+    {
+      "zh": "他的血在流。",
+      "en": "He is bleeding.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "血",
+        "在",
+        "流"
+      ]
+    }
+  ],
+  "1252": [
+    {
+      "zh": "我们年末见。",
+      "en": "See you at the end of the year.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "年",
+        "末",
+        "见"
+      ]
+    },
+    {
+      "zh": "这个月末我很忙。",
+      "en": "I am busy at the end of this month.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "月",
+        "末",
+        "我",
+        "很",
+        "忙"
+      ]
+    },
+    {
+      "zh": "他在周末休息。",
+      "en": "He rests at the weekend.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "周",
+        "末",
+        "休息"
+      ]
+    }
+  ],
+  "1267": [
+    {
+      "zh": "这可以证明我没有错。",
+      "en": "This can prove I was not wrong.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "可以",
+        "证明",
+        "我",
+        "没有",
+        "错"
+      ]
+    },
+    {
+      "zh": "请给我证明。",
+      "en": "Please give me proof.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "证明"
+      ]
+    },
+    {
+      "zh": "他证明了自己的能力。",
+      "en": "He proved his ability.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "证明",
+        "了",
+        "自己",
+        "的",
+        "能力"
+      ]
+    }
+  ],
+  "1274": [
+    {
+      "zh": "我们重新开始。",
+      "en": "We start again.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "重新",
+        "开始"
+      ]
+    },
+    {
+      "zh": "他重新做了这道题。",
+      "en": "He redid this question.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "重新",
+        "做",
+        "了",
+        "这",
+        "道",
+        "题"
+      ]
+    }
+  ],
+  "1275": [
+    {
+      "zh": "我爱我的父母。",
+      "en": "I love my parents.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "爱",
+        "我",
+        "的",
+        "父母"
+      ]
+    },
+    {
+      "zh": "他和父母住在一起。",
+      "en": "He lives with his parents.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "和",
+        "父母",
+        "住",
+        "在",
+        "一起"
+      ]
+    },
+    {
+      "zh": "我想见父母。",
+      "en": "I want to see my parents.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "见",
+        "父母"
+      ]
+    }
+  ],
+  "1276": [
+    {
+      "zh": "这家店卖食品。",
+      "en": "This shop sells food.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "家",
+        "店",
+        "卖",
+        "食品"
+      ]
+    },
+    {
+      "zh": "请注意食品安全。",
+      "en": "Please pay attention to food safety.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "注意",
+        "食品",
+        "安全"
+      ]
+    },
+    {
+      "zh": "这些食品很便宜。",
+      "en": "These foods are cheap.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "食品",
+        "很",
+        "便宜"
+      ]
+    }
+  ],
+  "1277": [
+    {
+      "zh": "我去取钱。",
+      "en": "I am going to withdraw money.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "取",
+        "钱"
+      ]
+    },
+    {
+      "zh": "请取一张票。",
+      "en": "Please take a ticket.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "取",
+        "一",
+        "张",
+        "票"
+      ]
+    },
+    {
+      "zh": "他去学校取书。",
+      "en": "He went to school to collect books.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "去",
+        "学校",
+        "取",
+        "书"
+      ]
+    }
+  ],
+  "1278": [
+    {
+      "zh": "公司重视质量。",
+      "en": "The company values quality.",
+      "source": "original",
+      "verifiedTokens": [
+        "公司",
+        "重视",
+        "质量"
+      ]
+    },
+    {
+      "zh": "老师很重视这个问题。",
+      "en": "The teacher attaches importance to this problem.",
+      "source": "original",
+      "verifiedTokens": [
+        "老师",
+        "很",
+        "重视",
+        "这个",
+        "问题"
+      ]
+    },
+    {
+      "zh": "我们要重视健康。",
+      "en": "We should value health.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "重视",
+        "健康"
+      ]
+    }
+  ],
+  "1279": [
+    {
+      "zh": "我喜欢艺术。",
+      "en": "I like art.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "艺术"
+      ]
+    },
+    {
+      "zh": "他在大学学艺术。",
+      "en": "He studies art at university.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "大学",
+        "学",
+        "艺术"
+      ]
+    },
+    {
+      "zh": "她对艺术很感兴趣。",
+      "en": "She is interested in art.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "对",
+        "艺术",
+        "很",
+        "感兴趣"
+      ]
+    }
+  ],
+  "1282": [
+    {
+      "zh": "这是假的。",
+      "en": "This is fake.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "是",
+        "假",
+        "的"
+      ]
+    },
+    {
+      "zh": "这张票是假的。",
+      "en": "This ticket is fake.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "张",
+        "票",
+        "是",
+        "假",
+        "的"
+      ]
+    }
+  ],
+  "1285": [
+    {
+      "zh": "他是一名青年教师。",
+      "en": "He is a young teacher.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "一",
+        "名",
+        "青年",
+        "教师"
+      ]
+    },
+    {
+      "zh": "这里有很多青年。",
+      "en": "There are many young people here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "很",
+        "多",
+        "青年"
+      ]
+    },
+    {
+      "zh": "青年喜欢这项活动。",
+      "en": "Young people like this activity.",
+      "source": "original",
+      "verifiedTokens": [
+        "青年",
+        "喜欢",
+        "这",
+        "项",
+        "活动"
+      ]
+    }
+  ],
+  "1296": [
+    {
+      "zh": "她是教师。",
+      "en": "She is a teacher.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "是",
+        "教师"
+      ]
+    },
+    {
+      "zh": "我想成为教师。",
+      "en": "I want to become a teacher.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "成为",
+        "教师"
+      ]
+    },
+    {
+      "zh": "学校有很多教师。",
+      "en": "The school has many teachers.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "有",
+        "很",
+        "多",
+        "教师"
+      ]
+    }
+  ],
+  "1298": [
+    {
+      "zh": "房间很亮。",
+      "en": "The room is bright.",
+      "source": "original",
+      "verifiedTokens": [
+        "房间",
+        "很",
+        "亮"
+      ]
+    },
+    {
+      "zh": "灯亮了。",
+      "en": "The light came on.",
+      "source": "original",
+      "verifiedTokens": [
+        "灯",
+        "亮",
+        "了"
+      ]
+    },
+    {
+      "zh": "天亮了。",
+      "en": "Day broke.",
+      "source": "original",
+      "verifiedTokens": [
+        "天",
+        "亮",
+        "了"
+      ]
+    }
+  ],
   "1306": [
     {
       "zh": "他的态度很好。",
@@ -13407,6 +14354,4053 @@ export const curatedExamples = {
       "zh": "请改变你的态度。",
       "en": "Please change your attitude.",
       "source": "original"
+    }
+  ],
+  "1307": [
+    {
+      "zh": "请推门。",
+      "en": "Please push the door.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "推",
+        "门"
+      ]
+    },
+    {
+      "zh": "他推了我一下。",
+      "en": "He pushed me a little.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "推",
+        "了",
+        "我",
+        "一下"
+      ]
+    },
+    {
+      "zh": "我帮他推车。",
+      "en": "I help him push the vehicle.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "帮",
+        "他",
+        "推",
+        "车"
+      ]
+    }
+  ],
+  "1315": [
+    {
+      "zh": "这条道路很长。",
+      "en": "This road is long.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "道路",
+        "很",
+        "长"
+      ]
+    },
+    {
+      "zh": "道路上有很多车。",
+      "en": "There are many vehicles on the road.",
+      "source": "original",
+      "verifiedTokens": [
+        "道路",
+        "上",
+        "有",
+        "很",
+        "多",
+        "车"
+      ]
+    },
+    {
+      "zh": "这条道路很安全。",
+      "en": "This road is safe.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "条",
+        "道路",
+        "很",
+        "安全"
+      ]
+    }
+  ],
+  "1324": [
+    {
+      "zh": "他失去了工作。",
+      "en": "He lost his job.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "失去",
+        "了",
+        "工作"
+      ]
+    },
+    {
+      "zh": "我不想失去你。",
+      "en": "I do not want to lose you.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "想",
+        "失去",
+        "你"
+      ]
+    },
+    {
+      "zh": "我们失去了机会。",
+      "en": "We lost the opportunity.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "失去",
+        "了",
+        "机会"
+      ]
+    }
+  ],
+  "1325": [
+    {
+      "zh": "我想申请这个工作。",
+      "en": "I want to apply for this job.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "申请",
+        "这个",
+        "工作"
+      ]
+    },
+    {
+      "zh": "他正在申请。",
+      "en": "He is applying.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "正在",
+        "申请"
+      ]
+    },
+    {
+      "zh": "请写申请。",
+      "en": "Please write an application.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "写",
+        "申请"
+      ]
+    }
+  ],
+  "1331": [
+    {
+      "zh": "请加快速度。",
+      "en": "Please speed up.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "加快",
+        "速度"
+      ]
+    },
+    {
+      "zh": "我们要加快工作速度。",
+      "en": "We need to speed up our work.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "加快",
+        "工作",
+        "速度"
+      ]
+    },
+    {
+      "zh": "公司加快了发展。",
+      "en": "The company accelerated its development.",
+      "source": "original",
+      "verifiedTokens": [
+        "公司",
+        "加快",
+        "了",
+        "发展"
+      ]
+    }
+  ],
+  "1337": [
+    {
+      "zh": "我不敢去。",
+      "en": "I dare not go.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "敢",
+        "去"
+      ]
+    },
+    {
+      "zh": "你敢吗？",
+      "en": "Do you dare?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "敢",
+        "吗"
+      ]
+    }
+  ],
+  "1342": [
+    {
+      "zh": "我想和你谈一谈。",
+      "en": "I want to talk with you.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "和",
+        "你",
+        "谈",
+        "一",
+        "谈"
+      ]
+    },
+    {
+      "zh": "我们正在谈工作。",
+      "en": "We are talking about work.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "正在",
+        "谈",
+        "工作"
+      ]
+    },
+    {
+      "zh": "请谈谈你的看法。",
+      "en": "Please talk about your views.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "谈",
+        "谈",
+        "你",
+        "的",
+        "看法"
+      ]
+    }
+  ],
+  "1348": [
+    {
+      "zh": "这个菜很香。",
+      "en": "This dish smells delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "菜",
+        "很",
+        "香"
+      ]
+    },
+    {
+      "zh": "花很香。",
+      "en": "The flowers smell fragrant.",
+      "source": "original",
+      "verifiedTokens": [
+        "花",
+        "很",
+        "香"
+      ]
+    },
+    {
+      "zh": "妈妈做的饭真香。",
+      "en": "Mum's food smells wonderful.",
+      "source": "original",
+      "verifiedTokens": [
+        "妈妈",
+        "做",
+        "的",
+        "饭",
+        "真",
+        "香"
+      ]
+    }
+  ],
+  "1352": [
+    {
+      "zh": "请给我一把刀。",
+      "en": "Please give me a knife.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "一",
+        "把",
+        "刀"
+      ]
+    },
+    {
+      "zh": "这把刀很小。",
+      "en": "This knife is small.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "把",
+        "刀",
+        "很",
+        "小"
+      ]
+    },
+    {
+      "zh": "刀在桌子上。",
+      "en": "The knife is on the table.",
+      "source": "original",
+      "verifiedTokens": [
+        "刀",
+        "在",
+        "桌子",
+        "上"
+      ]
+    }
+  ],
+  "1353": [
+    {
+      "zh": "这里有火。",
+      "en": "There is a fire here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "火"
+      ]
+    },
+    {
+      "zh": "请小心火。",
+      "en": "Please be careful with fire.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "小心",
+        "火"
+      ]
+    },
+    {
+      "zh": "火很大。",
+      "en": "The fire is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "火",
+        "很",
+        "大"
+      ]
+    }
+  ],
+  "1354": [
+    {
+      "zh": "货已经到了。",
+      "en": "The goods have arrived.",
+      "source": "original",
+      "verifiedTokens": [
+        "货",
+        "已经",
+        "到",
+        "了"
+      ]
+    },
+    {
+      "zh": "我们去取货。",
+      "en": "We go to collect the goods.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "取",
+        "货"
+      ]
+    },
+    {
+      "zh": "店里没有货了。",
+      "en": "The shop is out of stock.",
+      "source": "original",
+      "verifiedTokens": [
+        "店",
+        "里",
+        "没有",
+        "货",
+        "了"
+      ]
+    }
+  ],
+  "1357": [
+    {
+      "zh": "今后请多联系。",
+      "en": "Please keep in touch in future.",
+      "source": "original",
+      "verifiedTokens": [
+        "今后",
+        "请",
+        "多",
+        "联系"
+      ]
+    },
+    {
+      "zh": "今后我会更努力。",
+      "en": "I will work harder in future.",
+      "source": "original",
+      "verifiedTokens": [
+        "今后",
+        "我",
+        "会",
+        "更",
+        "努力"
+      ]
+    },
+    {
+      "zh": "我们今后一起工作。",
+      "en": "We will work together from now on.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "今后",
+        "一起",
+        "工作"
+      ]
+    }
+  ],
+  "1358": [
+    {
+      "zh": "我能感受到他的爱。",
+      "en": "I can feel his love.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "能",
+        "感受",
+        "到",
+        "他",
+        "的",
+        "爱"
+      ]
+    },
+    {
+      "zh": "请说说你的感受。",
+      "en": "Please tell me how you feel.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "说",
+        "说",
+        "你",
+        "的",
+        "感受"
+      ]
+    },
+    {
+      "zh": "他的感受和我不同。",
+      "en": "His feelings differ from mine.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "感受",
+        "和",
+        "我",
+        "不同"
+      ]
+    }
+  ],
+  "1360": [
+    {
+      "zh": "我们赢了。",
+      "en": "We won.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "赢",
+        "了"
+      ]
+    },
+    {
+      "zh": "他赢了比赛。",
+      "en": "He won the competition.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "赢",
+        "了",
+        "比赛"
+      ]
+    },
+    {
+      "zh": "你觉得谁会赢？",
+      "en": "Who do you think will win?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "觉得",
+        "谁",
+        "会",
+        "赢"
+      ]
+    }
+  ],
+  "1363": [
+    {
+      "zh": "请写下这个数字。",
+      "en": "Please write down this number.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "写",
+        "下",
+        "这个",
+        "数字"
+      ]
+    },
+    {
+      "zh": "我不喜欢这个数字。",
+      "en": "I do not like this number.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "喜欢",
+        "这个",
+        "数字"
+      ]
+    },
+    {
+      "zh": "这些数字很重要。",
+      "en": "These numbers are important.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "数字",
+        "很",
+        "重要"
+      ]
+    }
+  ],
+  "1364": [
+    {
+      "zh": "时间不够。",
+      "en": "There is not enough time.",
+      "source": "original",
+      "verifiedTokens": [
+        "时间",
+        "不够"
+      ]
+    },
+    {
+      "zh": "我的钱不够。",
+      "en": "I do not have enough money.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "钱",
+        "不够"
+      ]
+    },
+    {
+      "zh": "这些东西不够。",
+      "en": "These things are not enough.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "东西",
+        "不够"
+      ]
+    }
+  ],
+  "1365": [
+    {
+      "zh": "他是优秀学生。",
+      "en": "He is an excellent student.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "优秀",
+        "学生"
+      ]
+    },
+    {
+      "zh": "她的表现很优秀。",
+      "en": "Her performance is excellent.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "的",
+        "表现",
+        "很",
+        "优秀"
+      ]
+    }
+  ],
+  "1369": [
+    {
+      "zh": "请看图片。",
+      "en": "Please look at the picture.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "看",
+        "图片"
+      ]
+    },
+    {
+      "zh": "这张图片很好看。",
+      "en": "This picture looks nice.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "张",
+        "图片",
+        "很",
+        "好看"
+      ]
+    },
+    {
+      "zh": "他给我发了图片。",
+      "en": "He sent me a picture.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "给",
+        "我",
+        "发",
+        "了",
+        "图片"
+      ]
+    }
+  ],
+  "1374": [
+    {
+      "zh": "他发出了一个声音。",
+      "en": "He made a sound.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "发出",
+        "了",
+        "一",
+        "个",
+        "声音"
+      ]
+    },
+    {
+      "zh": "公司发出了消息。",
+      "en": "The company sent out news.",
+      "source": "original",
+      "verifiedTokens": [
+        "公司",
+        "发出",
+        "了",
+        "消息"
+      ]
+    }
+  ],
+  "1380": [
+    {
+      "zh": "天上有云。",
+      "en": "There are clouds in the sky.",
+      "source": "original",
+      "verifiedTokens": [
+        "天",
+        "上",
+        "有",
+        "云"
+      ]
+    },
+    {
+      "zh": "今天云很多。",
+      "en": "There are many clouds today.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "云",
+        "很",
+        "多"
+      ]
+    },
+    {
+      "zh": "我喜欢看云。",
+      "en": "I like looking at clouds.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "看",
+        "云"
+      ]
+    }
+  ],
+  "1382": [
+    {
+      "zh": "祝你生日快乐。",
+      "en": "Happy birthday to you.",
+      "source": "original",
+      "verifiedTokens": [
+        "祝",
+        "你",
+        "生日",
+        "快乐"
+      ]
+    },
+    {
+      "zh": "祝你成功。",
+      "en": "I wish you success.",
+      "source": "original",
+      "verifiedTokens": [
+        "祝",
+        "你",
+        "成功"
+      ]
+    },
+    {
+      "zh": "祝大家新年快乐。",
+      "en": "Happy New Year to everyone.",
+      "source": "original",
+      "verifiedTokens": [
+        "祝",
+        "大家",
+        "新年",
+        "快乐"
+      ]
+    }
+  ],
+  "1391": [
+    {
+      "zh": "请不要压这本书。",
+      "en": "Please do not press on this book.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "压",
+        "这",
+        "本",
+        "书"
+      ]
+    },
+    {
+      "zh": "他用手压住纸。",
+      "en": "He holds down the paper with his hand.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "用",
+        "手",
+        "压",
+        "住",
+        "纸"
+      ]
+    },
+    {
+      "zh": "东西太重，压坏了箱子。",
+      "en": "The things were too heavy and crushed the box.",
+      "source": "original",
+      "verifiedTokens": [
+        "东西",
+        "太",
+        "重",
+        "压",
+        "坏",
+        "了",
+        "箱子"
+      ]
+    }
+  ],
+  "1392": [
+    {
+      "zh": "请留下你的名字。",
+      "en": "Please leave your name.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "留下",
+        "你",
+        "的",
+        "名字"
+      ]
+    },
+    {
+      "zh": "他留下了一封信。",
+      "en": "He left a letter behind.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "留下",
+        "了",
+        "一",
+        "封",
+        "信"
+      ]
+    },
+    {
+      "zh": "我想留下来。",
+      "en": "I want to stay.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "留下",
+        "来"
+      ]
+    }
+  ],
+  "1407": [
+    {
+      "zh": "他工作了整一天。",
+      "en": "He worked for a whole day.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "工作",
+        "了",
+        "整",
+        "一",
+        "天"
+      ]
+    },
+    {
+      "zh": "我等了整两小时。",
+      "en": "I waited a full two hours.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "等",
+        "了",
+        "整",
+        "两",
+        "小时"
+      ]
+    },
+    {
+      "zh": "现在是八点整。",
+      "en": "It is exactly eight o'clock.",
+      "source": "original",
+      "verifiedTokens": [
+        "现在",
+        "是",
+        "八",
+        "点",
+        "整"
+      ]
+    }
+  ],
+  "1411": [
+    {
+      "zh": "这个动作很简单。",
+      "en": "This movement is simple.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "动作",
+        "很",
+        "简单"
+      ]
+    },
+    {
+      "zh": "请做这个动作。",
+      "en": "Please do this movement.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "做",
+        "这个",
+        "动作"
+      ]
+    },
+    {
+      "zh": "他的动作很快。",
+      "en": "His movements are fast.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "动作",
+        "很",
+        "快"
+      ]
+    }
+  ],
+  "1413": [
+    {
+      "zh": "这很费时间。",
+      "en": "This takes a lot of time.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "很",
+        "费",
+        "时间"
+      ]
+    },
+    {
+      "zh": "这件事很费钱。",
+      "en": "This costs a lot of money.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "事",
+        "很",
+        "费",
+        "钱"
+      ]
+    },
+    {
+      "zh": "他交了学费。",
+      "en": "He paid tuition.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "交",
+        "了",
+        "学",
+        "费"
+      ]
+    }
+  ],
+  "1422": [
+    {
+      "zh": "学校周围有商店。",
+      "en": "There are shops around the school.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "周围",
+        "有",
+        "商店"
+      ]
+    },
+    {
+      "zh": "请看看周围。",
+      "en": "Please look around.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "看",
+        "看",
+        "周围"
+      ]
+    },
+    {
+      "zh": "我喜欢这里的周围环境。",
+      "en": "I like the surroundings here.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "这里",
+        "的",
+        "周围",
+        "环境"
+      ]
+    }
+  ],
+  "1437": [
+    {
+      "zh": "速度大大提高了。",
+      "en": "Speed has increased greatly.",
+      "source": "original",
+      "verifiedTokens": [
+        "速度",
+        "大大",
+        "提高",
+        "了"
+      ]
+    },
+    {
+      "zh": "这个办法大大减少了问题。",
+      "en": "This method greatly reduced problems.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "办法",
+        "大大",
+        "减少",
+        "了",
+        "问题"
+      ]
+    }
+  ],
+  "1444": [
+    {
+      "zh": "请总结今天的工作。",
+      "en": "Please summarize today's work.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "总结",
+        "今天",
+        "的",
+        "工作"
+      ]
+    },
+    {
+      "zh": "他总结了学习经验。",
+      "en": "He summarized his learning experience.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "总结",
+        "了",
+        "学习",
+        "经验"
+      ]
+    },
+    {
+      "zh": "我们做一个总结。",
+      "en": "Let's make a summary.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "做",
+        "一",
+        "个",
+        "总结"
+      ]
+    }
+  ],
+  "1450": [
+    {
+      "zh": "我在看杂志。",
+      "en": "I am reading a magazine.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "看",
+        "杂志"
+      ]
+    },
+    {
+      "zh": "这本杂志很有意思。",
+      "en": "This magazine is interesting.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "本",
+        "杂志",
+        "很",
+        "有意思"
+      ]
+    },
+    {
+      "zh": "他买了两本杂志。",
+      "en": "He bought two magazines.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "买",
+        "了",
+        "两",
+        "本",
+        "杂志"
+      ]
+    }
+  ],
+  "1454": [
+    {
+      "zh": "这些钱够吗？",
+      "en": "Is this money enough?",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "钱",
+        "够",
+        "吗"
+      ]
+    },
+    {
+      "zh": "时间够了。",
+      "en": "There is enough time.",
+      "source": "original",
+      "verifiedTokens": [
+        "时间",
+        "够",
+        "了"
+      ]
+    },
+    {
+      "zh": "我吃够了。",
+      "en": "I have eaten enough.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "吃",
+        "够",
+        "了"
+      ]
+    }
+  ],
+  "1456": [
+    {
+      "zh": "他在修电脑。",
+      "en": "He is repairing a computer.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "修",
+        "电脑"
+      ]
+    },
+    {
+      "zh": "请帮我修手机。",
+      "en": "Please help repair my phone.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "帮",
+        "我",
+        "修",
+        "手机"
+      ]
+    },
+    {
+      "zh": "这辆车需要修。",
+      "en": "This vehicle needs repair.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "辆",
+        "车",
+        "需要",
+        "修"
+      ]
+    }
+  ],
+  "1468": [
+    {
+      "zh": "他内心很安静。",
+      "en": "He is peaceful inside.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "内心",
+        "很",
+        "安静"
+      ]
+    },
+    {
+      "zh": "我了解他的内心。",
+      "en": "I understand his inner feelings.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "了解",
+        "他",
+        "的",
+        "内心"
+      ]
+    }
+  ],
+  "1469": [
+    {
+      "zh": "价格低于五元。",
+      "en": "The price is below five yuan.",
+      "source": "original",
+      "verifiedTokens": [
+        "价格",
+        "低于",
+        "五",
+        "元"
+      ]
+    },
+    {
+      "zh": "今天温度低于昨天。",
+      "en": "Today's temperature is lower than yesterday's.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "温度",
+        "低于",
+        "昨天"
+      ]
+    },
+    {
+      "zh": "他的分数低于我的。",
+      "en": "His score is lower than mine.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "分数",
+        "低于",
+        "我",
+        "的"
+      ]
+    }
+  ],
+  "1475": [
+    {
+      "zh": "他醒了。",
+      "en": "He woke up.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "醒",
+        "了"
+      ]
+    },
+    {
+      "zh": "我六点醒。",
+      "en": "I wake up at six.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "六",
+        "点",
+        "醒"
+      ]
+    },
+    {
+      "zh": "孩子还没有醒。",
+      "en": "The child has not woken up yet.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "还",
+        "没有",
+        "醒"
+      ]
+    }
+  ],
+  "1482": [
+    {
+      "zh": "你真棒！",
+      "en": "You are great!",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "真",
+        "棒"
+      ]
+    },
+    {
+      "zh": "这个办法很棒。",
+      "en": "This method is great.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "办法",
+        "很",
+        "棒"
+      ]
+    },
+    {
+      "zh": "今天的表现很棒。",
+      "en": "Today's performance was great.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "的",
+        "表现",
+        "很",
+        "棒"
+      ]
+    }
+  ],
+  "1495": [
+    {
+      "zh": "你究竟想做什么？",
+      "en": "What exactly do you want to do?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "究竟",
+        "想",
+        "做",
+        "什么"
+      ]
+    },
+    {
+      "zh": "事情究竟怎么样？",
+      "en": "What exactly is the situation?",
+      "source": "original",
+      "verifiedTokens": [
+        "事情",
+        "究竟",
+        "怎么样"
+      ]
+    },
+    {
+      "zh": "他究竟去了哪里？",
+      "en": "Where exactly did he go?",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "究竟",
+        "去",
+        "了",
+        "哪里"
+      ]
+    }
+  ],
+  "1496": [
+    {
+      "zh": "这里有烟。",
+      "en": "There is smoke here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "烟"
+      ]
+    },
+    {
+      "zh": "请不要买烟。",
+      "en": "Please do not buy cigarettes.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "买",
+        "烟"
+      ]
+    }
+  ],
+  "1498": [
+    {
+      "zh": "他的手很细。",
+      "en": "His hands are slender.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "手",
+        "很",
+        "细"
+      ]
+    },
+    {
+      "zh": "请说得细一点儿。",
+      "en": "Please explain in more detail.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "说",
+        "得",
+        "细",
+        "一点儿"
+      ]
+    }
+  ],
+  "1505": [
+    {
+      "zh": "我们需要食物。",
+      "en": "We need food.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "需要",
+        "食物"
+      ]
+    },
+    {
+      "zh": "这里的食物很好吃。",
+      "en": "The food here is delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "的",
+        "食物",
+        "很",
+        "好吃"
+      ]
+    },
+    {
+      "zh": "请不要浪费食物。",
+      "en": "Please do not waste food.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "浪费",
+        "食物"
+      ]
+    }
+  ],
+  "1523": [
+    {
+      "zh": "例如，我们可以学汉语。",
+      "en": "For example, we can learn Chinese.",
+      "source": "original",
+      "verifiedTokens": [
+        "例如",
+        "我们",
+        "可以",
+        "学",
+        "汉语"
+      ]
+    },
+    {
+      "zh": "我喜欢很多运动，例如篮球。",
+      "en": "I like many sports, for example basketball.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "很",
+        "多",
+        "运动",
+        "例如",
+        "篮球"
+      ]
+    },
+    {
+      "zh": "例如，这个办法很好。",
+      "en": "For example, this method is good.",
+      "source": "original",
+      "verifiedTokens": [
+        "例如",
+        "这个",
+        "办法",
+        "很",
+        "好"
+      ]
+    }
+  ],
+  "1530": [
+    {
+      "zh": "电话响了。",
+      "en": "The phone rang.",
+      "source": "original",
+      "verifiedTokens": [
+        "电话",
+        "响",
+        "了"
+      ]
+    },
+    {
+      "zh": "门响了。",
+      "en": "There was a sound at the door.",
+      "source": "original",
+      "verifiedTokens": [
+        "门",
+        "响",
+        "了"
+      ]
+    },
+    {
+      "zh": "声音很响。",
+      "en": "The sound is loud.",
+      "source": "original",
+      "verifiedTokens": [
+        "声音",
+        "很",
+        "响"
+      ]
+    }
+  ],
+  "1538": [
+    {
+      "zh": "我们住在地球上。",
+      "en": "We live on Earth.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "住",
+        "在",
+        "地球",
+        "上"
+      ]
+    },
+    {
+      "zh": "地球很大。",
+      "en": "Earth is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "地球",
+        "很",
+        "大"
+      ]
+    },
+    {
+      "zh": "我们要保护地球。",
+      "en": "We must protect Earth.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "保护",
+        "地球"
+      ]
+    }
+  ],
+  "1547": [
+    {
+      "zh": "首先要学习，其次要休息。",
+      "en": "First study, then rest.",
+      "source": "original",
+      "verifiedTokens": [
+        "首先",
+        "要",
+        "学习",
+        "其次",
+        "要",
+        "休息"
+      ]
+    },
+    {
+      "zh": "其次，我们要注意安全。",
+      "en": "Secondly, we must pay attention to safety.",
+      "source": "original",
+      "verifiedTokens": [
+        "其次",
+        "我们",
+        "要",
+        "注意",
+        "安全"
+      ]
+    },
+    {
+      "zh": "其次是价格。",
+      "en": "The next point is price.",
+      "source": "original",
+      "verifiedTokens": [
+        "其次",
+        "是",
+        "价格"
+      ]
+    }
+  ],
+  "1550": [
+    {
+      "zh": "这个菜盐太多。",
+      "en": "This dish has too much salt.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "菜",
+        "盐",
+        "太",
+        "多"
+      ]
+    },
+    {
+      "zh": "请给我一点儿盐。",
+      "en": "Please give me some salt.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "一点儿",
+        "盐"
+      ]
+    },
+    {
+      "zh": "我去买盐。",
+      "en": "I am going to buy salt.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "买",
+        "盐"
+      ]
+    }
+  ],
+  "1551": [
+    {
+      "zh": "他戴着帽子。",
+      "en": "He is wearing a hat.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "戴",
+        "着",
+        "帽子"
+      ]
+    },
+    {
+      "zh": "我戴眼镜。",
+      "en": "I wear glasses.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "戴",
+        "眼镜"
+      ]
+    },
+    {
+      "zh": "请戴好帽子。",
+      "en": "Please put on your hat properly.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "戴",
+        "好",
+        "帽子"
+      ]
+    }
+  ],
+  "1555": [
+    {
+      "zh": "他在工厂工作。",
+      "en": "He works in a factory.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "工厂",
+        "工作"
+      ]
+    },
+    {
+      "zh": "这个工厂很大。",
+      "en": "This factory is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "工厂",
+        "很",
+        "大"
+      ]
+    },
+    {
+      "zh": "我们去工厂看看。",
+      "en": "We go to take a look at the factory.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "工厂",
+        "看",
+        "看"
+      ]
+    }
+  ],
+  "1560": [
+    {
+      "zh": "这本书很厚。",
+      "en": "This book is thick.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "本",
+        "书",
+        "很",
+        "厚"
+      ]
+    },
+    {
+      "zh": "这件衣服很厚。",
+      "en": "This garment is thick.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "衣服",
+        "很",
+        "厚"
+      ]
+    },
+    {
+      "zh": "请给我厚一点儿的纸。",
+      "en": "Please give me thicker paper.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "厚",
+        "一点儿",
+        "的",
+        "纸"
+      ]
+    }
+  ],
+  "1564": [
+    {
+      "zh": "我来付钱。",
+      "en": "I will pay.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "来",
+        "付",
+        "钱"
+      ]
+    },
+    {
+      "zh": "请付十元。",
+      "en": "Please pay ten yuan.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "付",
+        "十",
+        "元"
+      ]
+    },
+    {
+      "zh": "他已经付了钱。",
+      "en": "He has already paid.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "已经",
+        "付",
+        "了",
+        "钱"
+      ]
+    }
+  ],
+  "1570": [
+    {
+      "zh": "中国的首都在哪里？",
+      "en": "Where is China's capital?",
+      "source": "original",
+      "verifiedTokens": [
+        "中国",
+        "的",
+        "首都",
+        "在",
+        "哪里"
+      ]
+    },
+    {
+      "zh": "他住在首都。",
+      "en": "He lives in the capital.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "住",
+        "在",
+        "首都"
+      ]
+    },
+    {
+      "zh": "首都的人很多。",
+      "en": "Many people live in the capital.",
+      "source": "original",
+      "verifiedTokens": [
+        "首都",
+        "的",
+        "人",
+        "很",
+        "多"
+      ]
+    }
+  ],
+  "1575": [
+    {
+      "zh": "多数人同意。",
+      "en": "Most people agree.",
+      "source": "original",
+      "verifiedTokens": [
+        "多数",
+        "人",
+        "同意"
+      ]
+    },
+    {
+      "zh": "多数学生来了。",
+      "en": "Most students came.",
+      "source": "original",
+      "verifiedTokens": [
+        "多数",
+        "学生",
+        "来",
+        "了"
+      ]
+    },
+    {
+      "zh": "多数问题已经解决。",
+      "en": "Most problems have been solved.",
+      "source": "original",
+      "verifiedTokens": [
+        "多数",
+        "问题",
+        "已经",
+        "解决"
+      ]
+    }
+  ],
+  "1595": [
+    {
+      "zh": "请吸一口气。",
+      "en": "Please take a breath.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "吸",
+        "一",
+        "口",
+        "气"
+      ]
+    },
+    {
+      "zh": "他在吸烟。",
+      "en": "He is smoking.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "吸",
+        "烟"
+      ]
+    },
+    {
+      "zh": "请不要吸烟。",
+      "en": "Please do not smoke.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "吸",
+        "烟"
+      ]
+    }
+  ],
+  "1600": [
+    {
+      "zh": "他是故意的。",
+      "en": "He did it on purpose.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "故意",
+        "的"
+      ]
+    },
+    {
+      "zh": "我不是故意的。",
+      "en": "I did not mean to do it.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "不",
+        "是",
+        "故意",
+        "的"
+      ]
+    },
+    {
+      "zh": "请不要故意说错。",
+      "en": "Please do not deliberately say it incorrectly.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "故意",
+        "说",
+        "错"
+      ]
+    }
+  ],
+  "1603": [
+    {
+      "zh": "这里有很多植物。",
+      "en": "There are many plants here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "很",
+        "多",
+        "植物"
+      ]
+    },
+    {
+      "zh": "我喜欢植物。",
+      "en": "I like plants.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "植物"
+      ]
+    },
+    {
+      "zh": "植物需要水。",
+      "en": "Plants need water.",
+      "source": "original",
+      "verifiedTokens": [
+        "植物",
+        "需要",
+        "水"
+      ]
+    }
+  ],
+  "1604": [
+    {
+      "zh": "他是大学毕业生。",
+      "en": "He is a university graduate.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "大学",
+        "毕业生"
+      ]
+    },
+    {
+      "zh": "公司需要毕业生。",
+      "en": "The company needs graduates.",
+      "source": "original",
+      "verifiedTokens": [
+        "公司",
+        "需要",
+        "毕业生"
+      ]
+    },
+    {
+      "zh": "这些毕业生正在找工作。",
+      "en": "These graduates are looking for jobs.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "毕业生",
+        "正在",
+        "找",
+        "工作"
+      ]
+    }
+  ],
+  "1607": [
+    {
+      "zh": "还剩三个苹果。",
+      "en": "Three apples remain.",
+      "source": "original",
+      "verifiedTokens": [
+        "还",
+        "剩",
+        "三",
+        "个",
+        "苹果"
+      ]
+    },
+    {
+      "zh": "我只剩十元。",
+      "en": "I only have ten yuan left.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "只",
+        "剩",
+        "十",
+        "元"
+      ]
+    },
+    {
+      "zh": "还剩多少时间？",
+      "en": "How much time is left?",
+      "source": "original",
+      "verifiedTokens": [
+        "还",
+        "剩",
+        "多少",
+        "时间"
+      ]
+    }
+  ],
+  "1609": [
+    {
+      "zh": "他提到了你。",
+      "en": "He mentioned you.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "提到",
+        "了",
+        "你"
+      ]
+    },
+    {
+      "zh": "老师提到这个问题。",
+      "en": "The teacher mentioned this question.",
+      "source": "original",
+      "verifiedTokens": [
+        "老师",
+        "提到",
+        "这个",
+        "问题"
+      ]
+    },
+    {
+      "zh": "他没有提到价格。",
+      "en": "He did not mention the price.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "没有",
+        "提到",
+        "价格"
+      ]
+    }
+  ],
+  "1610": [
+    {
+      "zh": "交警在马路上。",
+      "en": "The traffic police are on the road.",
+      "source": "original",
+      "verifiedTokens": [
+        "交警",
+        "在",
+        "马路",
+        "上"
+      ]
+    },
+    {
+      "zh": "我看见了交警。",
+      "en": "I saw a traffic police officer.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "看见",
+        "了",
+        "交警"
+      ]
+    },
+    {
+      "zh": "请问交警。",
+      "en": "Please ask the traffic police officer.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "问",
+        "交警"
+      ]
+    }
+  ],
+  "1611": [
+    {
+      "zh": "我喜欢旅行。",
+      "en": "I like traveling.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "旅行"
+      ]
+    },
+    {
+      "zh": "他去中国旅行。",
+      "en": "He travels to China.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "去",
+        "中国",
+        "旅行"
+      ]
+    },
+    {
+      "zh": "我们一起旅行吧。",
+      "en": "Let's travel together.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "一起",
+        "旅行",
+        "吧"
+      ]
+    }
+  ],
+  "1617": [
+    {
+      "zh": "她很伤心。",
+      "en": "She is very sad.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "很",
+        "伤心"
+      ]
+    },
+    {
+      "zh": "请不要伤心。",
+      "en": "Please do not be sad.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "不要",
+        "伤心"
+      ]
+    },
+    {
+      "zh": "这个消息让我伤心。",
+      "en": "This news made me sad.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "个",
+        "消息",
+        "让",
+        "我",
+        "伤心"
+      ]
+    }
+  ],
+  "1631": [
+    {
+      "zh": "请闻一下。",
+      "en": "Please smell it.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "闻",
+        "一下"
+      ]
+    },
+    {
+      "zh": "他闻了闻这个菜。",
+      "en": "He smelled the dish.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "闻",
+        "了",
+        "闻",
+        "这个",
+        "菜"
+      ]
+    }
+  ],
+  "1635": [
+    {
+      "zh": "这棵树很粗。",
+      "en": "This tree is thick.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "棵",
+        "树",
+        "很",
+        "粗"
+      ]
+    }
+  ],
+  "1654": [
+    {
+      "zh": "请赶快来。",
+      "en": "Please come quickly.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "赶快",
+        "来"
+      ]
+    },
+    {
+      "zh": "我们赶快走吧。",
+      "en": "Let's hurry and go.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "赶快",
+        "走",
+        "吧"
+      ]
+    },
+    {
+      "zh": "他赶快回家。",
+      "en": "He hurried home.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "赶快",
+        "回",
+        "家"
+      ]
+    }
+  ],
+  "1656": [
+    {
+      "zh": "这鱼很鲜。",
+      "en": "This fish is fresh.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "鱼",
+        "很",
+        "鲜"
+      ]
+    },
+    {
+      "zh": "这个汤很鲜。",
+      "en": "This soup is deliciously fresh.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "汤",
+        "很",
+        "鲜"
+      ]
+    },
+    {
+      "zh": "我喜欢鲜花。",
+      "en": "I like fresh flowers.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "鲜",
+        "花"
+      ]
+    }
+  ],
+  "1657": [
+    {
+      "zh": "海洋很大。",
+      "en": "The ocean is vast.",
+      "source": "original",
+      "verifiedTokens": [
+        "海洋",
+        "很",
+        "大"
+      ]
+    },
+    {
+      "zh": "我们要保护海洋。",
+      "en": "We need to protect the ocean.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "保护",
+        "海洋"
+      ]
+    },
+    {
+      "zh": "他喜欢研究海洋。",
+      "en": "He likes studying the ocean.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "研究",
+        "海洋"
+      ]
+    }
+  ],
+  "1659": [
+    {
+      "zh": "请写日期。",
+      "en": "Please write the date.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "写",
+        "日期"
+      ]
+    },
+    {
+      "zh": "你知道日期吗？",
+      "en": "Do you know the date?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "知道",
+        "日期",
+        "吗"
+      ]
+    },
+    {
+      "zh": "这个日期不对。",
+      "en": "This date is incorrect.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "日期",
+        "不",
+        "对"
+      ]
+    }
+  ],
+  "1670": [
+    {
+      "zh": "她是歌手。",
+      "en": "She is a singer.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "是",
+        "歌手"
+      ]
+    },
+    {
+      "zh": "我喜欢这个歌手。",
+      "en": "I like this singer.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "这个",
+        "歌手"
+      ]
+    },
+    {
+      "zh": "他想成为歌手。",
+      "en": "He wants to become a singer.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "想",
+        "成为",
+        "歌手"
+      ]
+    }
+  ],
+  "1674": [
+    {
+      "zh": "我要寄信。",
+      "en": "I want to mail a letter.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "要",
+        "寄",
+        "信"
+      ]
+    },
+    {
+      "zh": "请寄给我。",
+      "en": "Please send it to me.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "寄",
+        "给",
+        "我"
+      ]
+    },
+    {
+      "zh": "他寄了一本书给我。",
+      "en": "He mailed me a book.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "寄",
+        "了",
+        "一",
+        "本",
+        "书",
+        "给",
+        "我"
+      ]
+    }
+  ],
+  "1676": [
+    {
+      "zh": "我的身份证在包里。",
+      "en": "My ID card is in my bag.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "身份证",
+        "在",
+        "包",
+        "里"
+      ]
+    },
+    {
+      "zh": "他忘了带身份证。",
+      "en": "He forgot to bring his ID card.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "忘",
+        "了",
+        "带",
+        "身份证"
+      ]
+    }
+  ],
+  "1678": [
+    {
+      "zh": "我重视我们的友谊。",
+      "en": "I value our friendship.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "重视",
+        "我们",
+        "的",
+        "友谊"
+      ]
+    },
+    {
+      "zh": "我们的友谊很深。",
+      "en": "Our friendship is deep.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "的",
+        "友谊",
+        "很",
+        "深"
+      ]
+    },
+    {
+      "zh": "友谊很重要。",
+      "en": "Friendship is important.",
+      "source": "original",
+      "verifiedTokens": [
+        "友谊",
+        "很",
+        "重要"
+      ]
+    }
+  ],
+  "1682": [
+    {
+      "zh": "我喜欢吃巧克力。",
+      "en": "I like eating chocolate.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "吃",
+        "巧克力"
+      ]
+    },
+    {
+      "zh": "他买了巧克力。",
+      "en": "He bought chocolate.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "买",
+        "了",
+        "巧克力"
+      ]
+    },
+    {
+      "zh": "这个巧克力很好吃。",
+      "en": "This chocolate is delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "巧克力",
+        "很",
+        "好吃"
+      ]
+    }
+  ],
+  "1695": [
+    {
+      "zh": "我去了一趟学校。",
+      "en": "I made a trip to school.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "了",
+        "一",
+        "趟",
+        "学校"
+      ]
+    },
+    {
+      "zh": "他回了一趟家。",
+      "en": "He made a trip home.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "回",
+        "了",
+        "一",
+        "趟",
+        "家"
+      ]
+    },
+    {
+      "zh": "请你来一趟。",
+      "en": "Please come over once.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "你",
+        "来",
+        "一",
+        "趟"
+      ]
+    }
+  ],
+  "1700": [
+    {
+      "zh": "我爱我的家乡。",
+      "en": "I love my hometown.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "爱",
+        "我",
+        "的",
+        "家乡"
+      ]
+    },
+    {
+      "zh": "他回家乡了。",
+      "en": "He returned to his hometown.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "回",
+        "家乡",
+        "了"
+      ]
+    },
+    {
+      "zh": "你的家乡在哪里？",
+      "en": "Where is your hometown?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "的",
+        "家乡",
+        "在",
+        "哪里"
+      ]
+    }
+  ],
+  "1706": [
+    {
+      "zh": "他有很多优点。",
+      "en": "He has many strengths.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "有",
+        "很",
+        "多",
+        "优点"
+      ]
+    },
+    {
+      "zh": "这个办法的优点是什么？",
+      "en": "What is the advantage of this method?",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "办法",
+        "的",
+        "优点",
+        "是",
+        "什么"
+      ]
+    },
+    {
+      "zh": "我喜欢他的优点。",
+      "en": "I like his strengths.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "他",
+        "的",
+        "优点"
+      ]
+    }
+  ],
+  "1711": [
+    {
+      "zh": "他在烤肉。",
+      "en": "He is roasting meat.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "烤",
+        "肉"
+      ]
+    },
+    {
+      "zh": "请烤一下面包。",
+      "en": "Please toast the bread.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "烤",
+        "一下",
+        "面包"
+      ]
+    },
+    {
+      "zh": "妈妈烤了鸡。",
+      "en": "Mum roasted a chicken.",
+      "source": "original",
+      "verifiedTokens": [
+        "妈妈",
+        "烤",
+        "了",
+        "鸡"
+      ]
+    }
+  ],
+  "1715": [
+    {
+      "zh": "他是中年人。",
+      "en": "He is middle-aged.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "中年",
+        "人"
+      ]
+    },
+    {
+      "zh": "我爸爸到了中年。",
+      "en": "My father has reached middle age.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "爸爸",
+        "到",
+        "了",
+        "中年"
+      ]
+    },
+    {
+      "zh": "这里有很多中年人。",
+      "en": "There are many middle-aged people here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "很",
+        "多",
+        "中年",
+        "人"
+      ]
+    }
+  ],
+  "1726": [
+    {
+      "zh": "我平常七点起床。",
+      "en": "I usually get up at seven.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "平常",
+        "七",
+        "点",
+        "起床"
+      ]
+    },
+    {
+      "zh": "他平常很忙。",
+      "en": "He is usually busy.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "平常",
+        "很",
+        "忙"
+      ]
+    },
+    {
+      "zh": "这是很平常的事。",
+      "en": "This is a very ordinary thing.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "是",
+        "很",
+        "平常",
+        "的",
+        "事"
+      ]
+    }
+  ],
+  "1727": [
+    {
+      "zh": "这个杯子是塑料的。",
+      "en": "This cup is made of plastic.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "杯子",
+        "是",
+        "塑料",
+        "的"
+      ]
+    },
+    {
+      "zh": "请少用塑料。",
+      "en": "Please use less plastic.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "少",
+        "用",
+        "塑料"
+      ]
+    },
+    {
+      "zh": "这些东西是塑料做的。",
+      "en": "These things are made of plastic.",
+      "source": "original",
+      "verifiedTokens": [
+        "这些",
+        "东西",
+        "是",
+        "塑料",
+        "做",
+        "的"
+      ]
+    }
+  ],
+  "1729": [
+    {
+      "zh": "这个房间出租。",
+      "en": "This room is for rent.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "个",
+        "房间",
+        "出租"
+      ]
+    },
+    {
+      "zh": "他出租房子。",
+      "en": "He rents out houses.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "出租",
+        "房子"
+      ]
+    },
+    {
+      "zh": "这里有房子出租吗？",
+      "en": "Are there houses for rent here?",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "有",
+        "房子",
+        "出租",
+        "吗"
+      ]
+    }
+  ],
+  "1743": [
+    {
+      "zh": "我买了帽子。",
+      "en": "I bought a hat.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "帽子"
+      ]
+    },
+    {
+      "zh": "他戴着帽子。",
+      "en": "He is wearing a hat.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "戴",
+        "着",
+        "帽子"
+      ]
+    },
+    {
+      "zh": "这个帽子很漂亮。",
+      "en": "This hat is beautiful.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "帽子",
+        "很",
+        "漂亮"
+      ]
+    }
+  ],
+  "1756": [
+    {
+      "zh": "真巧！",
+      "en": "What a coincidence!",
+      "source": "original",
+      "verifiedTokens": [
+        "真",
+        "巧"
+      ]
+    },
+    {
+      "zh": "你来得真巧。",
+      "en": "You came at just the right time.",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "来",
+        "得",
+        "真",
+        "巧"
+      ]
+    },
+    {
+      "zh": "这件事太巧了。",
+      "en": "This is such a coincidence.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "事",
+        "太",
+        "巧",
+        "了"
+      ]
+    }
+  ],
+  "1762": [
+    {
+      "zh": "我看见了老虎。",
+      "en": "I saw a tiger.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "看见",
+        "了",
+        "老虎"
+      ]
+    },
+    {
+      "zh": "老虎很大。",
+      "en": "Tigers are large.",
+      "source": "original",
+      "verifiedTokens": [
+        "老虎",
+        "很",
+        "大"
+      ]
+    },
+    {
+      "zh": "孩子害怕老虎。",
+      "en": "The child is afraid of tigers.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "害怕",
+        "老虎"
+      ]
+    }
+  ],
+  "1767": [
+    {
+      "zh": "我们的友情很深。",
+      "en": "Our friendship is deep.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "的",
+        "友情",
+        "很",
+        "深"
+      ]
+    },
+    {
+      "zh": "我很重视友情。",
+      "en": "I value friendship.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "很",
+        "重视",
+        "友情"
+      ]
+    },
+    {
+      "zh": "谢谢你的友情。",
+      "en": "Thank you for your friendship.",
+      "source": "original",
+      "verifiedTokens": [
+        "谢谢",
+        "你",
+        "的",
+        "友情"
+      ]
+    }
+  ],
+  "1769": [
+    {
+      "zh": "我明天去体检。",
+      "en": "I am going for a health check tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "明天",
+        "去",
+        "体检"
+      ]
+    },
+    {
+      "zh": "他今天有体检。",
+      "en": "He has a health check today.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "今天",
+        "有",
+        "体检"
+      ]
+    },
+    {
+      "zh": "体检很重要。",
+      "en": "Health checks are important.",
+      "source": "original",
+      "verifiedTokens": [
+        "体检",
+        "很",
+        "重要"
+      ]
+    }
+  ],
+  "1770": [
+    {
+      "zh": "我在食堂吃饭。",
+      "en": "I eat in the cafeteria.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "在",
+        "食堂",
+        "吃",
+        "饭"
+      ]
+    },
+    {
+      "zh": "学校有食堂。",
+      "en": "The school has a cafeteria.",
+      "source": "original",
+      "verifiedTokens": [
+        "学校",
+        "有",
+        "食堂"
+      ]
+    },
+    {
+      "zh": "食堂的饭很好吃。",
+      "en": "The cafeteria food is delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "食堂",
+        "的",
+        "饭",
+        "很",
+        "好吃"
+      ]
+    }
+  ],
+  "1772": [
+    {
+      "zh": "他是我的亲戚。",
+      "en": "He is my relative.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "我",
+        "的",
+        "亲戚"
+      ]
+    },
+    {
+      "zh": "我有很多亲戚。",
+      "en": "I have many relatives.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有",
+        "很",
+        "多",
+        "亲戚"
+      ]
+    },
+    {
+      "zh": "我们去看亲戚。",
+      "en": "We go to visit relatives.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "看",
+        "亲戚"
+      ]
+    }
+  ],
+  "1774": [
+    {
+      "zh": "他是硕士。",
+      "en": "He has a master's degree.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "是",
+        "硕士"
+      ]
+    },
+    {
+      "zh": "她在大学读硕士。",
+      "en": "She is studying for a master's degree.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "在",
+        "大学",
+        "读",
+        "硕士"
+      ]
+    },
+    {
+      "zh": "我想读硕士。",
+      "en": "I want to study for a master's degree.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "想",
+        "读",
+        "硕士"
+      ]
+    }
+  ],
+  "1786": [
+    {
+      "zh": "我的童年很快乐。",
+      "en": "My childhood was happy.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "童年",
+        "很",
+        "快乐"
+      ]
+    },
+    {
+      "zh": "他的童年在中国。",
+      "en": "He spent his childhood in China.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "童年",
+        "在",
+        "中国"
+      ]
+    },
+    {
+      "zh": "我常想起童年。",
+      "en": "I often think of my childhood.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "常",
+        "想",
+        "起",
+        "童年"
+      ]
+    }
+  ],
+  "1787": [
+    {
+      "zh": "现在有些不便。",
+      "en": "It is somewhat inconvenient now.",
+      "source": "original",
+      "verifiedTokens": [
+        "现在",
+        "有些",
+        "不便"
+      ]
+    },
+    {
+      "zh": "这里交通不便。",
+      "en": "Transport here is inconvenient.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "交通",
+        "不便"
+      ]
+    }
+  ],
+  "1799": [
+    {
+      "zh": "我有一个主意。",
+      "en": "I have an idea.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "有",
+        "一",
+        "个",
+        "主意"
+      ]
+    },
+    {
+      "zh": "这个主意很好。",
+      "en": "This idea is good.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "主意",
+        "很",
+        "好"
+      ]
+    },
+    {
+      "zh": "你有什么主意？",
+      "en": "What ideas do you have?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "有",
+        "什么",
+        "主意"
+      ]
+    }
+  ],
+  "1804": [
+    {
+      "zh": "我的分数很高。",
+      "en": "My score is high.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "分数",
+        "很",
+        "高"
+      ]
+    },
+    {
+      "zh": "他的分数是多少？",
+      "en": "What is his score?",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "分数",
+        "是",
+        "多少"
+      ]
+    },
+    {
+      "zh": "请告诉我分数。",
+      "en": "Please tell me the score.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "告诉",
+        "我",
+        "分数"
+      ]
+    }
+  ],
+  "1821": [
+    {
+      "zh": "我喜欢喝酸奶。",
+      "en": "I like drinking yogurt.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "喝",
+        "酸奶"
+      ]
+    },
+    {
+      "zh": "请给我酸奶。",
+      "en": "Please give me yogurt.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "酸奶"
+      ]
+    },
+    {
+      "zh": "她买了酸奶。",
+      "en": "She bought yogurt.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "买",
+        "了",
+        "酸奶"
+      ]
+    }
+  ],
+  "1822": [
+    {
+      "zh": "他在照镜子。",
+      "en": "He is looking in the mirror.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "在",
+        "照",
+        "镜子"
+      ]
+    },
+    {
+      "zh": "镜子在哪里？",
+      "en": "Where is the mirror?",
+      "source": "original",
+      "verifiedTokens": [
+        "镜子",
+        "在",
+        "哪里"
+      ]
+    },
+    {
+      "zh": "这个镜子很大。",
+      "en": "This mirror is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "个",
+        "镜子",
+        "很",
+        "大"
+      ]
+    }
+  ],
+  "1834": [
+    {
+      "zh": "这种情况很少见。",
+      "en": "This situation is rare.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "种",
+        "情况",
+        "很",
+        "少见"
+      ]
+    },
+    {
+      "zh": "这样的人很少见。",
+      "en": "People like this are rare.",
+      "source": "original",
+      "verifiedTokens": [
+        "这样",
+        "的",
+        "人",
+        "很",
+        "少见"
+      ]
+    },
+    {
+      "zh": "这种病很少见。",
+      "en": "This disease is rare.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "种",
+        "病",
+        "很",
+        "少见"
+      ]
+    }
+  ],
+  "1836": [
+    {
+      "zh": "我的胳膊疼。",
+      "en": "My arm hurts.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "胳膊",
+        "疼"
+      ]
+    },
+    {
+      "zh": "他的胳膊很长。",
+      "en": "His arms are long.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "的",
+        "胳膊",
+        "很",
+        "长"
+      ]
+    },
+    {
+      "zh": "请抬起胳膊。",
+      "en": "Please lift your arm.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "抬",
+        "起",
+        "胳膊"
+      ]
+    }
+  ],
+  "1838": [
+    {
+      "zh": "我明天出差。",
+      "en": "I am going on a business trip tomorrow.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "明天",
+        "出差"
+      ]
+    },
+    {
+      "zh": "他去中国出差。",
+      "en": "He goes to China on business.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "去",
+        "中国",
+        "出差"
+      ]
+    },
+    {
+      "zh": "你什么时候出差？",
+      "en": "When are you going on a business trip?",
+      "source": "original",
+      "verifiedTokens": [
+        "你",
+        "什么",
+        "时候",
+        "出差"
+      ]
+    }
+  ],
+  "1840": [
+    {
+      "zh": "他很细心。",
+      "en": "He is very careful.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "很",
+        "细心"
+      ]
+    },
+    {
+      "zh": "她工作很细心。",
+      "en": "She works carefully.",
+      "source": "original",
+      "verifiedTokens": [
+        "她",
+        "工作",
+        "很",
+        "细心"
+      ]
+    },
+    {
+      "zh": "请细心一点儿。",
+      "en": "Please be a little more careful.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "细心",
+        "一点儿"
+      ]
+    }
+  ],
+  "1842": [
+    {
+      "zh": "我住在郊区。",
+      "en": "I live in the suburbs.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "住",
+        "在",
+        "郊区"
+      ]
+    },
+    {
+      "zh": "他去郊区玩。",
+      "en": "He goes to the suburbs for fun.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "去",
+        "郊区",
+        "玩"
+      ]
+    },
+    {
+      "zh": "郊区很安静。",
+      "en": "The suburbs are quiet.",
+      "source": "original",
+      "verifiedTokens": [
+        "郊区",
+        "很",
+        "安静"
+      ]
+    }
+  ],
+  "1845": [
+    {
+      "zh": "我喜欢大自然。",
+      "en": "I like nature.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "大自然"
+      ]
+    },
+    {
+      "zh": "我们要保护大自然。",
+      "en": "We must protect nature.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "要",
+        "保护",
+        "大自然"
+      ]
+    },
+    {
+      "zh": "孩子喜欢大自然。",
+      "en": "Children like nature.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "喜欢",
+        "大自然"
+      ]
+    }
+  ],
+  "1850": [
+    {
+      "zh": "他喜欢喝葡萄酒。",
+      "en": "He likes drinking wine.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "喜欢",
+        "喝",
+        "葡萄酒"
+      ]
+    },
+    {
+      "zh": "这里卖葡萄酒。",
+      "en": "Wine is sold here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "卖",
+        "葡萄酒"
+      ]
+    }
+  ],
+  "1858": [
+    {
+      "zh": "我喜欢吃月饼。",
+      "en": "I like eating mooncakes.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "喜欢",
+        "吃",
+        "月饼"
+      ]
+    },
+    {
+      "zh": "妈妈买了月饼。",
+      "en": "Mum bought mooncakes.",
+      "source": "original",
+      "verifiedTokens": [
+        "妈妈",
+        "买",
+        "了",
+        "月饼"
+      ]
+    },
+    {
+      "zh": "这个月饼很好吃。",
+      "en": "This mooncake is delicious.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "月饼",
+        "很",
+        "好吃"
+      ]
+    }
+  ],
+  "1863": [
+    {
+      "zh": "我的体温很高。",
+      "en": "My body temperature is high.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "的",
+        "体温",
+        "很",
+        "高"
+      ]
+    },
+    {
+      "zh": "孩子体温正常。",
+      "en": "The child's temperature is normal.",
+      "source": "original",
+      "verifiedTokens": [
+        "孩子",
+        "体温",
+        "正常"
+      ]
+    }
+  ],
+  "1867": [
+    {
+      "zh": "这里是低温环境。",
+      "en": "This is a low-temperature environment.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "是",
+        "低温",
+        "环境"
+      ]
+    },
+    {
+      "zh": "低温对这种食物很重要。",
+      "en": "Low temperature is important for this food.",
+      "source": "original",
+      "verifiedTokens": [
+        "低温",
+        "对",
+        "这",
+        "种",
+        "食物",
+        "很",
+        "重要"
+      ]
+    }
+  ],
+  "1868": [
+    {
+      "zh": "请给我毛巾。",
+      "en": "Please give me a towel.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "毛巾"
+      ]
+    },
+    {
+      "zh": "我买了一条毛巾。",
+      "en": "I bought a towel.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "买",
+        "了",
+        "一",
+        "条",
+        "毛巾"
+      ]
+    },
+    {
+      "zh": "毛巾在卫生间。",
+      "en": "The towel is in the bathroom.",
+      "source": "original",
+      "verifiedTokens": [
+        "毛巾",
+        "在",
+        "卫生间"
+      ]
+    }
+  ],
+  "1879": [
+    {
+      "zh": "书在桌子底下。",
+      "en": "The book is under the table.",
+      "source": "original",
+      "verifiedTokens": [
+        "书",
+        "在",
+        "桌子",
+        "底下"
+      ]
+    },
+    {
+      "zh": "猫在椅子底下。",
+      "en": "The cat is under the chair.",
+      "source": "original",
+      "verifiedTokens": [
+        "猫",
+        "在",
+        "椅子",
+        "底下"
+      ]
+    },
+    {
+      "zh": "请看床底下。",
+      "en": "Please look under the bed.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "看",
+        "床",
+        "底下"
+      ]
+    }
+  ],
+  "1884": [
+    {
+      "zh": "加油站在哪里？",
+      "en": "Where is the gas station?",
+      "source": "original",
+      "verifiedTokens": [
+        "加油站",
+        "在",
+        "哪里"
+      ]
+    },
+    {
+      "zh": "我们去加油站。",
+      "en": "We go to the gas station.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "加油站"
+      ]
+    },
+    {
+      "zh": "前面有加油站。",
+      "en": "There is a gas station ahead.",
+      "source": "original",
+      "verifiedTokens": [
+        "前面",
+        "有",
+        "加油站"
+      ]
+    }
+  ],
+  "1888": [
+    {
+      "zh": "房间很暖和。",
+      "en": "The room is warm.",
+      "source": "original",
+      "verifiedTokens": [
+        "房间",
+        "很",
+        "暖和"
+      ]
+    },
+    {
+      "zh": "今天很暖和。",
+      "en": "It is warm today.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "很",
+        "暖和"
+      ]
+    },
+    {
+      "zh": "这件衣服很暖和。",
+      "en": "This garment is warm.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "件",
+        "衣服",
+        "很",
+        "暖和"
+      ]
+    }
+  ],
+  "1897": [
+    {
+      "zh": "今天是二十摄氏度。",
+      "en": "It is twenty degrees Celsius today.",
+      "source": "original",
+      "verifiedTokens": [
+        "今天",
+        "是",
+        "二",
+        "十",
+        "摄氏度"
+      ]
+    },
+    {
+      "zh": "这里只有十摄氏度。",
+      "en": "It is only ten degrees Celsius here.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "只",
+        "有",
+        "十",
+        "摄氏度"
+      ]
+    }
+  ],
+  "1926": [
+    {
+      "zh": "这张表格很简单。",
+      "en": "This form is simple.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "张",
+        "表格",
+        "很",
+        "简单"
+      ]
+    },
+    {
+      "zh": "他给我一张表格。",
+      "en": "He gave me a form.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "给",
+        "我",
+        "一",
+        "张",
+        "表格"
+      ]
+    }
+  ],
+  "1936": [
+    {
+      "zh": "请给我一个袋子。",
+      "en": "Please give me a bag.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "给",
+        "我",
+        "一",
+        "个",
+        "袋子"
+      ]
+    },
+    {
+      "zh": "水果在袋子里。",
+      "en": "The fruit is in the bag.",
+      "source": "original",
+      "verifiedTokens": [
+        "水果",
+        "在",
+        "袋子",
+        "里"
+      ]
+    },
+    {
+      "zh": "这个袋子很大。",
+      "en": "This bag is large.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "袋子",
+        "很",
+        "大"
+      ]
+    }
+  ],
+  "1943": [
+    {
+      "zh": "这里的房租很贵。",
+      "en": "Rent here is expensive.",
+      "source": "original",
+      "verifiedTokens": [
+        "这里",
+        "的",
+        "房租",
+        "很",
+        "贵"
+      ]
+    },
+    {
+      "zh": "他每月付房租。",
+      "en": "He pays rent every month.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "每",
+        "月",
+        "付",
+        "房租"
+      ]
+    },
+    {
+      "zh": "房租多少钱？",
+      "en": "How much is the rent?",
+      "source": "original",
+      "verifiedTokens": [
+        "房租",
+        "多少",
+        "钱"
+      ]
+    }
+  ],
+  "1954": [
+    {
+      "zh": "我去健身房锻炼。",
+      "en": "I go to the gym to exercise.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "去",
+        "健身房",
+        "锻炼"
+      ]
+    },
+    {
+      "zh": "健身房在哪里？",
+      "en": "Where is the gym?",
+      "source": "original",
+      "verifiedTokens": [
+        "健身房",
+        "在",
+        "哪里"
+      ]
+    },
+    {
+      "zh": "他每天去健身房。",
+      "en": "He goes to the gym every day.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "每",
+        "天",
+        "去",
+        "健身房"
+      ]
+    }
+  ],
+  "1960": [
+    {
+      "zh": "请结账。",
+      "en": "Please bring the bill.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "结账"
+      ]
+    },
+    {
+      "zh": "我们去结账。",
+      "en": "We go to pay the bill.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "去",
+        "结账"
+      ]
+    },
+    {
+      "zh": "他已经结账了。",
+      "en": "He has already paid the bill.",
+      "source": "original",
+      "verifiedTokens": [
+        "他",
+        "已经",
+        "结账",
+        "了"
+      ]
+    }
+  ],
+  "1961": [
+    {
+      "zh": "这个字叫作什么？",
+      "en": "What is this character called?",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "字",
+        "叫作",
+        "什么"
+      ]
+    },
+    {
+      "zh": "这种书叫作字典。",
+      "en": "This kind of book is called a dictionary.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "种",
+        "书",
+        "叫作",
+        "字典"
+      ]
+    },
+    {
+      "zh": "这种水果叫作苹果。",
+      "en": "This fruit is called an apple.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "种",
+        "水果",
+        "叫作",
+        "苹果"
+      ]
+    }
+  ],
+  "1965": [
+    {
+      "zh": "大家干杯！",
+      "en": "Cheers, everyone!",
+      "source": "original",
+      "verifiedTokens": [
+        "大家",
+        "干杯"
+      ]
+    },
+    {
+      "zh": "我们一起干杯。",
+      "en": "Let's raise a toast together.",
+      "source": "original",
+      "verifiedTokens": [
+        "我们",
+        "一起",
+        "干杯"
+      ]
+    },
+    {
+      "zh": "为友谊干杯！",
+      "en": "A toast to friendship!",
+      "source": "original",
+      "verifiedTokens": [
+        "为",
+        "友谊",
+        "干杯"
+      ]
+    }
+  ],
+  "1966": [
+    {
+      "zh": "这对身体有坏处。",
+      "en": "This is harmful to the body.",
+      "source": "original",
+      "verifiedTokens": [
+        "这",
+        "对",
+        "身体",
+        "有",
+        "坏处"
+      ]
+    },
+    {
+      "zh": "这个办法有坏处。",
+      "en": "This method has drawbacks.",
+      "source": "original",
+      "verifiedTokens": [
+        "这个",
+        "办法",
+        "有",
+        "坏处"
+      ]
+    },
+    {
+      "zh": "请说说它的坏处。",
+      "en": "Please talk about its disadvantages.",
+      "source": "original",
+      "verifiedTokens": [
+        "请",
+        "说",
+        "说",
+        "它",
+        "的",
+        "坏处"
+      ]
+    }
+  ],
+  "1972": [
+    {
+      "zh": "我坐动车去学校。",
+      "en": "I take the high-speed train to school.",
+      "source": "original",
+      "verifiedTokens": [
+        "我",
+        "坐",
+        "动车",
+        "去",
+        "学校"
+      ]
+    },
+    {
+      "zh": "动车很快。",
+      "en": "The high-speed train is fast.",
+      "source": "original",
+      "verifiedTokens": [
+        "动车",
+        "很",
+        "快"
+      ]
+    },
+    {
+      "zh": "动车晚点了。",
+      "en": "The high-speed train is delayed.",
+      "source": "original",
+      "verifiedTokens": [
+        "动车",
+        "晚点",
+        "了"
+      ]
+    }
+  ],
+  "1978": [
+    {
+      "zh": "期末我很忙。",
+      "en": "I am busy at the end of term.",
+      "source": "original",
+      "verifiedTokens": [
+        "期末",
+        "我",
+        "很",
+        "忙"
+      ]
+    },
+    {
+      "zh": "期末有考试。",
+      "en": "There are exams at the end of term.",
+      "source": "original",
+      "verifiedTokens": [
+        "期末",
+        "有",
+        "考试"
+      ]
+    },
+    {
+      "zh": "老师期末很忙。",
+      "en": "The teacher is busy at the end of term.",
+      "source": "original",
+      "verifiedTokens": [
+        "老师",
+        "期末",
+        "很",
+        "忙"
+      ]
     }
   ],
   "1990": [
