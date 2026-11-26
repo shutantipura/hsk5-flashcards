@@ -284,3 +284,17 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .flash-mark{text-align:center}
 
 .flash-reason{margin:6px 0;text-align:center}.flash-stats{margin-top:12px}.flash-stats summary{cursor:pointer;font-size:13px;color:var(--muted)}
+
+/* Password-free study profiles and persistent target vocabulary emphasis. */
+.profile-welcome{max-width:480px;margin:0 auto;padding-top:max(54px,env(safe-area-inset-top));}
+.profile-welcome h2{margin:32px 0 16px;}
+.profile-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 20px;}
+.profile-choice{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:24px 8px;border:1px solid var(--line);border-radius:18px;background:var(--surface2);color:inherit;font:inherit;cursor:pointer;}
+.profile-choice.boyfriend{border-color:#76a991;background:color-mix(in srgb,var(--surface2) 90%,#76a991);}
+.profile-choice.girlfriend{border-color:#d69cae;background:color-mix(in srgb,var(--surface2) 90%,#d69cae);}
+.profile-avatar{display:grid;place-items:center;font-size:34px;width:64px;height:64px;border-radius:50%;background:var(--surface2);}
+.profile-choice strong{font-size:17px;}.profile-choice:focus-visible{outline:2px solid var(--seal);outline-offset:3px;}
+.profile-restore{text-align:left;margin-top:28px;}.profile-restore form{margin-top:12px;}
+.read-text .read-target{background:rgba(231,177,56,.36);box-shadow:inset 0 -2px #bc8a24;border-radius:3px;}
+.read-text .read-target.read-new{box-shadow:inset 0 -2px #bc8a24;}
+.read-text .read-target.read-active{outline:1px solid var(--seal);background:rgba(231,177,56,.48);}
