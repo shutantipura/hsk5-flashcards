@@ -15,7 +15,7 @@ export function grammarQueue(progress, level=0, now=Date.now()) {
 }
 export function gradeGrammar(progress,p,skill,rating,now,retention) {
   const {card}=schedule(grammarCard(progress,p,skill,now),rating,now,{retention});
-  return {...progress,[grammarKey(p,skill)]:card};
+  return {...progress,[grammarKey(p,skill)]:{...card,lastRating:rating,mistakes:(progress[grammarKey(p,skill)]?.mistakes||0)+Number(rating===1)}};
 }
 // Locate the target using the checked token boundaries, not the first matching character.
 export function targetSpan(p,e) {
