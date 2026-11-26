@@ -1,5 +1,7 @@
 // Applied practice. All practice reviews are separate from vocabulary and grammar FSRS.
-import { PRACTICE } from './practice-data.js';
+import { PRACTICE as BASE_PRACTICE } from './practice-data.js';
+import { COVERAGE_PRACTICE } from './coverage-practice-data.js';
+const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE];
 import { GRAMMAR } from './grammar-data.js';
 import { grammarPrompt } from './grammar.js';
 import { grammarPatternsFor, isGrammarOnly, vocabularyMeanings } from './learning-mode.js';
@@ -120,7 +122,7 @@ export function groupReadingRows(rows,limit,adaptive){
 }
 export function practiceQueue(S,mode,level=5,limit=10,now=Date.now(),adaptive=true,readingOptions={}){
   const progress=S.settings.practiceProgress||{},known=buildKnowledge(S,now);
-  const qs=mode==='mistakes'?mistakeQuestions(S,level,now):mode==='reading'?readingQuestions(level,readingOptions):PRACTICE.filter(q=>q.kind===mode&&q.level<=level);
+  const qs=(mode==='mistakes'?mistakeQuestions(S,level,now):mode==='reading'?readingQuestions(level,readingOptions):PRACTICE.filter(q=>q.kind===mode&&q.level<=level)).filter(q=>!readingOptions.exact||(q.passageLevel||q.level)===level);
   const rows=qs.map(q=>{const c=practiceCard(progress,q.id,now);const due=!!c.reps&&Date.parse(c.due)<=now;const coverage=q.passage?readingCoverage(q,known):null;return {q,c,due,coverage};});
   const sort=(a,b)=>{
     if(mode==='mistakes')return Number(b.due)-Number(a.due)||(b.q.weight||0)-(a.q.weight||0)||Date.parse(a.c.due)-Date.parse(b.c.due);
@@ -144,16 +146,16 @@ export function createPracticeScreen({S,shell,saveSettings,esc}){
   function dashboard(){
     queue=[];idx=0;busy=false;readingAnswers=[];
     const stats=practiceStats(S),known=buildKnowledge(S);
-    const counts=Object.fromEntries(Object.keys(MODES).map(k=>[k,k==='mistakes'?mistakeQuestions(S,level).length:k==='reading'?readingQuestions(level,{exact,type:readingType}).length:PRACTICE.filter(q=>q.kind===k&&q.level<=level).length]));
+    const counts=Object.fromEntries(Object.keys(MODES).map(k=>[k,k==='mistakes'?mistakeQuestions(S,level).filter(q=>(q.passageLevel||q.level)===level).length:k==='reading'?readingQuestions(level,{exact,type:readingType}).length:PRACTICE.filter(q=>q.kind===k&&q.level===level).length]));
     shell('practice','<header class="hdr"><div><h1>Applied Practice</h1><p class="muted">Use what you know in context.</p></div></header>'+
       '<section class="card"><div class="grammar-stats"><div><b>'+stats.due+'</b><span>Due</span></div><div><b>'+stats.seen+'</b><span>Practised</span></div><div><b>'+(stats.correct+stats.wrong?Math.round(100*stats.correct/(stats.correct+stats.wrong))+'%':'—')+'</b><span>Accuracy</span></div></div>'+
-      '<label>Maximum HSK level<select id="pr-level">'+[1,2,3,4,5].map(l=>'<option value="'+l+'" '+(l===level?'selected':'')+'>HSK '+l+' and below</option>').join('')+'</select></label>'+
+      '<label>HSK level<select id="pr-level">'+[1,2,3,4,5].map(l=>'<option value="'+l+'" '+(l===level?'selected':'')+'>HSK '+l+'</option>').join('')+'</select></label>'+
       '<label>Questions per session<select id="pr-limit">'+[5,10,20].map(n=>'<option '+(n===limit?'selected':'')+' value="'+n+'">'+n+'</option>').join('')+'</select></label>'+
-      '<label class="pr-check"><input id="pr-exact" type="checkbox" '+(exact?'checked':'')+'> Reading: selected HSK level only</label><label>Reading question type<select id="pr-reading-type">'+[['all','All types'],...Object.entries(READING_TYPES)].map(([k,n])=>'<option value="'+k+'" '+(k===readingType?'selected':'')+'>'+n+'</option>').join('')+'</select></label>'+
+      '<label>Reading question type<select id="pr-reading-type">'+[['all','All types'],...Object.entries(READING_TYPES)].map(([k,n])=>'<option value="'+k+'" '+(k===readingType?'selected':'')+'>'+n+'</option>').join('')+'</select></label>'+
       '<label class="pr-check"><input id="pr-adaptive" type="checkbox" '+(adaptive?'checked':'')+'> Match reading to my studied vocabulary</label><p class="muted small">'+known.size+' words estimated familiar. Reading uses checked passages ranked for a manageable challenge. Answers, translations and unfamiliar words appear after the passage questions.</p></section>'+
       Object.entries(MODES).map(([k,name])=>'<button class="btn grammar-pattern" data-mode="'+k+'" '+(!counts[k]?'disabled':'')+'><span><b>'+name+'</b><small>'+({reading:'Short passages and Chinese questions',collocation:'Natural word combinations',synonym:'Choose the best fit in context',order:'Arrange the sentence chunks',mistakes:'From your vocabulary, grammar and practice history'}[k])+'</small></span><span class="muted">'+counts[k]+' ›</span></button>').join('')+
       '<section class="card"><h3>Reading accuracy by skill</h3>'+readingStats(S,level,exact).map(x=>'<div class="kv"><span>'+esc(x.label)+' <small class="muted">('+x.total+' questions)</small></span><b>'+(x.accuracy===null?'—':Math.round(x.accuracy*100)+'%')+'</b></div>').join('')+'</section><p class="muted small">These reviews have their own schedule and do not change your vocabulary or grammar mastery.</p>');
-    $('#pr-level').onchange=e=>{level=+e.target.value;dashboard();};$('#pr-limit').onchange=e=>{limit=+e.target.value;};$('#pr-adaptive').onchange=e=>{adaptive=e.target.checked;};$('#pr-exact').onchange=e=>{exact=e.target.checked;dashboard();};$('#pr-reading-type').onchange=e=>{readingType=e.target.value;dashboard();};
+    $('#pr-level').onchange=e=>{level=+e.target.value;dashboard();};$('#pr-limit').onchange=e=>{limit=+e.target.value;};$('#pr-adaptive').onchange=e=>{adaptive=e.target.checked;};$('#pr-reading-type').onchange=e=>{readingType=e.target.value;dashboard();};
     document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;queue=practiceQueue(S,mode,level,limit,Date.now(),adaptive,{exact,type:readingType}).selected;idx=0;correct=0;readingAnswers=[];next();});
   }
   function next(){
