@@ -54,3 +54,6 @@ The reader also checks that Chinese fragments in question explanations are drawn
 
 ### v2.2 audio-first study
 Every checked passage has an audio-only mode, using the browser/device's Mandarin text-to-speech engine. The library can be browsed without Chinese previews, playback has play/pause/replay/stop and adjustable speed, transcripts and comprehension questions are optional, and chapter sequences can continue in listening mode. Audio quality and voice availability depend on the device; no recorded or server-generated audio is stored. Listening-question progress retains the existing `listen:` question IDs.
+
+### v2.4 self-assessment flashcards
+Separate exact-level decks group readings of the same written word within that level. Four confidence ratings are saved in `settings.flashcardRatings` with per-word timestamps, separate from historic quiz cards/logs. Known advances immediately; all other ratings reveal dictionary pinyin and definitions before Next. Session filters include unmarked and non-known vocabulary. No quiz scores are generated.

@@ -264,3 +264,21 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .target-preview{margin:0;gap:5px;align-items:center}
 .target-preview span{font:14px/1.4 var(--hz);padding:3px 7px;border-radius:7px;background:var(--surface2);border:1px solid var(--line)}
 .target-preview small{color:var(--muted);font-size:11px}
+
+/* Self-assessed vocabulary cards */
+.flash-levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:14px 0}
+.flash-counter{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin:12px 0 6px}
+.flash-track{height:5px;background:var(--line);border-radius:8px;overflow:hidden;margin-bottom:16px}
+.flash-track div{height:100%;background:var(--primary);transition:width .2s}
+.flash-face{text-align:center;min-height:190px;display:grid;place-content:center;gap:10px;padding:24px 16px}
+.flash-hanzi{font:600 clamp(46px,12vw,76px)/1.4 var(--hz);overflow-wrap:anywhere}
+.flash-definition{border-top:1px solid var(--line);padding-top:12px;width:100%;font-size:16px;line-height:1.5}
+.flash-definition>div+div{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.flash-pinyin{font-size:21px;color:var(--muted)}
+.flash-ratings{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.flash-ratings .btn{margin:0;min-height:58px;font-weight:650}
+.flash-known{border:1px solid #43866c!important;background:#e0f0e6!important;color:#20583d!important}
+.flash-think{border:1px solid #7295bc!important;background:#e5edf8!important;color:#294d75!important}
+.flash-unsure{border:1px solid #c5a04f!important;background:#fff2ce!important;color:#775617!important}
+.flash-unknown{border:1px solid #bd7474!important;background:#f9e3e3!important;color:#832e2e!important}
+.flash-mark{text-align:center}
