@@ -8,10 +8,10 @@ A personal, installable flashcard web app for the **2025 HSK 3.0 exam syllabus, 
 - **Pacing:** sets the daily number of new words from your exam date and the words left, keeps the last 10 days for review, and slows down when the review backlog is large.
 - **Placement test:** samples each level so you can skip what you already know. Skipped words are rechecked gradually.
 - **Report:** recall estimate, per-level progress, retention per card type, speed, streak heatmap, forecast, best time of day, weakest areas, confused pairs, and hardest words.
-- **Offline-first:** works offline; data lives in IndexedDB and syncs to Supabase (Postgres + RLS).
+- **Offline-first, no login:** works offline; data lives in IndexedDB and syncs to Supabase under a profile id. That id is also the sync code for restoring progress on another device.
 
 ## Stack
-Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitHub Pages. Supabase Auth + PostgREST are called directly with `fetch` (`js/api.js`).
+Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitHub Pages. Supabase PostgREST is called directly with `fetch` (`js/api.js`).
 
 ## Files
 - `js/fsrs.js` – scheduler and calibration

@@ -96,7 +96,7 @@ async function doSync() {
     if (meta.uid && meta.uid !== uid) { meta.cardsSince = '1970-01-01T00:00:00Z'; meta.logId = 0; }
     let changed = [];
     for (let off = 0; ; off += 1000) {
-      const rows = await api.rest(`cards?select=${CARD_COLS.join(',')}&updated_at=gt.${encodeURIComponent(meta.cardsSince)}&order=updated_at.asc&limit=1000&offset=${off}`);
+      const rows = await api.rest(`cards?select=${CARD_COLS.join(',')}&user_id=eq.${uid}&updated_at=gt.${encodeURIComponent(meta.cardsSince)}&order=updated_at.asc&limit=1000&offset=${off}`);
       for (const r of rows) {
         const k = key(r.word_id, r.kind); const local = S.cards.get(k);
         if (!local || Date.parse(r.updated_at) > Date.parse(local.updated_at || 0)) { S.cards.set(k, r); changed.push([k, r]); }
@@ -107,7 +107,7 @@ async function doSync() {
     if (changed.length) await idb.putMany('cards', changed);
     const have = new Set(S.logs.map((l) => l.client_id)); const newLogs = [];
     for (;;) {
-      const rows = await api.rest(`review_logs?select=id,${LOG_COLS.join(',')}&id=gt.${meta.logId}&order=id.asc&limit=1000`);
+      const rows = await api.rest(`review_logs?select=id,${LOG_COLS.join(',')}&user_id=eq.${uid}&id=gt.${meta.logId}&order=id.asc&limit=1000`);
       for (const r of rows) { meta.logId = Math.max(meta.logId, r.id); if (!have.has(r.client_id)) { delete r.id; newLogs.push([r.client_id, r]); } }
       if (rows.length < 1000) break;
     }
@@ -115,7 +115,7 @@ async function doSync() {
       await idb.putMany('logs', newLogs);
       S.logs.push(...newLogs.map(([, v]) => v)); S.logs.sort((a, b) => a.reviewed_at.localeCompare(b.reviewed_at));
     }
-    const st = await api.rest('settings?select=data,updated_at');
+    const st = await api.rest(`settings?select=data,updated_at&user_id=eq.${uid}`);
     if (st?.[0]?.data && !S.outbox.settings) {
       S.settings = { ...DEFAULT_SETTINGS, ...st[0].data, kinds: { ...DEFAULT_SETTINGS.kinds, ...(st[0].data.kinds || {}) } };
       await idb.put('kv', 'settings', S.settings);

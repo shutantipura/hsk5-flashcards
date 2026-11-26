@@ -67,30 +67,25 @@ function route() {
 window.addEventListener('hashchange', route);
 onChange(() => { const d = $('.syncdot'); if (d) { d.className = `syncdot ${{ ok: 'ok', syncing: 'busy', error: 'err', offline: 'off' }[S.sync.status] || ''}`; d.dataset.tip = syncLabel(); } });
 
-// ================= LOGIN
+// ================= WELCOME (no login: progress is tied to this phone, with a sync code as backup)
 function login() {
   app.innerHTML = `<main class="screen login">
     <div class="seal">词</div><h1>HSK 5 Flashcards</h1><p class="muted">All ${num(S.vocab.length)} words of the 2025 HSK 3.0 exam syllabus, levels 1–5.</p>
+    <button class="btn primary big" id="fresh">Start</button>
     <form id="f" class="card">
-      <label>Email<input name="email" type="email" autocomplete="email" required></label>
-      <label>Password<input name="pw" type="password" autocomplete="current-password" minlength="6" required></label>
-      <button class="btn primary" name="in">Sign in</button>
-      <button class="btn ghost" type="button" id="up">Create account</button>
+      <p class="small muted">Already used the app on another phone? Enter your sync code from <b>Settings</b> there.</p>
+      <label>Sync code<input name="code" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></label>
+      <button class="btn">Restore my progress</button>
       <p id="msg" class="muted small"></p>
     </form></main>`;
-  const f = $('#f'), msg = $('#msg');
-  const run = async (fn) => {
-    msg.textContent = 'Working…';
-    try { await fn(); } catch (e) { msg.textContent = e.message; }
+  const msg = $('#msg');
+  $('#fresh').onclick = async () => { await api.newProfile(); await saveSettings({}); await sync(); go('placement'); };
+  $('#f').onsubmit = async (e) => {
+    e.preventDefault(); msg.textContent = 'Looking up your progress…';
+    try { await api.useSyncCode(e.target.code.value); await sync(); go(S.settings.placementDone ? 'home' : 'placement'); }
+    catch (err) { msg.textContent = err.message; }
   };
-  f.onsubmit = (e) => { e.preventDefault(); run(async () => { await api.signIn(f.email.value.trim(), f.pw.value); await afterLogin(); }); };
-  $('#up').onclick = () => { if (!f.reportValidity()) return; run(async () => {
-    const r = await api.signUp(f.email.value.trim(), f.pw.value);
-    if (r.session) await afterLogin();
-    else msg.innerHTML = 'Check your inbox and tap the confirmation link, then come back here and <b>Sign in</b>.';
-  }); };
 }
-async function afterLogin() { await sync(); go(S.settings.placementDone ? 'home' : 'placement'); }
 
 // ================= PLACEMENT
 let P = null;
@@ -412,12 +407,14 @@ function settings() {
       <button class="btn" id="test">Test voice · 你好，欢迎学习</button>
     </section>
     <section class="card form"><h3>Data</h3>
-      <div class="kv"><span>Account</span><b>${esc(api.getSession()?.user?.email || '')}</b></div>
+      <label>Sync code<input id="code" readonly value="${esc(api.userId() || '')}"></label>
+      <button class="btn" id="copy">Copy sync code</button>
+      <p class="muted small">Save this somewhere safe, for example in Notes. It restores your progress on a new phone or after reinstalling the app.</p>
       <div class="kv"><span>Sync</span><b>${esc(syncLabel())}</b></div>
       <button class="btn" id="sync">Sync now</button>
       <button class="btn" id="exp">Export my data (JSON)</button>
       <button class="btn" id="replace">Run placement test again</button>
-      <button class="btn bad" id="out">Sign out</button>
+      <button class="btn bad" id="out">Remove progress from this phone</button>
       <p class="muted small center">Version ${APP_VERSION}</p>
     </section>`);
   $('#exam').onchange = (e) => e.target.value && saveSettings({ examDate: e.target.value });
@@ -432,10 +429,12 @@ function settings() {
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hsk5-export-${new Date().toISOString().slice(0, 10)}.json`; a.click();
   };
   $('#replace').onclick = async () => { await saveSettings({ placementDone: false }); P = null; go('placement'); };
+  $('#copy').onclick = async () => { try { await navigator.clipboard.writeText(api.userId()); toast('Sync code copied'); } catch { $('#code').select(); toast('Select and copy the code'); } };
   $('#out').onclick = async () => {
-    if (S.outbox.cards.size || S.outbox.logs.size) await sync();
-    if ((S.outbox.cards.size || S.outbox.logs.size) && !confirm('Some progress has not synced yet and will be lost. Sign out anyway?')) return;
-    await api.signOut(); await resetLocal(); go('login');
+    await sync();
+    const unsynced = S.outbox.cards.size || S.outbox.logs.size;
+    if (!confirm(unsynced ? 'Some progress has not synced yet and will be lost. Remove anyway?' : 'Your progress stays saved online. You can bring it back with your sync code. Remove it from this phone?')) return;
+    await api.forgetProfile(); await resetLocal(); go('login');
   };
 }
 
