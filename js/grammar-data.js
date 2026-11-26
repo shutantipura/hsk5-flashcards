@@ -1109,18 +1109,19 @@ export const GRAMMAR = [
         ]
       },
       {
-        "zh": "随着学习的增加，我了解得更多。",
-        "en": "As I study more, I understand more.",
+        "zh": "随着天气变冷，衣服穿得更多了。",
+        "en": "As the weather gets colder, people wear more clothes.",
         "tokens": [
           "随着",
-          "学习",
-          "的",
-          "增加",
-          "我",
-          "了解",
+          "天气",
+          "变",
+          "冷",
+          "衣服",
+          "穿",
           "得",
           "更",
-          "多"
+          "多",
+          "了"
         ]
       }
     ]
@@ -1224,6 +1225,330 @@ export const GRAMMAR = [
           "不",
           "要",
           "改变"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fouze",
+    "word": "否则",
+    "level": 4,
+    "pattern": "action，否则 + consequence",
+    "meaning": "fǒu zé · otherwise",
+    "explain": "否则 warns what happens if an instruction or condition is not met.",
+    "distractors": [
+      "而且",
+      "因此"
+    ],
+    "contrast": "Which word introduces what happens otherwise?",
+    "examples": [
+      {
+        "zh": "快一点，否则就晚了。",
+        "en": "Hurry up, otherwise it will be too late.",
+        "tokens": [
+          "快",
+          "一",
+          "点",
+          "否则",
+          "就",
+          "晚",
+          "了"
+        ]
+      },
+      {
+        "zh": "请早一点睡，否则明天会很累。",
+        "en": "Go to bed a little earlier, otherwise you will be tired tomorrow.",
+        "tokens": [
+          "请",
+          "早",
+          "一",
+          "点",
+          "睡",
+          "否则",
+          "明天",
+          "会",
+          "很",
+          "累"
+        ]
+      },
+      {
+        "zh": "你要学习，否则考试会有问题。",
+        "en": "You must study, otherwise you will have problems in the exam.",
+        "tokens": [
+          "你",
+          "要",
+          "学习",
+          "否则",
+          "考试",
+          "会",
+          "有",
+          "问题"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "youyu",
+    "word": "由于",
+    "level": 4,
+    "pattern": "由于 + cause，result",
+    "meaning": "yóu yú · due to",
+    "explain": "由于 introduces a cause, often in formal writing. 因此 introduces the consequence.",
+    "distractors": [
+      "因此",
+      "于是"
+    ],
+    "contrast": "Which word introduces the cause rather than the result?",
+    "examples": [
+      {
+        "zh": "由于下雨，比赛停止了。",
+        "en": "Due to rain, the match stopped.",
+        "tokens": [
+          "由于",
+          "下雨",
+          "比赛",
+          "停止",
+          "了"
+        ]
+      },
+      {
+        "zh": "由于时间不够，我们先回家了。",
+        "en": "Because time was insufficient, we went home first.",
+        "tokens": [
+          "由于",
+          "时间",
+          "不",
+          "够",
+          "我们",
+          "先",
+          "回",
+          "家",
+          "了"
+        ]
+      },
+      {
+        "zh": "由于身体不好，他没有来。",
+        "en": "Because he was unwell, he did not come.",
+        "tokens": [
+          "由于",
+          "身体",
+          "不",
+          "好",
+          "他",
+          "没有",
+          "来"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yinci",
+    "word": "因此",
+    "level": 4,
+    "pattern": "cause，因此 + result",
+    "meaning": "yīn cǐ · therefore",
+    "explain": "因此 expresses a logical result. 由于 introduces the cause instead.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word introduces a logical consequence?",
+    "examples": [
+      {
+        "zh": "他生病了，因此没有来。",
+        "en": "He was ill; therefore he did not come.",
+        "tokens": [
+          "他",
+          "生病",
+          "了",
+          "因此",
+          "没有",
+          "来"
+        ]
+      },
+      {
+        "zh": "今天下雨，因此我们不去了。",
+        "en": "It is raining today, so we will not go.",
+        "tokens": [
+          "今天",
+          "下雨",
+          "因此",
+          "我们",
+          "不",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "他很努力，因此取得了好成绩。",
+        "en": "He worked hard and therefore got good results.",
+        "tokens": [
+          "他",
+          "很",
+          "努力",
+          "因此",
+          "取得",
+          "了",
+          "好",
+          "成绩"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yushi",
+    "word": "于是",
+    "level": 4,
+    "pattern": "situation，于是 + next action",
+    "meaning": "yú shì · so / thereupon",
+    "explain": "于是 describes a subsequent action prompted by the situation. 因此 emphasizes logical consequence.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word introduces the next action in a narrative?",
+    "examples": [
+      {
+        "zh": "我饿了，于是去吃饭。",
+        "en": "I was hungry, so I went to eat.",
+        "tokens": [
+          "我",
+          "饿",
+          "了",
+          "于是",
+          "去",
+          "吃",
+          "饭"
+        ]
+      },
+      {
+        "zh": "他没有带钱，于是回家了。",
+        "en": "He had not brought money, so he went home.",
+        "tokens": [
+          "他",
+          "没有",
+          "带",
+          "钱",
+          "于是",
+          "回",
+          "家",
+          "了"
+        ]
+      },
+      {
+        "zh": "她看见了我，于是走了过来。",
+        "en": "She saw me and then walked over.",
+        "tokens": [
+          "她",
+          "看见",
+          "了",
+          "我",
+          "于是",
+          "走",
+          "了",
+          "过来"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lian",
+    "word": "连",
+    "level": 4,
+    "pattern": "连 A 都 / 也 B",
+    "meaning": "lián · even",
+    "explain": "连 highlights an extreme or surprising case. 都 or 也 normally follows it.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word highlights an especially surprising case?",
+    "examples": [
+      {
+        "zh": "连孩子都知道。",
+        "en": "Even children know.",
+        "tokens": [
+          "连",
+          "孩子",
+          "都",
+          "知道"
+        ]
+      },
+      {
+        "zh": "连我都不知道。",
+        "en": "Even I do not know.",
+        "tokens": [
+          "连",
+          "我",
+          "都",
+          "不",
+          "知道"
+        ]
+      },
+      {
+        "zh": "他连水都不喝。",
+        "en": "He does not even drink water.",
+        "tokens": [
+          "他",
+          "连",
+          "水",
+          "都",
+          "不",
+          "喝"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duiyu",
+    "word": "对于",
+    "level": 4,
+    "pattern": "对于 + object，opinion",
+    "meaning": "duì yú · regarding",
+    "explain": "对于 sets the object of an opinion, reaction or evaluation. 关于 primarily introduces a topic.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word sets the object of an opinion?",
+    "examples": [
+      {
+        "zh": "对于这个问题，我有不同的意见。",
+        "en": "I have a different opinion on this question.",
+        "tokens": [
+          "对于",
+          "这个",
+          "问题",
+          "我",
+          "有",
+          "不同",
+          "的",
+          "意见"
+        ]
+      },
+      {
+        "zh": "对于这件事，我很担心。",
+        "en": "I am very worried about this matter.",
+        "tokens": [
+          "对于",
+          "这",
+          "件",
+          "事",
+          "我",
+          "很",
+          "担心"
+        ]
+      },
+      {
+        "zh": "对于这个结果，我很满意。",
+        "en": "I am very satisfied with this result.",
+        "tokens": [
+          "对于",
+          "这个",
+          "结果",
+          "我",
+          "很",
+          "满意"
         ]
       }
     ]
