@@ -7,6 +7,8 @@ import {
 } from './engine.js';
 import { buildReport, wordStatus } from './report.js';
 import { APP_VERSION } from './config.js';
+import { createGrammarScreen, grammarQueue } from './grammar.js';
+import { GRAMMAR } from './grammar-data.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const app = $('#app');
@@ -42,7 +44,7 @@ document.addEventListener('click', (e) => { const el = e.target.closest('[data-t
 
 // ---------- layout
 const TABS = [['home', 'Today', 'M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z'], ['report', 'Report', 'M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z'],
-  ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
+  ['grammar', 'Grammar', 'M4 4h7v2H4zm0 5h7v2H4zm0 5h7v2H4zm10-9h6v11h-6zm1 2v7h4V7z'], ['words', 'Words', 'M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z'], ['settings', 'Settings', 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 4.6.1-1.1-.1-1.1 2.1-1.6-2-3.5-2.5 1a8 8 0 0 0-1.9-1.1L15.7 3h-4l-.4 2.7a8 8 0 0 0-1.9 1.1l-2.5-1-2 3.5L7 10.9 6.9 12l.1 1.1-2.1 1.6 2 3.5 2.5-1c.6.5 1.2.8 1.9 1.1l.4 2.7h4l.4-2.7c.7-.3 1.3-.6 1.9-1.1l2.5 1 2-3.5z']];
 function shell(route, body) {
   const syncDot = { ok: 'ok', syncing: 'busy', error: 'err', offline: 'off', idle: '' }[S.sync.status] || '';
   app.innerHTML = `<main class="screen">${body}</main>
@@ -55,7 +57,8 @@ function syncLabel() {
 }
 
 // ---------- router
-const routes = { login, placement, home, study, report, words, settings };
+const grammar = createGrammarScreen({S,shell,saveSettings,esc});
+const routes = { login, placement, home, study, report, words, settings, grammar };
 function go(r) { location.hash = `#/${r}`; }
 function route() {
   const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
@@ -154,6 +157,7 @@ function home() {
   const p = pacing(); const r = buildReport(); const dueN = dueCards().length;
   const newLeft = Math.max(0, p.target - p.today);
   const doneToday = !dueN && !newLeft;
+  const grammarDue = grammarQueue(S.settings.grammarProgress || {}).due.length;
   shell('home', `
     <header class="hdr"><div class="seal sm">词</div><div><h1>Today</h1><p class="muted">${new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}</p></div></header>
     <section class="card exam"><div class="big">${p.dte}</div><div><b>days to HSK 5</b><div class="muted">${fmtDate(S.settings.examDate + 'T09:00:00')}</div></div></section>
@@ -167,6 +171,7 @@ function home() {
         : `<button class="btn primary big" id="start">Start studying</button>`}
       <p class="muted small" data-tip="${esc(p.reason)}">Daily target: ${p.target} new words · ${esc(p.reason)}</p>
     </section>
+    <section class="card"><div class="kv"><span>Grammar Practice</span><b>${grammarDue} due</b></div><p class="muted small">Learn formal connectors and sentence patterns, then practise using them.</p><a class="link" href="#/grammar">Practise grammar →</a></section>
     <section class="card">
       <div class="kv"><span>Words started</span><b>${num(r.seen)} / ${num(r.total)}</b></div>
       <div class="bar"><i style="width:${(r.seen / r.total) * 100}%"></i><i class="exp" style="width:${(r.expected / r.total) * 100}%"></i></div>
@@ -225,10 +230,12 @@ function examplesBlock(w) {
     const v = matches.sort((a,b) => a.l-b.l)[0];
     return v ? `<span><b lang="zh-CN">${esc(t)}</b> ${esc(v.p)} · ${esc(shortMeaning(v))}</span>` : '';
   }).filter(Boolean).join('');
+  const hasGrammar = GRAMMAR.some(p => p.word === w.h && p.level === w.l);
   return `<section class="examples" aria-label="Example sentences"><h3>Example sentences <span class="muted small">· HSK ${w.l} or below</span></h3>
     ${examples.map((e) => `<div class="example"><div class="example-body"><div class="example-zh" lang="zh-CN">${highlight(e)}</div>
       <details class="example-help"><summary>Translation &amp; vocabulary</summary><div class="example-en">${esc(e.en)}</div><div class="example-glossary muted small">${glossary(e)}</div></details></div>
       <div class="example-audio"><button type="button" class="spk" data-say="${esc(e.zh)}" aria-label="Play example sentence">🔊</button><button type="button" class="spk slow" data-say="${esc(e.zh)}" data-slow="1" aria-label="Play example slowly">🐢</button></div></div>`).join('')}
+    ${hasGrammar ? `<p><a class="link" href="#/grammar">Learn grammar patterns →</a></p>` : ''}
     ${examples.length < 3 ? `<p class="muted small">${examples.length ? examples.length + ' of 3 examples pass' : 'No example currently passes'} the vocabulary check. Harder or unrecognized words are not shown.</p>` : ''}
   </section>`;
 }
