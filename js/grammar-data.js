@@ -8185,8 +8185,8 @@ export const GRAMMAR = [
     "meaning": "biān · side / direction suffix",
     "explain": "边 combines with a location word to indicate a side or area.",
     "distractors": [
-      "上",
-      "下"
+      "吗",
+      "的"
     ],
     "contrast": "Which word or component expresses side / direction suffix?",
     "examples": [
@@ -8231,8 +8231,8 @@ export const GRAMMAR = [
     "meaning": "miàn · position suffix",
     "explain": "面 combines with a direction to express a location, such as 上面 or 里面.",
     "distractors": [
-      "边",
-      "里"
+      "了",
+      "得"
     ],
     "contrast": "Which word or component expresses position suffix?",
     "examples": [
@@ -8430,8 +8430,8 @@ export const GRAMMAR = [
     "meaning": "zhě · person who does something",
     "explain": "者 forms nouns for people associated with an activity or role.",
     "distractors": [
-      "员",
-      "人"
+      "们",
+      "子"
     ],
     "contrast": "Which word or component expresses person who does something?",
     "examples": [
@@ -8536,7 +8536,7 @@ export const GRAMMAR = [
       "者",
       "员"
     ],
-    "contrast": "Which word or component expresses feeling / perception (word-building)?",
+    "contrast": "Which component contributes the idea of feeling or perception?",
     "examples": [
       {
         "zh": "我感觉很好。",
@@ -8897,7 +8897,7 @@ export const GRAMMAR = [
     "explain": "化 can indicate a process of change, including in the suffix -ization. Learn each whole compound and its meaning.",
     "distractors": [
       "度",
-      "性"
+      "力"
     ],
     "contrast": "Which word or component expresses change / transformation (word-building)?",
     "examples": [
@@ -9001,8 +9001,8 @@ export const GRAMMAR = [
     "meaning": "xiǎo · small / young (word-building)",
     "explain": "小 can form words referring to small or young people or things. Learn each complete compound.",
     "distractors": [
-      "大",
-      "新"
+      "的",
+      "吗"
     ],
     "contrast": "Which word or component expresses small / young (word-building)?",
     "examples": [
@@ -9048,8 +9048,8 @@ export const GRAMMAR = [
     "meaning": "jiā · family / home (word-building)",
     "explain": "家 refers to a home or family in compounds. The suffix meaning specialist is a separate use; suitable compounds are above this level.",
     "distractors": [
-      "人",
-      "国"
+      "了",
+      "吗"
     ],
     "contrast": "Which word or component expresses family / home (word-building)?",
     "examples": [
@@ -9101,8 +9101,8 @@ export const GRAMMAR = [
     "meaning": "yuán · person / participant suffix",
     "explain": "员 identifies someone involved in an activity, as in 运动员.",
     "distractors": [
-      "人",
-      "家"
+      "们",
+      "子"
     ],
     "contrast": "Which word or component expresses person / participant suffix?",
     "examples": [
