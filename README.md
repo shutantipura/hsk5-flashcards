@@ -63,3 +63,6 @@ Default smart queue includes saved reading words, due FSRS reviews, and unassess
 
 ### v2.6 short passages
 Every reading/listening passage must contain at most 100 syllabus word tokens (not Chinese characters) and at least five distinct target words occurring in the passage. The runtime checker and audit script enforce these limits. Existing story IDs, chapter links and question IDs are retained; some older passages target useful lower-level words as well as their declared level.
+
+### v2.7 extended passages
+The 100-word maximum from v2.6 has been replaced with a target of approximately 150 Chinese syllabus tokens per reading/listening passage (accepted range 125–175). All 103 stories are expanded, with existing target words, questions, and chapter links retained. English translations remain concise summaries, updated to cover added material. The runtime checker and audit enforce the new range and at least five distinct targets. Token checks do not guarantee linguistic segmentation or native-speaker naturalness.
