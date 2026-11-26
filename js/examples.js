@@ -70,7 +70,7 @@ export function buildLevelExamples(vocab, exampleFiles, curated = {}) {
     const chosen = [], seen = new Set();
     const add = e=>{
       if(chosen.length>=3 || !valid(e) || seen.has(e.zh)) return;
-      if (['也同学在这个学校学习。','那多的书看。','请不要与我的事情有关。'].includes(e.zh)) return;
+      if (['也同学在这个学校学习。','那多的书看。','请不要与我的事情有关。','由于大，这个不好。','我通过了汉语课。'].includes(e.zh)) return;
       const a=analyze(e.zh);
       if(!a || a.level>w.l || !a.tokens.includes(w.h)) return;
       chosen.push({...e, tokens:a.tokens, maxLevel:a.level});seen.add(e.zh);
