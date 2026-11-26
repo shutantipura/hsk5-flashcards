@@ -17,9 +17,22 @@ export function gradeGrammar(progress,p,skill,rating,now,retention) {
   const {card}=schedule(grammarCard(progress,p,skill,now),rating,now,{retention});
   return {...progress,[grammarKey(p,skill)]:card};
 }
+// Locate the target using the checked token boundaries, not the first matching character.
+export function targetSpan(p,e) {
+  let offset=0;
+  const target=e.component||p.word;
+  for(const token of e.tokens) {
+    const at=e.zh.indexOf(token,offset);
+    if(at<0)break;
+    if(token===target) {const inner=token.indexOf(p.word);if(inner>=0)return [at+inner,at+inner+p.word.length];}
+    offset=at+token.length;
+  }
+  const at=e.zh.indexOf(p.word);
+  return at>=0?[at,at+p.word.length]:null;
+}
 export function grammarPrompt(p,skill,reps=0) {
   const example=p.examples[(reps+(skill==='produce'?2:0))%p.examples.length];
-  if(skill==='cloze') return {prompt:example.zh.replace(p.word,'＿＿'),hint:example.en,answer:p.word,example};
+  if(skill==='cloze') {const span=targetSpan(p,example);return {prompt:span?example.zh.slice(0,span[0])+'＿＿'+example.zh.slice(span[1]):example.zh,hint:example.en,answer:p.word,example};}
   if(skill==='contrast') return {prompt:p.contrast,answer:p.word,example};
   if(skill==='function') {
     const label=x=>x.meaning.split(' · ').slice(1).join(' · ')||x.meaning;
@@ -32,7 +45,7 @@ export function grammarPrompt(p,skill,reps=0) {
 }
 function shuffle(a) { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a; }
 export function createGrammarScreen({S,shell,saveSettings,esc}) {
-  let level=0, current=null, pending=[], count=0, correct=0, busy=false;
+  let level=0, current=null, pending=[], count=0, correct=0, busy=false, query='';
   const $=s=>document.querySelector(s);
   const progress=()=>S.settings.grammarProgress||{};
   const examples=p=>p.examples.map(e=>'<div class="grammar-example"><div class="grammar-zh">'+esc(e.zh)+' <button class="link" data-say="'+esc(e.zh)+'" aria-label="Listen">🔊</button></div><div class="muted small">'+esc(e.en)+'</div></div>').join('');
@@ -40,13 +53,14 @@ export function createGrammarScreen({S,shell,saveSettings,esc}) {
     current=null;pending=[];busy=false;
     const {items,due,fresh}=grammarQueue(progress(),level);
     const learned=items.filter(x=>x.c.reps).length;
-    const ps=GRAMMAR.filter(p=>!level||p.level===level).sort((a,b)=>a.level-b.level);
+    const ps=GRAMMAR.filter(p=>(!level||p.level===level)&&(!query||[p.word,p.pattern,p.meaning,p.explain].some(x=>x.toLowerCase().includes(query.toLowerCase())))).sort((a,b)=>a.level-b.level);
     shell('grammar','<header class="hdr"><div><h1>Grammar Practice</h1><p class="muted">Learn patterns, then use them.</p></div></header>'+
       '<section class="card"><label>Level<select id="grammar-level">'+[0,1,2,3,4,5].map(l=>'<option value="'+l+'" '+(l===level?'selected':'')+'>'+(l?'HSK '+l:'All levels')+'</option>').join('')+'</select></label>'+
       '<div class="grammar-stats"><div><b>'+due.length+'</b><span>Due</span></div><div><b>'+fresh.length+'</b><span>New skills</span></div><div><b>'+learned+'/'+items.length+'</b><span>Practised</span></div></div>'+
       '<button class="btn primary" id="grammar-start" '+(!due.length&&!fresh.length?'disabled':'')+'>'+(due.length?'Review due skills':fresh.length?'Learn a new pattern':'All caught up')+'</button>'+
       '<p class="small muted">Each pattern has four independently scheduled skills: fill the blank, distinguish, identify function, and produce. Grammar-only meanings are practised here; listening and tones remain available in vocabulary study.</p></section>'+
-      '<h3>Pattern library · '+ps.length+'</h3>'+ps.map(p=>{const n=SKILLS.filter(k=>grammarCard(progress(),p,k).reps).length;return '<button class="btn grammar-pattern" data-pattern="'+esc(p.id)+'"><span><b>'+esc(p.pattern)+'</b><small>'+esc(p.meaning)+' · HSK '+p.level+'</small></span><span class="muted">'+n+'/'+SKILLS.length+' ›</span></button>';}).join(''));
+      '<h3>Pattern library · '+ps.length+'</h3><input id="grammar-search" type="search" placeholder="Search word, pinyin or pattern" value="'+esc(query)+'">'+ps.map(p=>{const n=SKILLS.filter(k=>grammarCard(progress(),p,k).reps).length;return '<button class="btn grammar-pattern" data-pattern="'+esc(p.id)+'"><span><b>'+esc(p.pattern)+'</b><small>'+esc(p.meaning)+' · HSK '+p.level+(p.morphology?' · Word building':'')+'</small></span><span class="muted">'+n+'/'+SKILLS.length+' ›</span></button>';}).join(''));
+    $('#grammar-search').onchange=e=>{query=e.target.value.trim();dashboard();};
     $('#grammar-level').onchange=e=>{level=+e.target.value;dashboard();};
     $('#grammar-start').onclick=()=>{if(due.length){count=0;correct=0;pending=due.slice(0,20);next();}else if(fresh.length)lesson(fresh[0].p,true);};
     document.querySelectorAll('[data-pattern]').forEach(b=>b.onclick=()=>lesson(GRAMMAR.find(p=>p.id===b.dataset.pattern),false));
@@ -65,7 +79,7 @@ export function createGrammarScreen({S,shell,saveSettings,esc}) {
   function renderQuestion() {
     const {p,skill}=current, c=grammarCard(progress(),p,skill), q=grammarPrompt(p,skill,c.reps||0);
     const options=skill==='produce'?[]:shuffle(q.choices||[p.word,...p.distractors]);
-    const body='<button class="link" id="grammar-back">‹ Grammar</button><div class="ptop"><span class="tag">HSK '+p.level+' · '+skillNames[skill]+'</span><span class="muted small">'+(count+1)+' / '+(count+1+pending.length)+'</span></div><section class="card"><h2 class="grammar-question">'+(skill==='function'?esc(q.prompt).replace(esc(p.word),'<mark class="example-target">'+esc(p.word)+'</mark>'):esc(q.prompt))+'</h2>'+(q.subprompt?'<p class="muted">'+esc(q.subprompt)+'</p>':'')+(q.hint?'<p class="muted">'+esc(q.hint)+'</p>':'')+(skill==='produce'?'<p class="muted">Use '+esc(p.pattern)+'. Write your own translation before revealing the sample.</p><textarea id="grammar-writing" rows="3" lang="zh-CN" placeholder="用中文写一句话"></textarea><button class="btn primary" id="grammar-reveal">Compare with sample</button><button class="btn ghost" id="grammar-skip">I don’t know</button>':options.map((o,i)=>'<button class="btn grammar-option" data-choice="'+i+'">'+esc(o)+'</button>').join('')+'<button class="btn ghost" id="grammar-unknown">I don’t know</button>')+'<div id="grammar-feedback" aria-live="polite"></div></section>';
+    const body='<button class="link" id="grammar-back">‹ Grammar</button><div class="ptop"><span class="tag">HSK '+p.level+' · '+skillNames[skill]+'</span><span class="muted small">'+(count+1)+' / '+(count+1+pending.length)+'</span></div><section class="card"><h2 class="grammar-question">'+(skill==='function'&&targetSpan(p,q.example)?(()=>{const [a,b]=targetSpan(p,q.example);return esc(q.prompt.slice(0,a))+'<mark class="example-target">'+esc(q.prompt.slice(a,b))+'</mark>'+esc(q.prompt.slice(b));})():esc(q.prompt))+'</h2>'+(q.subprompt?'<p class="muted">'+esc(q.subprompt)+'</p>':'')+(q.hint?'<p class="muted">'+esc(q.hint)+'</p>':'')+(skill==='produce'?'<p class="muted">Use '+esc(p.pattern)+'. Write your own translation before revealing the sample.</p><textarea id="grammar-writing" rows="3" lang="zh-CN" placeholder="用中文写一句话"></textarea><button class="btn primary" id="grammar-reveal">Compare with sample</button><button class="btn ghost" id="grammar-skip">I don’t know</button>':options.map((o,i)=>'<button class="btn grammar-option" data-choice="'+i+'">'+esc(o)+'</button>').join('')+'<button class="btn ghost" id="grammar-unknown">I don’t know</button>')+'<div id="grammar-feedback" aria-live="polite"></div></section>';
     shell('grammar',body);$('#grammar-back').onclick=dashboard;
     if(skill==='produce'){ $('#grammar-skip').onclick=()=>{ $('#grammar-writing').readOnly=true;$('#grammar-reveal').disabled=true;$('#grammar-skip').disabled=true;feedback(false,q); }; $('#grammar-reveal').onclick=()=>{const value=$('#grammar-writing').value.trim();if(!value){$('#grammar-writing').focus();return;}$('#grammar-writing').readOnly=true;$('#grammar-reveal').disabled=true;$('#grammar-skip').disabled=true;feedback(null,q,value);}; }
     else {document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{const ok=options[+b.dataset.choice]===q.answer;document.querySelectorAll('[data-choice]').forEach((x,i)=>{x.disabled=true;if(options[i]===q.answer)x.classList.add('good');else if(x===b)x.classList.add('bad');});$('#grammar-unknown').disabled=true;feedback(ok,q);});$('#grammar-unknown').onclick=()=>{document.querySelectorAll('[data-choice]').forEach((x,i)=>{x.disabled=true;if(options[i]===q.answer)x.classList.add('good');});$('#grammar-unknown').disabled=true;feedback(false,q);};}
@@ -76,5 +90,5 @@ export function createGrammarScreen({S,shell,saveSettings,esc}) {
       (ok===null?'<p class="small muted">Your sentence: '+esc(writing)+'</p><p class="small muted">Other natural answers are possible. Check the intended meaning, word order and target structure yourself. '+(!writing.includes(p.word)?'Your answer does not contain the target word.':'')+'</p><div class="row2"><button class="btn bad" data-grade="1">Again</button><button class="btn good" data-grade="3">Got it</button></div>':'<button class="btn primary" data-grade="'+(ok?3:1)+'">Continue</button>');
     document.querySelectorAll('[data-grade]').forEach(b=>b.onclick=async()=>{if(busy)return;busy=true;document.querySelectorAll('[data-grade]').forEach(x=>x.disabled=true);const rating=+b.dataset.grade;const updated=gradeGrammar(progress(),p,skill,rating,Date.now(),S.settings.retention);try{await saveSettings({grammarProgress:updated});count++;if(rating>=3)correct++;busy=false;if(location.hash.split('?')[0]==='#/grammar'&&$('#grammar-feedback'))next();}catch(e){busy=false;document.querySelectorAll('[data-grade]').forEach(x=>x.disabled=false);$('#grammar-feedback')?.insertAdjacentHTML('beforeend','<p class="small muted">Could not save. Try again.</p>');}});
   }
-  return dashboard;
+  return function openGrammar() { const params=new URLSearchParams(location.hash.split('?')[1]||'');if(params.has('q')){query=params.get('q');level=0;}dashboard(); };
 }
