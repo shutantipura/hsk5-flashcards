@@ -977,14 +977,14 @@ export const PRACTICE = [
     "id": "s7",
     "kind": "synonym",
     "level": 4,
-    "prompt": "我能＿＿你为什么生气",
+    "prompt": "我能＿＿你的感受",
     "answer": "理解",
     "choices": [
       "理解",
       "了解",
       "认识"
     ],
-    "explain": "理解 emphasizes understanding the reasons or feelings; 了解 means knowing about something. Both may overlap, but 理解 fits empathy.",
+    "explain": "理解 is used for understanding feelings or reasons, whereas 了解 is learning about facts or circumstances.",
     "words": [
       "理解",
       "了解"
@@ -994,8 +994,8 @@ export const PRACTICE = [
       "能",
       "理解",
       "你",
-      "为什么",
-      "生气"
+      "的",
+      "感受"
     ]
   },
   {
@@ -1160,25 +1160,24 @@ export const PRACTICE = [
     "id": "s14",
     "kind": "synonym",
     "level": 5,
-    "prompt": "明天我要＿＿一场比赛",
+    "prompt": "他＿＿了学校的比赛",
     "answer": "参加",
     "choices": [
       "参加",
       "参与",
       "出现"
     ],
-    "explain": "参加 is the normal verb for attending a competition; 参与 often stresses involvement in a process or activity.",
+    "explain": "参加 is the usual term for taking part in a competition; 参与 often emphasizes involvement. The other can be possible in broader contexts.",
     "words": [
       "参加",
       "参与"
     ],
     "tokens": [
-      "明天",
-      "我",
-      "要",
+      "他",
       "参加",
-      "一",
-      "场",
+      "了",
+      "学校",
+      "的",
       "比赛"
     ]
   },
@@ -1367,7 +1366,7 @@ export const PRACTICE = [
       "改善",
       "保护"
     ],
-    "explain": "改进 means refine a method or process; 改善 typically improves a state or condition.",
+    "explain": "改进 is the more natural word for improving a method; 改善 usually improves circumstances or conditions.",
     "words": [
       "改进",
       "改善"
@@ -1643,14 +1642,14 @@ export const PRACTICE = [
     "id": "s35",
     "kind": "synonym",
     "level": 4,
-    "prompt": "他向我＿＿为什么迟到",
+    "prompt": "他向我＿＿了这个词的意思",
     "answer": "解释",
     "choices": [
       "解释",
       "说明",
       "表示"
     ],
-    "explain": "解释 clarifies why or how; 说明 can also clarify or demonstrate, but 解释 is natural for explaining a reason.",
+    "explain": "解释 means explain the meaning, reason, or mechanism of something; 说明 can also clarify but is less specific here.",
     "words": [
       "解释",
       "说明"
@@ -1660,8 +1659,11 @@ export const PRACTICE = [
       "向",
       "我",
       "解释",
-      "为什么",
-      "迟到"
+      "了",
+      "这个",
+      "词",
+      "的",
+      "意思"
     ]
   },
   {
@@ -1675,7 +1677,7 @@ export const PRACTICE = [
       "表示",
       "说明"
     ],
-    "explain": "表达 means articulate feelings or ideas; 表示 often signals a stance or response.",
+    "explain": "表达 is the natural collocation for articulating emotions; 表示 often signals an attitude or response.",
     "words": [
       "表达",
       "表示"
@@ -1701,7 +1703,7 @@ export const PRACTICE = [
       "关注",
       "保护"
     ],
-    "explain": "关心 emphasizes personal care; 关注 means pay attention to a matter.",
+    "explain": "关心 stresses care for someone's wellbeing; 关注 emphasizes paying attention to a topic.",
     "words": [
       "关心",
       "关注"
@@ -2291,7 +2293,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 2,
     "passage": "我每天早上七点起床。吃了早饭，我就去学校。下午我回家看书。晚上我和家人一起吃饭。",
-    "title": "日常生活",
+    "title": "Daily routine",
     "prompt": "我早上去哪里？",
     "answer": "学校",
     "choices": [
@@ -2372,7 +2374,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 2,
     "passage": "我每天早上七点起床。吃了早饭，我就去学校。下午我回家看书。晚上我和家人一起吃饭。",
-    "title": "日常生活",
+    "title": "Daily routine",
     "prompt": "我晚上和谁吃饭？",
     "answer": "家人",
     "choices": [
@@ -2455,7 +2457,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "经理发现最近工作效率不高，就请大家一起讨论。有人建议改变工作方法，有人认为应该减少不必要的会议。经理同意了这些建议，并决定从下周开始试一试。",
-    "title": "工作安排",
+    "title": "Working efficiently",
     "prompt": "经理为什么请大家讨论？",
     "answer": "工作效率不高",
     "choices": [
@@ -2590,7 +2592,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "经理发现最近工作效率不高，就请大家一起讨论。有人建议改变工作方法，有人认为应该减少不必要的会议。经理同意了这些建议，并决定从下周开始试一试。",
-    "title": "工作安排",
+    "title": "Working efficiently",
     "prompt": "经理决定怎么做？",
     "answer": "下周开始试新方法",
     "choices": [
@@ -2724,7 +2726,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一个人的能力有限，而团队可以让每个人发挥自己的优点。有些人善于计划，有些人善于解决问题。只有大家互相帮助，才能更好地完成任务。",
-    "title": "团队合作",
+    "title": "Teamwork",
     "prompt": "怎样才能更好地完成任务？",
     "answer": "大家互相帮助",
     "choices": [
@@ -2859,7 +2861,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 3,
     "passage": "周末我想和朋友去公园。但是早上下雨了，我们就在家看电视。下午天气好了，我们一起出去吃饭。",
-    "title": "周末",
+    "title": "Weekend plans",
     "prompt": "我们为什么没有去公园？",
     "answer": "下雨了",
     "choices": [
@@ -2946,7 +2948,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 3,
     "passage": "周末我想和朋友去公园。但是早上下雨了，我们就在家看电视。下午天气好了，我们一起出去吃饭。",
-    "title": "周末",
+    "title": "Weekend plans",
     "prompt": "下午我们做了什么？",
     "answer": "出去吃饭",
     "choices": [
@@ -3034,7 +3036,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 3,
     "passage": "他以前不喜欢学汉语，因为他觉得很难。后来老师告诉他，每天练习说汉语，就会学得更好。现在他常常和朋友说汉语，觉得学汉语很有意思。",
-    "title": "学习方法",
+    "title": "Learning methods",
     "prompt": "他以前为什么不喜欢汉语？",
     "answer": "觉得很难",
     "choices": [
@@ -3151,7 +3153,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 3,
     "passage": "他以前不喜欢学汉语，因为他觉得很难。后来老师告诉他，每天练习说汉语，就会学得更好。现在他常常和朋友说汉语，觉得学汉语很有意思。",
-    "title": "学习方法",
+    "title": "Learning methods",
     "prompt": "现在他怎么学汉语？",
     "answer": "常常和朋友说汉语",
     "choices": [
@@ -3270,7 +3272,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "今天她去商店买衣服。她看了两件，一件很漂亮，但是太贵。另一件颜色很好，价格也不高。最后她买了第二件。",
-    "title": "买衣服",
+    "title": "Shopping",
     "prompt": "第一件衣服有什么问题？",
     "answer": "太贵",
     "choices": [
@@ -3378,7 +3380,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "今天她去商店买衣服。她看了两件，一件很漂亮，但是太贵。另一件颜色很好，价格也不高。最后她买了第二件。",
-    "title": "买衣服",
+    "title": "Shopping",
     "prompt": "她最后买了哪一件？",
     "answer": "第二件",
     "choices": [
@@ -3487,7 +3489,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "他以前很少运动，常常觉得累。医生建议他每天走路半个小时。他坚持了两个月，现在身体好多了。他认为，养成好习惯比偶尔运动更重要。",
-    "title": "运动习惯",
+    "title": "Exercise habits",
     "prompt": "医生建议他做什么？",
     "answer": "每天走路",
     "choices": [
@@ -3610,7 +3612,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "他以前很少运动，常常觉得累。医生建议他每天走路半个小时。他坚持了两个月，现在身体好多了。他认为，养成好习惯比偶尔运动更重要。",
-    "title": "运动习惯",
+    "title": "Exercise habits",
     "prompt": "他认为什么更重要？",
     "answer": "养成好习惯",
     "choices": [
@@ -3732,7 +3734,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一家商店最近的客人变少了。经理通过调查发现，客户希望有更多选择。于是商店增加了商品的种类，也提高了服务质量。一个月后，客人又多了起来。",
-    "title": "客户需求",
+    "title": "Customer needs",
     "prompt": "调查发现了什么？",
     "answer": "客户希望有更多选择",
     "choices": [
@@ -3868,7 +3870,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一家商店最近的客人变少了。经理通过调查发现，客户希望有更多选择。于是商店增加了商品的种类，也提高了服务质量。一个月后，客人又多了起来。",
-    "title": "客户需求",
+    "title": "Customer needs",
     "prompt": "商店做了什么改变？",
     "answer": "增加商品种类和提高服务质量",
     "choices": [
@@ -4003,7 +4005,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "他本来计划坐飞机去中国，但是航班因为天气原因取消了。他不想改变旅行计划，于是决定坐船。虽然坐船的时间比较长，他却可以在路上看风景。",
-    "title": "旅行计划",
+    "title": "Travel plans",
     "prompt": "航班为什么取消？",
     "answer": "天气原因",
     "choices": [
@@ -4123,7 +4125,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 4,
     "passage": "他本来计划坐飞机去中国，但是航班因为天气原因取消了。他不想改变旅行计划，于是决定坐船。虽然坐船的时间比较长，他却可以在路上看风景。",
-    "title": "旅行计划",
+    "title": "Travel plans",
     "prompt": "他最后决定怎么去中国？",
     "answer": "坐船",
     "choices": [
@@ -4244,7 +4246,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一家商店为了降低成本，开始记录每天的销售情况。经理根据这些数据调整商品数量。以前有些商品经常不够，有些商品又太多。现在这种情况得到了改善，工作效率也提高了。",
-    "title": "库存管理",
+    "title": "Managing stock",
     "prompt": "经理根据什么调整数量？",
     "answer": "销售数据",
     "choices": [
@@ -4382,7 +4384,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一家商店为了降低成本，开始记录每天的销售情况。经理根据这些数据调整商品数量。以前有些商品经常不够，有些商品又太多。现在这种情况得到了改善，工作效率也提高了。",
-    "title": "库存管理",
+    "title": "Managing stock",
     "prompt": "调整后有什么结果？",
     "answer": "情况改善，效率提高",
     "choices": [
@@ -4526,7 +4528,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "一个人的能力有限，而团队可以让每个人发挥自己的优点。有些人善于计划，有些人善于解决问题。只有大家互相帮助，才能更好地完成任务。",
-    "title": "团队合作",
+    "title": "Teamwork",
     "prompt": "这段内容主要说明什么？",
     "answer": "合作很重要",
     "choices": [
@@ -4656,7 +4658,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "刚开始工作时，他以为只要有知识就能做好所有事情。后来他发现，实际工作中的问题比书上的例子复杂。他开始主动向同事学习，并不断积累经验。他终于明白，知识与经验同样重要。",
-    "title": "工作经验",
+    "title": "Work experience",
     "prompt": "他开始时有什么想法？",
     "answer": "只要有知识就能做好工作",
     "choices": [
@@ -4815,7 +4817,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "刚开始工作时，他以为只要有知识就能做好所有事情。后来他发现，实际工作中的问题比书上的例子复杂。他开始主动向同事学习，并不断积累经验。他终于明白，知识与经验同样重要。",
-    "title": "工作经验",
+    "title": "Work experience",
     "prompt": "后来他明白了什么？",
     "answer": "知识与经验同样重要",
     "choices": [
@@ -4972,7 +4974,7 @@ export const PRACTICE = [
     "kind": "reading",
     "level": 5,
     "passage": "有些人在工作中出现问题时，害怕承认自己的错误。然而，如果不愿意面对问题，就很难改进工作方法。一位经理认为，每次发现错误都是学习的机会。他鼓励员工及时说明原因，并一起寻找解决办法。",
-    "title": "面对错误",
+    "title": "Learning from mistakes",
     "prompt": "经理希望员工怎么做？",
     "answer": "说明原因并寻找办法",
     "choices": [
@@ -5124,6 +5126,167 @@ export const PRACTICE = [
       "寻找",
       "解决",
       "办法"
+    ]
+  },
+  {
+    "id": "c23",
+    "kind": "collocation",
+    "level": 5,
+    "prompt": "他因为工作上的错误＿＿了批评",
+    "answer": "受到",
+    "choices": [
+      "受到",
+      "提高",
+      "保持"
+    ],
+    "explain": "受到批评 = receive criticism.",
+    "words": [
+      "受到",
+      "批评"
+    ],
+    "tokens": [
+      "他",
+      "因为",
+      "工作",
+      "上",
+      "的",
+      "错误",
+      "受到",
+      "了",
+      "批评"
+    ]
+  },
+  {
+    "id": "s5",
+    "kind": "synonym",
+    "level": 3,
+    "prompt": "我＿＿他已经走了，可是他还在",
+    "answer": "以为",
+    "choices": [
+      "以为",
+      "认为",
+      "知道"
+    ],
+    "explain": "以为 commonly introduces a mistaken assumption. The following contrast shows that assumption was wrong.",
+    "words": [
+      "以为",
+      "认为"
+    ],
+    "tokens": [
+      "我",
+      "以为",
+      "他",
+      "已经",
+      "走",
+      "了",
+      "可是",
+      "他",
+      "还",
+      "在"
+    ]
+  },
+  {
+    "id": "s17",
+    "kind": "synonym",
+    "level": 5,
+    "prompt": "我们应该＿＿动物",
+    "answer": "保护",
+    "choices": [
+      "保护",
+      "保持",
+      "保存"
+    ],
+    "explain": "保护 means protect; 保持 means maintain a state; 保存 means preserve or store.",
+    "words": [
+      "保护",
+      "保持",
+      "保存"
+    ],
+    "tokens": [
+      "我们",
+      "应该",
+      "保护",
+      "动物"
+    ]
+  },
+  {
+    "id": "s26",
+    "kind": "synonym",
+    "level": 5,
+    "prompt": "这种药的＿＿很好",
+    "answer": "效果",
+    "choices": [
+      "效果",
+      "结果",
+      "成果"
+    ],
+    "explain": "效果 refers to the effectiveness of something; 结果 is an outcome; 成果 is an achievement.",
+    "words": [
+      "效果",
+      "结果",
+      "成果"
+    ],
+    "tokens": [
+      "这",
+      "种",
+      "药",
+      "的",
+      "效果",
+      "很",
+      "好"
+    ]
+  },
+  {
+    "id": "s38",
+    "kind": "synonym",
+    "level": 4,
+    "prompt": "很多人正在＿＿这个新闻",
+    "answer": "关注",
+    "choices": [
+      "关注",
+      "关心",
+      "保护"
+    ],
+    "explain": "关注 is the natural word for following a news topic; 关心 emphasizes concern or care.",
+    "words": [
+      "关注",
+      "关心"
+    ],
+    "tokens": [
+      "很",
+      "多",
+      "人",
+      "正在",
+      "关注",
+      "这个",
+      "新闻"
+    ]
+  },
+  {
+    "id": "o1",
+    "kind": "order",
+    "level": 2,
+    "prompt": "I drink water every morning.",
+    "answer": "我每天早上喝水",
+    "chunks": [
+      "我",
+      "每天",
+      "早上",
+      "喝",
+      "水"
+    ],
+    "explain": "Time expressions often come before the verb; 每天早上 means every morning.",
+    "words": [
+      "早上",
+      "喝"
+    ],
+    "tokens": [
+      "我",
+      "每",
+      "天",
+      "早上",
+      "喝",
+      "水"
     ]
   }
 ];
