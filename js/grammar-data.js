@@ -5412,5 +5412,2610 @@ export const GRAMMAR = [
         ]
       }
     ]
+  },
+  {
+    "id": "w47-then",
+    "word": "那",
+    "level": 1,
+    "pattern": "那，B",
+    "meaning": "nà · then / in that case",
+    "explain": "那 introduces a response or decision based on the preceding situation.",
+    "distractors": [
+      "也",
+      "都"
+    ],
+    "contrast": "Which word fits this function: then / in that case?",
+    "examples": [
+      {
+        "zh": "那我不去了。",
+        "en": "In that case, I will not go.",
+        "tokens": [
+          "那",
+          "我",
+          "不",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "那我们明天见。",
+        "en": "Then see you tomorrow.",
+        "tokens": [
+          "那",
+          "我们",
+          "明天",
+          "见"
+        ]
+      },
+      {
+        "zh": "那你呢？",
+        "en": "Then what about you?",
+        "tokens": [
+          "那",
+          "你",
+          "呢"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w97-cause",
+    "word": "叫",
+    "level": 1,
+    "pattern": "叫 + person + action",
+    "meaning": "jiào · tell / ask someone to do",
+    "explain": "叫 can introduce a person who is asked to do something; it can also mean call or be named.",
+    "distractors": [
+      "和",
+      "也"
+    ],
+    "contrast": "Which word fits this function: tell / ask someone to do?",
+    "examples": [
+      {
+        "zh": "妈妈叫我吃饭。",
+        "en": "Mum calls me to eat.",
+        "tokens": [
+          "妈妈",
+          "叫",
+          "我",
+          "吃",
+          "饭"
+        ]
+      },
+      {
+        "zh": "老师叫他写字。",
+        "en": "The teacher asks him to write characters.",
+        "tokens": [
+          "老师",
+          "叫",
+          "他",
+          "写",
+          "字"
+        ]
+      },
+      {
+        "zh": "他叫我去。",
+        "en": "He tells me to go.",
+        "tokens": [
+          "他",
+          "叫",
+          "我",
+          "去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w303-etc",
+    "word": "等",
+    "level": 2,
+    "pattern": "A、B 等",
+    "meaning": "děng · and so on",
+    "explain": "等 at the end of a list indicates additional items of the same kind.",
+    "distractors": [
+      "比",
+      "从"
+    ],
+    "contrast": "Which word fits this function: and so on?",
+    "examples": [
+      {
+        "zh": "我喜欢苹果、水果等。",
+        "en": "I like apples, fruit and so on.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "苹果",
+          "水果",
+          "等"
+        ]
+      },
+      {
+        "zh": "他买了书、笔等。",
+        "en": "He bought books, pens and so on.",
+        "tokens": [
+          "他",
+          "买",
+          "了",
+          "书",
+          "笔",
+          "等"
+        ]
+      },
+      {
+        "zh": "这里有老师、学生等。",
+        "en": "There are teachers, students and others here.",
+        "tokens": [
+          "这里",
+          "有",
+          "老师",
+          "学生",
+          "等"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w508-emphasis",
+    "word": "可",
+    "level": 3,
+    "pattern": "可 + adjective / predicate",
+    "meaning": "kě · emphatic really / certainly",
+    "explain": "可 can emphasize a statement in conversation, often contrasting with an expectation.",
+    "distractors": [
+      "才",
+      "从"
+    ],
+    "contrast": "Which word fits this function: emphatic really / certainly?",
+    "examples": [
+      {
+        "zh": "这可不是小事。",
+        "en": "This is certainly no small matter.",
+        "tokens": [
+          "这",
+          "可",
+          "不",
+          "是",
+          "小",
+          "事"
+        ]
+      },
+      {
+        "zh": "你可不要忘了。",
+        "en": "Make sure you do not forget.",
+        "tokens": [
+          "你",
+          "可",
+          "不",
+          "要",
+          "忘",
+          "了"
+        ]
+      },
+      {
+        "zh": "他可高兴了。",
+        "en": "He was really happy.",
+        "tokens": [
+          "他",
+          "可",
+          "高兴",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w515-or",
+    "word": "或",
+    "level": 3,
+    "pattern": "A 或 B",
+    "meaning": "huò · or",
+    "explain": "或 joins alternatives, especially in written language.",
+    "distractors": [
+      "把",
+      "被"
+    ],
+    "contrast": "Which word fits this function: or?",
+    "examples": [
+      {
+        "zh": "今天或明天都可以。",
+        "en": "Today or tomorrow is fine.",
+        "tokens": [
+          "今天",
+          "或",
+          "明天",
+          "都",
+          "可以"
+        ]
+      },
+      {
+        "zh": "请写名字或电话。",
+        "en": "Please write your name or phone number.",
+        "tokens": [
+          "请",
+          "写",
+          "名字",
+          "或",
+          "电话"
+        ]
+      },
+      {
+        "zh": "你可以买书或笔。",
+        "en": "You can buy a book or a pen.",
+        "tokens": [
+          "你",
+          "可以",
+          "买",
+          "书",
+          "或",
+          "笔"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w548-only",
+    "word": "只是",
+    "level": 3,
+    "pattern": "只是 + limitation",
+    "meaning": "zhǐ shì · only / it is just that",
+    "explain": "只是 limits the preceding statement or introduces a qualification.",
+    "distractors": [
+      "所以",
+      "因为"
+    ],
+    "contrast": "Which word fits this function: only / it is just that?",
+    "examples": [
+      {
+        "zh": "我只是问一下。",
+        "en": "I am just asking.",
+        "tokens": [
+          "我",
+          "只是",
+          "问",
+          "一",
+          "下"
+        ]
+      },
+      {
+        "zh": "他只是有点儿累。",
+        "en": "He is just a little tired.",
+        "tokens": [
+          "他",
+          "只是",
+          "有点儿",
+          "累"
+        ]
+      },
+      {
+        "zh": "我想去，只是没有时间。",
+        "en": "I want to go; it is just that I have no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "只是",
+          "没有",
+          "时间"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w554-relative",
+    "word": "比较",
+    "level": 3,
+    "pattern": "比较 + adjective",
+    "meaning": "bǐ jiào · relatively / rather",
+    "explain": "比较 modifies an adjective to express a relative degree, without explicitly naming the comparison.",
+    "distractors": [
+      "把",
+      "被"
+    ],
+    "contrast": "Which word fits this function: relatively / rather?",
+    "examples": [
+      {
+        "zh": "今天比较冷。",
+        "en": "Today is relatively cold.",
+        "tokens": [
+          "今天",
+          "比较",
+          "冷"
+        ]
+      },
+      {
+        "zh": "这本书比较贵。",
+        "en": "This book is rather expensive.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "比较",
+          "贵"
+        ]
+      },
+      {
+        "zh": "我比较喜欢茶。",
+        "en": "I rather like tea.",
+        "tokens": [
+          "我",
+          "比较",
+          "喜欢",
+          "茶"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w986-condition",
+    "word": "的话",
+    "level": 3,
+    "pattern": "A 的话，B",
+    "meaning": "de huà · if A, then B",
+    "explain": "的话 follows a hypothetical condition, often with 如果.",
+    "distractors": [
+      "所以",
+      "但是"
+    ],
+    "contrast": "Which word fits this function: if A, then B?",
+    "examples": [
+      {
+        "zh": "你有时间的话，就来我家。",
+        "en": "If you have time, come to my home.",
+        "tokens": [
+          "你",
+          "有",
+          "时间",
+          "的话",
+          "就",
+          "来",
+          "我",
+          "家"
+        ]
+      },
+      {
+        "zh": "下雨的话，我就不去。",
+        "en": "If it rains, I will not go.",
+        "tokens": [
+          "下雨",
+          "的话",
+          "我",
+          "就",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "你不知道的话，可以问我。",
+        "en": "If you do not know, ask me.",
+        "tokens": [
+          "你",
+          "不",
+          "知道",
+          "的话",
+          "可以",
+          "问",
+          "我"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w997-future",
+    "word": "将",
+    "level": 4,
+    "pattern": "将 + verb",
+    "meaning": "jiāng · will / shall",
+    "explain": "将 marks a future event in formal language.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: will / shall?",
+    "examples": [
+      {
+        "zh": "比赛将在明天开始。",
+        "en": "The competition will start tomorrow.",
+        "tokens": [
+          "比赛",
+          "将",
+          "在",
+          "明天",
+          "开始"
+        ]
+      },
+      {
+        "zh": "他将去中国学习。",
+        "en": "He will go to China to study.",
+        "tokens": [
+          "他",
+          "将",
+          "去",
+          "中国",
+          "学习"
+        ]
+      },
+      {
+        "zh": "学校将举行比赛。",
+        "en": "The school will hold a competition.",
+        "tokens": [
+          "学校",
+          "将",
+          "举行",
+          "比赛"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1000-emphasis",
+    "word": "就是",
+    "level": 4,
+    "pattern": "就是 + focused item",
+    "meaning": "jiù shì · exactly / precisely",
+    "explain": "就是 identifies or emphasizes the particular thing or person meant.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: exactly / precisely?",
+    "examples": [
+      {
+        "zh": "这就是我的书。",
+        "en": "This is exactly my book.",
+        "tokens": [
+          "这",
+          "就是",
+          "我",
+          "的",
+          "书"
+        ]
+      },
+      {
+        "zh": "他就是我要找的人。",
+        "en": "He is the person I am looking for.",
+        "tokens": [
+          "他",
+          "就是",
+          "我",
+          "要",
+          "找",
+          "的",
+          "人"
+        ]
+      },
+      {
+        "zh": "我就是不想去。",
+        "en": "I simply do not want to go.",
+        "tokens": [
+          "我",
+          "就是",
+          "不",
+          "想",
+          "去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1021-when",
+    "word": "当",
+    "level": 4,
+    "pattern": "当 A 时，B",
+    "meaning": "dāng · when",
+    "explain": "当 introduces a time or situation in which the main action happens.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: when?",
+    "examples": [
+      {
+        "zh": "当我到家时，他已经睡了。",
+        "en": "When I got home, he was already asleep.",
+        "tokens": [
+          "当",
+          "我",
+          "到",
+          "家",
+          "时",
+          "他",
+          "已经",
+          "睡",
+          "了"
+        ]
+      },
+      {
+        "zh": "当你遇到问题时，请告诉我。",
+        "en": "When you encounter a problem, please tell me.",
+        "tokens": [
+          "当",
+          "你",
+          "遇到",
+          "问题",
+          "时",
+          "请",
+          "告诉",
+          "我"
+        ]
+      },
+      {
+        "zh": "当他来时，我正在看书。",
+        "en": "When he came, I was reading.",
+        "tokens": [
+          "当",
+          "他",
+          "来",
+          "时",
+          "我",
+          "正在",
+          "看",
+          "书"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1023-simultaneous",
+    "word": "同时",
+    "level": 4,
+    "pattern": "A，同时 B",
+    "meaning": "tóng shí · at the same time",
+    "explain": "同时 adds an action or fact occurring alongside another.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: at the same time?",
+    "examples": [
+      {
+        "zh": "我想学习，同时也想工作。",
+        "en": "I want to study and work at the same time.",
+        "tokens": [
+          "我",
+          "想",
+          "学习",
+          "同时",
+          "也",
+          "想",
+          "工作"
+        ]
+      },
+      {
+        "zh": "他工作的同时也在学习。",
+        "en": "He studies while working.",
+        "tokens": [
+          "他",
+          "工作",
+          "的",
+          "同时",
+          "也",
+          "在",
+          "学习"
+        ]
+      },
+      {
+        "zh": "我们要注意价格，同时也要注意质量。",
+        "en": "We should pay attention to price as well as quality.",
+        "tokens": [
+          "我们",
+          "要",
+          "注意",
+          "价格",
+          "同时",
+          "也",
+          "要",
+          "注意",
+          "质量"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1036-role",
+    "word": "作为",
+    "level": 4,
+    "pattern": "作为 + role，B",
+    "meaning": "zuò wéi · as / in the role of",
+    "explain": "作为 introduces the role or capacity in which someone acts.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: as / in the role of?",
+    "examples": [
+      {
+        "zh": "作为老师，他很负责。",
+        "en": "As a teacher, he is very responsible.",
+        "tokens": [
+          "作为",
+          "老师",
+          "他",
+          "很",
+          "负责"
+        ]
+      },
+      {
+        "zh": "作为学生，我应该努力学习。",
+        "en": "As a student, I should study hard.",
+        "tokens": [
+          "作为",
+          "学生",
+          "我",
+          "应该",
+          "努力",
+          "学习"
+        ]
+      },
+      {
+        "zh": "作为朋友，我想帮助你。",
+        "en": "As a friend, I want to help you.",
+        "tokens": [
+          "作为",
+          "朋友",
+          "我",
+          "想",
+          "帮助",
+          "你"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1040-contrast",
+    "word": "不过",
+    "level": 4,
+    "pattern": "A，不过 B",
+    "meaning": "bú guò · however / but",
+    "explain": "不过 introduces a qualification or mild contrast.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: however / but?",
+    "examples": [
+      {
+        "zh": "我想去，不过没有时间。",
+        "en": "I want to go, but I have no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "不过",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "这本书很好，不过有点儿贵。",
+        "en": "This book is good, but a little expensive.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "很",
+          "好",
+          "不过",
+          "有点儿",
+          "贵"
+        ]
+      },
+      {
+        "zh": "他很忙，不过还是来了。",
+        "en": "He was busy, but came anyway.",
+        "tokens": [
+          "他",
+          "很",
+          "忙",
+          "不过",
+          "还是",
+          "来",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1042-outcome",
+    "word": "结果",
+    "level": 4,
+    "pattern": "A，结果 B",
+    "meaning": "jié guǒ · as a result / in the end",
+    "explain": "结果 can introduce the actual outcome of an earlier event, often unexpectedly.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word fits this function: as a result / in the end?",
+    "examples": [
+      {
+        "zh": "他没有学习，结果考试不好。",
+        "en": "He did not study, and did badly in the exam.",
+        "tokens": [
+          "他",
+          "没有",
+          "学习",
+          "结果",
+          "考试",
+          "不",
+          "好"
+        ]
+      },
+      {
+        "zh": "我等了一天，结果他没有来。",
+        "en": "I waited a whole day, but he never came.",
+        "tokens": [
+          "我",
+          "等",
+          "了",
+          "一",
+          "天",
+          "结果",
+          "他",
+          "没有",
+          "来"
+        ]
+      },
+      {
+        "zh": "她走得太快，结果走错了。",
+        "en": "She walked too fast and ended up going the wrong way.",
+        "tokens": [
+          "她",
+          "走",
+          "得",
+          "太",
+          "快",
+          "结果",
+          "走",
+          "错",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1051-from",
+    "word": "自",
+    "level": 4,
+    "pattern": "自 + starting point",
+    "meaning": "zì · from / since",
+    "explain": "自 is a formal equivalent of 从 when introducing a starting point.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: from / since?",
+    "examples": [
+      {
+        "zh": "自今天起，我每天学习。",
+        "en": "Starting today, I study every day.",
+        "tokens": [
+          "自",
+          "今天",
+          "起",
+          "我",
+          "每",
+          "天",
+          "学习"
+        ]
+      },
+      {
+        "zh": "自去年起，他在这里工作。",
+        "en": "He has worked here since last year.",
+        "tokens": [
+          "自",
+          "去年",
+          "起",
+          "他",
+          "在",
+          "这里",
+          "工作"
+        ]
+      },
+      {
+        "zh": "这本书自明天起可以买到。",
+        "en": "This book will be available from tomorrow.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "自",
+          "明天",
+          "起",
+          "可以",
+          "买",
+          "到"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1106-follow",
+    "word": "按",
+    "level": 4,
+    "pattern": "按 + standard + action",
+    "meaning": "àn · according to / following",
+    "explain": "按 introduces a rule, plan or standard to follow.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: according to / following?",
+    "examples": [
+      {
+        "zh": "请按计划工作。",
+        "en": "Please work according to the plan.",
+        "tokens": [
+          "请",
+          "按",
+          "计划",
+          "工作"
+        ]
+      },
+      {
+        "zh": "请按时间来。",
+        "en": "Please come at the scheduled time.",
+        "tokens": [
+          "请",
+          "按",
+          "时间",
+          "来"
+        ]
+      },
+      {
+        "zh": "我们按老师的要求做。",
+        "en": "We do as the teacher requires.",
+        "tokens": [
+          "我们",
+          "按",
+          "老师",
+          "的",
+          "要求",
+          "做"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1152-addition",
+    "word": "另外",
+    "level": 4,
+    "pattern": "A，另外 B",
+    "meaning": "lìng wài · in addition",
+    "explain": "另外 adds a separate point to the previous statement.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: in addition?",
+    "examples": [
+      {
+        "zh": "我要买书，另外还要买笔。",
+        "en": "I need books and also pens.",
+        "tokens": [
+          "我",
+          "要",
+          "买",
+          "书",
+          "另外",
+          "还",
+          "要",
+          "买",
+          "笔"
+        ]
+      },
+      {
+        "zh": "他会说汉语，另外也会写汉字。",
+        "en": "He speaks Chinese and also writes characters.",
+        "tokens": [
+          "他",
+          "会",
+          "说",
+          "汉语",
+          "另外",
+          "也",
+          "会",
+          "写",
+          "汉字"
+        ]
+      },
+      {
+        "zh": "今天要工作，另外还要学习。",
+        "en": "Today I need to work and also study.",
+        "tokens": [
+          "今天",
+          "要",
+          "工作",
+          "另外",
+          "还",
+          "要",
+          "学习"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1258-contrast",
+    "word": "然而",
+    "level": 4,
+    "pattern": "A，然而 B",
+    "meaning": "rán ér · however",
+    "explain": "然而 marks a contrast, especially in writing.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: however?",
+    "examples": [
+      {
+        "zh": "他很努力，然而没有成功。",
+        "en": "He worked hard, but did not succeed.",
+        "tokens": [
+          "他",
+          "很",
+          "努力",
+          "然而",
+          "没有",
+          "成功"
+        ]
+      },
+      {
+        "zh": "我想去，然而没有时间。",
+        "en": "I wanted to go; however, I had no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "然而",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "天气很好，然而他不想出去。",
+        "en": "The weather is nice, yet he does not want to go out.",
+        "tokens": [
+          "天气",
+          "很",
+          "好",
+          "然而",
+          "他",
+          "不",
+          "想",
+          "出去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1281-addition",
+    "word": "此外",
+    "level": 4,
+    "pattern": "A，此外 B",
+    "meaning": "cǐ wài · in addition / furthermore",
+    "explain": "此外 introduces an additional point in formal speech or writing.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: in addition / furthermore?",
+    "examples": [
+      {
+        "zh": "我喜欢茶，此外也喜欢咖啡。",
+        "en": "I like tea; in addition I like coffee.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "茶",
+          "此外",
+          "也",
+          "喜欢",
+          "咖啡"
+        ]
+      },
+      {
+        "zh": "这里有学校，此外还有医院。",
+        "en": "There is a school here as well as a hospital.",
+        "tokens": [
+          "这里",
+          "有",
+          "学校",
+          "此外",
+          "还",
+          "有",
+          "医院"
+        ]
+      },
+      {
+        "zh": "我们要注意价格，此外还要注意质量。",
+        "en": "We should consider price; furthermore, quality.",
+        "tokens": [
+          "我们",
+          "要",
+          "注意",
+          "价格",
+          "此外",
+          "还",
+          "要",
+          "注意",
+          "质量"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1344-plus",
+    "word": "加上",
+    "level": 4,
+    "pattern": "A，加上 B",
+    "meaning": "jiā shàng · plus / in addition to",
+    "explain": "加上 adds another factor or item to the preceding one.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: plus / in addition to?",
+    "examples": [
+      {
+        "zh": "一百元加上五十元，一共一百五十元。",
+        "en": "One hundred yuan plus fifty yuan is one hundred and fifty yuan.",
+        "tokens": [
+          "一",
+          "百",
+          "元",
+          "加上",
+          "五",
+          "十",
+          "元",
+          "一共",
+          "一",
+          "百",
+          "五",
+          "十",
+          "元"
+        ]
+      },
+      {
+        "zh": "天气冷，加上下雨，我们就不去了。",
+        "en": "It was cold, and on top of that it rained, so we did not go.",
+        "tokens": [
+          "天气",
+          "冷",
+          "加上",
+          "下雨",
+          "我们",
+          "就",
+          "不",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "他工作忙，加上要学习，时间很少。",
+        "en": "He is busy at work and also has to study, so he has little time.",
+        "tokens": [
+          "他",
+          "工作",
+          "忙",
+          "加上",
+          "要",
+          "学习",
+          "时间",
+          "很",
+          "少"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1573-until",
+    "word": "等到",
+    "level": 4,
+    "pattern": "等到 A，B",
+    "meaning": "děng dào · when / wait until",
+    "explain": "等到 introduces a point in time after waiting or after a condition is met.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: when / wait until?",
+    "examples": [
+      {
+        "zh": "等到明天，我们再去。",
+        "en": "Wait until tomorrow, then we will go.",
+        "tokens": [
+          "等到",
+          "明天",
+          "我们",
+          "再",
+          "去"
+        ]
+      },
+      {
+        "zh": "等到他来，我们再开始。",
+        "en": "Wait until he comes, then we will start.",
+        "tokens": [
+          "等到",
+          "他",
+          "来",
+          "我们",
+          "再",
+          "开始"
+        ]
+      },
+      {
+        "zh": "等到天气好了，我们就出去。",
+        "en": "When the weather improves, we will go out.",
+        "tokens": [
+          "等到",
+          "天气",
+          "好",
+          "了",
+          "我们",
+          "就",
+          "出去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1602-free-choice",
+    "word": "随便",
+    "level": 4,
+    "pattern": "随便 + choice",
+    "meaning": "suí biàn · whichever / as one wishes",
+    "explain": "随便 allows free choice without restriction; it may also describe careless behavior.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: whichever / as one wishes?",
+    "examples": [
+      {
+        "zh": "你随便选一本书。",
+        "en": "Choose any book you like.",
+        "tokens": [
+          "你",
+          "随便",
+          "选",
+          "一",
+          "本",
+          "书"
+        ]
+      },
+      {
+        "zh": "你随便坐。",
+        "en": "Sit wherever you like.",
+        "tokens": [
+          "你",
+          "随便",
+          "坐"
+        ]
+      },
+      {
+        "zh": "我们随便吃点东西吧。",
+        "en": "Let's eat whatever is convenient.",
+        "tokens": [
+          "我们",
+          "随便",
+          "吃",
+          "点",
+          "东西",
+          "吧"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1619-moreover",
+    "word": "再说",
+    "level": 4,
+    "pattern": "A，再说 B",
+    "meaning": "zài shuō · besides / moreover",
+    "explain": "再说 introduces an additional reason, distinct from the literal meaning say again.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: besides / moreover?",
+    "examples": [
+      {
+        "zh": "我不想去，再说也没有时间。",
+        "en": "I don't want to go; besides, I have no time.",
+        "tokens": [
+          "我",
+          "不",
+          "想",
+          "去",
+          "再说",
+          "也",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "今天太冷，再说还下雨。",
+        "en": "It is too cold today, and besides it is raining.",
+        "tokens": [
+          "今天",
+          "太",
+          "冷",
+          "再说",
+          "还",
+          "下雨"
+        ]
+      },
+      {
+        "zh": "这本书太贵，再说我已经有了。",
+        "en": "This book is too expensive; besides, I already have it.",
+        "tokens": [
+          "这",
+          "本",
+          "书",
+          "太",
+          "贵",
+          "再说",
+          "我",
+          "已经",
+          "有",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1644-regardless",
+    "word": "不论",
+    "level": 4,
+    "pattern": "不论 A，都 B",
+    "meaning": "bú lùn · regardless of",
+    "explain": "不论 introduces alternatives; the result stays the same.",
+    "distractors": [
+      "由于",
+      "既然"
+    ],
+    "contrast": "Which word fits this function: regardless of?",
+    "examples": [
+      {
+        "zh": "不论你去哪里，我都跟你去。",
+        "en": "Wherever you go, I will go with you.",
+        "tokens": [
+          "不论",
+          "你",
+          "去",
+          "哪里",
+          "我",
+          "都",
+          "跟",
+          "你",
+          "去"
+        ]
+      },
+      {
+        "zh": "不论多难，我都不放弃。",
+        "en": "However difficult it is, I will not give up.",
+        "tokens": [
+          "不论",
+          "多",
+          "难",
+          "我",
+          "都",
+          "不",
+          "放弃"
+        ]
+      },
+      {
+        "zh": "不论谁来，都可以参加。",
+        "en": "Whoever comes can participate.",
+        "tokens": [
+          "不论",
+          "谁",
+          "来",
+          "都",
+          "可以",
+          "参加"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1647-opposite",
+    "word": "相反",
+    "level": 4,
+    "pattern": "A，相反 B",
+    "meaning": "xiāng fǎn · on the contrary",
+    "explain": "相反 introduces the opposite situation or conclusion.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: on the contrary?",
+    "examples": [
+      {
+        "zh": "他不生气，相反，他很高兴。",
+        "en": "He was not angry; on the contrary, he was happy.",
+        "tokens": [
+          "他",
+          "不",
+          "生气",
+          "相反",
+          "他",
+          "很",
+          "高兴"
+        ]
+      },
+      {
+        "zh": "这里不冷，相反，很热。",
+        "en": "It is not cold here; on the contrary, it is hot.",
+        "tokens": [
+          "这",
+          "里",
+          "不",
+          "冷",
+          "相反",
+          "很",
+          "热"
+        ]
+      },
+      {
+        "zh": "他没有休息，相反，工作得更多。",
+        "en": "He did not rest; on the contrary, he worked more.",
+        "tokens": [
+          "他",
+          "没有",
+          "休息",
+          "相反",
+          "工作",
+          "得",
+          "更",
+          "多"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1874-not-only",
+    "word": "不光",
+    "level": 4,
+    "pattern": "不光 A，还 B",
+    "meaning": "bù guāng · not only",
+    "explain": "不光 introduces the first of two points, often paired with 还.",
+    "distractors": [
+      "由于",
+      "否则"
+    ],
+    "contrast": "Which word fits this function: not only?",
+    "examples": [
+      {
+        "zh": "他不光会写，还会说。",
+        "en": "He can not only write but also speak.",
+        "tokens": [
+          "他",
+          "不光",
+          "会",
+          "写",
+          "还",
+          "会",
+          "说"
+        ]
+      },
+      {
+        "zh": "我不光喜欢茶，还喜欢咖啡。",
+        "en": "I like not only tea but also coffee.",
+        "tokens": [
+          "我",
+          "不光",
+          "喜欢",
+          "茶",
+          "还",
+          "喜欢",
+          "咖啡"
+        ]
+      },
+      {
+        "zh": "她不光聪明，还很努力。",
+        "en": "She is not only clever but hardworking.",
+        "tokens": [
+          "她",
+          "不光",
+          "聪明",
+          "还",
+          "很",
+          "努力"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w1996-source",
+    "word": "据",
+    "level": 5,
+    "pattern": "据 + source",
+    "meaning": "jù · according to",
+    "explain": "据 introduces a source of information, often in formal writing.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: according to?",
+    "examples": [
+      {
+        "zh": "据老师说，明天有考试。",
+        "en": "According to the teacher, there is an exam tomorrow.",
+        "tokens": [
+          "据",
+          "老师",
+          "说",
+          "明天",
+          "有",
+          "考试"
+        ]
+      },
+      {
+        "zh": "据他说，这件事是真的。",
+        "en": "According to him, this matter is true.",
+        "tokens": [
+          "据",
+          "他",
+          "说",
+          "这",
+          "件",
+          "事",
+          "是",
+          "真",
+          "的"
+        ]
+      },
+      {
+        "zh": "据消息，比赛将在明天举行。",
+        "en": "According to the news, the match will be held tomorrow.",
+        "tokens": [
+          "据",
+          "消息",
+          "比赛",
+          "将",
+          "在",
+          "明天",
+          "举行"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2003-example",
+    "word": "如",
+    "level": 5,
+    "pattern": "category，如 + example",
+    "meaning": "rú · such as",
+    "explain": "如 introduces an example of a preceding category.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: such as?",
+    "examples": [
+      {
+        "zh": "我喜欢水果，如苹果和香蕉。",
+        "en": "I like fruit, such as apples and bananas.",
+        "tokens": [
+          "我",
+          "喜欢",
+          "水果",
+          "如",
+          "苹果",
+          "和",
+          "香蕉"
+        ]
+      },
+      {
+        "zh": "这里有很多运动，如足球和篮球。",
+        "en": "There are many sports here, such as football and basketball.",
+        "tokens": [
+          "这里",
+          "有",
+          "很",
+          "多",
+          "运动",
+          "如",
+          "足球",
+          "和",
+          "篮球"
+        ]
+      },
+      {
+        "zh": "他学了很多课程，如数学和汉语。",
+        "en": "He studied many subjects, such as maths and Chinese.",
+        "tokens": [
+          "他",
+          "学",
+          "了",
+          "很",
+          "多",
+          "课程",
+          "如",
+          "数学",
+          "和",
+          "汉语"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2004-list",
+    "word": "以及",
+    "level": 5,
+    "pattern": "A 以及 B",
+    "meaning": "yǐ jí · as well as",
+    "explain": "以及 connects items in formal lists.",
+    "distractors": [
+      "由",
+      "而"
+    ],
+    "contrast": "Which word fits this function: as well as?",
+    "examples": [
+      {
+        "zh": "请准备书以及笔。",
+        "en": "Please prepare books as well as pens.",
+        "tokens": [
+          "请",
+          "准备",
+          "书",
+          "以及",
+          "笔"
+        ]
+      },
+      {
+        "zh": "我们讨论价格以及质量。",
+        "en": "We discuss price as well as quality.",
+        "tokens": [
+          "我们",
+          "讨论",
+          "价格",
+          "以及",
+          "质量"
+        ]
+      },
+      {
+        "zh": "请写姓名以及电话。",
+        "en": "Please write your name as well as phone number.",
+        "tokens": [
+          "请",
+          "写",
+          "姓名",
+          "以及",
+          "电话"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2006-with",
+    "word": "同",
+    "level": 5,
+    "pattern": "同 + person + action",
+    "meaning": "tóng · with",
+    "explain": "同 is a formal alternative to 跟 or 和 for a companion.",
+    "distractors": [
+      "由",
+      "而"
+    ],
+    "contrast": "Which word fits this function: with?",
+    "examples": [
+      {
+        "zh": "我想同你一起工作。",
+        "en": "I want to work with you.",
+        "tokens": [
+          "我",
+          "想",
+          "同",
+          "你",
+          "一起",
+          "工作"
+        ]
+      },
+      {
+        "zh": "他同老师谈了这件事。",
+        "en": "He discussed the matter with the teacher.",
+        "tokens": [
+          "他",
+          "同",
+          "老师",
+          "谈",
+          "了",
+          "这",
+          "件",
+          "事"
+        ]
+      },
+      {
+        "zh": "她同我一起去了学校。",
+        "en": "She went to school with me.",
+        "tokens": [
+          "她",
+          "同",
+          "我",
+          "一起",
+          "去",
+          "了",
+          "学校"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2086-relative",
+    "word": "较",
+    "level": 5,
+    "pattern": "较 + adjective",
+    "meaning": "jiào · relatively",
+    "explain": "较 modifies an adjective to express relative degree, especially in formal writing.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: relatively?",
+    "examples": [
+      {
+        "zh": "这里的价格较低。",
+        "en": "Prices here are relatively low.",
+        "tokens": [
+          "这里",
+          "的",
+          "价格",
+          "较",
+          "低"
+        ]
+      },
+      {
+        "zh": "这个问题较简单。",
+        "en": "This question is relatively simple.",
+        "tokens": [
+          "这个",
+          "问题",
+          "较",
+          "简单"
+        ]
+      },
+      {
+        "zh": "今天的温度较高。",
+        "en": "Today's temperature is relatively high.",
+        "tokens": [
+          "今天",
+          "的",
+          "温度",
+          "较",
+          "高"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2322-toward",
+    "word": "朝",
+    "level": 5,
+    "pattern": "朝 + direction + action",
+    "meaning": "cháo · toward",
+    "explain": "朝 introduces the direction of movement or orientation.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: toward?",
+    "examples": [
+      {
+        "zh": "他朝我走来。",
+        "en": "He walked toward me.",
+        "tokens": [
+          "他",
+          "朝",
+          "我",
+          "走",
+          "来"
+        ]
+      },
+      {
+        "zh": "请朝左走。",
+        "en": "Please walk to the left.",
+        "tokens": [
+          "请",
+          "朝",
+          "左",
+          "走"
+        ]
+      },
+      {
+        "zh": "孩子朝妈妈跑去。",
+        "en": "The child ran toward Mum.",
+        "tokens": [
+          "孩子",
+          "朝",
+          "妈妈",
+          "跑",
+          "去"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2452-along",
+    "word": "沿",
+    "level": 5,
+    "pattern": "沿 + route + action",
+    "meaning": "yán · along",
+    "explain": "沿 introduces a route or line followed by a movement.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: along?",
+    "examples": [
+      {
+        "zh": "我们沿这条路走。",
+        "en": "We walk along this road.",
+        "tokens": [
+          "我们",
+          "沿",
+          "这",
+          "条",
+          "路",
+          "走"
+        ]
+      },
+      {
+        "zh": "他沿河走了很久。",
+        "en": "He walked along the river for a long time.",
+        "tokens": [
+          "他",
+          "沿",
+          "河",
+          "走",
+          "了",
+          "很",
+          "久"
+        ]
+      },
+      {
+        "zh": "请沿街走。",
+        "en": "Please walk along the street.",
+        "tokens": [
+          "请",
+          "沿",
+          "街",
+          "走"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2532-basis",
+    "word": "依据",
+    "level": 5,
+    "pattern": "依据 + standard + action",
+    "meaning": "yī jù · according to / based on",
+    "explain": "依据 introduces evidence or a standard used as the basis for an action.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: according to / based on?",
+    "examples": [
+      {
+        "zh": "我们依据数据做决定。",
+        "en": "We make decisions based on data.",
+        "tokens": [
+          "我们",
+          "依据",
+          "数据",
+          "做",
+          "决定"
+        ]
+      },
+      {
+        "zh": "请依据事实回答。",
+        "en": "Please answer based on the facts.",
+        "tokens": [
+          "请",
+          "依据",
+          "事实",
+          "回答"
+        ]
+      },
+      {
+        "zh": "他依据规定工作。",
+        "en": "He works according to the regulations.",
+        "tokens": [
+          "他",
+          "依据",
+          "规定",
+          "工作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2610-no-choice",
+    "word": "无奈",
+    "level": 5,
+    "pattern": "A，无奈 B",
+    "meaning": "wú nài · unfortunately / having no choice",
+    "explain": "无奈 introduces an unwanted result when there is no acceptable alternative.",
+    "distractors": [
+      "因此",
+      "由于"
+    ],
+    "contrast": "Which word fits this function: unfortunately / having no choice?",
+    "examples": [
+      {
+        "zh": "我想去，无奈没有时间。",
+        "en": "I wanted to go, but unfortunately had no time.",
+        "tokens": [
+          "我",
+          "想",
+          "去",
+          "无奈",
+          "没有",
+          "时间"
+        ]
+      },
+      {
+        "zh": "他想买，无奈钱不够。",
+        "en": "He wanted to buy it but did not have enough money.",
+        "tokens": [
+          "他",
+          "想",
+          "买",
+          "无奈",
+          "钱",
+          "不",
+          "够"
+        ]
+      },
+      {
+        "zh": "我们想继续，无奈天气太差。",
+        "en": "We wanted to continue, but unfortunately the weather was too bad.",
+        "tokens": [
+          "我们",
+          "想",
+          "继续",
+          "无奈",
+          "天气",
+          "太",
+          "差"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2614-along",
+    "word": "顺",
+    "level": 5,
+    "pattern": "顺 + route + action",
+    "meaning": "shùn · along / following",
+    "explain": "顺 can introduce the route or direction followed.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: along / following?",
+    "examples": [
+      {
+        "zh": "顺这条路走。",
+        "en": "Walk along this road.",
+        "tokens": [
+          "顺",
+          "这",
+          "条",
+          "路",
+          "走"
+        ]
+      },
+      {
+        "zh": "请顺河走。",
+        "en": "Please walk along the river.",
+        "tokens": [
+          "请",
+          "顺",
+          "河",
+          "走"
+        ]
+      },
+      {
+        "zh": "他顺着路走。",
+        "en": "He walked along the road.",
+        "tokens": [
+          "他",
+          "顺",
+          "着",
+          "路",
+          "走"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2645-result",
+    "word": "因而",
+    "level": 5,
+    "pattern": "A，因而 B",
+    "meaning": "yīn ér · therefore",
+    "explain": "因而 introduces the consequence of a preceding cause, mainly in writing.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word fits this function: therefore?",
+    "examples": [
+      {
+        "zh": "他生病了，因而没有来。",
+        "en": "He was ill, therefore he did not come.",
+        "tokens": [
+          "他",
+          "生病",
+          "了",
+          "因而",
+          "没有",
+          "来"
+        ]
+      },
+      {
+        "zh": "时间不够，因而我们停止了。",
+        "en": "There was not enough time, so we stopped.",
+        "tokens": [
+          "时间",
+          "不",
+          "够",
+          "因而",
+          "我们",
+          "停止",
+          "了"
+        ]
+      },
+      {
+        "zh": "价格太高，因而客人很少。",
+        "en": "The price was too high, so there were few customers.",
+        "tokens": [
+          "价格",
+          "太",
+          "高",
+          "因而",
+          "客人",
+          "很",
+          "少"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2648-basis",
+    "word": "凭",
+    "level": 5,
+    "pattern": "凭 + basis + action",
+    "meaning": "píng · on the strength of / by",
+    "explain": "凭 introduces the basis or means used to achieve something.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: on the strength of / by?",
+    "examples": [
+      {
+        "zh": "他凭自己的努力成功了。",
+        "en": "He succeeded through his own efforts.",
+        "tokens": [
+          "他",
+          "凭",
+          "自己",
+          "的",
+          "努力",
+          "成功",
+          "了"
+        ]
+      },
+      {
+        "zh": "请凭票进入。",
+        "en": "Please enter with a ticket.",
+        "tokens": [
+          "请",
+          "凭",
+          "票",
+          "进入"
+        ]
+      },
+      {
+        "zh": "我们凭经验做决定。",
+        "en": "We make decisions based on experience.",
+        "tokens": [
+          "我们",
+          "凭",
+          "经验",
+          "做",
+          "决定"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2703-inference",
+    "word": "可见",
+    "level": 5,
+    "pattern": "A，可见 B",
+    "meaning": "kě jiàn · it follows that",
+    "explain": "可见 introduces a conclusion inferred from the previous evidence.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word fits this function: it follows that?",
+    "examples": [
+      {
+        "zh": "他每天练习，可见他很努力。",
+        "en": "He practises every day, which shows he works hard.",
+        "tokens": [
+          "他",
+          "每",
+          "天",
+          "练习",
+          "可见",
+          "他",
+          "很",
+          "努力"
+        ]
+      },
+      {
+        "zh": "这里客人很多，可见生意很好。",
+        "en": "There are many customers, which shows business is good.",
+        "tokens": [
+          "这里",
+          "客人",
+          "很",
+          "多",
+          "可见",
+          "生意",
+          "很",
+          "好"
+        ]
+      },
+      {
+        "zh": "她回答得很好，可见她理解了。",
+        "en": "She answered well, showing that she understood.",
+        "tokens": [
+          "她",
+          "回答",
+          "得",
+          "很",
+          "好",
+          "可见",
+          "她",
+          "理解",
+          "了"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2710-for",
+    "word": "替",
+    "level": 5,
+    "pattern": "替 + person + action",
+    "meaning": "tì · on behalf of",
+    "explain": "替 introduces a person for whom an action is performed, often in their place.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: on behalf of?",
+    "examples": [
+      {
+        "zh": "请替我谢谢他。",
+        "en": "Please thank him for me.",
+        "tokens": [
+          "请",
+          "替",
+          "我",
+          "谢谢",
+          "他"
+        ]
+      },
+      {
+        "zh": "我替他买了书。",
+        "en": "I bought books for him.",
+        "tokens": [
+          "我",
+          "替",
+          "他",
+          "买",
+          "了",
+          "书"
+        ]
+      },
+      {
+        "zh": "她替我回答了问题。",
+        "en": "She answered the question on my behalf.",
+        "tokens": [
+          "她",
+          "替",
+          "我",
+          "回答",
+          "了",
+          "问题"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2816-since",
+    "word": "自从",
+    "level": 5,
+    "pattern": "自从 A 以来，B",
+    "meaning": "zì cóng · ever since",
+    "explain": "自从 introduces the starting event or time of a continuing situation.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word fits this function: ever since?",
+    "examples": [
+      {
+        "zh": "自从去年，我就在这里工作。",
+        "en": "I have worked here since last year.",
+        "tokens": [
+          "自从",
+          "去年",
+          "我",
+          "就",
+          "在",
+          "这里",
+          "工作"
+        ]
+      },
+      {
+        "zh": "自从来到中国，他就开始学汉语。",
+        "en": "Ever since arriving in China, he began studying Chinese.",
+        "tokens": [
+          "自从",
+          "来",
+          "到",
+          "中国",
+          "他",
+          "就",
+          "开始",
+          "学",
+          "汉语"
+        ]
+      },
+      {
+        "zh": "自从那天以后，我们常常联系。",
+        "en": "Since that day, we have often been in touch.",
+        "tokens": [
+          "自从",
+          "那",
+          "天",
+          "以后",
+          "我们",
+          "常常",
+          "联系"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2823-or",
+    "word": "或是",
+    "level": 5,
+    "pattern": "A 或是 B",
+    "meaning": "huò shì · or",
+    "explain": "或是 presents alternative possibilities.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: or?",
+    "examples": [
+      {
+        "zh": "今天或是明天都可以。",
+        "en": "Today or tomorrow is fine.",
+        "tokens": [
+          "今天",
+          "或是",
+          "明天",
+          "都",
+          "可以"
+        ]
+      },
+      {
+        "zh": "你可以喝茶或是咖啡。",
+        "en": "You can drink tea or coffee.",
+        "tokens": [
+          "你",
+          "可以",
+          "喝",
+          "茶",
+          "或是",
+          "咖啡"
+        ]
+      },
+      {
+        "zh": "我们可以坐车或是走路。",
+        "en": "We can take a vehicle or walk.",
+        "tokens": [
+          "我们",
+          "可以",
+          "坐",
+          "车",
+          "或是",
+          "走",
+          "路"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2834-otherwise",
+    "word": "不然",
+    "level": 5,
+    "pattern": "A，不然 B",
+    "meaning": "bù rán · otherwise",
+    "explain": "不然 introduces what will happen if the preceding condition is not met.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: otherwise?",
+    "examples": [
+      {
+        "zh": "快一点，不然就晚了。",
+        "en": "Hurry up, otherwise it will be late.",
+        "tokens": [
+          "快",
+          "一",
+          "点",
+          "不然",
+          "就",
+          "晚",
+          "了"
+        ]
+      },
+      {
+        "zh": "早点睡，不然明天会很累。",
+        "en": "Sleep early or you will be tired tomorrow.",
+        "tokens": [
+          "早",
+          "点",
+          "睡",
+          "不然",
+          "明天",
+          "会",
+          "很",
+          "累"
+        ]
+      },
+      {
+        "zh": "你要学习，不然考试会有问题。",
+        "en": "Study, otherwise you will have problems in the exam.",
+        "tokens": [
+          "你",
+          "要",
+          "学习",
+          "不然",
+          "考试",
+          "会",
+          "有",
+          "问题"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w2848-like",
+    "word": "似的",
+    "level": 5,
+    "pattern": "A + 似的",
+    "meaning": "shì de · as if / like",
+    "explain": "似的 follows a comparison, expressing resemblance to something.",
+    "distractors": [
+      "由",
+      "与"
+    ],
+    "contrast": "Which word fits this function: as if / like?",
+    "examples": [
+      {
+        "zh": "他高兴得像孩子似的。",
+        "en": "He is as happy as a child.",
+        "tokens": [
+          "他",
+          "高兴",
+          "得",
+          "像",
+          "孩子",
+          "似的"
+        ]
+      },
+      {
+        "zh": "她跑得像飞似的。",
+        "en": "She runs as if flying.",
+        "tokens": [
+          "她",
+          "跑",
+          "得",
+          "像",
+          "飞",
+          "似的"
+        ]
+      },
+      {
+        "zh": "这里安静得像家似的。",
+        "en": "It is as quiet here as home.",
+        "tokens": [
+          "这里",
+          "安静",
+          "得",
+          "像",
+          "家",
+          "似的"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w3017-summary",
+    "word": "总之",
+    "level": 5,
+    "pattern": "总之，B",
+    "meaning": "zǒng zhī · in short",
+    "explain": "总之 introduces a summary or overall conclusion.",
+    "distractors": [
+      "由于",
+      "尽管"
+    ],
+    "contrast": "Which word fits this function: in short?",
+    "examples": [
+      {
+        "zh": "总之，我们要继续努力。",
+        "en": "In short, we must keep working hard.",
+        "tokens": [
+          "总之",
+          "我们",
+          "要",
+          "继续",
+          "努力"
+        ]
+      },
+      {
+        "zh": "总之，这个方法很好。",
+        "en": "In short, this method is good.",
+        "tokens": [
+          "总之",
+          "这个",
+          "方法",
+          "很",
+          "好"
+        ]
+      },
+      {
+        "zh": "总之，我同意你的意见。",
+        "en": "In short, I agree with you.",
+        "tokens": [
+          "总之",
+          "我",
+          "同意",
+          "你",
+          "的",
+          "意见"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w3100-even-if",
+    "word": "哪怕",
+    "level": 5,
+    "pattern": "哪怕 A，也 B",
+    "meaning": "nǎ pà · even if",
+    "explain": "哪怕 introduces an extreme hypothetical condition that will not change the result.",
+    "distractors": [
+      "由于",
+      "既然"
+    ],
+    "contrast": "Which word fits this function: even if?",
+    "examples": [
+      {
+        "zh": "哪怕下雨，我也要去。",
+        "en": "Even if it rains, I will go.",
+        "tokens": [
+          "哪怕",
+          "下雨",
+          "我",
+          "也",
+          "要",
+          "去"
+        ]
+      },
+      {
+        "zh": "哪怕很难，我也不放弃。",
+        "en": "Even if it is difficult, I will not give up.",
+        "tokens": [
+          "哪怕",
+          "很",
+          "难",
+          "我",
+          "也",
+          "不",
+          "放弃"
+        ]
+      },
+      {
+        "zh": "哪怕他不来，我们也会开始。",
+        "en": "Even if he does not come, we will start.",
+        "tokens": [
+          "哪怕",
+          "他",
+          "不",
+          "来",
+          "我们",
+          "也",
+          "会",
+          "开始"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w3103-if",
+    "word": "假如",
+    "level": 5,
+    "pattern": "假如 A，就 B",
+    "meaning": "jiǎ rú · if / supposing",
+    "explain": "假如 introduces a hypothetical situation.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: if / supposing?",
+    "examples": [
+      {
+        "zh": "假如下雨，我就不去。",
+        "en": "Supposing it rains, I will not go.",
+        "tokens": [
+          "假如",
+          "下雨",
+          "我",
+          "就",
+          "不",
+          "去"
+        ]
+      },
+      {
+        "zh": "假如有时间，就来我家。",
+        "en": "If you have time, come to my home.",
+        "tokens": [
+          "假如",
+          "有",
+          "时间",
+          "就",
+          "来",
+          "我",
+          "家"
+        ]
+      },
+      {
+        "zh": "假如你不知道，就问我。",
+        "en": "If you do not know, ask me.",
+        "tokens": [
+          "假如",
+          "你",
+          "不",
+          "知道",
+          "就",
+          "问",
+          "我"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w3391-counterfactual",
+    "word": "要不是",
+    "level": 5,
+    "pattern": "要不是 A，B",
+    "meaning": "yào bú shì · if it were not for",
+    "explain": "要不是 introduces a counterfactual cause; the result would have been different without it.",
+    "distractors": [
+      "由于",
+      "因此"
+    ],
+    "contrast": "Which word fits this function: if it were not for?",
+    "examples": [
+      {
+        "zh": "要不是你帮我，我就不会成功。",
+        "en": "If it were not for your help, I would not have succeeded.",
+        "tokens": [
+          "要不是",
+          "你",
+          "帮",
+          "我",
+          "我",
+          "就",
+          "不",
+          "会",
+          "成功"
+        ]
+      },
+      {
+        "zh": "要不是下雨，我们就去了。",
+        "en": "If it had not rained, we would have gone.",
+        "tokens": [
+          "要不是",
+          "下雨",
+          "我们",
+          "就",
+          "去",
+          "了"
+        ]
+      },
+      {
+        "zh": "要不是他告诉我，我就不知道。",
+        "en": "If he had not told me, I would not know.",
+        "tokens": [
+          "要不是",
+          "他",
+          "告诉",
+          "我",
+          "我",
+          "就",
+          "不",
+          "知道"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w3572-contingency",
+    "word": "万一",
+    "level": 5,
+    "pattern": "万一 A，B",
+    "meaning": "wàn yī · in case / if by chance",
+    "explain": "万一 introduces an unlikely but possible contingency.",
+    "distractors": [
+      "由于",
+      "既然"
+    ],
+    "contrast": "Which word fits this function: in case / if by chance?",
+    "examples": [
+      {
+        "zh": "万一下雨，我们怎么办？",
+        "en": "What shall we do if it happens to rain?",
+        "tokens": [
+          "万一",
+          "下雨",
+          "我们",
+          "怎么办"
+        ]
+      },
+      {
+        "zh": "万一发生问题，请告诉我。",
+        "en": "If a problem occurs, please tell me.",
+        "tokens": [
+          "万一",
+          "发生",
+          "问题",
+          "请",
+          "告诉",
+          "我"
+        ]
+      },
+      {
+        "zh": "带上手机，万一有事可以联系。",
+        "en": "Take your phone in case you need to contact someone.",
+        "tokens": [
+          "带",
+          "上",
+          "手机",
+          "万一",
+          "有",
+          "事",
+          "可以",
+          "联系"
+        ]
+      }
+    ]
   }
 ];
