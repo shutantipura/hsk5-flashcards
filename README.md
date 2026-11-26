@@ -29,3 +29,7 @@ Static HTML/CSS/ES modules with no build step and no external JS. Hosted on GitH
 - Definitions from [CC-CEDICT](https://cc-cedict.org) (CC BY-SA 4.0), via [drkameleon/complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT)
 
 - Example sentences: adapted from [Zhongdex by SayMei](https://github.com/saymei/zhongdex), data licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). We selected, re-keyed and reformatted sentences against this app's existing syllabus, with original examples for gaps and duplicate readings. Source IDs and metadata are retained. See [example data attribution](data/EXAMPLES-NOTICE.md).
+
+## Example sentence coverage audit
+
+Run `node scripts/audit_examples.mjs` to validate all five levels and report how many entries have zero, one, two, or three displayed examples. Add `--list-missing` for a backlog of entries, or `--require-three` to make incomplete coverage fail the audit. The audit checks declared token levels and target inclusion, not grammar or pronunciation; authored examples can include explicit vocabulary boundaries to avoid false rejections by automated segmentation.
