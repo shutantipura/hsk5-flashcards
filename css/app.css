@@ -193,3 +193,7 @@ label.tg input { width: 22px; height: 22px; margin: 0; accent-color: var(--seal)
 .pr-tile{border:1px solid var(--line);background:var(--surface);padding:10px 14px;border-radius:10px;font-size:20px;cursor:pointer}
 .pr-tile:disabled{opacity:.35;cursor:default}
 @media(max-width:370px){.tabbar a{font-size:10px}}
+
+/* Passage-based reading review */
+.pr-selected{outline:2px solid var(--primary);outline-offset:1px}
+.pr-gloss{padding:8px 0;border-bottom:1px solid var(--line)}
