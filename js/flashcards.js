@@ -10,6 +10,12 @@ export function levelDeck(vocab,level){
   }
   return [...groups.values()];
 }
+// One card per target form; use the passage level when present, otherwise the highest eligible lower level.
+export function passageDeck(vocab,passage){
+  const byLevel=new Map();
+  for(let l=1;l<=passage.level;l++)for(const w of levelDeck(vocab,l))byLevel.set(w.h,w);
+  return [...new Set(passage.targets)].map(h=>byLevel.get(h)).filter(Boolean);
+}
 // Prefer a different reading/sense for the second example when a card groups entries.
 export function flashExamples(card,examples,limit=2){
   const out=[],seen=new Set();
@@ -87,7 +93,7 @@ export function flashFamiliarity(vocab,ratings={},reader={},level=5){
 }
 
 export function createFlashcards({S,shell,saveSettings,esc,getLibrary=()=>[]}){
-  let level=5,filter='all',size=30,queue=[],index=0,phase='menu',selected=null,saving=false,counts={},generation=0;
+  let level=5,filter='all',size=30,queue=[],index=0,phase='menu',selected=null,saving=false,counts={},generation=0,passageSession=null;
   const $=s=>document.querySelector(s), ratings=()=>S.settings.flashcardRatings||{};
   const deck=()=>levelDeck(S.vocab,level);
   let vocabLevel=0,vocabQuery='',vocabPage=0;
@@ -100,7 +106,7 @@ export function createFlashcards({S,shell,saveSettings,esc,getLibrary=()=>[]}){
     $('#flash-list-tab').onclick=()=>vocabList();
   }
   function vocabList(){
-    generation++;phase='list';saving=false;
+    generation++;phase='list';saving=false;passageSession=null;
     const levels=[0,1,2,3,4,5].map(l=>'<button type="button" class="level-tab '+(l===vocabLevel?'on':'')+'" data-list-level="'+l+'" aria-pressed="'+(l===vocabLevel)+'">'+(l?'HSK '+l:'All')+'</button>').join('');
     shell('flashcards','<header class="hdr"><div><p class="read-eyebrow">VOCABULARY</p><h1>Vocab list</h1><p class="muted">Browse every word, pronunciation and definition.</p></div></header>'+subnav('list')+'<div class="flash-levels vocab-levels">'+levels+'</div><label class="vocab-search">Search<input id="vocab-query" type="search" placeholder="Chinese, pinyin or English" value="'+esc(vocabQuery)+'" autocomplete="off"></label><div id="vocab-list-results"></div>');
     bindSubnav();
@@ -131,7 +137,7 @@ export function createFlashcards({S,shell,saveSettings,esc,getLibrary=()=>[]}){
     return revealed?'<section class="examples flash-examples"><h3>Example sentences</h3>'+content+'</section>':'<details class="examples flash-examples"><summary>Example sentences · '+rows.length+'</summary>'+content+'</details>';
   }
   function menu(){
-    generation++;phase='menu';saving=false;
+    generation++;phase='menu';saving=false;passageSession=null;
     const d=deck(),r=ratings(),forms=new Map();for(const w of S.vocab){if(!forms.has(w.h))forms.set(w.h,new Set());forms.get(w.h).add(w.l);}
     const ranked=smartQueue(d,S.settings,readingExposure(getLibrary(),S.settings.readerVisits),Date.now(),forms);
     const smart=ranked.filter(w=>w.eligible),eligible=filter==='smart'?smart:ranked.filter(w=>selectDeck([w],r,filter).length);
@@ -145,16 +151,30 @@ export function createFlashcards({S,shell,saveSettings,esc,getLibrary=()=>[]}){
     $('#flash-filter').onchange=e=>{filter=e.target.value;menu();};$('#flash-size').onchange=e=>{size=+e.target.value;menu();};
     $('#flash-start').onclick=()=>start(eligible);
   }
-  function start(words){
+  function openPassage(p,back){
+    generation++;saving=false;
+    const d=passageDeck(S.vocab,p);
+    if(!d.length){back();return;}
+    passageSession={p,back};
+    const forms=new Map();for(const w of S.vocab){if(!forms.has(w.h))forms.set(w.h,new Set());forms.get(w.h).add(w.l);}
+    const ranked=smartQueue(d,S.settings,readingExposure(getLibrary(),S.settings.readerVisits),Date.now(),forms);
+    const byId=new Map(ranked.map(w=>[w.id,w]));
+    start(d.map(w=>({...byId.get(w.id),reason:'Target word from this passage',passages:[p]})),true);
+  }
+  function leavePassage(){
+    const back=passageSession?.back;generation++;saving=false;passageSession=null;
+    if(back)back();else menu();
+  }
+  function start(words,all=false){
     queue=[...words];
-    if(size)queue=queue.slice(0,size);
+    if(size&&!all)queue=queue.slice(0,size);
     index=0;counts={known:0,think:0,unsure:0,unknown:0};selected=null;phase='card';render();
   }
   function render(){
     if(index>=queue.length)return finish();
     const w=queue[index],revealed=phase==='revealed';
-    shell('flashcards','<button class="link" id="flash-back">‹ HSK '+level+' decks</button><div class="flash-counter"><span>HSK '+level+'</span><span>'+(index+1)+' / '+queue.length+'</span></div><div class="flash-track"><div style="width:'+((index+(revealed?1:0))/queue.length*100)+'%"></div></div><p class="muted small flash-reason">'+esc(w.reason)+(w.passages[0]?' · '+esc(w.passages[0].title):'')+'</p><section class="card flash-face"><div class="flash-hanzi" lang="zh-CN">'+esc(w.h)+'</div>'+(revealed?'<div class="flash-definition">'+w.entries.map(e=>'<div><b class="flash-pinyin">'+esc(e.p)+'</b><p>'+esc((e.m||[]).join('; '))+'</p></div>').join('')+'<button class="btn" data-say="'+esc(w.h)+'">🔊 Pronunciation</button></div>':'<p class="muted small">How well do you know this word?</p>')+'</section>'+examplesMarkup(w,revealed)+(revealed?'<p class="flash-mark muted">Marked: '+esc(RATINGS.find(([k])=>k===selected)[1])+' · Next review '+fmtInterval(Date.parse(ratings()[w.id].due)-Date.now())+'</p><button class="btn primary big" id="flash-next">'+(index+1===queue.length?'Finish session':'Next word →')+'</button>':'<div class="flash-ratings">'+RATINGS.map(([k,label])=>'<button class="btn flash-rate flash-'+k+'" data-flash-rating="'+k+'"><span>'+label+'</span><small>'+fmtInterval(Date.parse(rateFlashcard(w,w.card,k,Date.now(),S.settings.retention||.9).due)-Date.now())+'</small></button>').join('')+'</div>')+'<p class="muted small" id="flash-error" role="status"></p>');
-    $('#flash-back').onclick=menu;
+    shell('flashcards','<button class="link" id="flash-back">'+(passageSession?'‹ Back to passage':'‹ HSK '+level+' decks')+'</button><div class="flash-counter"><span>'+(passageSession?'Passage vocabulary · HSK '+w.level:'HSK '+level)+'</span><span>'+(index+1)+' / '+queue.length+'</span></div><div class="flash-track"><div style="width:'+((index+(revealed?1:0))/queue.length*100)+'%"></div></div><p class="muted small flash-reason">'+esc(w.reason)+(w.passages[0]?' · '+esc(w.passages[0].title):'')+'</p><section class="card flash-face"><div class="flash-hanzi" lang="zh-CN">'+esc(w.h)+'</div>'+(revealed?'<div class="flash-definition">'+w.entries.map(e=>'<div><b class="flash-pinyin">'+esc(e.p)+'</b><p>'+esc((e.m||[]).join('; '))+'</p></div>').join('')+'<button class="btn" data-say="'+esc(w.h)+'">🔊 Pronunciation</button></div>':'<p class="muted small">How well do you know this word?</p>')+'</section>'+examplesMarkup(w,revealed)+(revealed?'<p class="flash-mark muted">Marked: '+esc(RATINGS.find(([k])=>k===selected)[1])+' · Next review '+fmtInterval(Date.parse(ratings()[w.id].due)-Date.now())+'</p><button class="btn primary big" id="flash-next">'+(index+1===queue.length?'Finish session':'Next word →')+'</button>':'<div class="flash-ratings">'+RATINGS.map(([k,label])=>'<button class="btn flash-rate flash-'+k+'" data-flash-rating="'+k+'"><span>'+label+'</span><small>'+fmtInterval(Date.parse(rateFlashcard(w,w.card,k,Date.now(),S.settings.retention||.9).due)-Date.now())+'</small></button>').join('')+'</div>')+'<p class="muted small" id="flash-error" role="status"></p>');
+    $('#flash-back').onclick=passageSession?leavePassage:menu;
     if(revealed){$('#flash-next').onclick=advance;return;}
     document.querySelectorAll('[data-flash-rating]').forEach(b=>b.onclick=()=>mark(b.dataset.flashRating));
   }
@@ -171,7 +191,7 @@ export function createFlashcards({S,shell,saveSettings,esc,getLibrary=()=>[]}){
   }
   function advance(){index++;selected=null;phase='card';render();}
   function finish(){
-    phase='finished';shell('flashcards','<header class="hdr"><div><h1>Session complete</h1><p class="muted">HSK '+level+' · '+queue.length+' words rated</p></div></header><section class="card">'+RATINGS.map(([k,label])=>'<div class="kv"><span>'+label+'</span><b>'+counts[k]+'</b></div>').join('')+'</section><button class="btn primary" id="flash-menu">Choose another session</button>');$('#flash-menu').onclick=menu;
+    phase='finished';shell('flashcards','<header class="hdr"><div><h1>Session complete</h1><p class="muted">'+(passageSession?esc(passageSession.p.title):'HSK '+level)+' · '+queue.length+' words rated</p></div></header><section class="card">'+RATINGS.map(([k,label])=>'<div class="kv"><span>'+label+'</span><b>'+counts[k]+'</b></div>').join('')+'</section><button class="btn primary" id="flash-menu">'+(passageSession?'Return to passage →':'Choose another session')+'</button>');$('#flash-menu').onclick=passageSession?leavePassage:menu;
   }
-  return {open:menu};
+  return {open:menu,openPassage};
 }
