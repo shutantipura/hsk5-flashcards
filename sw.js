@@ -1,6 +1,6 @@
 // Offline support: app shell + vocab cached; network-first so updates arrive when online.
-const CACHE = 'hsk5-v1.2.0';
-const SHELL = ['./', 'index.html', 'css/app.css', 'manifest.webmanifest', 'data/vocab.json', 'icons/icon-180.png', 'icons/icon-192.png',
+const CACHE = 'hsk5-v1.3.0';
+const SHELL = ['./', 'index.html', 'css/app.css', 'manifest.webmanifest', 'data/vocab.json', 'data/examples-1.json', 'data/examples-2.json', 'data/examples-3.json', 'data/examples-4.json', 'data/examples-5.json', 'icons/icon-180.png', 'icons/icon-192.png',
   'js/app.js', 'js/api.js', 'js/config.js', 'js/engine.js', 'js/fsrs.js', 'js/idb.js', 'js/report.js', 'js/store.js'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', (e) => {

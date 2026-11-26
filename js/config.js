@@ -1,6 +1,6 @@
 export const SUPABASE_URL = 'https://pqotdmcumcjqccefwjhl.supabase.co';
 export const SUPABASE_KEY = 'sb_publishable_JcRYPuH3y2TTWWNoEtEjZA_0_7S0PSW';
-export const APP_VERSION = '1.2.0';
+export const APP_VERSION = '1.3.0';
 export const DEFAULT_SETTINGS = {
   examDate: '2027-03-14',
   retention: 0.9,

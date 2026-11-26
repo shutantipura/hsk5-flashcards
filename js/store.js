@@ -4,7 +4,7 @@ import * as api from './api.js';
 import { DEFAULT_SETTINGS } from './config.js';
 
 export const S = {
-  vocab: [], byId: new Map(), byHanzi: new Map(), charIndex: new Map(),
+  vocab: [], examples: new Map(), byId: new Map(), byHanzi: new Map(), charIndex: new Map(),
   cards: new Map(),   // "wordId:kind" -> card
   logs: [],           // review logs, oldest first
   settings: { ...DEFAULT_SETTINGS },
@@ -17,8 +17,18 @@ export const onChange = (fn) => listeners.add(fn);
 const emit = () => listeners.forEach((f) => f());
 
 export async function loadVocab() {
-  const r = await fetch('data/vocab.json');
+  const [r, ...exampleFiles] = await Promise.all([
+    fetch('data/vocab.json'),
+    ...[1, 2, 3, 4, 5].map(async (level) => {
+      try {
+        const res = await fetch('data/examples-' + level + '.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+      } catch (err) { console.warn('Examples unavailable for HSK ' + level, err); return {}; }
+    }),
+  ]);
   S.vocab = await r.json();
+  S.examples = new Map(exampleFiles.flatMap((data) => Object.entries(data)).map(([id, examples]) => [Number(id), examples]));
   for (const w of S.vocab) {
     S.byId.set(w.i, w); S.byHanzi.set(w.h, w);
     for (const ch of new Set(w.h)) { if (!S.charIndex.has(ch)) S.charIndex.set(ch, []); S.charIndex.get(ch).push(w.i); }
