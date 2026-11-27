@@ -1,7 +1,8 @@
 // Passage-first reader. Existing cards and question IDs are preserved.
 import { PRACTICE as BASE_PRACTICE } from './practice-data.js';
 import { COVERAGE_PRACTICE } from './coverage-practice-data.js';
-const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE];
+import { SYLLABUS_PRACTICE } from './syllabus-practice-data.js';
+const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE, ...SYLLABUS_PRACTICE];
 import { buildKnowledge, gradePractice, practiceCard, READING_TYPES } from './practice.js';
 import { grammarPatternsFor } from './learning-mode.js';
 import { flashFamiliarity } from './flashcards.js';
