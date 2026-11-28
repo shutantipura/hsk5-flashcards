@@ -1,7 +1,7 @@
 // Offline support: app shell + vocab cached; network-first so updates arrive when online.
-const CACHE = 'hsk5-v2.22.0';
+const CACHE = 'hsk5-v2.23.0';
 const SHELL = ['./', 'index.html', 'css/app.css', 'manifest.webmanifest', 'data/vocab.json', 'data/examples-1.json', 'data/examples-2.json', 'data/examples-3.json', 'data/examples-4.json', 'data/examples-5.json', 'icons/icon-180.png', 'icons/icon-192.png',
-  'js/app.js', 'js/reader.js', 'js/flashcards.js', 'js/practice.js', 'js/practice-data.js', 'js/coverage-practice-data.js', 'js/syllabus-practice-data.js', 'js/reinforcement-practice-data.js', 'js/grammar.js', 'js/learning-mode.js', 'js/grammar-data.js', 'js/examples.js', 'js/api.js', 'js/config.js', 'js/engine.js', 'js/fsrs.js', 'js/idb.js', 'js/report.js', 'js/store.js'];
+  'js/app.js', 'js/reader.js', 'js/flashcards.js', 'js/practice.js', 'js/practice-data.js', 'js/coverage-practice-data.js', 'js/syllabus-practice-data.js', 'js/reinforcement-practice-data.js', 'js/level-practice-data.js', 'js/passage-rules.js', 'js/grammar.js', 'js/learning-mode.js', 'js/grammar-data.js', 'js/examples.js', 'js/api.js', 'js/config.js', 'js/engine.js', 'js/fsrs.js', 'js/idb.js', 'js/report.js', 'js/store.js'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
