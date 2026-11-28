@@ -209,7 +209,7 @@ export function createReader({S,shell,saveSettings,esc}){
     if(where==='explore'){document.querySelectorAll('[data-browse-level]').forEach(b=>b.onclick=()=>{browseLevel=+b.dataset.browseLevel;dashboard(where);});$('#read-topic').onchange=e=>{topic=e.target.value;dashboard(where);};$('#read-search').onsubmit=e=>{e.preventDefault();search=e.target.q.value.trim();dashboard(where);};}
   }
   function nextPassage(id){return rankPassages(library(),S,5,goal).find(x=>x.id===id);}
-  function open(p,listen=false){audio.stop();highlight=true;const selected=p.tracks.includes(track)?track:p.tracks[0];current={...p,activeTrack:selected,targets:selected==='learner'?p.learnerTargets:p.challengeTargets};mode=listen?'audio':'read';showTranslation=false;activeWord=null;activeIndex=null;listeningTranscript=false;if(listen)renderListening();else render();window.scrollTo(0,0);}
+  function open(p,listen=false){audio.stop();highlight=true;const selected=p.tracks.includes(track)?track:p.tracks[0];track=selected;current={...p,activeTrack:selected,targets:selected==='learner'?p.learnerTargets:p.challengeTargets};mode=listen?'audio':'read';showTranslation=false;activeWord=null;activeIndex=null;listeningTranscript=false;if(listen)renderListening();else render();window.scrollTo(0,0);}
   function wordMarkup(p){
     const spans=tokenSpans(p.body,p.tokens);if(!spans)return esc(p.body);
     return spans.map((s,i)=>{
@@ -328,9 +328,9 @@ export function createReader({S,shell,saveSettings,esc}){
     const p=current;shell(route,'<button class="link" id="read-return">‹ Back to story</button><h1>Retell the story</h1><p>Write or say what happened in your own Chinese. Try not to look at the original first.</p><section class="card"><textarea id="read-writing" rows="6" placeholder="用自己的话说一说…"></textarea><button class="btn" id="read-compare">Compare with original</button><div id="read-feedback"></div></section>');
     $('#read-return').onclick=render;$('#read-compare').onclick=()=>{$('#read-feedback').innerHTML='<p class="read-text">'+highlightedText(p)+'</p><p class="muted small">Self-check: Did you capture the main idea? Did you use the new words naturally? No automated grammar grade is claimed.</p>';};
   }
-  function openById(id,where='home',listen=false){
+  function openById(id,where='home',listen=false,selectedTrack=null){
     route=['home','explore','review'].includes(where)?where:'home';
-    level=S.settings.readerLevel||5;track=new URLSearchParams(location.hash.split('?')[1]||'').get('track')||S.settings.readerTrack||'learner';goal=S.settings.readerGoal||.95;audioRate=S.settings.readerAudioRate||1;
+    level=S.settings.readerLevel||5;track=selectedTrack||S.settings.readerTrack||'learner';goal=S.settings.readerGoal||.95;audioRate=S.settings.readerAudioRate||1;
     const p=nextPassage(id);if(!p)return false;
     libraryMode=listen?'listen':'read';open(p,listen);return true;
   }
