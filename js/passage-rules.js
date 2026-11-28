@@ -15,7 +15,9 @@ export function passageTiers(qs,index){
  if(p.sublevel==='learner')return learnerLength&&strict(old)?{tracks:['learner'],targets:old,learnerTargets:old,challengeTargets:[]}:null;
  if((p.sublevel&&p.sublevel!=='challenge')||!standard)return null;
  const ownWords=present.filter(t=>own.has(t)),challengeTargets=ownWords.length?ownWords:old;
- const eligible=!p.sublevel&&learnerTargets&&learnerLength;
+ // Two near-identical legacy pharmacy stories contain higher-level 好好 / 好多 when linguistically segmented; keep them in Challenge only.
+ const legacyExcluded=new Set(['r-foundation-2-17','r-foundation-2-18']);
+ const eligible=!p.sublevel&&!legacyExcluded.has(p.passageId)&&learnerTargets&&learnerLength;
  return {tracks:eligible?['learner','challenge']:['challenge'],targets:eligible?learnerTargets:challengeTargets,learnerTargets:eligible?learnerTargets:[],challengeTargets};
 }
 export function tierCoverage(library,vocab){
