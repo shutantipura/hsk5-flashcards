@@ -70,20 +70,21 @@ let ready=false;
 function route() {
   if(!ready)return;
   const [r,query=''] = (location.hash.replace('#/', '') || 'home').split('?');
-  const params=new URLSearchParams(query),passageId=params.get('passage'),listen=params.get('mode')==='listen';
+  const params=new URLSearchParams(query),passageId=params.get('passage'),listen=params.get('mode')==='listen',track=params.get('track')==='challenge'?'challenge':params.get('track')==='learner'?'learner':(S.settings.readerTrack||'learner');
   if (!api.getSession() && r !== 'login') { go('login'); return login(); }
   if(api.getSession()&&r==='login'){location.reload();return;}
   if(r==='flashcards'&&passageId){
-    const p=checkedLibrary(S.vocab).find(p=>p.id===passageId);
-    if(p){
+    const found=checkedLibrary(S.vocab).find(p=>p.id===passageId);
+    if(found){
+      const selected=found.tracks.includes(track)?track:found.tracks[0];const p={...found,targets:selected==='learner'?found.learnerTargets:found.challengeTargets};
       const from=['home','explore','review'].includes(params.get('from'))?params.get('from'):'home';
-      flashcards.openPassage(p,()=>{location.hash='#/'+from+'?'+new URLSearchParams({passage:p.id,mode:listen?'listen':'read'});});
+      flashcards.openPassage(p,()=>{location.hash='#/'+from+'?'+new URLSearchParams({passage:p.id,mode:listen?'listen':'read',track:selected});});
       window.scrollTo(0,0);return;
     }
   }
   if(['home','explore','review'].includes(r)&&passageId){
     history.replaceState(null,'','#/'+r);
-    if(reader.openById(passageId,r,listen))return;
+    if(reader.openById(passageId,r,listen,track))return;
   }
   (routes[r] || reader.today)();
   window.scrollTo(0, 0);
