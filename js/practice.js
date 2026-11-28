@@ -2,7 +2,8 @@
 import { PRACTICE as BASE_PRACTICE } from './practice-data.js';
 import { COVERAGE_PRACTICE } from './coverage-practice-data.js';
 import { SYLLABUS_PRACTICE } from './syllabus-practice-data.js';
-const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE, ...SYLLABUS_PRACTICE];
+import { REINFORCEMENT_PRACTICE } from './reinforcement-practice-data.js';
+const PRACTICE = [...BASE_PRACTICE, ...COVERAGE_PRACTICE, ...SYLLABUS_PRACTICE, ...REINFORCEMENT_PRACTICE];
 import { GRAMMAR } from './grammar-data.js';
 import { grammarPrompt } from './grammar.js';
 import { grammarPatternsFor, isGrammarOnly, vocabularyMeanings } from './learning-mode.js';
